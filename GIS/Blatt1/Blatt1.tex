@@ -1,0 +1,142 @@
+\documentclass[12pt, german]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}  
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{marvosym}
+\usepackage{tasks}
+\usepackage{stmaryrd}
+
+\usepackage{amssymb}
+\usepackage{pgf}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+\usepackage{algorithm}% http://ctan.org/pkg/algorithm
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+%Entfernt Seitenummerierung
+\pagenumbering{gobble}
+
+\usepackage[a4paper,lmargin={2cm},rmargin={2cm},tmargin={3.5cm},bmargin = {2.5cm},headheight = {4cm}]{geometry}
+
+
+
+\lstset{ 
+	backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+	%	basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+	%	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	%	breaklines=true,                 % sets automatic line breaking
+	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{mygreen},    % comment style
+	deletekeywords={...},            % if you want to delete keywords from the given language
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	frame=single,	                   % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{blue},       % keyword style
+	language=Octave,                 % the language of the code
+	morekeywords={*,...},            % if you want to add more keywords to the set
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{mymauve},     % string literal style
+	tabsize=2,	                   % sets default tabsize to 2 spaces
+	title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\title{Grundlagen Informations Sicherheit \\ Übungsblatt 01}
+
+\author{Max Kurz (3265240)  \and Mohamed Barbouchi (3233706) \and Daniel Kurtz {123456}}
+\date{}
+\pagenumbering{gobble}
+\begin{document}
+	\maketitle
+
+    \subsection*{Problem 1}
+    \begin{enumerate}[label=\alph*)]
+    	\item  ~\par
+    		\begin{table}[h!]
+    		\centering
+    		\begin{tabular}{c | c | c | c }
+    			$D()$ & A & B & C \\ \hline
+    		 	$k_1$ & a & b & c \\ \hline
+    		 	$k_2$ & c & a & b \\ \hline
+    		 	$k_3$ & b & c & a 
+    		\end{tabular}
+    	\end{table}
+    		
+    	\item  ~\par
+    	\begin{table}[h!]
+    		\centering
+    		\begin{tabular}{c | c | c | c }
+    			$D()$ & A & B & C \\ \hline
+    			$k_1$ & a & b & c \\ \hline
+    			$k_2$ & b & a & c \\ \hline
+    			$k_3$ & a & b & c 
+    		\end{tabular}
+    	\end{table}
+    	
+    	\item Klappt nicht, da $\forall x \in X, k \in K: D(E(x, k), k) = x$ gelten muss und wir hier aber $D(A, k_1) = a$ und  $D(A, k_1) = c$ bekommen. Die Entschlüsslelung ist also nicht eindeutig.
+    	
+    	\subsection*{Problem 2}
+    	Das Wort lautet: Hitchhiker
+    	Man wandelt die Zahlen in Binär um, und xort die beiden Strings. Das Ergebnis wird wieder in Dezimal umgewandelt. 
+    	
+    	\newpage
+    	\subsection*{Problem 3}
+    	\begin{enumerate}[label=\alph*)]
+    	
+    	\item	Sei $x \in \{0, 1 \}^l$, dann gilt $x^l \oplus x^l \oplus x^l = x^l \oplus 0^l $ wobei $0^l$ hier die Identität ist. \\ Für die Identität gilt: $x \oplus 1_m = x$.
+    
+    	\begin{algorithm} 
+    		\centering
+    		\caption{$D(Y)$}
+    		\label{Alg:1}
+    		\begin{algorithmic}[1]
+    			\State $z_{1}.\texttt{concat}(z_{2}) := Y$ mit $|z_1| = |z_2|$
+    			\State $l := |z_2|$
+    			\State $r := z_2 \oplus 1^l$
+    			\State \texttt{return } $r$
+    		\end{algorithmic}
+    	\end{algorithm} 		
+    		
+    		\item
+		\begin{algorithm} 
+				\centering
+				\caption{Attack}
+				\label{Alg:2}
+			\begin{algorithmic}[1]
+					\State Let $x \in \{0^l\}$ and $y \in \{1^l\}$
+					\State \texttt{send}($x$)
+					\State \texttt{send}($y$)
+					\State \texttt{receive}($w$)
+					\State \texttt{if}($w == 0^l$) $b=1$ \texttt{else}  $b=0$
+					\State \texttt{return } $b$
+			\end{algorithmic}
+		\end{algorithm} 		
+		Die Wahrscheinlichkeit für den Angreifer so die richtige Nachricht zu erkennen und das passende $b$ zurückzugeben liegt bei $1$. Siehe Aufgabe a). 
+
+    	\end{enumerate}
+    
+    
+    
+    
+    
+    
+    
+    
+    \end{enumerate}
+\end{document}
