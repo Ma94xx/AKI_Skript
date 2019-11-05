@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.6.9)  5 NOV 2019 13:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.6.9)  5 NOV 2019 20:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1280,11 +1280,11 @@ File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
  (./Blatt1.aux) ) 
 Here is how much of TeX's memory you used:
- 26079 strings out of 492995
- 508831 string characters out of 6132705
- 570252 words of memory out of 5000000
- 29208 multiletter control sequences out of 15000+600000
- 20186 words of font info for 63 fonts, out of 8000000 for 9000
+ 26082 strings out of 492995
+ 508865 string characters out of 6132705
+ 569252 words of memory out of 5000000
+ 29210 multiletter control sequences out of 15000+600000
+ 20812 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,10n,66p,10357b,327s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/c
@@ -1308,7 +1308,7 @@ sr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr
 /local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/l
 ocal/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/loc
 al/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Blatt1.pdf (3 pages, 200758 bytes).
+Output written on Blatt1.pdf (3 pages, 202102 bytes).
 PDF statistics:
  98 PDF objects out of 1000 (max. 8388607)
  72 compressed objects within 1 object stream
