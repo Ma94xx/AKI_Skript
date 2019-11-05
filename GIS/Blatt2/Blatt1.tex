@@ -64,23 +64,29 @@
 \pagenumbering{gobble}
 \begin{document}
 	\maketitle
-	%TODO PseudoCode schreiben und SecurityGame "machen" 
     \subsection*{Problem 1}
-    $a= \cfrac{y_1 -_n y_2}{x_1 -_n x_2}$  
-    $b=y_2 -_n ax_2$
    	\begin{algorithm} 
     		\centering
     		\caption{$D(Y)$}
     		\label{Alg:1}
     		\begin{algorithmic}[1]
-    			\State $z_{1}.\texttt{concat}(z_{2}) := Y$ mit $|z_1| = |z_2|$
-    			\State $l := |z_2|$
-    			\State $r := z_2 \oplus 1^l$
-    			\State \texttt{return } $r$
+    			\State \texttt{send($x_1$)}  
+    			\State \texttt{$y_1$ = receive($y_1$)}
+    			\State \texttt{send($x_2$)}  
+    			\State \texttt{$y_2$ = receive($y_2$)}
+    			\State  $a= (y_1 -_n y_2)/(x_1 -_n x_2)$ 
+    			\State $b=y_2 -_n ax_2$
+    			\State $x_{d1}= D(y_1, (a,b))$
+    			\State $x_{d2}= D(y_2, (a,b))$
+    			\State  \texttt{if($x_{d1}$ == $x_1$)}{	$b = 1$ \texttt{else} $b = 0$ }
+    			\State \texttt{return } $b$
     		\end{algorithmic}
     	\end{algorithm} 		
+    Die Wahrscheinlichkeit für den Angreifer das richtige $b$ zurrückzugeben und liegt bei $1$, da mit dem oben beschrieben Algorithmus das Tupel $(a,b)$ rekonstruiert werden kann.
     
+    %TODO anpassen
     \subsection*{Problem 2}
+    
     \subsection*{Problem 3}
     	Sei  $x, y \in \mathbb{Z}_n$ und $l,k \in \mathbb{Z}$
     	\begin{align*}
@@ -93,13 +99,13 @@
     	&= lkn^2 +n(ly +kx) +xy \equiv x\cdot y \mod n
     	\end{align*}
     	\bewiesen
-    	%TODO anpassen
+    
     
        \subsection*{Problem 4}
     	Assoziativität ist gegeben da $(R, \cdot)$ bereits assozitiv ist. Wir zeigen Abgeschlossenheit, die Existenz von Inversen, und neutralem Element. 
     	\subsubsection*{Abgeschlossenheit}
     	 $\forall x,y \in R : x,y \in R^\ast \implies \exists x^{-1} y^{-1} \in R^\ast$. 
-   	 Außedem gilt: $xx^{-1} = 1_R = x^{-1}x$, \\ und $yy^{-1} = 1_R = y^{-1}y $
+   	 Außerdem gilt: $xx^{-1} = 1_R = x^{-1}x$, \\ und $yy^{-1} = 1_R = y^{-1}y $
     	\begin{align*}
     		x \cdot y = z &\implies xyy^{-1} = x1_R=x=zy^{-1} \\
     		&\implies xx^{-1} = 1 = zy^{-1}x^{-1} \\

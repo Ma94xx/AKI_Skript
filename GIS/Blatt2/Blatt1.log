@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.6.9)  4 NOV 2019 14:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.6.9)  5 NOV 2019 11:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1271,7 +1271,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 66.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 76.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 73.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -1280,13 +1280,13 @@ File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] (./
 Blatt1.aux) ) 
 Here is how much of TeX's memory you used:
- 26072 strings out of 492995
- 508766 string characters out of 6132705
- 569219 words of memory out of 5000000
- 29204 multiletter control sequences out of 15000+600000
- 19195 words of font info for 60 fonts, out of 8000000 for 9000
+ 26065 strings out of 492995
+ 508692 string characters out of 6132705
+ 570219 words of memory out of 5000000
+ 29200 multiletter control sequences out of 15000+600000
+ 17039 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 61i,8n,66p,10357b,341s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 61i,8n,66p,10357b,327s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-su
 per-t1.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mmi12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cm
@@ -1303,7 +1303,7 @@ b></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></
 usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></us
 r/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Blatt1.pdf (2 pages, 162473 bytes).
+Output written on Blatt1.pdf (2 pages, 171721 bytes).
 PDF statistics:
  75 PDF objects out of 1000 (max. 8388607)
  55 compressed objects within 1 object stream
