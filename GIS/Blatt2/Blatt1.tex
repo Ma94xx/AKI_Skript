@@ -142,6 +142,8 @@
     %TODO anpassen
     \subsection*{Problem 6}
  	Sei $a = lb + k$ mit $l,k \in \mathbb{Z}$, und $d=$ \texttt{ggt$(a,b)$}, $e=$ \texttt{ggt$(b,k)$}.\\ Wir zeigen $d = e$ und somit \texttt{ggt$(a,b)$} = \texttt{ggt$(b,a\mod b)$}. 
+\\ \\
+ \begin{minipage}[b]{0,5\textwidth}
    \subsubsection*{Fall $d \mid e$}
    \begin{align*}
    	d &= \texttt{ggt}(a,b) \\
@@ -151,7 +153,8 @@
    	&\implies d \mid k \text{ und } d \mid l \\
    	&\implies d \mid e
     \end{align*} 
-  
+\end{minipage}
+\begin{minipage}[b]{0,5\textwidth}
   \subsubsection*{Fall $e \mid d$}
     \begin{align*}
     	e &= \texttt{ggt}(b,k) \\
@@ -161,6 +164,7 @@
     		&\implies e \mid \texttt{ggt}(a,b) \\
     		&\implies e \mid d
     \end{align*} 
+\end{minipage}
     \bewiesen
     		
     

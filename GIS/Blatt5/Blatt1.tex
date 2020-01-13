@@ -1,0 +1,119 @@
+\documentclass[12pt, german]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}  
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{marvosym}
+\usepackage{tasks}
+\usepackage{stmaryrd}
+
+\usepackage{amssymb}
+\usepackage{pgf}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+\usepackage{algorithm}% http://ctan.org/pkg/algorithm
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+%Entfernt Seitenummerierung
+\pagenumbering{gobble}
+
+\usepackage[a4paper,lmargin={2cm},rmargin={2cm},tmargin={3.5cm},bmargin = {2.5cm},headheight = {4cm}]{geometry}
+ \newcommand{\bewiesen}{\begin{flushright}$\square$ \end{flushright} } 
+ \newcommand{\teilsbewiesen}{\begin{flushright}$\triangle$ \end{flushright} } 
+
+
+\lstset{ 
+	backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+	%	basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+	%	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	%	breaklines=true,                 % sets automatic line breaking
+	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{mygreen},    % comment style
+	deletekeywords={...},            % if you want to delete keywords from the given language
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	frame=single,	                   % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{blue},       % keyword style
+	language=Octave,                 % the language of the code
+	morekeywords={*,...},            % if you want to add more keywords to the set
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{mymauve},     % string literal style
+	tabsize=2,	                   % sets default tabsize to 2 spaces
+	title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\title{Grundlagen Informations Sicherheit \\ Übungsblatt 04}
+
+\author{Max Kurz (3265240)  \and Mohamed Barbouchi (3233706) \and Daniel Kurtz (3332911)}
+\date{}
+\pagenumbering{gobble}
+\begin{document}
+	\maketitle
+    \subsection*{Problem 1}
+    \begin{align*}
+    f_1 \cdot_{\mathbb{F}_{2^{8}}} f_2 = f_1 \cdot_{\mathbb{Z}_{2}[x]} f_2 \mod g &= \\
+    x^7 + x^5 + x^4 +x^2 + x \cdot_{\mathbb{Z}_{2}[x]} x^6 + x^4 +x + 1 \mod g &= \\
+    x^{13}+x^{10} +x^9 + x^8 + x^5 +x^4 + x^3 +x \mod g &=
+    \end{align*}
+    $= x^5 + x^4 +x^2 +x$
+    \subsection*{Problem 2}
+    Seien $f$ und $p$ beliebige Polynome. Dann gilt:
+    \begin{align*}
+    	\deg(f \cdot p) &= \deg(\sum a_ix^i \cdot \sum a_j x^i) \\
+    	&= \deg(\max\{x^i\} \cdot \max\{x^j\}) \quad \forall a_i, a_j \neq 0 \\
+    	&= \deg(x_{\text{max}}^{i} \cdot x_{\text{max}}^{j})  \\
+    	&= \deg(\underbrace{(x_{\text{max}} \cdot \ldots \cdot x_{\text{max}})}_\text{i-mal}\cdot\underbrace{(x_{\text{max}} \cdot \ldots \cdot x_{\text{max}})}_\text{j-mal}) 
+    	=\deg(\underbrace{x_{\text{max}}\cdot \ldots \cdot x_{\text{max}}}_\text{i+j -mal})  \\
+    	&=\deg(x^{i+j}) \\
+    	&= \deg(f) + \deg(g)
+    \end{align*}
+    \bewiesen
+    \newpage
+     \subsection*{Problem 3}
+     Sei $x$ und $x'$ unterschiedlich aber es gilt $h_n(x) = h_n(x')$. 
+      \begin{algorithm} 
+     	\centering
+     	\caption{ }
+     	\label{Alg:1}
+     	\begin{algorithmic}[1]
+     		\State Generate Keypair $((n,e),(n,d))$
+     		\State \texttt{send}($x$)
+     		\State \texttt{receive}($s$) und  $s$ = \texttt{PKCS-sig($x, (n,d)$)} = $h_n(x)^d\mod n$
+     		\State \texttt{output}($x', s$)
+     	\end{algorithmic}
+       \end{algorithm}
+   	
+   	\noindent
+   	Der Angreifer hat einen Vorteil von $1$. \\
+   	$V'(x', s,(n,e)) = V(h_n(x'), s, (n,e)) = $ \texttt{ vaild}, da: 
+   	\begin{align*}
+   		h_n(x') &= h_n(x) \text{ und }\\
+   		s^e &= h_n(x)^{d^{e}} \mod n = h_n(x)
+   	\end{align*}
+   	Das bedeutet also dass der Angreifer ohne das Orakel mit dieser Message zubefragen, einen \texttt{valid}-Tag gefunden hat und somit immer das Game gewinnt.
+    
+     \subsection*{Problem 4}
+      \subsection*{Problem 5}
+   
+  
+
+   	
+    
+
+\end{document}
