@@ -19,6 +19,7 @@
 
 \usepackage{pgf}
 \usepackage{tikz}
+\usepackage{polynom}
 \usetikzlibrary{arrows,automata}
 
 %Entfernt Seitenummerierung
@@ -26,6 +27,7 @@
 
 \usepackage[a4paper,lmargin={2cm},rmargin={2cm},tmargin={3.5cm},bmargin = {2.5cm},headheight = {4cm}]{geometry}
  \newcommand{\bewiesen}{\begin{flushright}$\square$ \end{flushright} } 
+ \newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
  \newcommand{\teilsbewiesen}{\begin{flushright}$\triangle$ \end{flushright} } 
 
 
@@ -58,7 +60,7 @@
 }
 
 
-\title{Grundlagen Informations Sicherheit \\ Übungsblatt 04}
+\title{Grundlagen Informations Sicherheit \\ Übungsblatt 05}
 
 \author{Max Kurz (3265240)  \and Mohamed Barbouchi (3233706) \and Daniel Kurtz (3332911)}
 \date{}
@@ -66,13 +68,23 @@
 \begin{document}
 	\maketitle
     \subsection*{Problem 1}
+    
     \begin{align*}
     f_1 \cdot_{\mathbb{F}_{2^{8}}} f_2 = f_1 \cdot_{\mathbb{Z}_{2}[x]} f_2 \mod g &= \\
     x^7 + x^5 + x^4 +x^2 + x \cdot_{\mathbb{Z}_{2}[x]} x^6 + x^4 +x + 1 \mod g &= \\
     x^{13}+x^{10} +x^9 + x^8 + x^5 +x^4 + x^3 +x \mod g &=
     \end{align*}
-    $= x^5 + x^4 +x^2 +x$
-    \subsection*{Problem 2}
+   Mit der Polynomdivision bildet der entstandene Rest das Ergebnis übertragen nach $\mathbb{Z}_2$: \\
+   $$x^5 +x^4 +x^2+x$$. 
+   
+ $\scalemath{0.8}{\polylongdiv[style=C]{x^{13}+x^{10} +x^9 + x^8 + x^5 +x^4 + x^3 +x}{x^8+x^4+x^3+x+1}}$
+
+
+ \subsection*{Problem 2}
+    \begin{enumerate}[label=\alph*)]
+    	
+   
+    \item 
     Seien $f$ und $p$ beliebige Polynome. Dann gilt:
     \begin{align*}
     	\deg(f \cdot p) &= \deg(\sum a_ix^i \cdot \sum a_j x^i) \\
@@ -80,10 +92,73 @@
     	&= \deg(x_{\text{max}}^{i} \cdot x_{\text{max}}^{j})  \\
     	&= \deg(\underbrace{(x_{\text{max}} \cdot \ldots \cdot x_{\text{max}})}_\text{i-mal}\cdot\underbrace{(x_{\text{max}} \cdot \ldots \cdot x_{\text{max}})}_\text{j-mal}) 
     	=\deg(\underbrace{x_{\text{max}}\cdot \ldots \cdot x_{\text{max}}}_\text{i+j -mal})  \\
-    	&=\deg(x^{i+j}) \\
+    	&=\deg(x^{i+j}) = \deg(x^i) + \deg(x^j) \\
     	&= \deg(f) + \deg(g)
     \end{align*}
     \bewiesen
+   \newpage
+   \item ~\par
+  
+  	\subsubsection*{Abgeschlossenheit unter Addition}
+     Es gilt $\forall i \, a_i+b_i \in F $ und damit $(a_0+b_0,\ldots) \in F[x]$, da  F ein Körper ist und unter Addition abgeschlossen ist.
+    $$f +_{F[x]} g = (a_0, a_1,\ldots) +_{F[x]} (b_0, b_1,\ldots) = (a_0+b_0, a_1+b_1,\ldots)$$
+  
+	\subsubsection*{Kommutativität der Addition} 
+    \begin{align*} 
+    f +_{F[x]} g = (a_0,a_1,\ldots) +_{F[x]} (b_0,b_1,\ldots)  &= (a_0+b_0,a_1+b_1,\ldots) = (b_0+a_0,b_1+a_1,\ldots) \\
+    &= (b_0,b_1,\ldots) +_{F[x]} (a_0,a_1,\ldots) = g +_{F[x]} f
+    \end{align*}
+    
+    \subsubsection*{Assoziativität der Addition}
+    \begin{align*}
+    (f +_{F[x]} g)+_{F[x]} h &=(a_0+b_0,a_1+b_1,\ldots)+(c_0,c_1,\ldots) \\
+    &=((a_0+b_0)+c_0,(a_1+b_1)+c_1,\ldots) \\
+    &=(a_0+(b_0+c_0),a_1+(b_1+c_1),\ldots)=f +_{F[x]}(g +_{F[x]})
+    \end{align*}
+    
+    \subsubsection*{Neutrales Element der Addition}
+    Sei $e_+=(0,0,\ldots,0)$, wobei 0 das neutrale Element von F ist. Dann gilt: \\
+    \begin{align*}
+    	f +_{F[x]} e_+ &= (a_0+0,a_1+0,\ldots)=(a_0,a_1,\ldots)=f\\
+    	e_+ +_{F[x]} f  &= (0+a_0,0+a_1,\ldots)=(a_0,a_1,\ldots)=f
+    \end{align*}
+   	
+   	\subsubsection*{Nichtleerheit}
+    Es gilt $e_+ \in F[x]$, damit folgt $F[x]\neq\emptyset$.
+	
+	\subsubsection*{Existenz des inversen Elemente}
+    Sei $a_i^{-1}$ das inverse Element zu $a_i$ in F für alle $a_i \in F$ und $f^{-1}=(a_0^{-1},a_1^{-1},\ldots)$.\\
+    $$f +_{F[x]} f^{-1} = (a_0+a_0^{-1},a_1+a_1^{-1},\ldots)=(0,0,0,\ldots)=(a_0^{-1}+a_0,\ldots)=f^{-1} +_{F[x]} f$$
+  	
+  	\subsubsection*{Abgeschlossenheit unter Multiplikation}
+  	Da F ein Körper ist, ist F abgeschlossen unter Multiplikation und Addition. Damit ist $(d_0,d_1,\ldots)\in F[x]$ und 
+    $f \cdot_{F[x]} g = (d_0,d_1,\ldots)$ mit $d_i=\sum_{j\leq i}{a_j\cdot b_{i-j}}$ und $d_i \in F$
+   	
+   	\subsubsection*{Kommutativität der Multiplikation}
+    \begin{align*}
+    	f \cdot_{F[x]} g &= (\sum_{j\leq 0}{a_j\cdot b_{0-j}},\sum_{j\leq 1}{a_j\cdot b_{1-j}},\ldots) \\
+    	&= (\sum_{j\leq 0}{b_j\cdot a_{0-j}},\sum_{j\leq 1}{b_j\cdot a_{1-j}},\ldots) \\
+    	&=g \cdot_{F[x]} f
+    	 \end{align*}
+    
+   	\subsubsection*{Distributivgesetze}
+    \begin{align*}
+  (f +_{F[x]} g) \cdot_{F[x]} h = (a_0+b_0,a_1+b_1,\ldots) \cdot_{F[x]} (c_0,c_1,\ldots) 
+  &= (\sum_{j\leq 0}{(a_0+b_0)\cdot c_{0-j}},\ldots) \\
+  &=(\sum_{j\leq 0}{a_0 \cdot c_{0-j} +b_0\cdot c_{0-j}},\ldots) \\ 
+  &= (\sum_{j\leq 0}{a_0 \cdot c_{0-j}} +\sum_{j\leq 0}{b_0\cdot c_{0-j}},\ldots) \\ 
+  &= (f \cdot_{F[x]} h +_{F[x]}(g \cdot_{F[x]} h)
+    \\
+    \\
+    	f \cdot_{F[x]} (g +_{F[x]}h) = f \cdot_{F[x]}(b_0+c_0,b_1+c_1,\ldots)
+    	&=(\sum_{j\leq 0}{a_0 \cdot (b_{0-j}+c_{0-j}}),\ldots) \\
+    	&=(\sum_{j\leq 0}{a_0 \cdot b_{0-j}+a_0 \cdot c_{0-j}}, \ldots) \\
+    	&= (\sum_{j\leq 0}{a_0 \cdot b_{0-j}+ \sum_{j\leq 0}a_0 \cdot c_{0-j}},\ldots) \\
+    	&=(f \cdot_{F[x]} g)+_{F[x]}(f \cdot_{F[x]}h)
+    \end{align*}
+   \bewiesen
+
+  \end{enumerate}
     \newpage
      \subsection*{Problem 3}
      Sei $x$ und $x'$ unterschiedlich aber es gilt $h_n(x) = h_n(x')$. 
@@ -107,9 +182,63 @@
    		s^e &= h_n(x)^{d^{e}} \mod n = h_n(x)
    	\end{align*}
    	Das bedeutet also dass der Angreifer ohne das Orakel mit dieser Message zubefragen, einen \texttt{valid}-Tag gefunden hat und somit immer das Game gewinnt.
-    
+    \newpage
      \subsection*{Problem 4}
-      \subsection*{Problem 5}
+     \begin{enumerate}[label=\alph*)]
+     	\item ~\par
+     			\begin{enumerate}[label=\arabic*.]
+     		\item Data link (Source MAC = aa:aa:aa:aa:aa:aa, Dest. MAC = ff:ff:ff:ff:ff:ff) / \\ ARP (Who has 10.0.0.1 ?)
+     		\item Data link (Source MAC = 01:01:01:01:01:01, Dest. MAC = aa:aa:aa:aa:aa:aa) /\\ ARP (I have 10.0.0.1)
+     		\item Data link (Source MAC = aa:aa:aa:aa:aa:aa, Dest. MAC = 01:01:01:01:01:01) /\\  IP (Source IP = 10.0.0.2, Dest. IP = 10.0.0.1) /\\ UDP (Source Port = 16000 , Dest. Port = 53) /\\ 	DNS (Transaction ID = 0x0000, query = "www.example.com, type A, class IN")
+     		\item IP (Source IP = 19.19.19.19, Dest. IP = 4.0.0.1) /\\ UDP (Source Port = 16001 , Dest. Port = 53) /\\ 	DNS (Transaction ID = 0x0001, query = "www.example.com, type A, class IN" )
+     		\item IP (Source IP = 4.0.0.1, Dest. IP = 19.19.19.19) /\\ UDP (Source Port = 53 , Dest. Port = 16001) /\\ 	DNS (answer = "dont know, ask 4.0.0.2", Transaction ID = 0x0001, response for ="www.example.com, type A, class IN")
+     		\item IP (Source IP = 19.19.19.19, Dest. IP = 4.0.0.2) /\\ UDP (Source Port = 16002 , Dest. Port = 53) /\\ 	DNS (Transaction ID = 0x0002, query = "www.example.com, type A, class IN" )
+     		\item IP (Source IP = 4.0.0.2, Dest. IP = 19.19.19.19) /\\ UDP (Source Port = 53 , Dest. Port = 16002) /\\ 	DNS (answer = "dont know, ask 4.0.0.3", Transaction ID = 0x0002,  response for ="www.example.com, type A, class IN")
+     		\item IP (Source IP = 19.19.19.19, Dest. IP = 4.0.0.3) /\\ UDP (Source Port = 16003 , Dest. Port = 53) /\\ 	DNS (Transaction ID = 0x0003, query = "www.example.com, type A, class IN" )
+     		\item IP (Source IP = 4.0.0.3, Dest. IP = 19.19.19.19) /\\ UDP (Source Port = 53 , Dest. Port = 16003) /\\ 	DNS (answer = "www.example.com, type A, class IN, 1.2.3.4", Transaction ID = 0x0003, response for ="www.example.com, type A, class IN" )
+     		\item Data link (Source MAC = 01:01:01:01:01:01, Dest. MAC = aa:aa:aa:aa:aa:aa) /\\ IP (Source IP = 10.0.0.1 , Dest. IP = 10.0.0.2) /\\ UDP (Source Port = 16000 , Dest. Port = 53) /\\ 	DNS (answer = "www.example.com, type A, class IN, 1.2.3.4", Transaction ID = 0x0000, response for ="www.example.com, type A, class IN")
+     		%tcp verbindungsaufbau
+     		\item Data link (Source MAC = aa:aa:aa:aa:aa:aa, Dest. MAC = 01:01:01:01:01:01) /\\  IP (Source IP = 10.0.0.2, Dest. IP = 1.2.3.4) /\\ TCP (SYN, Source Port = 17000 , Dest. Port = 80, Seq = 1)
+     		\item IP (Source IP = 19.19.19.19, Dest. IP = 1.2.3.4) /\\ TCP (SYN, Source Port = 17001 , Dest. Port = 80, Seq = 1 ) 
+     		\item IP (Source IP = 1.2.3.4, Dest. IP = 19.19.19.19) /\\ TCP (SYN-ACK, Source Port = 80 , Dest. Port = 17001, Seq = 10, ACK = 2 ) 
+     		\item Data link (Source MAC = 01:01:01:01:01:01, Dest. MAC =  aa:aa:aa:aa:aa:aa) /\\  IP (Source IP = 1.2.3.4, Dest. IP = 10.0.0.2) /\\ TCP (SYN-ACK, Source Port = 80 , Dest. Port = 17000, Seq = 10, ACK = 2 )
+     		\item Data link (Source MAC = aa:aa:aa:aa:aa:aa, Dest. MAC = 01:01:01:01:01:01) /\\  IP (Source IP = 10.0.0.2, Dest. IP = 1.2.3.4) /\\ TCP (ACK, Source Port = 17000 , Dest. Port = 80, Seq = 2, ACK = 11)
+     		\item IP (Source IP = 19.19.19.19, Dest. IP = 1.2.3.4) /\\ TCP (ACK, Source Port = 17001 , Dest. Port = 80, Seq = 2, ACK = 11 ) 
+     		%verbindung steht
+     		\item Data link (Source MAC = aa:aa:aa:aa:aa:aa, Dest. MAC = 01:01:01:01:01:01) /\\  IP (Source IP = 10.0.0.2, Dest. IP = 1.2.3.4) /\\ TCP (Message, Source Port = 17000 , Dest. Port = 80, Seq = 3) /\\ HTTP (GET / HTTP1.1, HOST = www.example.com)
+     		\item IP (Source IP = 19.19.19.19, Dest. IP = 1.2.3.4) /\\ TCP (ACK, Source Port = 17001 , Dest. Port = 80, Seq = 3)  /\\ HTTP (GET / HTTP/1.1, HOST = www.example.com)
+     		
+     		\item IP (Source IP = 1.2.3.4, Dest. IP = 19.19.19.19) /\\ TCP (Message, Source Port = 80 , Dest. Port = 17001, Seq = 11, ACK = 4 ) /\\ HTTP (HTTP/1.1 200 OK, Content-Length: ..., Content = <html>...</html>)
+     		\item Data link (Source MAC = 01:01:01:01:01:01, Dest. MAC =  aa:aa:aa:aa:aa:aa) /\\  IP (Source IP = 1.2.3.4, Dest. IP = 10.0.0.2) /\\ TCP (Message, Source Port = 80 , Dest. Port = 17000, Seq = 11, ACK = 4 ) /\\ HTTP (HTTP/1.1 200 OK, Content-Length: ..., Content = <html>...</html>)
+     		
+     		%tcp verbindungsabbau
+     		\item Data link (Source MAC = aa:aa:aa:aa:aa:aa, Dest. MAC = 01:01:01:01:01:01) /\\  IP (Source IP = 10.0.0.2, Dest. IP = 1.2.3.4) /\\ TCP (FIN, Source Port = 17000 , Dest. Port = 80, Seq = 4, ACK = 12)
+     		\item IP (Source IP = 19.19.19.19, Dest. IP = 1.2.3.4) /\\ TCP (FIN, Source Port = 17001 , Dest. Port = 80, Seq = 4, ACK = 12)
+     		
+     		\item IP (Source IP = 1.2.3.4, Dest. IP = 19.19.19.19) /\\ TCP (FIN, Source Port = 80 , Dest. Port = 17001, Seq = 12, ACK = 5 )
+     		\item Data link (Source MAC = 01:01:01:01:01:01, Dest. MAC =  aa:aa:aa:aa:aa:aa) /\\  IP (Source IP = 1.2.3.4, Dest. IP = 10.0.0.2) /\\ TCP (FIN, Source Port = 80 , Dest. Port = 17000, Seq = 12, ACK = 5 )
+     		
+     		\item Data link (Source MAC = aa:aa:aa:aa:aa:aa, Dest. MAC = 01:01:01:01:01:01) /\\  IP (Source IP = 10.0.0.2, Dest. IP = 1.2.3.4) /\\ TCP (ACK, Source Port = 17000 , Dest. Port = 80, Seq = 5, ACK = 13)
+     		\item IP (Source IP = 19.19.19.19, Dest. IP = 1.2.3.4) /\\ TCP (ACK, Source Port = 17001 , Dest. Port = 80, Seq = 5, ACK = 13)
+     		
+     	\end{enumerate}
+  \end{enumerate}
+\newpage
+     
+\subsection*{Problem 5}
+      \begin{enumerate}[label=\alph*)]
+      	\item Wir müssen die TXID und den UDP Source Port raten. Dies sind $2^{16}$ Werte jeweils, also insgesamt $2^{32}$ Werte. Die Wahrscheinlichkeit beim ersten Versuch richtig zu raten liegt also bei $P=2^{-32}$
+		
+		\item 	Wie bereits in oben beschrieben gibt es $2^{32}$ mögliche Werte, also muss eine Angreifer durchschnittlich $\frac{2^{32}}{2}$ verschiendene Werte raten um erfolgreich zu sein.
+		
+	Geht man von 2000 Versuchen pro Runde und 0,1 Sekunden pro Runde aus, kann man die Durchschnittliche Zeit in Sekunden berechnen: 
+	\begin{align*}
+		&=\frac{2^{31}\text{ value}}{\dfrac{2000 \frac{\text{ value}}{\text{ round}}}{0,1\frac{\text{ second}}{\text{ round}}}}  \\ &=\dfrac{2^{31}\text{value}}{20000\frac{\text{value}}{second}}  \\ 
+		&= 107374,182 \text{ seconds  }  \, \, \widehat{=}\,\, 1,243 \,\,\text{ days} \\
+   \end{align*}
+      \end{enumerate}
+      
+   
    
   
 
