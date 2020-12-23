@@ -1,0 +1,187 @@
+\documentclass[12pt, german]{article}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}  
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{listings}  
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{endnotes}
+\usepackage{color}
+\usepackage{tasks}
+\usepackage{mathtools}
+\usepackage{forest}
+\usetikzlibrary{backgrounds,fit}
+
+%Für Binärbaum
+\usepackage{tikz}
+\tikzset{
+	treenode/.style = {align=center, inner sep=0pt, text centered, font=\upshape},
+	arn_b/.style = {treenode, circle, black, font=\upshape, draw=black, fill=okmama, text width=1.5em, thick},
+	arn_x/.style = {treenode, rectangle, draw=black, minimum width=0.5em, minimum height=0.5em}
+}
+
+\forestset{%
+	circle subtree/.style={%
+		before typesetting nodes={%
+			no edge,
+			before computing xy={/pgf/inner ysep/.get=\savedinnerysep, l'=\savedinnerysep},
+			replace by/.wrap pgfmath arg={%
+				[\phantom{##1}, circle, append, fit=rectangle, no edge,
+				before drawing tree={%
+					tikz+={%
+						\begin{scope}[on background layer]
+							\node (n) [draw, fill=gray!25, inner sep=\savedinnerysep, rounded corners, fit=(!1) (!L) (!F)] {} ;
+							\path [draw, \forestoption{edge}] (!u.parent anchor) -- (n.north -| !1.child anchor)\forestoption{edge label};
+						\end{scope}
+					},
+				},
+				]
+			}{content()}
+		},
+	},
+}
+%Zum runden
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+%Document Feineinstellungen
+\usepackage[a4paper, left=2cm, right=2cm, top=2.5cm]{geometry}
+
+%Deaktiviert Seitenummerierung
+\pagenumbering{gobble}
+
+%Farben für Einstellungen der Code Fragmente
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{okmama}{RGB}{150,170,120}
+\definecolor{character}{RGB}{179, 178, 255}
+
+%Einstellungen für Code Fragmente
+\lstset{ 
+	backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+%	basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+%	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+%	breaklines=true,                 % sets automatic line breaking
+	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{mygreen},    % comment style
+	deletekeywords={...},            % if you want to delete keywords from the given language
+	escapeinside={(*}{*)},          % if you want to add LaTeX within your code
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	frame=single,	                   % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{blue},       % keyword style
+	language=Octave,                 % the language of the code
+	morekeywords={*, Algorithm, ...},            % if you want to add more keywords to the set
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{mymauve},     % string literal style
+	tabsize=2,	                   % sets default tabsize to 2 spaces
+	title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+%Einstellungen für Tasks
+\settasks{
+	label-width=4ex,
+	label-offset = 0pt,
+	item-indent = 1em,
+}
+\tikzset{% This is the style settings for nodes
+	dep/.style={circle,minimum size=1cm,fill=orange!20,draw=orange,
+		general shadow={fill=gray!60,shadow xshift=1pt,shadow yshift=-1pt}},
+	cli/.style={circle,minimum size=1cm,fill=white,draw,
+		general shadow={fill=gray!60,shadow xshift=1pt,shadow yshift=-1pt}},
+	spl/.style={cli,append after command={
+			node[circle,draw,dotted,
+			minimum size=1.5cm] at (\tikzlastnode.center) {}}},
+	c1/.style={-stealth,very thick,red!80!black},
+	v2/.style={-stealth,very thick,yellow!65!black},
+	v4/.style={-stealth,very thick,purple!70!black}}
+
+%Global Align
+\newcommand*{\LongestName}{\ensuremath{h(x)+g(x)}}% function name
+\newcommand*{\LongestValue}{\ensuremath{-1}}% function value
+\newcommand*{\LongestText}{fermentum fringilla mauris }%
+
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+\newcommand*{\MakeBoxName}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\MakeBoxValue}[1]{\ensuremath{\makebox[\LargestValueSize][l]{\ensuremath{#1}}}}%
+\newcommand*{\MakeBoxText}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+%Isomorph zeichen
+\newcommand\iso{\xrightarrow{
+		\,\smash{\raisebox{-0.65ex}{\ensuremath{\scriptstyle\sim}}}\,}}
+
+%Erzeugt das "bewiesen" Kästen rechts unten
+\newcommand{\bewiesen}{
+
+\begin{flushright}
+		$\square$  \\
+\end{flushright}}
+
+\title{Inoffizielles Skript für Algebra \& Kombinatorik}
+
+\author{Maximilian Kurz \and Amelie Heindl}
+
+\setlength\parindent{0pt}
+\begin{document}
+\maketitle
+   \section{Grundlagen - Vorlesung 1}
+   		\subsection{Diedergruppen}
+    	 \subsubsection{Definition}
+		   Eine Diedergruppe ist die Bewegungsgruppe des regelmäßigen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
+		   
+		   Das $n$-Eck wird durch Knoten und Kanten beschrieben und eine Drehung/Spiegelung wird durch eine Abbildung wie folgt definiert: 
+		   \begin{align*}
+		   	\text{Knoten: } &\mathbb{Z}/n\mathbb{Z} \\
+		   	\text{Kanten: } &\{ \{i, i+1\} \mid i \in \mathbb{Z}/n\mathbb{Z} \}  \\
+		   	\text{Abbildung von Knoten in Knoten: } &f: \mathbb{Z}/n\mathbb{Z} \iso \mathbb{Z}/n\mathbb{Z}\\
+		   \end{align*}
+		   
+		   Zu jeden $n$ gehört eine $D_n$ mit $|D_n| = 2n$
+		\subsubsection{Eigenschaften von Diedergruppen}
+		Wir bezeichnen die Spieglung mit $\sigma$ und die Drehung im Uhrzeiger mit $\delta$. Dann gelten folgende Regeln:
+		
+		\begin{align*}
+			\sigma^2 = id = \delta^n = \delta^0 \\ 	 
+		\end{align*}
+		In Worten bedeutet dies, dass $n$-faches drehen oder doppeltes Spiegeln eines  $n$-Ecks keine Änderung bewirkt.  \\
+		Daraus lässt sich dann folgender Satz ableiten mit $\forall \varepsilon, \varepsilon', m, m' \in \mathbb{Z}$: 
+		
+		\begin{align*}
+			\sigma^\varepsilon\delta^m = \sigma^{\varepsilon'}\delta^{m'} \iff \varepsilon \equiv \varepsilon' (2) \text{ und } m \equiv m' (n)
+		\end{align*}
+		Weiter gilt, dass $\sigma\delta = \delta^{-1}\sigma$, also dass erst spiegeln und dann drehen den selben Effekt hat wie in die andere Richtung drehen und dann spiegeln. Im folgenden wird gezeigt weshalb dies gilt
+		
+		\begin{align*}
+			\sigma \delta(j) = \sigma(j+1) = -(1 + j) = -j -1 = \delta^{-1}(-j)=\delta^{-1}\sigma(j)
+		\end{align*}
+		
+		Dieser Satz gibt uns also die Möglichkeit das $\sigma$ nach rechts zu schieben.
+		\subsubsection{Fixpunkte in Diedergruppen}
+		Ein Fixpunkt $x$ einer Abbildung ist ein Punkt bei dem $f(x) = x$ gilt. Für Diedergruppen fragen wir uns also ab wann 
+		\begin{align*}
+			\sigma\delta^i(j) = j = \sigma(i+j) = -i -j
+		\end{align*} gilt. 
+		Dies ist der Fall, wenn $-i = 2j \in \mathbb Z /n \mathbb Z$ mit ungeradem $n$ gilt. Bei Spiegelungen existiert also genau ein Knoten $j$ für alle $i$. Falls $n$ gerade ist, existieren entweder genau $2$ (das wäre dann $-i = 2j$ und $ i + \frac{n}{2}$) oder gar kein Fixpunkt. Für Drehungen ist nur $n$ bzw. $id$ eine Fixpunkt. 
+	
+\end{document}
