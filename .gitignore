@@ -1,0 +1,13 @@
+build/
+.idea/
+*.swp
+*.DS_Store
+.gradle/
+*.iml
+*.aux
+*.log
+*.gz
+*.out
+*.pdf
+*.fls
+*.fdb_latexmk
