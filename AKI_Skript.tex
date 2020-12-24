@@ -258,7 +258,7 @@
 \newpage
 \subsection{Homomorphiesatz}		
 \subsubsection{Grundlagen Homomorphismus}
-	Eine Abbildung $\varphi: G \to F$ heißt Homomorphismus falls $\forall g,h \in G : \varphi(gh) = \varphi(g)\varphi(h)$ \\
+	Eine Abbildung $\varphi: G \to F$ heißt Homomorphismus\footnote{abgekürzt ab jetzt Hom.} falls $\forall g,h \in G : \varphi(gh) = \varphi(g)\varphi(h)$ \\
 	\begin{enumerate}[label=\roman*)]
 		\item $\varphi(1_G) = 1_H$ ~\par
 			Denn $g=1\cdot g \implies \varphi(g)=\varphi(1)\varphi(g) \implies 1_H = \varphi(g) \varphi(g)^{-1} = \varphi(1)$
@@ -277,6 +277,33 @@
 		&\implies \varphi \text{ ist injektiv}
 	\end{align*}
 
+\subsubsection{Definition Homomorphiesatz}
+	Sei $\varphi: G \to F$ ein Hom.  und $N = ker(\varphi)$. \\
+	Dann induziert $\varphi$ ein Hom. $\overline{\varphi} : G/N \to F$ der injektiv ist durch $\overline{\varphi}(gH) = \varphi(g)$ 
+	\newline
+	
+	Also induziert $\varphi$ einen Isomorphismus $\overline{\varphi}: G/N \iso im(G) = \{\varphi(g) \mid g \in G\} \leq F$
+
+\subsubsection{Beweis Homomorphiesatz}
+	\begin{enumerate}[label=\arabic*)]
+		\item $\overline{\varphi}$ ist wohldefiniert ~\par
+				Sei $f\in gH \implies \varphi(f) \in \varphi(g)N = \{\varphi(g)\}$
+		
+		\item $\overline{\varphi}$ ist injektiv ~\par
+			$ker(\overline{\varphi}) = ker(\varphi) = N = 1_{G/N}$
+	\end{enumerate}
+\newpage
+\subsubsection{Beispiel für den Homomorphiesatz}
+	Wir definieren 
+		\begin{align*}
+			exp = \begin{cases}
+			\mathbb{R} \to \mathbb{C}^\ast\\
+			x \mapsto e^{2\pi i x}
+			\end{cases}
+		\end{align*}
+	Dann ist $ker(exp) = \mathbb Z $.\\ 
+	 Also ist $\mathbb R / \mathbb Z \cong \{z \in \mathbb C \mid |z| = 1\}$	
+
 
 
 \subsection{Normalteiler}		
@@ -288,10 +315,10 @@
 	\begin{enumerate}[label=\arabic*)]
 		\item $H\trianglelefteq G$
 		\item $H \leq G$ und $gH \cdot fH = gfH$ definiert eine Gruppenstruktur auf $G/H$
-		\item Es existiert ein Homomorphismus $\varphi: G \to F$ mit $ker(\varphi) = \{g \in G \mid \varphi(g)= 1\} = H$
+		\item Es existiert ein Hom. $\varphi: G \to F$ mit $ker(\varphi) = \{g \in G \mid \varphi(g)= 1\} = H$
 		\item $\forall g \in G : gHg^{-1} \subseteq H$ und $H \leq G$
 	\end{enumerate}
-\newpage
+
 	Im Folgenden wird die Äquivalenz der folgenden Aussagen gezeigt: 
 	\begin{itemize}
 		\item $1)\rightarrow 2)$ ~\par
@@ -323,9 +350,66 @@
 			&\implies gH = Hg
 			\end{align*}
 	\end{itemize}
-\subsection{Satz von Cauchy}		
-\subsubsection{Definition und Beweis}
+
+
 
 \subsection{G-Mengen}		
 \subsubsection{Definition}
+	Sei $G = (G, \cdot, 1)$ eine Gruppe und $X$ eine Menge.
+	Dann operiert $G$ auf $X$ falls folgende Abbildung existiert 
+	\begin{align*}
+		\cdot : G \times X \to X \\ 
+		(g,x) \mapsto gx
+	\end{align*}
+	Mit der Eigenschaft $g(h(x)) = gh(x)$ und $g(1) = id_x$
+
+\subsubsection{Homomorphismus auf G-Mengen}
+	Ein Hom. von $G$-Mengen $X,Y$ ist eine Abbildung 
+	\begin{align*}
+		f: X \to Y \text{ mit } f(gx) = gf(x)
+	\end{align*}
+
+\subsubsection{Fixpunkte in G-Mengen}
+	Sei $X$ eine  $G$-Menge. Dann heißt $x$ ein Fixpunkt von $g \in G$ falls $gx=x$. \\
+	Weiter ist die Menge der Fixpunkte eine Untergruppe von $G$
+	\begin{align*}
+		Fix(x) = \{g \in G \mid  gx = x\} \leq G 
+	\end{align*}
+
+
+\subsection{Bahnenlemma}		
+\subsubsection{Definition einer Bahn}
+	Wir definieren eine Bahn wie folgt $$Bahn(x) = Orbit(x) = G\cdot x = \{gx \mid  g \in G \}$$
+	
+	
+	Ebenfalls gilt das $Gx \cong G/Fix(x)$ ein Isomorphismus von $G$-Mengen ist, wobei $Gx$ ist eine $G$-Menge ist. 
+	Dies ist wie folgt zu begründen. Wir betrachten die folgende Abbildung
+	\begin{align*}
+		G/Fix(x) \to Gx \\ 
+		gFix(x) \mapsto gx
+	 \end{align*}
+	 Diese ist wohldefiniert, da $h \in gFix(x) \implies h=gf$ mit $f \in Fix(x)$. \\ 
+	 Also $h(x) = gf(x) = g(x)$ 
+
+
+\subsubsection{Definition Bahnenlemma}
+	Das Bahnenlemma sagt folgendes aus $$Gx \cap Gy \not = \emptyset \iff Gx = Gy$$
+	Im Allgemeinen also $$ X = \dot{\bigcup} \{Gx \mid  x \in X \}$$. Wobei hier die disjunkte Vereinigung gemeint ist. 
+\subsubsection{Beweis Bahnenlemma}
+	Die Rückrichtung ist hier ebenfalls trivial (wie bei dem sehr ähnlichen Resultat über Nebenklassen). Wir zeigen deshalb die andere Richtung. \\ 
+	
+	Sei $gx = hy$ für $g,h \in G$
+	\begin{align*}
+		&\implies h^{-1}g(x) = y \\
+		&\implies y \in Gx \\
+		&\implies Gy \subseteq Gx
+	\end{align*}
+	Analog dazu $Gx \subseteq Gy \implies Gx = Gy$
+
+
+\subsection{Satz von Cauchy}		
+\subsubsection{Definition}
+	Sei $G$ eine endliche Gruppe und $p \in \mathbb P$ mit $p \mid |G|$. \\
+	Dann existiert $g \in G$ mit $g \not = 1$ und $ g^p = 1$. Also $ord(g)= p$
+\subsubsection{Beweis}
 \end{document}
