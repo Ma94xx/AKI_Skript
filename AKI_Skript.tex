@@ -412,4 +412,23 @@
 	Sei $G$ eine endliche Gruppe und $p \in \mathbb P$ mit $p \mid |G|$. \\
 	Dann existiert $g \in G$ mit $g \not = 1$ und $ g^p = 1$. Also $ord(g)= p$
 \subsubsection{Beweis}
+Wir betrachten die Menge der Tupel $(g_1, g_p) \in G^p$ mit $g_1 \cdot \ldots \cdot g_p = 1$. 
+Sei nun 
+\begin{align*}
+	T &= |\{(g_1, \ldots, g_p) \mid  g_1 \cdot \ldots \cdot g_p = 1 \}| \\
+	&= |\{(g_1, \ldots, g_{p-1}) \in G^{p-1} \}| \\
+	&= |G^{p-1}|
+\end{align*}
+Nun soll $\mathbb Z /p\mathbb Z$ auf $T$ operieren durch
+ \begin{align*}
+	T = (\underbrace{g_1, \ldots, g_m}_{\substack{u}}, \underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}) \implies m\cdot T = (\underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}, \underbrace{g_1, \ldots, g_m}_{\substack{u}})
+\end{align*}
+Es gilt also $uv = 1 \iff v(uv)v^{-1} = 1 = u = 1$, da $|G^{-1}| = n^{p-1}$ und $p \mid n^{p-1} $ da $p \mid n$.
+Weiter haben Bahnen entweder die Länge $1$ oder $p$, da $\mathbb Z /p\mathbb Z$ nur zwei Untergruppen hat.
+
+\begin{align*}
+\mathbb Z /p\mathbb Z \cdot (1, \ldots, 1) = (1, \ldots, 1) \\
+\{(g, \ldots, g) \mid gP= 1 \} \implies \exists g \text{ mit } gP = 1
+\end{align*}
+\bewiesen
 \end{document}
