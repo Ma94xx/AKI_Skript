@@ -145,9 +145,9 @@
 \setlength\parindent{0pt}
 \begin{document}
 \maketitle
-   \section{Grundlagen - Vorlesung 1}
-   		\subsection{Diedergruppen}
-    	 \subsubsection{Definition}
+\section{Grundlagen - Vorlesung 1}
+\subsection{Diedergruppen}
+\subsubsection{Definition}
 		   Eine Diedergruppe ist die Bewegungsgruppe des regelmäßigen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
 		   
 		   Das $n$-Eck wird durch Knoten und Kanten beschrieben und eine Drehung/Spiegelung wird durch eine Abbildung wie folgt definiert: 
@@ -158,7 +158,8 @@
 		   \end{align*}
 		   
 		   Zu jeden $n$ gehört eine $D_n$ mit $|D_n| = 2n$
-		\subsubsection{Eigenschaften von Diedergruppen}
+
+\subsubsection{Eigenschaften von Diedergruppen}
 		Wir bezeichnen die Spieglung mit $\sigma$ und die Drehung im Uhrzeiger mit $\delta$. Dann gelten folgende Regeln:
 		
 		\begin{align*}
@@ -175,13 +176,93 @@
 		\begin{align*}
 			\sigma \delta(j) = \sigma(j+1) = -(1 + j) = -j -1 = \delta^{-1}(-j)=\delta^{-1}\sigma(j)
 		\end{align*}
-		
+		\bewiesen
 		Dieser Satz gibt uns also die Möglichkeit das $\sigma$ nach rechts zu schieben.
-		\subsubsection{Fixpunkte in Diedergruppen}
+		
+\subsubsection{Fixpunkte in Diedergruppen}
 		Ein Fixpunkt $x$ einer Abbildung ist ein Punkt bei dem $f(x) = x$ gilt. Für Diedergruppen fragen wir uns also ab wann 
 		\begin{align*}
 			\sigma\delta^i(j) = j = \sigma(i+j) = -i -j
 		\end{align*} gilt. 
 		Dies ist der Fall, wenn $-i = 2j \in \mathbb Z /n \mathbb Z$ mit ungeradem $n$ gilt. Bei Spiegelungen existiert also genau ein Knoten $j$ für alle $i$. Falls $n$ gerade ist, existieren entweder genau $2$ (das wäre dann $-i = 2j$ und $ i + \frac{n}{2}$) oder gar kein Fixpunkt. Für Drehungen ist nur $n$ bzw. $id$ eine Fixpunkt. 
+		
+		
+\section{Gruppentheorie - Vorlesung 2}
+\subsection{Untergruppen}
+\subsubsection{Definition}
+		Sei im folgenden $G=(G, \cdot, 1)$ eine Gruppe. Dann gilt 
+		\begin{align*}
+			H \subseteq G \text{ ist eine Untergruppe} \iff H \not = \emptyset \text{ und } \forall g, h \in H : gh^{-1} \in H
+		\end{align*}
+		$H$ ist also eine Untergruppe von $G$, genau dann wenn $H$ nicht leer ist und für alle Elemente Inverse vorhanden sind.  
+
+
+\subsection{Nebeklassen}
+\subsubsection{Definition}
+		Für eine Untergruppe $H \leq G$ sind die folgenden Nebenklassen definiert
+		\begin{align*}
+			 G/H &= \{gH \subseteq G \mid g \in G\} \quad \text{Rechtsnebenklasse } \\
+			 H/G &= \{Hg \subseteq G \mid g \in G\} \quad \text{Linksnebenklasse } 
+		\end{align*}
+		wobei $gH$ die Multiplikation von  g mit allen Elementen aus $H$ ist. 
+
+\subsubsection{Größe von Nebenklassen}
+		Wir definieren die folgende Abbildung
+		\begin{align*}
+			\forall f,g \in G \text{ ist } (f^{-1}g \cdot): gH \iso fH \text{ bijektiv mit der Umkehrabbildung } (gf^{-1}\cdot)
+		\end{align*}
+		Wir können dann folgern dass 
+		\begin{align*}
+			gH \iso H \iso Hf \quad \text{ für alle } f,g \in G
+		\end{align*}
+		Es gilt also $|gH| = |Hf| = |H|$
+
+\subsubsection{Gleichheit von Nebenklassen}
+		Im Folgenden wird gezeigt dass $gH \cap fH \not = \emptyset \iff gH = fH$ gilt.
+		Die Rückrichtung ist hierbei trivial, da der Schnitt von $gH$ und $fH$ bei Gleichheit offensichtlich nicht leer ist. \\
+		
+		Für die Hinrichtung seinen $h_1, h_2 \in H$ mit $gh_1 = fh_2$
+		\begin{align*}
+			&\implies g=fh_2h_1^{-1} \in fH \\
+			&\implies gH \subseteq fH. 
+		\end{align*}
+		Analog dazu gilt $fH \subseteq gH \implies gH = fH$
+		\bewiesen
+
+\subsection{Representantensysteme}		
+\subsubsection{Definition}
+	Sei $R_H := \{r(gH) \mid gH \in G/H\} \subseteq G$ mit der folgenden bijektiven  Abbildung
+	\begin{align*}
+		R_H \iso G/H \\
+		r(gH) \mapsto gH 
+	\end{align*}
+\subsection{Satz von Lagrange}		
+\subsubsection{Definition und Beweis}
+	Wir definieren die folgende Abbildung
+	\begin{align*}
+		\lambda: (G/H) \times H &\iso G \text{ ist bijektiv} \\
+		(gH, h) &\mapsto r(gH) \cdot h
+	\end{align*}
+	 
+	Nun bezeichnen wir mit $[G:H] = |G/H|$ den Index von $H$ in $G$. \\ 
+	Wenn jetzt $R = \{r(gH) \mid g \in G \}$ ein Linksrepresentantensystem (LRS) ist, \\ 
+	dann ist $R^{-1} = \{r(gH)^{-1} \mid g \in G \}$ ein RRS. 
+	Denn es gilt $(rH)^{-1} = H^{-1}r^{-1} = Hr^{-1}$, da $H=H^{-1}$.
+	Also gilt $|G/H| = |H/G|$ \\
 	
+	Wenn für $|G| < \infty $ gilt, ist $|H| < \infty $ und $|G| = |G/H| \cdot |H|$ und 
+	außerdem sind $\{gH \mid g \in G \}$ und $\{Hg \mid g \in G \}$ Partitionen. Weiter gilt $|gH| = |Hf| \;\;\forall g,f \in G$. \\
+	Also gilt $|G| = [G:H] \cdot |H|$ 
+
+\subsection{Homomorphiesatz}		
+\subsubsection{Definition und Beweis}
+
+\subsection{Normalteiler}		
+\subsubsection{Definition und Beweis}
+		
+\subsection{Satz von Cauchy}		
+\subsubsection{Definition und Beweis}
+
+\subsection{G-Mengen}		
+\subsubsection{Definition}
 \end{document}
