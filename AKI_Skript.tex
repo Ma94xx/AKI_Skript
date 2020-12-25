@@ -111,6 +111,9 @@
 \newcommand*{\LongestValue}{\ensuremath{-1}}% function value
 \newcommand*{\LongestText}{fermentum fringilla mauris }%
 
+%Bigger fracs 
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
 \newlength{\LargestNameSize}%
 \newlength{\LargestValueSize}%
 \newlength{\LargestTextSize}%
@@ -623,5 +626,38 @@ Eine symetrische Gruppe $S_n$ wird gebildet durch $$S_n = Perm([n])$$ mit $\pi =
 	\caption{$c_1$ bis $c_k$}
 	\end{figure}
 
+\subsubsection{Bubblesort-Lemma}
+	 $\tau_n$ erzeugt $S_n = Perm(\{1, \ldots, n\})$. Den Beweis liefert der Bubblesort Algorithmus! 
+		Genauer gilt: $S_n$ wird erzeugt von $\tau \in T_n$ mit $\tau= (i, i+1)$ für $1 \leq i < n$
 
+\subsubsection{Definition Signum}
+ 	Sei $\pi \in S_n$. Dann ist das Signum wie folgt definiert $$sign(\pi) = \prod_{1 \leq i \leq j \leq n} \frac{\pi(j) - \pi(i)}{j -i}$$
+
+\subsubsection{Signum - Betrags - Lemma}
+	Es gilt: $|sign(\pi) |= 1$
+
+\subsubsection{Beweis des Lemmas}
+	Die Aussage gilt da 
+	\begin{align*}
+		sign(\pi) &= \ddfrac{\prod_{1 \leq i \leq j \leq n}  |\pi(j) - \pi(i)|}{\prod_{1 \leq i \leq j \leq n}  |j -i|} = \ddfrac{ \prod_{ \{i,j\} \in \binom{[n]}{2}} |\pi(j) - \pi(i)| }{ \prod_{ \{i,j\} \in \binom{[n]}{2}} |j - i|} = 1
+	\end{align*}
+	Sei weiter $F(\pi) = $ Menge der Fehlstellungen $= (i,j)$ mit $(\pi(j) - \pi(i))(j-i) \leq -1$. \\
+	
+	Dann ist $sign(\pi)= 1^{|F(\pi)|}$ und somit ist $sign(id) = +1$ und $sign(\tau) = \frac{j-i}{i-j} = -1$ für $\tau= (i,j) \in T_n$
+	\bewiesen
+
+\subsubsection{Signum - Iso - Lemma}
+	$$ sign: S_n \to \{ \pm 1\} \text{ ist ein Hom.}$$
+
+\subsubsection{Beweis des Lemmas}
+	Es gilt 
+	\begin{align*}
+		sign(\pi\sigma) = \prod_{ i < j} \ddfrac{\pi\sigma(j) - \pi \sigma(i)}{j -i} &=  \ddfrac{\pi\sigma(j) - \pi \sigma(i)}{\sigma(j) -\sigma(i)} \cdot \prod_{ i < j}\ddfrac{\pi\sigma(j) - \pi \sigma(i)}{j -i} = sign(\pi) sign(\sigma)
+	\end{align*}
+	\bewiesen
+	Weiter gilt $ker(sign) = A_n = $ alternerirende Gruppe über $n$ und $A_n \trianglelefteq S_n$ und $|A_n| = \binom{n!}{2}$ für $n \geq 2$ 
+
+\section{Gruppentheorie 3 - Vorlesung 4}
+\subsection{Semidirekte Produkte}
+\subsubsection{Definition}
 \end{document}
