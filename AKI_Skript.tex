@@ -556,10 +556,10 @@ Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$
  Da $n$ minimal ist, sind  $g, \ldots g^{n-1}$ paarweise verschieden. Ferner gilt $g^i = g^j \implies i \equiv j \mod n \implies G \cong (\mathbb Z /n\mathbb Z, +, 0)$
  \bewiesen
  
- \subsubsection{Satz  zu zyklischen Gruppen}
+\subsubsection{Satz  zu zyklischen Gruppen}
  	$H \leq G$ zyklisch $\implies H$ ist zyklisch
  	
- \subsubsection{Beweis des Satzes}
+\subsubsection{Beweis des Satzes}
  	\OE  $\, \, \{1\} \not = H \not = G$ und  $G \cong \mathbb Z /n\mathbb Z$ für $n=0,2,3$\\ 
  	\newline
  	Es existiert ein minimales $d > 0$ mit $g^d \in H$ für $G = g^{\mathbb Z}$. Dann gilt $d\mathbb Z \leq H$ in $\mathbb Z /n\mathbb Z$. 
@@ -572,11 +572,56 @@ Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$
  		&\implies a \in d\mathbb Z \\ 
  		&\implies H \text{ ist zyklisch}
  	\end{align*}
-Falls $n=0$ ist, dann $d\mathbb Z \cong \mathbb Z$, und falls $|\mathbb Z /n\mathbb | Z < \infty$ ist, also $n \geq 2$, 
-dann ist $d\cdot \frac{n}{d} \equiv 0 \mod n$ und $d$ hat die Ordnung $\frac{n}{d}$. Also $|G/H|= d$
-	
+		Falls $n=0$ ist, dann $d\mathbb Z \cong \mathbb Z$, und falls $|\mathbb Z /n\mathbb | Z < \infty$ ist, also $n \geq 2$, 
+		dann ist $d\cdot \frac{n}{d} \equiv 0 \mod n$ und $d$ hat die Ordnung $\frac{n}{d}$. Also $|G/H|= d$
 
+\subsection{Permutations Gruppen}
+\subsubsection{Definition Permutations Gruppe}
+		Wir schreiben ab jetzt $[n] = \{1, \ldots, n\}$ für $n \in \mathbb N$.  \\ 
+		\newline
+		Sei $X$ eine Menge, dann ist die Permutationsgruppe zu $X$ wie folgt definiert 
+		$$Perm(X)= \{ f: X \iso X \mid f \text{ ist eine bijektive Abbildung}\}$$
 
+\subsubsection{Definition Permutations Gruppe}
+Eine symetrische Gruppe $S_n$ wird gebildet durch $$S_n = Perm([n])$$ mit $\pi = (\pi(1), \ldots, \pi(n)) \in S_n$
+
+\subsubsection{Definition q-Zykel}
+	Ein $\pi \in S_n$ heißt $q$-Zykel falls $$ \exists I \in \binom{[n]}{q} = \text{ Träger von $\pi$}$$ mit $\pi(i_j) = i_{(j+1)}, \, j \in \mathbb Z / q \mathbb Z$ und $\pi(m)= m$ $\forall m \in [n]  \setminus  I$. \\ 
+	Wir schreiben dann für einen $q$-Zykel eine Folge $(i_1, \ldots, i_q) = (i_{p+1}, \ldots, i_q, i_1, \ldots, i_p)$
+
+\subsubsection{Definition Transposition}
+	Ein $2$-Zykel heißt Transposition $$T_n = \{ \tau \in S_n  \mid \tau = (i, j), \, 1 \leq i \leq j \leq n\}$$
+	Weiter gilt $$\binom{n}{k} = |\{ \pi \in S_n \mid \pi \text{ ist Produkt von $k$- Zykeln  mit paarweise verschiedenen disjunkten Trägern} \}|$$
+\subsubsection{Graphische Interpretation von Zykeln}
+	\begin{figure}[h!]
+		\centering
+		$ \pi = c_1, \ldots, c_k = \begin{array}{ccc}
+		\begin{tikzpicture}[->,scale=.7] 
+		\foreach \a/\t in {90/.,-30/.,210/.}{
+			\node (\t) at (\a:1cm) {$\bullet$};
+			\draw (\a-20:1cm)  arc (\a-20:\a-100:1cm);
+		} 
+		\end{tikzpicture}
+	\end{array} \ldots
+	\begin{array}{ccc}
+	\begin{tikzpicture}[->,scale=.7] 
+	\foreach \a/\t in {90/.,-90/.}{
+		\node (\t) at (\a:1cm) {$\bullet$};
+		\draw (\a-20:1cm)  arc (\a-20:\a-160:1cm);
+	} 
+	\end{tikzpicture}
+	\end{array}
+	\ldots
+	\begin{array}{ccc}
+	\begin{tikzpicture}[->,scale=.7] 
+	\foreach \a/\t in {90/.}{
+		\node (\t) at (\a:1cm) {$\bullet$};
+		\draw (\a-20:1cm)  arc (\a-20:\a-340:1cm);
+	} 
+	\end{tikzpicture}
+	\end{array}$
+	\caption{$c_1$ bis $c_k$}
+	\end{figure}
 
 
 \end{document}
