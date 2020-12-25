@@ -547,12 +547,33 @@ Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$
 \subsubsection{Definition zyklische Gruppe}
 	Eine Gruppe $G$ heißt zyklisch falls $\exists g \in G$ mit $G=g^{\mathbb Z}$
 
-\subsubsection{Satz zu zyklischen Gruppen}
+\subsubsection{Satz  zu zyklischen Gruppen}
 	$|G| < \infty$ und $G$ zyklisch $\implies \exists g \in G$ mit $G =\{g^0, g^1, \ldots, g^{|G| -1} \}$  
 
-\subsubsection{Beweis des Satzes}
- Betrachte $g, g^2, g^3, \ldots$ für $g^{\mathbb Z}$
-
+\subsubsection{Beweis des Satzes }
+ Betrachte $g, g^2, g^3, \ldots$ für $g^{\mathbb Z}$. Dann existiert ein $i,j$ mit $0 \leq i < j $ sodass $g^i = g^j$. Daraus ergibt sich dass $1 = g^{j-i}$ gilt. \\
+ Betrachte nun ein minimales $n \in \mathbb N_+$ mit $g^n = g^0 = 1$ (\OE  $\, \,G \not = \{1\}$).
+ Da $n$ minimal ist, sind  $g, \ldots g^{n-1}$ paarweise verschieden. Ferner gilt $g^i = g^j \implies i \equiv j \mod n \implies G \cong (\mathbb Z /n\mathbb Z, +, 0)$
+ \bewiesen
+ 
+ \subsubsection{Satz  zu zyklischen Gruppen}
+ 	$H \leq G$ zyklisch $\implies H$ ist zyklisch
+ 	
+ \subsubsection{Beweis des Satzes}
+ 	\OE  $\, \, \{1\} \not = H \not = G$ und  $G \cong \mathbb Z /n\mathbb Z$ für $n=0,2,3$\\ 
+ 	\newline
+ 	Es existiert ein minimales $d > 0$ mit $g^d \in H$ für $G = g^{\mathbb Z}$. Dann gilt $d\mathbb Z \leq H$ in $\mathbb Z /n\mathbb Z$. 
+ 	Wir zeigen $d\mathbb Z = H$: 
+ 	
+ 	Sei ein $a \in H$, dann gilt $a\in r + d\mathbb Z$ mit $0 \leq r < d$ 
+ 	\begin{align*}
+ 		&\implies r \in H \\
+ 		&\implies r = 0 \\
+ 		&\implies a \in d\mathbb Z \\ 
+ 		&\implies H \text{ ist zyklisch}
+ 	\end{align*}
+Falls $n=0$ ist, dann $d\mathbb Z \cong \mathbb Z$, und falls $|\mathbb Z /n\mathbb | Z < \infty$ ist, also $n \geq 2$, 
+dann ist $d\cdot \frac{n}{d} \equiv 0 \mod n$ und $d$ hat die Ordnung $\frac{n}{d}$. Also $|G/H|= d$
 	
 
 
