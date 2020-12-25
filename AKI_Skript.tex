@@ -189,7 +189,7 @@
 		Dies ist der Fall, wenn $-i = 2j \in \mathbb Z /n \mathbb Z$ mit ungeradem $n$ gilt. Bei Spiegelungen existiert also genau ein Knoten $j$ für alle $i$. Falls $n$ gerade ist, existieren entweder genau $2$ (das wäre dann $-i = 2j$ und $ i + \frac{n}{2}$) oder gar kein Fixpunkt. Für Drehungen ist nur $n$ bzw. $id$ eine Fixpunkt. 
 		
 		
-\section{Gruppentheorie - Vorlesung 2}
+\section{Gruppentheorie 1 - Vorlesung 2}
 \subsection{Untergruppen}
 \subsubsection{Definition}
 		Sei im folgenden $G=(G, \cdot, 1)$ eine Gruppe. Dann gilt 
@@ -484,31 +484,74 @@ Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$
 	Sei $G$ eine endliche Gruppe und $p \in \mathbb P$ mit $p \mid |G|$. \\
 	Dann existiert $g \in G$ mit $g \not = 1$ und $ g^p = 1$. Also $ord(g)= p$
 \subsubsection{Beweis}
-Wir betrachten die Menge der Tupel $(g_1, g_p) \in G^p$ mit $g_1 \cdot \ldots \cdot g_p = 1$. 
-Sei nun 
-\begin{align*}
-	T &= |\{(g_1, \ldots, g_p) \mid  g_1 \cdot \ldots \cdot g_p = 1 \}| \\
-	&= |\{(g_1, \ldots, g_{p-1}) \in G^{p-1} \}| \\
-	&= |G^{p-1}|
-\end{align*}
-Nun soll $\mathbb Z /p\mathbb Z$ auf $T$ operieren durch
- \begin{align*}
-	T = (\underbrace{g_1, \ldots, g_m}_{\substack{u}}, \underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}) \implies m\cdot T = (\underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}, \underbrace{g_1, \ldots, g_m}_{\substack{u}})
-\end{align*}
-Es gilt also $uv = 1 \iff v(uv)v^{-1} = 1 = u = 1$, da $|G^{-1}| = n^{p-1}$ und $p \mid n^{p-1} $ da $p \mid n$.
-Weiter haben Bahnen entweder die Länge $1$ oder $p$, da $\mathbb Z /p\mathbb Z$ nur zwei Untergruppen hat.
+	Wir betrachten die Menge der Tupel $(g_1, g_p) \in G^p$ mit $g_1 \cdot \ldots \cdot g_p = 1$. 
+	Sei nun 
+	\begin{align*}
+		T &= |\{(g_1, \ldots, g_p) \mid  g_1 \cdot \ldots \cdot g_p = 1 \}| \\
+		&= |\{(g_1, \ldots, g_{p-1}) \in G^{p-1} \}| \\
+		&= |G^{p-1}|
+	\end{align*}
+	Nun soll $\mathbb Z /p\mathbb Z$ auf $T$ operieren durch
+	 \begin{align*}
+		T = (\underbrace{g_1, \ldots, g_m}_{\substack{u}}, \underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}) \implies m\cdot T = (\underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}, \underbrace{g_1, \ldots, g_m}_{\substack{u}})
+	\end{align*}
+	Es gilt also $uv = 1 \iff v(uv)v^{-1} = 1 = u = 1$, da $|G^{-1}| = n^{p-1}$ und $p \mid n^{p-1} $ da $p \mid n$.
+	Weiter haben Bahnen entweder die Länge $1$ oder $p$, da $\mathbb Z /p\mathbb Z$ nur zwei Untergruppen hat.
 
-\begin{align*}
-\mathbb Z /p\mathbb Z \cdot (1, \ldots, 1) = (1, \ldots, 1) \\
-\{(g, \ldots, g) \mid gP= 1 \} \implies \exists g \text{ mit } gP = 1
-\end{align*}
+	\begin{align*}
+		\mathbb Z /p\mathbb Z \cdot (1, \ldots, 1) = (1, \ldots, 1) \\
+		\{(g, \ldots, g) \mid gP= 1 \} \implies \exists g \text{ mit } gP = 1
+	\end{align*}
 \bewiesen
 
+\section{Gruppentheorie 2 - Vorlesung 3}
+\subsection{p-Gruppen}
+\subsubsection{Definition p-Gruppe}
+	$G$ heißt $p$-Gruppe falls $p$ eine Primzahl ist und $|G| \in p^{\mathbb N}$
 
+\subsubsection{Definition Zentrum}
+	Wir definieren das Zentrum einer Gruppe wie folgt $$Zentrum(G)= Z(G) = \{g \in G \mid  \forall x \in G: xg = gx\}$$
 
+\subsubsection{Satz über das Zentrum}
+	\begin{align*}
+		G \text{ ist eine $p$-Gruppe} \implies Z(G) \not = \{1\}
+	\end{align*}
 
+\subsubsection{Beweis des Satzes}
+	$G$ operiert auf sich selbst durch $x \mapsto gxg^{-1}$. Dann ist $G$ disjunkt zerlegt in Bahnen. Für jede Bahn gilt $|G/Fix(x)|$. 
+	Also $Fix(x) \not= G \implies p \mid |G/Fix(x)|$. Dann gilt 
+	\begin{align*}
+		|G| &\equiv \sum_{x \in G} |G/Fix(x)|  \mod p\\
+		&\equiv |Z(G) |\mod p
+	\end{align*}
+	Daraus folgt $|Z(G)| \geq 1$ und durch die Kongruenz zu $p$ muss $|Z(G)|\geq p$ gelten. \\
+	Also $p \mid |Z(G)|$. 
+	\newline
+	
+	Wir können dann daraus schließen dass $G/Z(G)$ eine $p$-Gruppe mit $Z(G/Z(G)) \not = \{1\}$ oder $G=Z(G)$ ist.
+	\bewiesen
+	
+\subsection{Zyklische Gruppen}
+\subsubsection{Definition Nilpotent}
+	Eine Gruppe $G$ heißt nilpotent falls es eine Kette von Gruppen gibt, sodass
+	\begin{align*}
+		\langle 1 \rangle &= G_0, G_1, \ldots, G_M = G  \text{ und } G_K/Z(G) = G_{k-1} \text{ für } 1 \leq k \leq k
+	\end{align*}
 
+\subsubsection{Beispiele Nilpotent}
+	\begin{itemize}
+		\item $|D_3| = 6$ ist die kleinste nicht nilpotente Gruppe, da $Z(D_3) = \{1\}$ und somit nicht kommutativ.
+		\item $|D_4| = 8$ ist nilpotent und kommutativ, da $D_4/Z(D_4) = \mathbb Z/2 \mathbb Z \times \mathbb Z /2\mathbb Z$
+	\end{itemize}
 
+\subsubsection{Definition zyklische Gruppe}
+	Eine Gruppe $G$ heißt zyklisch falls $\exists g \in G$ mit $G=g^{\mathbb Z}$
+
+\subsubsection{Satz zu zyklischen Gruppen}
+	$|G| < \infty$ und $G$ zyklisch $\implies \exists g \in G$ mit $G =\{g^0, g^1, \ldots, g^{|G| -1} \}$  
+
+\subsubsection{Beweis des Satzes}
+ Betrachte $g, g^2, g^3, \ldots$ für $g^{\mathbb Z}$
 
 	
 
