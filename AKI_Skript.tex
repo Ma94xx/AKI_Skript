@@ -20,6 +20,10 @@
 \usepackage{forest}
 \usetikzlibrary{backgrounds,fit}
 \usepackage[outline]{contour}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{shapes,fit}
+\usetikzlibrary{fit}
+\usepackage{wrapfig}
 
 %Für Binärbaum
 \usepackage{tikz}
@@ -98,17 +102,9 @@
 	label-offset = 0pt,
 	item-indent = 1em,
 }
-\tikzset{% This is the style settings for nodes
-	dep/.style={circle,minimum size=1cm,fill=orange!20,draw=orange,
-		general shadow={fill=gray!60,shadow xshift=1pt,shadow yshift=-1pt}},
-	cli/.style={circle,minimum size=1cm,fill=white,draw,
-		general shadow={fill=gray!60,shadow xshift=1pt,shadow yshift=-1pt}},
-	spl/.style={cli,append after command={
-			node[circle,draw,dotted,
-			minimum size=1.5cm] at (\tikzlastnode.center) {}}},
-	c1/.style={-stealth,very thick,red!80!black},
-	v2/.style={-stealth,very thick,yellow!65!black},
-	v4/.style={-stealth,very thick,purple!70!black}}
+
+
+
 
 %Global Align
 \newcommand*{\LongestName}{\ensuremath{h(x)+g(x)}}% function name
@@ -138,6 +134,11 @@
 \begin{flushright}
 		$\square$  \\
 \end{flushright}}
+
+
+\newcommand\TBox[3][]{%
+	\tikz\node[draw,thick,text width=#2,#1] {#3};}
+
 
 \title{Inoffizielles Skript für Algebra \& Kombinatorik}
 
@@ -229,6 +230,52 @@
 		\end{align*}
 		Analog dazu gilt $fH \subseteq gH \implies gH = fH$
 		\bewiesen
+		
+\subsubsection{Graphische Interpretation von Nebenklassen}
+Sei $G= (G, \cdot, 1)$ eine Gruppe und $H\leq G$
+\begin{figure}[h!]
+	\centering
+	$G=\begin{array}{c}
+	
+	\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
+	\begin{scope}[yshift=1.5cm,y=1cm]
+	\node [fit={(0,0) (1,3)}, label=center:{$H$}] {};
+	\end{scope}
+	\begin{scope}[yshift=1.5cm,y=1cm]
+	\node [fit={(1,0) (5,1)}, label=center:{$fH$}] {};
+	\end{scope}
+	\begin{scope}[yshift=2.5cm,y=1cm]
+	\node [fit={(1,0) (5,1)}, label=center:{$\vdots$}] {};
+	\end{scope}
+	\begin{scope}[yshift=3.5cm,y=1cm]
+	\node [fit={(1,0) (5,1)}, label=center:{$gH$}] {};
+	\end{scope}
+	
+	\end{tikzpicture} 
+\end{array}
+= 
+\begin{array}{c}
+	\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
+	\begin{scope}[yshift=1.5cm,y=1cm]
+	\node [fit={(0,0) (1,3)}, label=center:{$H$}] {};
+	\end{scope}
+	\begin{scope}[yshift=1.5cm,y=1cm]
+	\node [fit={(1,3) (2,0)}, label=center:{$Hg$}] {};
+	\end{scope}
+	\begin{scope}[yshift=1.5cm,y=1cm]
+	\node [fit={(2,0) (3,3)}, label=center:{$\ldots$}] {};
+	\end{scope}
+	\begin{scope}[yshift=1.5cm,y=1cm]
+	\node [fit={(3,3) (4,0)}, label=center:{$Hf$}] {};
+	\end{scope}
+	
+	\end{tikzpicture} 
+\end{array}$
+\caption{Zerlegung von $G$ in Links bzw. Rechtsnebenklassen}
+\end{figure}
+
+Wir sehen dass $|H|=|gH| = |Hf|$ gilt
+
 
 \subsection{Representantensysteme}		
 \subsubsection{Definition}
@@ -255,7 +302,7 @@
 	außerdem sind $\{gH \mid g \in G \}$ und $\{Hg \mid g \in G \}$ Partitionen. Weiter gilt $|gH| = |Hf| \;\;\forall g,f \in G$. \\
 	Also gilt $|G| = [G:H] \cdot |H|$ 
 
-\newpage
+
 \subsection{Homomorphiesatz}		
 \subsubsection{Grundlagen Homomorphismus}
 	Eine Abbildung $\varphi: G \to F$ heißt Homomorphismus\footnote{abgekürzt ab jetzt Hom.} falls $\forall g,h \in G : \varphi(gh) = \varphi(g)\varphi(h)$ \\
@@ -268,7 +315,7 @@
 	\end{enumerate}
 
 \subsubsection{Lemma}
-	Ein Homomorphismus $\varphi: G \to F$ ist injektiv $\iff$ $ker(\varphi) = \{g \in G \mid \varphi(g)= 1\} = \{1\}$ 
+	Ein Hom. $\varphi: G \to F$ ist injektiv $\iff$ $ker(\varphi) = \{g \in G \mid \varphi(g)= 1\} = \{1\}$ 
 	
 	Im Folgenden geben hierfür einen Beweis an in dem wir $\varphi(g) = \varphi(h) \iff \varphi(gh^{-1}) = \{1\} $ zeigen:
 	\begin{align*}
@@ -292,7 +339,7 @@
 		\item $\overline{\varphi}$ ist injektiv ~\par
 			$ker(\overline{\varphi}) = ker(\varphi) = N = 1_{G/N}$
 	\end{enumerate}
-\newpage
+
 \subsubsection{Beispiel für den Homomorphiesatz}
 	Wir definieren 
 		\begin{align*}
@@ -406,6 +453,31 @@
 	\end{align*}
 	Analog dazu $Gx \subseteq Gy \implies Gx = Gy$
 
+\subsubsection{Graphische Interpretation einer Bahn}
+
+Sei $X$ eine $G$-Menge und 
+
+\begin{figure}[h!]
+	\centering
+	$X=\begin{array}{c}
+	
+	\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
+	\begin{scope}[y=1.5cm]
+	\node [fit={(4,0) (7,1)}, label=center:{$Gx_1$}] {};
+	\end{scope}		
+	\begin{scope}[yshift=1.5cm,y=1cm]
+	\node [fit={(0,-1.5) (4,1)}, label=center:{$Gx_2$}] {};
+	\node [fit={(4,0) (7,1)}, label=center:{$Gx_3$}] {};
+	\end{scope}
+	\begin{scope}[yshift=2.5cm,y=1.2cm]
+	\node [fit={(0,0) (5,1)}, label=center:{$Gx_4$}] {};
+	\node [fit={(5,0) (7,1)}, label=center:{$Gx_5$}] {};
+	\end{scope}
+	\end{tikzpicture}
+\end{array}$
+\caption{Disjunkte Zerlegung von $X$ in Bahnen}
+\end{figure}
+Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$ wobei $p$ eine Primzahl ist, und daraus folgt $\forall x \in X : |Gx|=1$ oder $|Gx|=p$
 
 \subsection{Satz von Cauchy}		
 \subsubsection{Definition}
@@ -431,4 +503,16 @@ Weiter haben Bahnen entweder die Länge $1$ oder $p$, da $\mathbb Z /p\mathbb Z$
 \{(g, \ldots, g) \mid gP= 1 \} \implies \exists g \text{ mit } gP = 1
 \end{align*}
 \bewiesen
+
+
+
+
+
+
+
+	
+
+
+
+
 \end{document}
