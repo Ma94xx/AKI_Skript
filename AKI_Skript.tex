@@ -24,6 +24,17 @@
 \usetikzlibrary{shapes,fit}
 \usetikzlibrary{fit}
 \usepackage{wrapfig}
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+
+
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
 
 %Für Binärbaum
 \usepackage{tikz}
@@ -33,26 +44,7 @@
 	arn_x/.style = {treenode, rectangle, draw=black, minimum width=0.5em, minimum height=0.5em}
 }
 
-\forestset{%
-	circle subtree/.style={%
-		before typesetting nodes={%
-			no edge,
-			before computing xy={/pgf/inner ysep/.get=\savedinnerysep, l'=\savedinnerysep},
-			replace by/.wrap pgfmath arg={%
-				[\phantom{##1}, circle, append, fit=rectangle, no edge,
-				before drawing tree={%
-					tikz+={%
-						\begin{scope}[on background layer]
-							\node (n) [draw, fill=gray!25, inner sep=\savedinnerysep, rounded corners, fit=(!1) (!L) (!F)] {} ;
-							\path [draw, \forestoption{edge}] (!u.parent anchor) -- (n.north -| !1.child anchor)\forestoption{edge label};
-						\end{scope}
-					},
-				},
-				]
-			}{content()}
-		},
-	},
-}
+
 %Zum runden
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 
@@ -150,6 +142,8 @@
 \setlength\parindent{0pt}
 \begin{document}
 \maketitle
+\tableofcontents
+
 \section{Grundlagen - Vorlesung 1}
 \subsection{Diedergruppen}
 \subsubsection{Definition}
@@ -279,7 +273,6 @@ Sei $G= (G, \cdot, 1)$ eine Gruppe und $H\leq G$
 
 Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 
-
 \subsection{Representantensysteme}		
 \subsubsection{Definition}
 	Sei $R_H := \{r(gH) \mid gH \in G/H\} \subseteq G$ mit der folgenden bijektiven  Abbildung
@@ -287,6 +280,7 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 		R_H \iso G/H \\
 		r(gH) \mapsto gH 
 	\end{align*}
+
 \subsection{Satz von Lagrange}		
 \subsubsection{Definition und Beweis}
 	Wir definieren die folgende Abbildung
@@ -306,7 +300,7 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 	Also gilt $|G| = [G:H] \cdot |H|$ 
 
 
-\subsection{Homomorphiesatz}		
+\subsection{Der Homomorphiesatz}		
 \subsubsection{Grundlagen Homomorphismus}
 	Eine Abbildung $\varphi: G \to F$ heißt Homomorphismus\footnote{abgekürzt ab jetzt Hom.} falls $\forall g,h \in G : \varphi(gh) = \varphi(g)\varphi(h)$ \\
 	\begin{enumerate}[label=\roman*)]
@@ -327,7 +321,7 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 		&\implies \varphi \text{ ist injektiv}
 	\end{align*}
 
-\subsubsection{Definition Homomorphiesatz}
+\subsubsection{Homomorphiesatz}
 	Sei $\varphi: G \to F$ ein Hom.  und $N = ker(\varphi)$. \\
 	Dann induziert $\varphi$ ein Hom. $\overline{\varphi} : G/N \to F$ der injektiv ist durch $\overline{\varphi}(gH) = \varphi(g)$ 
 	\newline
@@ -427,7 +421,7 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 	\end{align*}
 
 
-\subsection{Bahnenlemma}		
+\subsection{Das Bahnenlemma}		
 \subsubsection{Definition einer Bahn}
 	Wir definieren eine Bahn wie folgt $$Bahn(x) = Orbit(x) = G\cdot x = \{gx \mid  g \in G \}$$
 	
@@ -442,7 +436,7 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 	 Also $h(x) = gf(x) = g(x)$ 
 
 
-\subsubsection{Definition Bahnenlemma}
+\subsubsection{Bahnenlemma}
 	Das Bahnenlemma sagt folgendes aus $$Gx \cap Gy \not = \emptyset \iff Gx = Gy$$
 	Im Allgemeinen also $$ X = \dot{\bigcup} \{Gx \mid  x \in X \}$$. Wobei hier die disjunkte Vereinigung gemeint ist. 
 \subsubsection{Beweis Bahnenlemma}
@@ -512,7 +506,7 @@ Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$
 \subsubsection{Definition p-Gruppe}
 	$G$ heißt $p$-Gruppe falls $p$ eine Primzahl ist und $|G| \in p^{\mathbb N}$
 
-\subsubsection{Definition Zentrum}
+\subsubsection{Das Zentrum einer Gruppe}
 	Wir definieren das Zentrum einer Gruppe wie folgt $$Zentrum(G)= Z(G) = \{g \in G \mid  \forall x \in G: xg = gx\}$$
 
 \subsubsection{Satz über das Zentrum}
@@ -535,7 +529,7 @@ Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$
 	\bewiesen
 	
 \subsection{Zyklische Gruppen}
-\subsubsection{Definition Nilpotent}
+\subsubsection{Nilpotenz}
 	Eine Gruppe $G$ heißt nilpotent falls es eine Kette von Gruppen gibt, sodass
 	\begin{align*}
 		\langle 1 \rangle &= G_0, G_1, \ldots, G_M = G  \text{ und } G_K/Z(G) = G_{k-1} \text{ für } 1 \leq k \leq k
@@ -547,7 +541,7 @@ Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$
 		\item $|D_4| = 8$ ist nilpotent und kommutativ, da $D_4/Z(D_4) = \mathbb Z/2 \mathbb Z \times \mathbb Z /2\mathbb Z$
 	\end{itemize}
 
-\subsubsection{Definition zyklische Gruppe}
+\subsubsection{Zyklische Gruppe}
 	Eine Gruppe $G$ heißt zyklisch falls $\exists g \in G$ mit $G=g^{\mathbb Z}$
 
 \subsubsection{Satz  zu zyklischen Gruppen}
@@ -579,20 +573,20 @@ Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$
 		dann ist $d\cdot \frac{n}{d} \equiv 0 \mod n$ und $d$ hat die Ordnung $\frac{n}{d}$. Also $|G/H|= d$
 
 \subsection{Permutations Gruppen}
-\subsubsection{Definition Permutations Gruppe}
+\subsubsection{Permutations Gruppe}
 		Wir schreiben ab jetzt $[n] = \{1, \ldots, n\}$ für $n \in \mathbb N$.  \\ 
 		\newline
 		Sei $X$ eine Menge, dann ist die Permutationsgruppe zu $X$ wie folgt definiert 
 		$$Perm(X)= \{ f: X \iso X \mid f \text{ ist eine bijektive Abbildung}\}$$
 
-\subsubsection{Definition Permutations Gruppe}
+\subsubsection{Symetrische Gruppe}
 Eine symetrische Gruppe $S_n$ wird gebildet durch $$S_n = Perm([n])$$ mit $\pi = (\pi(1), \ldots, \pi(n)) \in S_n$
 
-\subsubsection{Definition q-Zykel}
+\subsubsection{q-Zykel}
 	Ein $\pi \in S_n$ heißt $q$-Zykel falls $$ \exists I \in \binom{[n]}{q} = \text{ Träger von $\pi$}$$ mit $\pi(i_j) = i_{(j+1)}, \, j \in \mathbb Z / q \mathbb Z$ und $\pi(m)= m$ $\forall m \in [n]  \setminus  I$. \\ 
 	Wir schreiben dann für einen $q$-Zykel eine Folge $(i_1, \ldots, i_q) = (i_{p+1}, \ldots, i_q, i_1, \ldots, i_p)$
 
-\subsubsection{Definition Transposition}
+\subsubsection{Transposition}
 	Ein $2$-Zykel heißt Transposition $$T_n = \{ \tau \in S_n  \mid \tau = (i, j), \, 1 \leq i \leq j \leq n\}$$
 	Weiter gilt $$\binom{n}{k} = |\{ \pi \in S_n \mid \pi \text{ ist Produkt von $k$- Zykeln  mit paarweise verschiedenen disjunkten Trägern} \}|$$
 \subsubsection{Graphische Interpretation von Zykeln}
@@ -630,7 +624,7 @@ Eine symetrische Gruppe $S_n$ wird gebildet durch $$S_n = Perm([n])$$ mit $\pi =
 	 $\tau_n$ erzeugt $S_n = Perm(\{1, \ldots, n\})$. Den Beweis liefert der Bubblesort Algorithmus! 
 		Genauer gilt: $S_n$ wird erzeugt von $\tau \in T_n$ mit $\tau= (i, i+1)$ für $1 \leq i < n$
 
-\subsubsection{Definition Signum}
+\subsubsection{Signum}
  	Sei $\pi \in S_n$. Dann ist das Signum wie folgt definiert $$sign(\pi) = \prod_{1 \leq i \leq j \leq n} \frac{\pi(j) - \pi(i)}{j -i}$$
 
 \subsubsection{Signum - Betrags - Lemma}
@@ -659,5 +653,58 @@ Eine symetrische Gruppe $S_n$ wird gebildet durch $$S_n = Perm([n])$$ mit $\pi =
 
 \section{Gruppentheorie 3 - Vorlesung 4}
 \subsection{Semidirekte Produkte}
-\subsubsection{Definition}
+\subsubsection{Direktes Produkt}
+	Für zwei Gruppen $H$ und $F$ ist das direkte Produkt die Gruppe $H \times F$ mit  $$(h,f)(h', f') = (hh', ff')$$
+
+\subsubsection{Semidirektes Produkt}
+	$G = H \rtimes F$ ist ein semi direktes Produkt, falls $H \trianglelefteq G$, $F \leq G$,  $G = H\cdot F$ und $H \cap F = \{1\}$ mit 
+	$$(h,f)(h',f') = hfh'(f^{-1}f)f' = (h\varphi(f)(h'), ff')$$
+	mit $\varphi \in Aut(H)$ wobei $Aut(H)$ die Menge der Automorphismen in $H$ ist.
+
+\subsubsection{Konstruktion 1 von semidirekten Produkten}
+	Seien $H, F$ Gruppen und $\varphi: F\to Aut(H)$ ein Hom. \\ 
+	Wir nehmen $G = H \times F$ als Menge und $$ (h,f)(h',f') = (h\varphi(f)h', ff')$$
+	Dann ist $H= H \times \{1\}$ und $H \trianglelefteq H \times F$. 
+	Weiter ist dann $F = \{1\} \times F \leq F$ und $G= H\cdot I$ und $H\cap F = \{1\}$
+
+\subsubsection{Korrektheit der Konstruktion 1}
+	Es ist $(h_1, f_1)(h_2, f_2)(h_3, f_3) = (h, f_1f_2f_3)$ mit 
+	\begin{align*}
+		h&=h_1\varphi(f_1)[h_2\varphi(f_2)(h_3)] \\
+		&=h_1\varphi(f_1)(h_2)\varphi(f_1f_2)(h_3)
+	\end{align*} 
+	\\ 
+	Und für die Inversen ist $(h, f)^{-1} = (h', f^{-1}) \text{ mit } h\varphi(f)(h')= 1$ aber $h' = \varphi(f^{-1})(h^{-1})$
+
+\subsubsection{Exakte Sequenzen}
+Eine Sequenz von Homs. $\varphi_i: G_{i-1} \to G_i$ mit $i \in I$ wobei $I$ linear geordnet ist, heißt exakt falls $$\forall i \in I : im(\varphi_i) = ker(\varphi_{i+1})$$ gilt
+	\begin{figure}[h!]
+		\centering
+	\begin{equation*}
+		\begin{tikzcd}[column sep=3.5pc]
+				\ldots \arrow{r}{\varphi_{i-1}} & G_{i -1} \arrow{r}{\varphi_{i}} & G_{i} \arrow{r}{\varphi_{i+1}} & G_{i+1} \ldots 
+		\end{tikzcd}
+	\end{equation*}
+		\caption{Graphische Darstellung einer Sequenz}
+\end{figure}
+
+\subsubsection{Konstruktion 2 von semidirekten Produkten}
+Eine zweite Möglichkeit zur Konstruktion von semidirekten Produkten ist durch kurze exakte Sequenzen möglich. 
+Wir betrachten dabei die folgende Sequenz
+\begin{figure}[h!]
+	\centering
+	\begin{equation*}
+	\begin{tikzcd}[column sep=2.5pc]
+	1 \arrow{r}{} & H \arrow{r}{\varphi} & G \arrow{r}{\psi} & F \arrow{r}{} & 1
+	\end{tikzcd}
+	\end{equation*}
+	\caption{Kurze exakte Sequenz}
+\end{figure} 
+
+Dabei gilt, dass $\varphi : H \to G$ injektiv ist und dass $\psi : G \to F$ surjektiv ist. Somit entsteht der folgende Isomorphismus $$\overline{\psi} : G/H \iso F$$
+
+\subsubsection{Satz über die Konstruktion 2 von semidirekten Produkten}
+$G$ ist ein semidirektes Produkt $G = H\rtimes F$ mit der exakten Sequenz $$1 \to H \to G \to F \to 1$$ falls ein Hom. $s: F \to G$ existiert  mit $\psi s = id_F$
+
+
 \end{document}
