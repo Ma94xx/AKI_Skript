@@ -803,28 +803,28 @@ Sei $n \geq 5$ und $\sigma$ ein $3$-Zykel, dann existiert ein $\pi \in A_n$, sod
 \subsubsection{Lemma}
 	Sei $N \trianglelefteq A_n$ und $\pi \in S_n$, dann ist auch $\pi N\pi^{-1} \trianglelefteq A_n$. Genauer sogar $\tau N \tau \trianglelefteq A_n$ für alle $\tau \in \mathcal T_n$
 \subsubsection{Beweis des Lemmas}
-Zuerst ein direkter Beweis: \\
-Für $\pi \in A_n$ ist bereits alles bekannt. Es reicht also zu zeigen dass $\sigma\rho N\tau\sigma^{-1} = \tau N \tau$ für $\sigma \in A_n$ und $\tau\in S_n \setminus A_n$. Dies ist äquivalent zu $ \tau \sigma \tau N \tau \sigma^{-1}\sigma \subseteq N$, da $\tau\sigma\tau \in A_n$ und $N\trianglelefteq A_n$. 
-\newline
-
-Als zweites eine elegantere Version: \\
-Wir haben $N \trianglelefteq H \trianglelefteq G$ mit $H = A_n$ und $G= S_n$. Für alle $\pi \in G$ erhalten wir einen Automorphismus $\varphi \in Aut(H)$ durch $\varphi(H) = \pi h\pi^{-1}$. Nun ist $\varphi(N) = \pi N\pi^{-1}$ ein Normalteiler in $H$, da $\varphi^{-1}(h) \in H$ ist. 
-Deshalb gilt: 
-\begin{align*}
-	h\varphi(N)h^{-1} = \varphi(\varphi^{-1}(h)N\varphi^{-1}(h^{-1})) = \varphi(N)
-\end{align*}
-
-Die allgemeine Aussage ist, dass $N \trianglelefteq H$ und $\varphi \in Aut(H)$ und somit $\varphi(N) \trianglelefteq H$ gilt. 
-\bewiesen
+	Zuerst ein direkter Beweis: \\
+	Für $\pi \in A_n$ ist bereits alles bekannt. Es reicht also zu zeigen dass $\sigma\rho N\tau\sigma^{-1} = \tau N \tau$ für $\sigma \in A_n$ und $\tau\in S_n \setminus A_n$. Dies ist äquivalent zu $ \tau \sigma \tau N \tau \sigma^{-1}\sigma \subseteq N$, da $\tau\sigma\tau \in A_n$ und $N\trianglelefteq A_n$. 
+	\newline
+	
+	Als zweites eine elegantere Version: \\
+	Wir haben $N \trianglelefteq H \trianglelefteq G$ mit $H = A_n$ und $G= S_n$. Für alle $\pi \in G$ erhalten wir einen Automorphismus $\varphi \in Aut(H)$ durch $\varphi(H) = \pi h\pi^{-1}$. Nun ist $\varphi(N) = \pi N\pi^{-1}$ ein Normalteiler in $H$, da $\varphi^{-1}(h) \in H$ ist. 
+	Deshalb gilt: 
+	\begin{align*}
+		h\varphi(N)h^{-1} = \varphi(\varphi^{-1}(h)N\varphi^{-1}(h^{-1})) = \varphi(N)
+	\end{align*}
+	
+	Die allgemeine Aussage ist, dass $N \trianglelefteq H$ und $\varphi \in Aut(H)$ und somit $\varphi(N) \trianglelefteq H$ gilt. 
+	\bewiesen
 
 \subsubsection{Satz über die Einfachheit von alternierenden Gruppen}
-Für $n \geq 5$ ist $A_n$ einfach. (C.Jordan, 1875).
+	Für $n \geq 5$ ist $A_n$ einfach. (C.Jordan, 1875).
 
 \subsubsection{Strategie zum Beweis des Satzes}
-$\tau \in \mathcal T_n$ soll eine feste Transposition sein. Wir zeigen durch Widerspruch dass $A_n$ einfach ist. Dazu nehmen wir an, dass ein $N \trianglelefteq A_n$ existiert, sodass $\{1\} \triangleleft N \triangleleft A_n$ gilt.  \\
-
-Wir wissen, dass $S_n$ nur die Normalteiler $\{1\}, A_n$ und $S_n$ hat, und dadurch können wir schließen, dass $\tau N\tau \not = N$ ist, da sonst $N = \tau N \tau $ ein Normalteiler in $S_n$ wäre. Wir erinnern uns daran, dass $\tau N \tau \trianglelefteq A_n$ gilt. \\
-Durch folgende Schritte können wir dann einen Widerspruch herleiten: 
+	$\tau \in \mathcal T_n$ soll eine feste Transposition sein. Wir zeigen durch Widerspruch dass $A_n$ einfach ist. Dazu nehmen wir an, dass ein $N \trianglelefteq A_n$ existiert, sodass $\{1\} \triangleleft N \triangleleft A_n$ gilt.  \\
+	
+	Wir wissen, dass $S_n$ nur die Normalteiler $\{1\}, A_n$ und $S_n$ hat, und dadurch können wir schließen, dass $\tau N\tau \not = N$ ist, da sonst $N = \tau N \tau $ ein Normalteiler in $S_n$ wäre. Wir erinnern uns daran, dass $\tau N \tau \trianglelefteq A_n$ gilt. \\
+	Durch folgende Schritte können wir dann einen Widerspruch herleiten: 
 
 \begin{enumerate}[label=\arabic*.]
 	\item Der Schnitt ist trivial: $N \cap \tau N \tau = \{1\}$
@@ -833,29 +833,41 @@ Durch folgende Schritte können wir dann einen Widerspruch herleiten:
 	\item Da $N\cap \tau N \tau =  \{1\}$ und $N(  \tau N \tau ) = A_n$ ist, schließen wir, dass $n! = 2 |N|^2$ ist. Sogar, dass $4 \mid n$ und somit das $|N|$ gerade sein muss. 
  	\item Der Widerspruch entsteht entweder dadurch dass wir zeigen dass $\frac{n!}{2}$ keine Quadratzahl ist, mit der Hilfe des Bertrandschen Postulates, oder durch den Satz von Cauchy
 \end{enumerate}
-Die Punkte $1$ -$3$ werden durch die folgenden Lemma (\ref{lemma1}, \ref{lemma2}, und \ref{lemma3}) gezeigt. 
+	Die Punkte $1$ -$3$ werden durch die folgenden Lemma (\ref{lemma1}, \ref{lemma2}, und \ref{lemma3}) gezeigt. 
 
 \subsubsection{Lemma \label{lemma1}}
 	$N \cap \tau N \tau = \{1\}$, also dass der Schnitt trivial ist.
 \subsubsection{Beweis des Lemma \ref{lemma1}}
-$N \cap \tau N \tau$ ist ein Normalteiler in $A_n$. Jedes $\pi \in S_n \setminus A_n$ kann auch als $\pi = \tau\sigma$ mit $\sigma \in A_n$ geschrieben werden.
-Wir betrachten 
-\begin{align*}
-\pi N \pi^{-1} &= \tau \sigma N \sigma^{-1} \tau = \tau N \tau  \\ 
-\pi \tau N \tau \pi^{-1} &= N
-\end{align*} da $\pi\tau \in A_n$ ist. 
-Deshalb ist $\pi(\tau N \tau \cap N) \pi^{-1} \subseteq N \cap \tau N \tau$ und $\tau N \tau \cap N$ ist Normalteiler in $S_n$. Da $S_n$ ganz in $A_n$ liegt, folgt daraus dass $\tau N \tau \cap N = \{1\}$. 
-\bewiesen
+		$N \cap \tau N \tau$ ist ein Normalteiler in $A_n$. Jedes $\pi \in S_n \setminus A_n$ kann auch als $\pi = \tau\sigma$ mit $\sigma \in A_n$ geschrieben werden.
+		Wir betrachten 
+		\begin{align*}
+			\pi N \pi^{-1} &= \tau \sigma N \sigma^{-1} \tau = \tau N \tau  \\ 
+			\pi \tau N \tau \pi^{-1} &= N
+		\end{align*} 
+		da $\pi\tau \in A_n$ ist. 
+		Deshalb ist $\pi(\tau N \tau \cap N) \pi^{-1} \subseteq N \cap \tau N \tau$ und $\tau N \tau \cap N$ ist Normalteiler in $S_n$. Da $S_n$ ganz in $A_n$ liegt, folgt daraus dass $\tau N \tau \cap N = \{1\}$. 
+		\bewiesen
 
 \subsubsection{Lemma \label{lemma2}}
-Das Produkt $N(\tau N \tau)$ ist ein Normalteiler in $S_n$, da $N \subseteq N(\tau N \tau) \leq A_n$. \\ 
-Dies impliziert $N(\tau N \tau) = A_n$.
+		Das Produkt $N(\tau N \tau)$ ist ein Normalteiler in $S_n$, da $N \subseteq N(\tau N \tau) \leq A_n$. \\ 
+		Dies impliziert $N(\tau N \tau) = A_n$.
 \subsubsection{Beweis des Lemma \ref{lemma2}}
-\bewiesen
+		Nach Blatt 1, Aufgabe 3 der Übungen ist $N(\tau N \tau) \trianglelefteq A_n$. Ferner ist für $\pi = \sigma\tau \in S_N \setminus A_n$ mit $\sigma \in A_n$ 
+		\begin{align*}
+			\pi N(\tau N\tau) \pi^{-1} &= \sigma \tau N (\tau N \tau) \tau \sigma^{-1}  \\ 
+			&= \sigma N \tau N \tau \sigma^{-1} \\
+			&= N(\tau N \tau)
+		\end{align*}
+	\bewiesen
 
 \subsubsection{Lemma \label{lemma3}}
-Es gilt $N\cap \tau N \tau =  \{1\}$ und $N(  \tau N \tau ) = A_n$. Also muss $n! = 2 |N|^2$ ein. Sogar, $4 \mid n$ und somit $|N|$ gerade . 
+	Es gilt $N\cap \tau N \tau =  \{1\}$ und $N(  \tau N \tau ) = A_n$. Also muss $n! = 2 |N|^2$ ein. Sogar, $4 \mid n$ und somit $|N|$ gerade . 
 \subsubsection{Beweis des Lemma \ref{lemma3}}
+Sei $\sigma, \sigma' \in N$ und $\pi', \pi \in \tau N \tau$, sodass $\sigma\pi' = \sigma'\pi$ ist. Dann ist $\sigma^{-1}\sigma' = \pi'\pi^{-1} \in N \cap \tau N \tau = \{1\}$. Dadurch ist $\sigma = \sigma'$ und $\pi' = \pi$. Somit ergibt sich 
+\begin{align*}
+	|A_n| = |N\tau N\tau| = |\tau N \tau| = |N|^2
+\end{align*}
+Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da $n!$ duch $4$ teilbar ist für $n \geq 4$. 
 \bewiesen
 
 \subsubsection{Beweis des Satzes}
