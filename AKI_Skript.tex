@@ -26,6 +26,7 @@
 \usepackage{wrapfig}
 \usepackage{hyperref}
 \usepackage{tikz-cd}
+\usepackage[bottom]{footmisc}
 
 
 \hypersetup{
@@ -273,7 +274,7 @@ Sei $G= (G, \cdot, 1)$ eine Gruppe und $H\leq G$
 
 Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 
-\subsection{Representantensysteme}		
+\subsection{Repräsentantensysteme}		
 \subsubsection{Definition}
 	Sei $R_H := \{r(gH) \mid gH \in G/H\} \subseteq G$ mit der folgenden bijektiven  Abbildung
 	\begin{align*}
@@ -302,7 +303,7 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 
 \subsection{Der Homomorphiesatz}		
 \subsubsection{Grundlagen Homomorphismus}
-	Eine Abbildung $\varphi: G \to F$ heißt Homomorphismus\footnote{abgekürzt ab jetzt Hom.} falls $\forall g,h \in G : \varphi(gh) = \varphi(g)\varphi(h)$ \\
+	Eine Abbildung $\varphi: G \to F$ heißt Homomorphismus\footnote{ab hier abgekürzt Hom.} falls $\forall g,h \in G : \varphi(gh) = \varphi(g)\varphi(h)$ \\
 	\begin{enumerate}[label=\roman*)]
 		\item $\varphi(1_G) = 1_H$ ~\par
 			Denn $g=1\cdot g \implies \varphi(g)=\varphi(1)\varphi(g) \implies 1_H = \varphi(g) \varphi(g)^{-1} = \varphi(1)$
@@ -363,7 +364,7 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 		\item $\forall g \in G : gHg^{-1} \subseteq H$ und $H \leq G$
 	\end{enumerate}
 
-	Im Folgenden wird die Äquivalenz der folgenden Aussagen gezeigt: 
+	Im Folgenden wird die Äquivalenz der Aussagen gezeigt: 
 	\begin{itemize}
 		\item $1)\rightarrow 2)$ ~\par
 			$H\trianglelefteq G \implies gHfH = g(Hf)H = g(fH)H = gfH$
@@ -437,8 +438,8 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 
 
 \subsubsection{Bahnenlemma}
-	Das Bahnenlemma sagt folgendes aus $$Gx \cap Gy \not = \emptyset \iff Gx = Gy$$
-	Im Allgemeinen also $$ X = \dot{\bigcup} \{Gx \mid  x \in X \}$$. Wobei hier die disjunkte Vereinigung gemeint ist. 
+	Das Bahnenlemma besagt $$Gx \cap Gy \not = \emptyset \iff Gx = Gy$$
+	Im Allgemeinen also $$ X = \dot{\bigcup} \{Gx \mid  x \in X \}$$ Wobei hier die disjunkte Vereinigung mit dem Punkt gekennzeichnet wird. 
 \subsubsection{Beweis Bahnenlemma}
 	Die Rückrichtung ist hier ebenfalls trivial (wie bei dem sehr ähnlichen Resultat über Nebenklassen). Wir zeigen deshalb die andere Richtung. \\ 
 	
@@ -535,7 +536,7 @@ Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$
 		\langle 1 \rangle &= G_0, G_1, \ldots, G_M = G  \text{ und } G_K/Z(G) = G_{k-1} \text{ für } 1 \leq k \leq k
 	\end{align*}
 
-\subsubsection{Beispiele Nilpotent}
+\subsubsection{Beispiele nilpotenter Gruppen}
 	\begin{itemize}
 		\item $|D_3| = 6$ ist die kleinste nicht nilpotente Gruppe, da $Z(D_3) = \{1\}$ und somit nicht kommutativ.
 		\item $|D_4| = 8$ ist nilpotent und kommutativ, da $D_4/Z(D_4) = \mathbb Z/2 \mathbb Z \times \mathbb Z /2\mathbb Z$
@@ -544,7 +545,7 @@ Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$
 \subsubsection{Zyklische Gruppe}
 	Eine Gruppe $G$ heißt zyklisch falls $\exists g \in G$ mit $G=g^{\mathbb Z}$
 
-\subsubsection{Satz  zu zyklischen Gruppen}
+\subsubsection{Satz zu zyklischen Gruppen}
 	$|G| < \infty$ und $G$ zyklisch $\implies \exists g \in G$ mit $G =\{g^0, g^1, \ldots, g^{|G| -1} \}$  
 
 \subsubsection{Beweis des Satzes }
@@ -553,7 +554,7 @@ Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$
  Da $n$ minimal ist, sind  $g, \ldots g^{n-1}$ paarweise verschieden. Ferner gilt $g^i = g^j \implies i \equiv j \mod n \implies G \cong (\mathbb Z /n\mathbb Z, +, 0)$
  \bewiesen
  
-\subsubsection{Satz  zu zyklischen Gruppen}
+\subsubsection{Satz zu zyklischen Gruppen}
  	$H \leq G$ zyklisch $\implies H$ ist zyklisch
  	
 \subsubsection{Beweis des Satzes}
@@ -587,7 +588,7 @@ Eine symetrische Gruppe $S_n$ wird gebildet durch $$S_n = Perm([n])$$ mit $\pi =
 	Wir schreiben dann für einen $q$-Zykel eine Folge $(i_1, \ldots, i_q) = (i_{p+1}, \ldots, i_q, i_1, \ldots, i_p)$
 
 \subsubsection{Transposition}
-	Ein $2$-Zykel heißt Transposition $$T_n = \{ \tau \in S_n  \mid \tau = (i, j), \, 1 \leq i \leq j \leq n\}$$
+	Ein $2$-Zykel heißt Transposition $$\mathcal T_n = \{ \tau \in S_n  \mid \tau = (i, j), \, 1 \leq i \leq j \leq n\}$$
 	Weiter gilt $$\binom{n}{k} = |\{ \pi \in S_n \mid \pi \text{ ist Produkt von $k$- Zykeln  mit paarweise verschiedenen disjunkten Trägern} \}|$$
 \subsubsection{Graphische Interpretation von Zykeln}
 	\begin{figure}[h!]
@@ -621,7 +622,11 @@ Eine symetrische Gruppe $S_n$ wird gebildet durch $$S_n = Perm([n])$$ mit $\pi =
 	\end{figure}
 
 \subsubsection{Bubblesort-Lemma}
-	 $\tau_n$ erzeugt $S_n = Perm(\{1, \ldots, n\})$. Den Beweis liefert der Bubblesort Algorithmus! 
+		 $\tau_n$ erzeugt $S_n = Perm(\{1, \ldots, n\})$. Oder anders fomuliert: \\
+		 Die symetrische Gruppe $S_n$ wird durch $n-1$ Transpositionen $(i, i+1)$ erzeugt.
+	 	\newline
+	 	
+	 	Den Beweis liefert der Bubblesort Algorithmus! 
 		Genauer gilt: $S_n$ wird erzeugt von $\tau \in T_n$ mit $\tau= (i, i+1)$ für $1 \leq i < n$
 
 \subsubsection{Signum}
@@ -640,7 +645,7 @@ Eine symetrische Gruppe $S_n$ wird gebildet durch $$S_n = Perm([n])$$ mit $\pi =
 	Dann ist $sign(\pi)= 1^{|F(\pi)|}$ und somit ist $sign(id) = +1$ und $sign(\tau) = \frac{j-i}{i-j} = -1$ für $\tau= (i,j) \in T_n$
 	\bewiesen
 
-\subsubsection{Signum - Iso - Lemma}
+\subsubsection{Signum - Hom. - Lemma}
 	$$ sign: S_n \to \{ \pm 1\} \text{ ist ein Hom.}$$
 
 \subsubsection{Beweis des Lemmas}
@@ -689,7 +694,7 @@ Eine Sequenz von Homs. $\varphi_i: G_{i-1} \to G_i$ mit $i \in I$ wobei $I$ line
 \end{figure}
 
 \subsubsection{Konstruktion 2 von semidirekten Produkten}
-Eine zweite Möglichkeit zur Konstruktion von semidirekten Produkten ist durch kurze exakte Sequenzen möglich. 
+Eine zweite Möglichkeit zur Konstruktion von semidirekten Produkten ist durch sogenannte kurze exakte Sequenzen möglich. 
 Wir betrachten dabei die folgende Sequenz
 \begin{figure}[h!]
 	\centering
@@ -706,5 +711,41 @@ Dabei gilt, dass $\varphi : H \to G$ injektiv ist und dass $\psi : G \to F$ surj
 \subsubsection{Satz über die Konstruktion 2 von semidirekten Produkten}
 $G$ ist ein semidirektes Produkt $G = H\rtimes F$ mit der exakten Sequenz $$1 \to H \to G \to F \to 1$$ falls ein Hom. $s: F \to G$ existiert  mit $\psi s = id_F$
 
+\section{Gruppentheorie 4 - Vorlesung 5}
+\subsection{Einfache Gruppen}
+\subsubsection{Definition einfach}
+	Eine Gruppe $G$ heißt einfach wenn sie nur zwei Normalteiler besitzt, also nur $1$ und $G$ selbst.
 
+\subsubsection{Beispiele für einfache Gruppen}
+ \begin{itemize}
+ 	\item $\mathbb Z / p \mathbb Z$ für eine Primzahl $p$ ist einfach 
+ 	\item $G$ ist einfach und nicht abelsch, falls $[G, G] =1$
+ \end{itemize}
+
+\subsection{Kommutative Untergruppen}
+\subsubsection{Definition kommutative Untergruppe}
+Für eine Gruppe $G$ ist $[G, G] = \langle [g, h] \mid g, h \rangle$ mit $[g, h] = g^{-1}h^{-1}gh$ die kommutative Untergruppe. 
+
+\subsubsection{Satz über Kommutativität}
+Für eine Gruppe $G$ gilt $$ G \text{ abelsch } \iff [G, G] = 1$$
+
+\subsubsection{Beweis des Satzes}
+Es gilt $g^{-1}h^{-1}gh = 1 \iff gh = hg$ also folgt $G$ ist abelsch. 
+\bewiesen
+
+\subsubsection{Definition von auflösbar}
+Jede abelsche Gruppe ist auflösbar. Jede nicht abelsche Gruppe ist auflösbar falls die ''abgeleitete'' Untergruppe $[G, G]$ von $G$ verschieden ist und auflösbar. 
+	\begin{equation*}
+		1 \leq \ldots \leq G^{(2)} = [G^{(1)}, G^{(1)} ] \leq G^{(1)} = [G, G ] \leq G  
+	\end{equation*}
+	
+\subsubsection{Satz über die Einfachheit von $A_n$}
+	Für $n \geq 5$ ist $A_n$ einfach (C.Jordan, 1875).
+
+\subsubsection{Beweis des Satzes}
+	Wir wissen durch $A_5 \leq S_5$ und den Satz von Lagrange, dass $[S_5 : A_5] = 2$ und weiter dass $|S_5| = 5! = 120$. Daraus folgt dann dass $|A_5|=60$. 
+	Jede Gruppe mit weniger Elementen ist auflösbar. Dies ist einfach aber sehr aufwendig zu zeigen. 
+	Wir wissen somit dass $A_5$ die kleinste nichtauflösbare Gruppe und einzige Gruppe mit $60$ Elementen ist. 
+	\bewiesen
+	
 \end{document}
