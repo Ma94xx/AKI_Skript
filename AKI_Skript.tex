@@ -870,9 +870,23 @@ Sei $\sigma, \sigma' \in N$ und $\pi', \pi \in \tau N \tau$, sodass $\sigma\pi' 
 Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da $n!$ duch $4$ teilbar ist für $n \geq 4$. 
 \bewiesen
 
-\subsubsection{Beweis des Satzes}
-
+\subsubsection{Beweis des Satzes mit Bertrandschem Postulat}
+	Das Bertrandsche postulat besagt dass für $1 \leq m \in \mathbb R$ eine Primzahl $p$ mit $m < p \leq 2m$ existiert. 
+	\newline
+	Sei nun $m =\frac{n}{2}$, dann existiert eine Primzahl $p$ mit $\frac{n}{2} < p \leq n$. Da $n \geq 5$ ist, gilt $p > 2$. Somit gilt $p \mid \frac{n!}{2}$ aber $p^2 > 2p >  n$. Damit teil $p$ aber nicht $n!$. Ein Widerspruch!
 \bewiesen
 
+\subsubsection{Beweis des Satzes mit Satz von Cauchy}
+Da $|N|$ eine nicht triviale Gruppe gerade rOrdnung ist, besagt der Satz von Cauchy, dass $N$ eine Element $\sigma$ mit $ord(\sigma) = 2$ existiert. 
+Dann kann $\sigma$ als gerade Anzahl an Zyklen geschreieben werden mit der Ordnung $2$. 
+\begin{align*}
+	\sigma = c_0 \cdot \ldots \cdot c_k
+\end{align*} 
+wobei $k\geq 1$ und $c_0, \ldots, c_k$ Zyklen der Ordnung $2$ und paarweise disjunkt sind. Damit gilt $c_ic_j = c_jc_i$ für alle $i,j$. 
+Sei nun $\tau = c_0$, dann $N \cap \tau N \tau = \{1\}$, da dies für alle $\tau \in \mathcal T_n$ gilt. Somit erhalten wir durch $\sigma\tau = \tau \sigma$
+\begin{align*}
+\sigma = \tau\sigma\tau \in N\cap \tau N \tau
+\end{align*} 
+Dies impliziert jedoch $\sigma = 1$. Ein Widerspruch! 
 
 \end{document}
