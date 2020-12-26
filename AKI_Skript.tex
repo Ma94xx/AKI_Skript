@@ -143,7 +143,9 @@
 \setlength\parindent{0pt}
 \begin{document}
 \maketitle
+\newpage
 \tableofcontents
+\newpage
 
 \section{Grundlagen - Vorlesung 1}
 \subsection{Diedergruppen}
@@ -440,7 +442,7 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 \subsubsection{Bahnenlemma}
 	Das Bahnenlemma besagt $$Gx \cap Gy \not = \emptyset \iff Gx = Gy$$
 	Im Allgemeinen also $$ X = \dot{\bigcup} \{Gx \mid  x \in X \}$$ Wobei hier die disjunkte Vereinigung mit dem Punkt gekennzeichnet wird. 
-\subsubsection{Beweis Bahnenlemma}
+\subsubsection{Beweis des Bahnenlemmas}
 	Die Rückrichtung ist hier ebenfalls trivial (wie bei dem sehr ähnlichen Resultat über Nebenklassen). Wir zeigen deshalb die andere Richtung. \\ 
 	
 	Sei $gx = hy$ für $g,h \in G$
@@ -628,6 +630,9 @@ Eine symetrische Gruppe $S_n$ wird gebildet durch $$S_n = Perm([n])$$ mit $\pi =
 	 	
 	 	Den Beweis liefert der Bubblesort Algorithmus! 
 		Genauer gilt: $S_n$ wird erzeugt von $\tau \in T_n$ mit $\tau= (i, i+1)$ für $1 \leq i < n$
+		\newline
+			
+		Sei $\pi$ eine beliebige permutation in $S_n$. Verwendet man nun den Bubblesort Algorithmus zum sortieren durch die Transposition $(i, i+1$ wobei $1 \leq i <n $ gilt, so erhält man die Identität. Man führe nun den Algorithmus rückwärts aus, starte also bei der Identität, so kommt man zum gewünschten Ergebnis.
 
 \subsubsection{Signum}
  	Sei $\pi \in S_n$. Dann ist das Signum wie folgt definiert $$sign(\pi) = \prod_{1 \leq i \leq j \leq n} \frac{\pi(j) - \pi(i)}{j -i}$$
@@ -708,7 +713,7 @@ Wir betrachten dabei die folgende Sequenz
 
 Dabei gilt, dass $\varphi : H \to G$ injektiv ist und dass $\psi : G \to F$ surjektiv ist. Somit entsteht der folgende Isomorphismus $$\overline{\psi} : G/H \iso F$$
 
-\subsubsection{Satz über die Konstruktion 2 von semidirekten Produkten}
+\subsubsection{Satz über Konstruktion 2}
 $G$ ist ein semidirektes Produkt $G = H\rtimes F$ mit der exakten Sequenz $$1 \to H \to G \to F \to 1$$ falls ein Hom. $s: F \to G$ existiert  mit $\psi s = id_F$
 
 \section{Gruppentheorie 4 - Vorlesung 5}
@@ -724,28 +729,101 @@ $G$ ist ein semidirektes Produkt $G = H\rtimes F$ mit der exakten Sequenz $$1 \t
 
 \subsection{Kommutative Untergruppen}
 \subsubsection{Definition kommutative Untergruppe}
-Für eine Gruppe $G$ ist $[G, G] = \langle [g, h] \mid g, h \rangle$ mit $[g, h] = g^{-1}h^{-1}gh$ die kommutative Untergruppe. 
+	Für eine Gruppe $G$ ist $[G, G] = \langle [g, h] \mid g, h \rangle$ mit $[g, h] = g^{-1}h^{-1}gh$ die kommutative Untergruppe. 
 
 \subsubsection{Satz über Kommutativität}
-Für eine Gruppe $G$ gilt $$ G \text{ abelsch } \iff [G, G] = 1$$
+	Für eine Gruppe $G$ gilt $$ G \text{ abelsch } \iff [G, G] = 1$$
 
 \subsubsection{Beweis des Satzes}
-Es gilt $g^{-1}h^{-1}gh = 1 \iff gh = hg$ also folgt $G$ ist abelsch. 
-\bewiesen
+	Es gilt $g^{-1}h^{-1}gh = 1 \iff gh = hg$ also folgt $G$ ist abelsch. 
+	\bewiesen
 
 \subsubsection{Definition von auflösbar}
-Jede abelsche Gruppe ist auflösbar. Jede nicht abelsche Gruppe ist auflösbar falls die ''abgeleitete'' Untergruppe $[G, G]$ von $G$ verschieden ist und auflösbar. 
+	Jede abelsche Gruppe ist auflösbar. Jede nicht abelsche Gruppe ist auflösbar falls die ''abgeleitete'' Untergruppe $[G, G]$ von $G$ verschieden ist und auflösbar. 
 	\begin{equation*}
 		1 \leq \ldots \leq G^{(2)} = [G^{(1)}, G^{(1)} ] \leq G^{(1)} = [G, G ] \leq G  
 	\end{equation*}
-	
-\subsubsection{Satz über die Einfachheit von $A_n$}
-	Für $n \geq 5$ ist $A_n$ einfach (C.Jordan, 1875).
 
-\subsubsection{Beweis des Satzes}
-	Wir wissen durch $A_5 \leq S_5$ und den Satz von Lagrange, dass $[S_5 : A_5] = 2$ und weiter dass $|S_5| = 5! = 120$. Daraus folgt dann dass $|A_5|=60$. 
-	Jede Gruppe mit weniger Elementen ist auflösbar. Dies ist einfach aber sehr aufwendig zu zeigen. 
-	Wir wissen somit dass $A_5$ die kleinste nichtauflösbare Gruppe und einzige Gruppe mit $60$ Elementen ist. 
+\subsection{Alternierende Gruppen}
+\subsubsection{Erzeugungs Lemma}
+	Für $n \geq 5$ wird $A_n$ von der Menge der doppelten Transpositionen oder der Menge der $3$-Zykel erzeugt.
+
+\subsubsection{Beweis des Lemmas}
+	Wir wissen dass $\pi \in A_n \iff sign(\pi) = 1$ gilt, und somit auch dass $A_n$ von einem Produkt $\tau \tau'$ mit $\tau, \tau' \in \mathcal T_n$ erzeugt wird, 
+	da $S_n$ von $\mathcal T_n$ erzeugt wird. 
+	\newline 
+	
+	Die Menge der $3$-Zykel erzeugt $A_n$ durch 
+	\begin{align*}
+		(1,2)(3,4) = (1,2,3)(3,4,5) \text{ und } (1,2)(2,3) = (1,2,3)
+	\end{align*}
+	Mit $n\geq 5$ können wir schreiben 
+	\begin{align*}
+		(1,2, 3) = (1,2)(2,3) =((1,2)(4,5))((4,5)(2,3))
+	\end{align*}
+	
+	Deshalb kann man $(1,2,3)$ als Produkt von zwei Permutationen des Typ $(2,2)$ schreiben.
+	\bewiesen
+
+\subsubsection{Lemma}
+Sei $n \geq 5$ und $\sigma$ ein $3$-Zykel, dann existiert ein $\pi \in A_n$, sodass $\pi\sigma\pi^{-1} = (1,2,3)$
+
+\subsubsection{Beweis des Lemmas}
+	Man sieht deutlich, dass $\pi \in S_n$ existiert, sodass $\pi\sigma\pi^{-1} = (1,2,3)$. 
+	Wenn $\pi \in S_n$ gilt, dann sind wir bereits fertig. 
+	\newline
+	
+	Anderenfalls definieren wir $\pi' = (4,5)$ und $\pi \in A_n$.  Wir schließen daraus 
+		\begin{align*}
+			\pi'\sigma\pi'^{-1} = (4,5)\pi\sigma\pi^{-1}(4,5) = (4,5)(1,2,3)(4,5) = (1,2,3)
+		\end{align*}
+		\bewiesen
+		
+\subsubsection{Lemma}
+	Sei $n \geq 3$ und $K \trianglelefteq S_n$, dann ist $K \in \{ \{1\}, A_n, S_n\}$
+	
+\subsubsection{Beweis des Lemmas}
+	Wir nehmen an dass $\{1\} \not = K$. Sei $N= K \cap A_n$, dann ist $N$ ein Normalteiler in $S_n$. Es reicht an dieser Stelle aus, zu zeigen dass dies $N=A_n$ impliziert. \\ 
+	Tatsächlich gilt $N = A_n \implies K \in \{ A_n, S_n\}$, da $[S_n : A_n] = 2$ ist.
+	\newline
+	
+	Um nun zu erkennen dass $N=A_n$ ist, wählen wir $\sigma \in N$ mit $I \not = \sigma(i)$. Da $\sigma$ keine Transposition ist, gibt es kein $j \in \{i, \sigma(i)\}$ sodass $j \not=\sigma(j)$ gilt. \\
+	
+	Sei nun $\tau = (i, j)$ und $\rho = (\sigma(i), \sigma(j))$. 
+	Wir behaupten dann dass $\rho\tau = \sigma\tau\sigma^{-1}\tau$ gilt, und $\sigma\tau\sigma^{-1}\tau \in N$ ist. Um die Behauptnung nun zu zeigen, beweisen wir $\rho\sigma = \sigma\rho$. 
+	\begin{align*}
+		\rho\sigma(j) &= \sigma(i) = \sigma\tau(i) \text{ und } \rho\sigma(i) = \sigma(j) = \sigma\tau(i) \\
+		\rho\sigma(k) &= \sigma(k) = \sigma\tau(k) \text{ für } k \not \in \{i, j\}
+	\end{align*}
+	
+	Wenn nun $\sigma(j) = i$ gilt, dann ist $\rho\tau \in N$ ein $3$-Zykel und somit $N=A_n$. 
+	Anderenfalls ist $\rho\tau \in N$ vom Typ $(2,2)$. Alle Permutationen des Typ(2,2) sind in $S_n$ konjugiert. Daher haben wir wieder $N=A_n$
 	\bewiesen
 	
+\subsubsection{Lemma}
+	Sei $N \trianglelefteq A_n$ und $\pi \in S_n$, dann ist auch $\pi N\pi^{-1} \trianglelefteq A_n$. Genauer sogar $\tau N \tau \trianglelefteq A_n$ für alle $\tau \in \mathcal T_n$
+\subsubsection{Beweis des Lemmas}
+Zuerst ein direkter Beweis: \\
+Für $\pi \in A_n$ ist bereits alles bekannt. Es reicht also zu zeigen dass $\sigma\rho N\tau\sigma^{-1} = \tau N \tau$ für $\sigma \in A_n$ und $\tau\in S_n \setminus A_n$. Dies ist äquivalent zu $ \tau \sigma \tau N \tau \sigma^{-1}\sigma \subseteq N$, da $\tau\sigma\tau \in A_n$ und $N\trianglelefteq A_n$. 
+\newline
+
+Als zweites eine elegantere Version: \\
+Wir haben $N \trianglelefteq H \trianglelefteq G$ mit $H = A_n$ und $G= S_n$. Für alle $\pi \in G$ erhalten wir einen Automorphismus $\varphi \in Aut(H)$ durch $\varphi(H) = \pi h\pi^{-1}$. Nun ist $\varphi(N) = \pi N\pi^{-1}$ ein Normalteiler in $H$, da $\varphi^{-1}(h) \in H$ ist. 
+Deshalb gilt: 
+\begin{align*}
+	h\varphi(N)h^{-1} = \varphi(\varphi^{-1}(h)N\varphi^{-1}(h^{-1})) = \varphi(N)
+\end{align*}
+
+Die allgemeine Aussage ist, dass $N \trianglelefteq H$ und $\varphi \in Aut(H)$ und somit $\varphi(N) \trianglelefteq H$ gilt. 
+\bewiesen
+
+\subsubsection{Satz über die Einfachheit von alternierenden Gruppen}
+Für $n \geq 5$ ist $A_n$ einfach. (C.Jordan, 1875).
+
+\subsubsection{Strategie zum Beweis des Satzes}
+\subsubsection{Beweis des Satzes}
+
+\bewiesen
+
+
 \end{document}
