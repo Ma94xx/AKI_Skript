@@ -238,17 +238,17 @@ Sei $G= (G, \cdot, 1)$ eine Gruppe und $H\leq G$
 	$G=\begin{array}{c}
 	
 	\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
+		\begin{scope}[yshift=1.5cm,y=1cm]
+			\node [fit={(0,0) (1,3)}, label=center:{$H$}] {};
+		\end{scope}
 	\begin{scope}[yshift=1.5cm,y=1cm]
-	\node [fit={(0,0) (1,3)}, label=center:{$H$}] {};
-	\end{scope}
-	\begin{scope}[yshift=1.5cm,y=1cm]
-	\node [fit={(1,0) (5,1)}, label=center:{$fH$}] {};
+		\node [fit={(1,0) (5,1)}, label=center:{$fH$}] {};
 	\end{scope}
 	\begin{scope}[yshift=2.5cm,y=1cm]
-	\node [fit={(1,0) (5,1)}, label=center:{$\vdots$}] {};
+		\node [fit={(1,0) (5,1)}, label=center:{$\vdots$}] {};
 	\end{scope}
 	\begin{scope}[yshift=3.5cm,y=1cm]
-	\node [fit={(1,0) (5,1)}, label=center:{$gH$}] {};
+		\node [fit={(1,0) (5,1)}, label=center:{$gH$}] {};
 	\end{scope}
 	
 	\end{tikzpicture} 
@@ -877,16 +877,93 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 \bewiesen
 
 \subsubsection{Beweis des Satzes mit Satz von Cauchy}
-Da $|N|$ eine nicht triviale Gruppe gerade rOrdnung ist, besagt der Satz von Cauchy, dass $N$ eine Element $\sigma$ mit $ord(\sigma) = 2$ existiert. 
-Dann kann $\sigma$ als gerade Anzahl an Zyklen geschreieben werden mit der Ordnung $2$. 
+		Da $|N|$ eine nicht triviale Gruppe gerade rOrdnung ist, besagt der Satz von Cauchy, dass $N$ eine Element $\sigma$ mit $ord(\sigma) = 2$ existiert. 
+		Dann kann $\sigma$ als gerade Anzahl an Zyklen geschreieben werden mit der Ordnung $2$. 
 \begin{align*}
 	\sigma = c_0 \cdot \ldots \cdot c_k
 \end{align*} 
-wobei $k\geq 1$ und $c_0, \ldots, c_k$ Zyklen der Ordnung $2$ und paarweise disjunkt sind. Damit gilt $c_ic_j = c_jc_i$ für alle $i,j$. 
-Sei nun $\tau = c_0$, dann $N \cap \tau N \tau = \{1\}$, da dies für alle $\tau \in \mathcal T_n$ gilt. Somit erhalten wir durch $\sigma\tau = \tau \sigma$
+	wobei $k\geq 1$ und $c_0, \ldots, c_k$ Zyklen der Ordnung $2$ und paarweise disjunkt sind. Damit gilt $c_ic_j = c_jc_i$ für alle $i,j$. 
+	Sei nun $\tau = c_0$, dann $N \cap \tau N \tau = \{1\}$, da dies für alle $\tau \in \mathcal T_n$ gilt. Somit erhalten wir durch $\sigma\tau = \tau \sigma$
 \begin{align*}
-\sigma = \tau\sigma\tau \in N\cap \tau N \tau
+	\sigma = \tau\sigma\tau \in N\cap \tau N \tau
 \end{align*} 
-Dies impliziert jedoch $\sigma = 1$. Ein Widerspruch! 
+	Dies impliziert jedoch $\sigma = 1$. Ein Widerspruch! 
 
+\section{Kranzprodukte - Vorlesung 6}
+\subsection{Kranzprodukte Teil 1}
+\subsubsection{Vorraussetzungen}
+	Sei $M = (M, +, 0)$ nicht notwendig kommutativ und $N=(N, \cdot, 1)$ beides Monoide, sowie $X$ eine Menge. 
+	Dann operiert $N$ von rechts auf $M^x = \{ f: X \to M \mid \text{ f ist eine Abbilidung} \}$. Wir schreiben statt $f(x)$ nun $xf$. 
+	Somit operiert $N$ auf $M^X$ von links 
+	\begin{align*}
+		nf : X \to M \\ 
+		x(n\cdot f) := (xn)f = xnf 
+	\end{align*}
+\subsubsection{Definition konstante Funktion}
+	 Wir definieren die konstante Funktion	$$\forall y:  c_y(x) = xc_y = y \, \, \, \forall x$$ 
+
+\subsubsection{Definition Kranzprodukt}
+	Nun heißt $M \wr N$ Kranzprodukt, falls $M^X \rtimes N$ gilt, mit 
+	\begin{align*}
+		(f,m)(g,n) = (f + mg, mn) \text{ mit } x(f+mg) = xf + mg \, \, \, \forall x
+	\end{align*}
+	Wir können also die Klammern ''vergessen''. Somit ist das Kranzprodukt wieder ein Monoid.
+	
+	
+\subsubsection{Beweis}
+	Das neutrale Element $1_{M \wr N} = (c_0, 1)$.
+	 Nun zeigen wir noch im Folgenden die Assoziativität
+	 \begin{align*}
+	 	[(f,m)(g,m)](h,n) = (f +kg, km)(h,n) = (f +kg + kmh, kmn) \\
+	 	(f,m)[(g,m)(h,n)] = (f,k)(g +mn, mn) = (f + k ( g +mh)) 
+	 \end{align*}
+	 Nun bleibt zu zeigen dass $\forall x : x(f+kg + kmh) \overset{!}{=} x(f+k(g+mh))$
+	 Dies gilt, da 
+	 	\begin{align*}
+	 		= xf+(xk)(g + mh) = xf + xkg + xkmh
+		 \end{align*}
+	\bewiesen
+
+\subsubsection{Satz}
+	Seien $M, N$ Gruppen, dann ist $M^X \rtimes N$ eine Gruppe. Oder: Falls $M, N$ Gruppen sind, dann folgt dass  $M \wr N $ eine Gruppe ist.
+
+\subsubsection{Beweis}
+	Gesucht ist für alle $(f, m)$ ein $(g,n)$ mit $(f, m)(g,n) = (c_0, 1)$. Es bleibt zu zeigen dass für alle $(f,m)(g, m^{-1}) = f+mg$ mit $\forall x . xf + xmg = 0$ gilt. \\
+	Dafür setzen wir $xg = -xm^{-1}f$. Dann ist $$xf-xnm^{-1}f = xf-xf = 0$$	\bewiesen
+	
+\subsubsection{Satz}
+	Wir betrachten erneut die Sequenz \begin{figure}[h!]
+		\centering
+		\begin{equation*}
+		\begin{tikzcd}[column sep=1.5pc]
+		1 \arrow{r}{} & H \arrow{r}{} & G \arrow{r}{\psi} & F \arrow{r}{} & 1
+		\end{tikzcd}
+		\end{equation*}
+	\end{figure} \\ 
+	Sei $\{[x] \in G \mid Hx, \, \, x \in F\}$ ein Repräsentantensystem von $F$ und $[1] = 1$. 
+	Dann ist $$\varphi: G \to H \wr F = H^F \rtimes F$$ eine Einbettung von Gruppen mit $\varphi(g) = (f_g, \psi(g))$ und $f_g(x) = [x]g[xg]^{-1}$ für $x \in F$. \\  Insbesondere ist $$G \leq H^F \rtimes F$$
+
+\subsubsection{Beweis}
+	Es gilt $\psi[xg] = H\psi(xg) = Hx\psi(g)$. Daher ist
+	\begin{align*}
+		\psi([x]g[xg]^{-1}) = Hx\psi(g)(x\psi(g)^{-1}) = H = 1 \in F
+	\end{align*}
+	Dann bleibt zu zeigen dass 
+	\begin{align*}
+		\varphi((f_h, h)(f_g, g)) = \varphi(f_nhf_g, h_g) 
+	\end{align*}
+	mit 
+	\begin{align*}
+	x(f_n \cdot hf_g) = [x]h\underbrace{[xh]^{-1}[xh]}_{\substack{=1}}g[xhg] = [x]hg[xh_g] = xf_{h_g}
+	\end{align*}
+	Dies impliziert dann dass $\varphi((f_n, h)(f_g,g)) = (\varphi h_{n_g}, h_g)$ und somit $\varphi$ ein Hom. ist. 
+	Abschließend gilt 
+	\begin{align*}
+	\varphi(f_g, g) = 1 \in H \wr F &\implies \psi(g) = H \\
+	&\implies g \in H \text{ und } xfg = 1 \, \, \forall x \\ 
+	&\implies 1f_g = [1]g[1g]^{-1} = g \cdot 1 = 1 \\
+	&\implies g = 1
+	\end{align*}
+	\bewiesen
+ 
 \end{document}
