@@ -104,7 +104,7 @@
 \newcommand*{\LongestValue}{\ensuremath{-1}}% function value
 \newcommand*{\LongestText}{fermentum fringilla mauris }%
 
-%Bigger fracs 
+%größere Brüche
 \newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
 
 \newlength{\LargestNameSize}%
@@ -124,6 +124,16 @@
 \newcommand\iso{\xrightarrow{
 		\,\smash{\raisebox{-0.65ex}{\ensuremath{\scriptstyle\sim}}}\,}}
 
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\sigstern}{\Sigma^\ast}
+\newcommand{\inv}{^{-1}}
+\newcommand{\rat}{\mathsf{RAT}}
+\newcommand{\rec}{\mathsf{REC}}
+\newcommand{\starfree}{\mathsf{SF}}
+\newcommand{\synt}{\mathsf{Synt}}
+
 %Erzeugt das "bewiesen" Kästen rechts unten
 \newcommand{\bewiesen}{
 
@@ -132,8 +142,8 @@
 \end{flushright}}
 
 
-\newcommand\TBox[3][]{%
-	\tikz\node[draw,thick,text width=#2,#1] {#3};}
+%\newcommand\TBox[3][]{%
+%	\tikz\node[draw,thick,text width=#2,#1] {#3};}
 
 
 \title{Inoffizielles Skript für Algebra \& Kombinatorik}
@@ -889,8 +899,8 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 \end{align*} 
 	Dies impliziert jedoch $\sigma = 1$. Ein Widerspruch! 
 
-\section{Kranzprodukte - Vorlesung 6}
-\subsection{Kranzprodukte Teil 1}
+\section{Gruppentheorie 5 - Vorlesung 6}
+\subsection{Kranzprodukte}
 \subsubsection{Vorraussetzungen}
 	Sei $M = (M, +, 0)$ nicht notwendig kommutativ und $N=(N, \cdot, 1)$ beides Monoide, sowie $X$ eine Menge. 
 	Dann operiert $N$ von rechts auf $M^x = \{ f: X \to M \mid \text{ f ist eine Abbilidung} \}$. Wir schreiben statt $f(x)$ nun $xf$. 
@@ -917,10 +927,10 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 	 	[(f,m)(g,m)](h,n) = (f +kg, km)(h,n) = (f +kg + kmh, kmn) \\
 	 	(f,m)[(g,m)(h,n)] = (f,k)(g +mn, mn) = (f + k ( g +mh)) 
 	 \end{align*}
-	 Nun bleibt zu zeigen dass $\forall x : x(f+kg + kmh) \overset{!}{=} x(f+k(g+mh))$
+	 Nun bleibt zu zeigen dass $\forall x : x(f+kg + kmh) \overset{!}{=} x(f+k(g+mh))$. \\
 	 Dies gilt, da 
 	 	\begin{align*}
-	 		= xf+(xk)(g + mh) = xf + xkg + xkmh
+	 		x(f+k(g+mh)) = xf+(xk)(g + mh) = xf + xkg + xkmh
 		 \end{align*}
 	\bewiesen
 
@@ -965,5 +975,81 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 	&\implies g = 1
 	\end{align*}
 	\bewiesen
+\section{Erkennbare Mengen - Vorlesung 7}
+\subsection{Rationale Mengen und Sternfreie Sprachen}
+\subsubsection{Definition Rationale Menge ($\rat$)}
+	Sei $M$ eine Monoid (z.B $M = \sigstern$) 
+	\begin{enumerate}[label=\arabic*)]
+		\item $L \subseteq M $ und $ |L| \leq \infty$ dann $L \in \rat(M)$
+		\item $L_1, L_2 \in \rat(M) \implies L_1 \cup L_2 \in \rat(M), \, \, L_1 \cdot L_2 \in \rat(M)$ \\ 
+		wobei $ L_1 \cdot L_2 = \{w \in M \mid \exists u,v \in M : w = uv, \, \, u \in L_1 \, v \in L_2\}$
+	\end{enumerate}
+	Weiter gilt 
+	\begin{align*}
+		L_1^\ast = \bigcup_{i \geq 0} L^i \in \rat(M) \text{ mit } L^0=\{1_m\} \text{ und } L^{i+1} = L^iL
+	\end{align*}
+	Man beachte, dass $\bigcup_{i \geq 0} L^i $ hierbei das erzeugte Untermonoid von $L$ in $M$ ist. 
+
+\subsubsection{Definition Sternfreie Sprachen ($\starfree$)}
+	\begin{enumerate}[label=\arabic*)]
+		\item $L \subseteq M $ und $ |L| < \infty \implies L \in \starfree(M)$
+		\item $L_1, L_2 \in \starfree(M) \implies L_1 \cup L_2 \in \starfree(M), \, \, L_1 \cdot L_2 \in \starfree(M)$  und $M \setminus L = \overline{L} \in \starfree(M)$\\ 
+	\end{enumerate}
+
+\subsubsection{Beispiele für Sternfreie Sprachen}
+	Sei $\Sigma = \{a,b\}$, dann gilt $(aa)^\ast \not\in \starfree(\sigstern)$, aber $(ab)^\ast \in \starfree(\sigstern)$. Es gilt $\sigstern \in \starfree(\sigstern)$, da $\sigstern = \overline{\emptyset}$. 
+	\newline
+	
+	Sei $A\subseteq \Sigma$, dann ist $A^\ast \in \starfree(\sigstern)$, denn $A^\ast = \{ w \in \sigstern \mid \forall b \in \Sigma \setminus A : w \in \sigstern b\sigstern\}$. Es gilt also 
+	\begin{align*}
+		(ab)^\ast \in \starfree(\sigstern) \iff \overline{(ab)}^\ast\in \starfree(\sigstern)
+	\end{align*}
+	Dies ist zu erkennen, da  
+	\begin{align*}
+		\overline{(ab)}^\ast = \sigstern aa \sigstern \cup \sigstern bb \sigstern \cup b\sigstern \cup \sigstern a
+	\end{align*}
+
  
+
+\subsubsection{Definition erkennbare Sparchen ($\rec$)}
+	Wir definieren $\rec$ wie folgt  $$L \in \rec(M) \iff \exists \varphi : M \to N$$ ein Hom. von Monoiden mit $|N| \leq \infty$ und $\varphi\inv\varphi(L) = L$
+	Das heißt $\forall w \ in M$ gilt $w\in L \iff w \in \varphi(L) \subseteq N$.
+
+\subsubsection{Definition aperiodisch}
+	$N$ ist aperiodisch genau dann wenn alle Unterguppen von $N$ trivial sind, bzw $N$ gruppenfrei ist.
+ 
+	
+\subsubsection{Satz von Schützenberger}
+	Es gilt 
+	\begin{align*}
+		\exists \varphi: \sigstern \to N \text{ ist ein Hom. mit } |N| \leq &\infty \text{ und } \varphi\inv\varphi(L) = L \text{ und $N$ ist aperiodisch} \\ 
+		&\iff \\
+		\synt(L) &\text{ ist aperiodisch}
+	\end{align*}
+	
+\subsubsection{Definition DFA über M}
+	Ein DFA über einem Monoid $M$ ist ein Tupel $(Q, \cdot, q_0, F)$. 
+	\begin{enumerate}[label=\arabic*)]
+		\item $\cdot: Q \times M \to Q$ ist eine Operation von $M$ auf $Q$ von rechts. Das heißt also
+			\begin{align*}
+				(q \cdot u) \cdot v = q(uv) \text{ und } q1_m = q \text{ gilt } \forall q \in Q \text{ und } \forall u,v \in M
+			\end{align*}
+		\item $|Q| < \infty$ ist eine endliche Menge von Zuständen $F\subseteq Q,  \, q_0 \in Q$. \\
+		Dies definiert dann $L(A) = \{w \in M \mid q_0w \in F\}$
+	\end{enumerate}
+
+\subsubsection{Beispiel für einen DFA über M}
+	Sei $L \in \rec(M)$ und vermöge $\varphi: M \to N$ ein Hom. \\ 
+	Dann definiert dies einen DFA $A = (Q,\cdot, q_0, F)$ mit $L(A) = L$ und $N = Q$. 
+	Hierbei ist $q_0 = 1_M \in N$. 
+	\begin{itemize}
+	\item $\cdot : N \times M \to N$ mit $qu := q\varphi(u)$. Dann gilt
+	\begin{align*}
+		(q \cdot u)\cdot v = (q\varphi(u))v = q \varphi(u)\varphi(v) = q(\varphi(uv)) = q(uv)
+	\end{align*}
+	\item $q = q \cdot 1_M = q \cdot \varphi(N) = q1_N = q$
+	\item $F = \{\varphi(u) \mid u \in L \}$
+\end{itemize}
+
+	
 \end{document}
