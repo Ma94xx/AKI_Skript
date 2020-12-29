@@ -1103,7 +1103,7 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 
 	\begin{figure}[h!]
 		\centering
-			\begin{tikzpicture}[node distance=4cm, auto]
+			\begin{tikzpicture}[node distance=3cm, auto]
 				\node (A) {$h:M$};
 				\node (B) [right of=A] {$h(M) = N' \leq N$};
 				\node (C) [below of=A] {$\synt(L)$};
@@ -1117,5 +1117,87 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 
 \subsubsection{Folgerung des Satzes}	
 	$L \in rec(M) \implies |\synt(L)| < \infty \implies A_L \text{ ist ein DFA, dh. } Q_L = \{L(u) \mid u \in M\} \text{ ist endlich}$
+
+\subsubsection{Beweis}
+	 Sei $L \subseteq M$ und sei $A = (Q, \cdot, q_0, F)$ ein deterministischer endlicher Automat mit $L = L(A)$. \\
+	 Dann ist $(Q^Q, \cdot, id_Q)$ ein Monoid mit  $Q^Q = \{ f : Q \to Q \mid f\text{ ist eine Abbildung}\}$ und $(f \circ g)(q) = g f(q)$, sowie $$ \varphi : M \to Q^Q, \, \, u \mapsto f_a$$  mit $f_u(q) = q_u$. \\
 	 
+	 Weiter ist $(f_u \circ f_v)(q) = quv$ und $T = \{f_u \mid u \in M\}$, und somit $\varphi: M \to T$. Für $Q=n$ gilt $|T| \leq n^n \in 2^{n \log n}$. 
+	 \begin{figure}[h!]
+	 	\centering
+	 	\begin{tikzpicture}[node distance=3cm, auto]
+	 	\node (A) {$M$};
+	 	\node (B) [right of=A] {$T$};
+	 	\node (C) [below of=A] {$\synt(L)$};
+	 	
+	 	\draw[-{Stealth}] (A) to node {} (B);
+	 	\draw[-{Stealth}, dashed] (B) to node [] {$\psi$} (C);
+	 	\draw[-{Stealth}] (A) to node [swap] {$y \mapsto [y]$} (C);
+	 	\end{tikzpicture}
+	 \end{figure}
+ 
+ Zu zeigen ist also $f_u = f_v \overset{!}{\implies} [u] = [v]$. 
+ 
+ Wir betrachten nun $x, y \in M$ mit $xuy \in L \implies q_0xu \in F$ und $q_0xu = f_a(q_0x) = f_v(q_0x)$. Dann folgt
+ 	\begin{align*}
+ 		q_0xvy \in F &\implies xvy \in L\\
+ 		&\implies \psi \text{ ist wohldefiniert}
+ 	\end{align*}
+ 	
+	 Umgekehrt sei nun $Q = Q_L = \{L(x) \mid x \in M\} =$ Zustände des minimalen deterministischen Automaten. Dann gilt $[u]= [v] \implies f_u = f_v$. Dies ist begründet durch
+	  \begin{align*}
+	  	[u]= [ v ] \implies f_u(L(x)) &= L(x)u \\
+	  	&= L(xu) = \{y \mid xuy \in L\} \\ 
+	  	&= \{y \mid xvy \in L\} \\
+	  	&= L(x)v 
+	 \end{align*}
+	 $\implies \forall x L(x)u = L(x)v \implies f_u = f_v$
+	 \bewiesen
+	 
+\subsubsection{Konsequenz des Satzes}
+	$\synt(L) \cong T = \{f_U \mid u \in M\}$
+
+\subsubsection{Satz von McKnight}
+	Es gilt 
+	\begin{align*}
+			\rec(M) \subseteq \rat(M) &\iff M \in \rat(M)\\ 
+			 &\iff M \text{ ist endlich erzeugt} \\ 
+			 &\iff \exists \Sigma \text{ endlich und } \pi : \sigstern \to M \text{ ist surjektiver Hom. }
+	\end{align*}
+	
+\subsubsection{Beweis des Satzes von McKnight}
+	Es gilt $\emptyset, M \in \rec(M)$. Vermöge $$h: M \to \{1\}$$ Wenn $M \in \rat(M)$ ist, dann folgt daraus $M=L$ für einen regulären Ausdruck für $M$. 
+	
+	Zu zeigen ist also nur die andere Richtung. 
+	\newline
+	
+	Sei $\pi : \sigstern \to M$ ein surjektiver Hom. und $|\Sigma| < \infty$, mit $L \in \rec(M) \implies L \in \rat(M)$. 
+
+		\begin{equation*}
+			\begin{tikzcd}[column sep=1.5pc]
+				\sigstern \arrow{r}{\pi} & M \arrow{r}{h} & N 
+			\end{tikzcd}
+		\end{equation*}
+		mit $|N| < \infty$ und $h\inv(h(L)) = L$. Dann folgt $\pi\inv(L) \in \rec(M) \implies \exists \text{ DFA } A \text{ und } \pi\inv(L) = L(A)$. Betrachte nun $\pi\pi\inv(L) = L \in \rat(M)$
+		\bewiesen
+		
+\subsubsection{Definition NFA über M}
+	Ein DFA über einem Monoid $M$ ist ein Tupel $(Q, \delta, I, F)$ mit $I, F \subseteq Q$ wobei $$\delta \subseteq Q \times M \times Q$$ und $|\delta| < \infty$. 
+	Duch $L(A) = \{w \in M \mid \exists w = u_1 \ldots u_n\}$ und der Pfad 
+		\begin{equation*}
+		\begin{tikzcd}[column sep=1.7pc]
+			q_0\arrow{r}{u_1} &  q_1 \arrow{r}{u_2} & \ldots \arrow{r}{u_n} & q_n
+		\end{tikzcd}
+		\end{equation*}
+		Dabei ist $q_i \overset{u_i}{\longrightarrow } q_{i+1} \in \delta \forall i, q_0 \in T, q_n \in F$.
+		
+\subsubsection{Satz}
+	Es gilt $$ L \in \rat(M) \iff \exists \text{ NFA mit } L(A) = L $$
+
+\subsubsection{Beweis des Satz}
+	Wie in der Vorlesung Formale Sprachen und Automatentheorie
+	
+
+
+
 \end{document}
