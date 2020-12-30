@@ -25,6 +25,7 @@
 \usetikzlibrary{fit}
 \usepackage{wrapfig}
 \usepackage{hyperref}
+\usepackage{mathrsfs}
 \usepackage{tikz-cd}
 \usepackage[bottom]{footmisc}
 
@@ -127,6 +128,8 @@
 \newcommand{\rec}{\mathsf{REC}}
 \newcommand{\starfree}{\mathsf{SF}}
 \newcommand{\synt}{\mathsf{Synt}}
+\newcommand{\wop}{\mathsf{WP}}
+\newcommand{\equivWP}{\equiv_{\mathsf{WP}(G)}}
 
 %Erzeugt das "bewiesen" Kästen rechts unten
 \newcommand{\bewiesen}{
@@ -227,7 +230,7 @@
 		Im Folgenden wird gezeigt dass $gH \cap fH \not = \emptyset \iff gH = fH$ gilt.
 		Die Rückrichtung ist hierbei trivial, da der Schnitt von $gH$ und $fH$ bei Gleichheit offensichtlich nicht leer ist. \\
 		
-		Für die Hinrichtung seinen $h_1, h_2 \in H$ mit $gh_1 = fh_2$
+		Für die Hin-Richtung seinen $h_1, h_2 \in H$ mit $gh_1 = fh_2$
 		\begin{align*}
 			&\implies g=fh_2h_1^{-1} \in fH \\
 			&\implies gH \subseteq fH. 
@@ -1197,10 +1200,102 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 \subsubsection{Beweis des Satz}
 	Wie in der Vorlesung Formale Sprachen und Automatentheorie
 	
-\section{Wortprobleme in Gruppen - Vorlesung 9}
-\subsection{Syntaktische Monoide}
+\section{Syntaktische Monoide- Vorlesung 9}
+\subsection{Wortprobleme in Gruppen}
 \subsubsection{Definition}
+	Sei $\pi : \sigstern \to G$ eine Präsentation einer endlich erzeugten Gruppe. Dann definiert $$\wop(G) = \{ w \in \sigstern \mid \pi(w)=1 \in G\}$$
 
+\subsubsection{Lemma}
+	Es gilt $\synt(\wop(G))=G$ mit 
+		\begin{align*}
+			\pi : \sigstern &\to \synt(L) \\
+			u &\mapsto [u]
+		\end{align*}
+
+\subsubsection{Beweis des Lemmas}
+	Für die Hin-Richtung gilt $\pi(u) = \pi(v)$. Daraus folgt dann
+	\begin{align*}
+		 xuy \in \wop(G) &\iff \pi(x)\pi(u)\pi(y) = 1 \in G \\
+			&\iff \pi(x)\pi(v)\pi(y) = 1 \\
+			&\iff xvy \in \wop(G)
+	\end{align*}
+	Daraus schließen wir $u \equivWP v$
+	\newline
+	
+	Für die Rück-Richtung sei jetzt $u \equivWP v$. Dann gilt 
+		\begin{align*}
+			1\cdot u \cdot y \in \wop(G) &\iff  \pi(y) = \pi(u)\inv
+		\end{align*}
+		Daraus folgt $1vy \in \wop(G)$, und somit ist $\pi(y) = \pi(v)\inv$. Also $\pi(u) = \pi(v)$
+		\bewiesen
+
+\subsubsection{Korrolar}
+	Wir können ohne Beweis also schließen $$|G| < \infty \iff \wop(G) \text{ ist reguläre Spräche}$$
+
+\subsubsection{Satz}
+	Sei $L \in \rec(G)$, dann gibt es eine Untergruppe (sogar einen Normalteiler $H \trianglelefteq G$) von endlichem Index, und es existieren Elemente
+	$g_1, \ldots, g_n$ so, dass $L = g_1H \cup g_2H \cup \ldots \cup g_nH$.   
+
+\subsubsection{Beweis des Satzes}
+	Sei $L \in \rec(G) \implies h\inv(F)$ für einen Hom. $h:G \to N$, und $|N| < \infty$. \\
+	
+	\OE $\, \, h$ ist surjektiv und $h:G \to N \implies N$  ist eine Gruppe. 
+	
+	Sei nun $h(g) \in N$ und $H= ker(n) \trianglelefteq G$ von endlichem Index, dann folgt $h(gH) \in F$ somit $gH \subseteq L$
+	\bewiesen
+
+\subsubsection{Folgerung des Satzes}	
+	Ist $G$ eine unendliche Gruppe, $L \subseteq G$ endlich (zB. $L = \{1\}$), dann ist $L \in rat(G) \setminus \rec(G)$
+	
+\subsection{Syntaktische Kongruenzen}
+\subsubsection{Definition Idempotenz}
+	Ein Element $e$ aus einem Monoid $M$ heißt idempotent, falls $$e^2 = e$$
+	Dann können wir die folgende Menge definieren $$E(M) = \{ eeM \mid e^2 = 2\}$$ mit $1\in E(M)$
+
+\subsubsection{Definition lokales Monoid}
+	Sei $S$ eine Halbgruppe mit $E(S) = \{e \in S \mid e^2 = e\}$  und $e \in E(S)$, dann gibt es eine Unterhalbgruppe $eSe \leq S$ und sogar ein Monoid, da 	$e(exe) = (exe)e$, wobei 
+	\begin{align*}
+		eS^1e &= eSe \cup \{ee\} \\
+		&=eSe \cup \{e\}
+	\end{align*}
+	Das Monoid $eMe$ nennt man das lokale Monoid bei $eeE(M)$
+
+\subsubsection{Definition Teilwort}
+	Ein Wort $w = a_1 \ldots a_n$ heißt Teilwort von $w$ falls $w \in \sigstern a_1 \sigstern a_2 \sigstern \ldots a_n\sigstern$ gilt
+
+\subsubsection{Beispiele} 
+	\begin{itemize}
+		\item Sei $\Sigma = \{a, b\}$ und $\synt((ab)^\ast) = \{1, a ,b , ab, ba, 0\} = B^1_2 =$ Brandt-Monoid mit $2$ Erzeugenden und den folgenden Rechenregeln für alle $x$: 
+			\begin{align*}
+				1x &= x1 = x   &&aba = a  &&&a^2=b^2 = 0\\
+				0x &= x0 = 0   &&bab = b 
+			\end{align*}
+			Weiter ist $$\pi: \sigstern \to B^1_2$$ definiert durch $\pi(a) = a$ und $\pi(b) = b$. Dann gilt 
+			\begin{align*}
+				(ab)^n &\equiv 1 \text{ für } n = 0 \\
+				(ab)^n &\equiv ab \text{ für } n \geq 1 
+			\end{align*} Die idempotenten Elemente sind: $1, ab ,ba, 0$
+		\item Betrachte $M = \{1, a, b, 0\}$ mit den Rechenregeln 
+			\begin{align*}
+				ab &= 0    && a^2 = 0 &&&b^2 = b \\
+				b(ba) &= ba   &&(ba)a = ba &&& (ba)b = 0 \\
+				a(ba) &= 0  &&(ba)^2 = (ba)(ba) = 0
+			\end{align*}
+			Somit ist zu erkennen dass nur $ba$ nicht idempotent ist. 
+		\item Wir betrachten die kontextfreie Grammatik $\mathscr{G}$ gegeben durch die Regeln $$A \to \alpha \text{ mit } A \in V, \alpha \in (\Sigma \cup V)^\ast$$ oder $$\varepsilon \to \alpha \in (V \cup \Sigma)^\ast$$. 
+		
+		Dann sei $\mathscr{G}: \Sigma = \{a, b\}$ mit 
+		\begin{align*}
+			S &\to \varepsilon \\ 
+			\varepsilon &\to a^2 \mid b^2 
+		\end{align*} 
+		Die von $\mathscr{G}$ erzeugte Sprache $L = L(\mathscr{G}) = a^nb^2a^m$. \\ 
+		\newline
+		
+		\textbf{Frage:} $(ab)^2(ba)^m \in L$? 
+		\newline
+		\textbf{Antwort:} Es gilt $a^nb^2a^n \in L \iff n+m \equiv 0 (2)$ und wir wissen dass $$(ab)^2(ba)^n \iff n = m$$ Somit folgt: $L$ ist nicht regulär.
+	\end{itemize}
 \section{Greens Relations- Vorlesung 10}
 \subsection{Einführung}
 \subsubsection{Definition}
