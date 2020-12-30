@@ -28,6 +28,7 @@
 \usepackage{mathrsfs}
 \usepackage{tikz-cd}
 \usepackage[bottom]{footmisc}
+\usetikzlibrary{decorations,decorations.markings,decorations.text}
 
 
 \hypersetup{
@@ -130,6 +131,21 @@
 \newcommand{\synt}{\mathsf{Synt}}
 \newcommand{\wop}{\mathsf{WP}}
 \newcommand{\equivWP}{\equiv_{\mathsf{WP}(G)}}
+
+\newcommand{\grel}{\sim_{\mathcal{L}}}
+\newcommand{\grer}{\sim_{\mathcal{R}}}
+\newcommand{\grej}{\sim_{\mathcal{J}}}
+\newcommand{\greh}{\sim_{\mathcal{H}}}
+\newcommand{\gred}{\sim_{\mathcal{D}}}
+\newcommand{\grey}{\sim_{\mathcal{Y}}}
+
+\newcommand{\greleq}{\leqslant_{\mathcal{L}}}
+\newcommand{\grereq}{\leqslant_{\mathcal{R}}}
+\newcommand{\grejeq}{\leqslant_{\mathcal{J}}}
+\newcommand{\greheq}{\leqslant_{\mathcal{H}}}
+\newcommand{\gredeq}{\leqslant_{\mathcal{D}}}
+\newcommand{\greyeq}{\leqslant_{\mathcal{Y}}}
+
 
 %Erzeugt das "bewiesen" Kästen rechts unten
 \newcommand{\bewiesen}{
@@ -1296,9 +1312,62 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 		\newline
 		\textbf{Antwort:} Es gilt $a^nb^2a^n \in L \iff n+m \equiv 0 (2)$ und wir wissen dass $$(ab)^2(ba)^n \iff n = m$$ Somit folgt: $L$ ist nicht regulär.
 	\end{itemize}
-\section{Greens Relations- Vorlesung 10}
-\subsection{Einführung}
-\subsubsection{Definition}
+
+\section{Halbgruppentheorie - Vorlesung 10}
+\subsection{Greens Relations}
+\subsubsection{Definition Ideal}
+	Bei Idealen eines Rings unterscheidet man in sogenannte Links-, Rechts- und Beidseitige Ideale. 
+	Sei $I \subseteq R$ für einen Ring $R$. Dann ist $I$ ein Linksideal, falls 
+	\begin{enumerate}[label= \arabic*.)]
+		\item $(I, +)$ bildet eine Untergruppe von $R$ 
+		\item $\forall a \in I, r \in R : r \cdot a \in I  $
+	\end{enumerate}
+\subsubsection{Definition Greensrelations}	
+	Die folgenden Relationen sind alles Äquivalenz Relationen. 
+	\begin{align*}
+		\mathcal L \subseteq M \times M: x \grel y &\iff Mx = My \iff x,y \text{ erzeugen identische Linksideale} \\
+		\mathcal R \subseteq M \times M: x \grer y &\iff xM = yM \iff x,y \text{ erzeugen identische Rechtsideale} \\
+		\mathcal J \subseteq M \times M: x \grej y &\iff MxM = MyM \\ 
+		\mathcal H = \mathcal L \cap \mathcal R: x \greh y &\iff x \grel y \text{ und } x \grer y
+	\end{align*}
+	
+	Sowie 
+	\begin{align*}
+	\mathcal L \subseteq M \times M: x \greleq y &\iff Mx = My \iff x,y \text{ erzeugen identische Linksideale} \\
+	\mathcal R \subseteq M \times M: x \grereq y &\iff xM = yM \iff x,y \text{ erzeugen identische Rechtsideale} \\
+	\mathcal J \subseteq M \times M: x \grejeq y &\iff MxM = MyM \\ 
+	\mathcal H = \mathcal L \cap \mathcal R: x \greh y &\iff x \grel y \text{ und } x \grer y
+	\end{align*}
+	
+	 Im Allgemeinen gilt für $R \subseteq X \times Y$ und $S \subseteq Y \times Z$
+	 \begin{align*}
+	 	R \circ S &= \{(x,y) \in X \times Z \mid \exists y \in Y: (x,y) \in R, (y, z) \in S\} 
+	 \end{align*} 
+	 Bezogen auf die Greensrelations bedeutet das $$\mathcal L \circ \mathcal R = \{ (x,y) \subseteq M \times M \mid \exists z \in M : x \grel z \grer y \}$$
+	 \newline
+	 
+	 Somit entsteht dann entsteht folgendes Bild 
+	 \begin{figure}[h!]
+	 	\centering
+	 	\begin{tikzpicture}[node distance=3cm, auto]
+	 	\node (H) {$\mathcal{H}$};
+	 	\node (L) [above right of=H] {$\mathcal{L}$};
+	 	\node (R) [below right of=H] {$\mathcal{R}$};
+	 	\node (LUR) [below right of=L] {$\mathcal L \cup \mathcal R$};
+	 	\node (LDR) [right of=LUR] {$\mathcal L \circ \mathcal R = \mathcal D$};
+	 	\node (Y) [right of=LDR] {$\mathcal Y$};
+	 	
+	 	\draw[-] (H) -- (L) node[midway,sloped,above,rotate=0] {$\subseteq$};
+	 	\draw[-] (H) -- (R) node[midway,sloped,below,rotate=0] {$\subseteq$};
+	 	\draw[-] (L) -- (LUR) node[midway,sloped,above,rotate=0] {$\subseteq$};
+	 	\draw[-] (R) -- (LUR) node[midway,sloped,below,rotate=0] {$\subseteq$};
+	 	\draw[-] (LUR) -- (LDR) node[midway,sloped,above,rotate=0] {$\subseteq$};
+	 	\draw[-] (LDR) -- (Y) node[midway,sloped,above,rotate=0] {$\subseteq$};
+	 	\end{tikzpicture}
+	 	\caption{Die Verbindungen zwischen den einzelnen Greensrelations}
+	 \end{figure}
+ 
+	
 
 \section{Divisoren, aperiodische Monoide - Vorlesung 11}
 \subsection{Divisoren}
