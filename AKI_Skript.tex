@@ -1325,18 +1325,19 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 \subsubsection{Definition Greensrelations}	
 	Die folgenden Relationen sind alles Äquivalenz Relationen. 
 	\begin{align*}
-		\mathcal L \subseteq M \times M: x \grel y &\iff Mx = My \iff x,y \text{ erzeugen identische Linksideale} \\
-		\mathcal R \subseteq M \times M: x \grer y &\iff xM = yM \iff x,y \text{ erzeugen identische Rechtsideale} \\
+		\mathcal L \subseteq M \times M: x \grel y &\iff Mx = My \\ 
+			&\iff x,y \text{ erzeugen identische Linksideale} \\
+		\mathcal R \subseteq M \times M: x \grer y &\iff xM = yM  \\ 
+			&\iff x,y \text{ erzeugen identische Rechtsideale} \\
 		\mathcal J \subseteq M \times M: x \grej y &\iff MxM = MyM \\ 
 		\mathcal H = \mathcal L \cap \mathcal R: x \greh y &\iff x \grel y \text{ und } x \grer y
 	\end{align*}
 	
 	Sowie 
 	\begin{align*}
-	\mathcal L \subseteq M \times M: x \greleq y &\iff Mx = My \iff x,y \text{ erzeugen identische Linksideale} \\
-	\mathcal R \subseteq M \times M: x \grereq y &\iff xM = yM \iff x,y \text{ erzeugen identische Rechtsideale} \\
-	\mathcal J \subseteq M \times M: x \grejeq y &\iff MxM = MyM \\ 
-	\mathcal H = \mathcal L \cap \mathcal R: x \greh y &\iff x \grel y \text{ und } x \grer y
+	\mathcal L \subseteq M \times M: x \greleq y &\iff Mx \subseteq My \\
+	\mathcal R \subseteq M \times M: x \grereq y &\iff xM \subseteq yM \\
+	\mathcal J \subseteq M \times M: x \grejeq y &\iff MxM \subseteq MyM 
 	\end{align*}
 	
 	 Im Allgemeinen gilt für $R \subseteq X \times Y$ und $S \subseteq Y \times Z$
@@ -1355,19 +1356,22 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 	 	\node (R) [below right of=H] {$\mathcal{R}$};
 	 	\node (LUR) [below right of=L] {$\mathcal L \cup \mathcal R$};
 	 	\node (LDR) [right of=LUR] {$\mathcal L \circ \mathcal R = \mathcal D$};
-	 	\node (Y) [right of=LDR] {$\mathcal Y$};
+	 	\node (J) [right of=LDR] {$\mathcal J$};
 	 	
 	 	\draw[-] (H) -- (L) node[midway,sloped,above,rotate=0] {$\subseteq$};
 	 	\draw[-] (H) -- (R) node[midway,sloped,below,rotate=0] {$\subseteq$};
 	 	\draw[-] (L) -- (LUR) node[midway,sloped,above,rotate=0] {$\subseteq$};
 	 	\draw[-] (R) -- (LUR) node[midway,sloped,below,rotate=0] {$\subseteq$};
 	 	\draw[-] (LUR) -- (LDR) node[midway,sloped,above,rotate=0] {$\subseteq$};
-	 	\draw[-] (LDR) -- (Y) node[midway,sloped,above,rotate=0] {$\subseteq$};
+	 	\draw[-] (LDR) -- (J) node[midway,sloped,above,rotate=0] {$\subseteq$};
 	 	\end{tikzpicture}
 	 	\caption{Die Verbindungen zwischen den einzelnen Greensrelations}
-	 \end{figure}
+	 \end{figure} \\ 
  
-	
+ 	Im Allgemeinen gilt $\mathcal D \not = \mathcal J$, für endliche Halbgruppen jedoch $\mathcal D = \mathcal J$. Dies werden wir später noch zeigen. 
+
+\subsubsection{Definition K-Trivial}		
+	Sei $K \in \{\mathcal{H}, \mathcal{L},\mathcal{R}, \mathcal{D}, \mathcal{J}\}$, dann heißt $\sim$, also die Relation,  $K$-Trivial, falls $$x \sim_K y \implies x = y$$
 
 \section{Divisoren, aperiodische Monoide - Vorlesung 11}
 \subsection{Divisoren}
