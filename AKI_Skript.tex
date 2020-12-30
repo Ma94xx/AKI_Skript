@@ -125,6 +125,7 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\sigstern}{\Sigma^\ast}
 \newcommand{\inv}{^{-1}}
+\newcommand{\pom}{^{\omega}}
 \newcommand{\rat}{\mathsf{RAT}}
 \newcommand{\rec}{\mathsf{REC}}
 \newcommand{\starfree}{\mathsf{SF}}
@@ -139,12 +140,19 @@
 \newcommand{\gred}{\sim_{\mathcal{D}}}
 \newcommand{\grey}{\sim_{\mathcal{Y}}}
 
-\newcommand{\greleq}{\leqslant_{\mathcal{L}}}
-\newcommand{\grereq}{\leqslant_{\mathcal{R}}}
-\newcommand{\grejeq}{\leqslant_{\mathcal{J}}}
-\newcommand{\greheq}{\leqslant_{\mathcal{H}}}
-\newcommand{\gredeq}{\leqslant_{\mathcal{D}}}
-\newcommand{\greyeq}{\leqslant_{\mathcal{Y}}}
+\newcommand{\lgreleq}{\leqslant_{\mathcal{L}}}
+\newcommand{\lgrereq}{\leqslant_{\mathcal{R}}}
+\newcommand{\lgrejeq}{\leqslant_{\mathcal{J}}}
+\newcommand{\lgreheq}{\leqslant_{\mathcal{H}}}
+\newcommand{\lgredeq}{\leqslant_{\mathcal{D}}}
+\newcommand{\lgreyeq}{\leqslant_{\mathcal{Y}}}
+
+\newcommand{\rgreleq}{\geqslant_{\mathcal{L}}}
+\newcommand{\rgrereq}{\geqslant_{\mathcal{R}}}
+\newcommand{\rgrejeq}{\geqslant_{\mathcal{J}}}
+\newcommand{\rgreheq}{\geqslant_{\mathcal{H}}}
+\newcommand{\rgredeq}{\geqslant_{\mathcal{D}}}
+\newcommand{\rgreyeq}{\geqslant_{\mathcal{Y}}}
 
 
 %Erzeugt das "bewiesen" Kästen rechts unten
@@ -1335,9 +1343,9 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 	
 	Sowie 
 	\begin{align*}
-	\mathcal L \subseteq M \times M: x \greleq y &\iff Mx \subseteq My \\
-	\mathcal R \subseteq M \times M: x \grereq y &\iff xM \subseteq yM \\
-	\mathcal J \subseteq M \times M: x \grejeq y &\iff MxM \subseteq MyM 
+	\mathcal L \subseteq M \times M: x \lgreleq y &\iff Mx \subseteq My \\
+	\mathcal R \subseteq M \times M: x \lgrereq y &\iff xM \subseteq yM \\
+	\mathcal J \subseteq M \times M: x \lgrejeq y &\iff MxM \subseteq MyM 
 	\end{align*}
 	
 	 Im Allgemeinen gilt für $R \subseteq X \times Y$ und $S \subseteq Y \times Z$
@@ -1372,6 +1380,101 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 
 \subsubsection{Definition K-Trivial}		
 	Sei $K \in \{\mathcal{H}, \mathcal{L},\mathcal{R}, \mathcal{D}, \mathcal{J}\}$, dann heißt $\sim$, also die Relation,  $K$-Trivial, falls $$x \sim_K y \implies x = y$$
+
+\subsubsection{Lemma}
+	Sei $x \in M$ und $|M| < \infty$, dann existiert genau eine Potenz $x^n \in M$ mit $x^n = x^{2n}$. Also gilt $x^n \in E(M))$ und wird mit $x\pom = x^n$ bezeichnet. 		
+\newpage
+\subsubsection{Beweis des Lemmas}
+	Es gilt $\forall x \in M $ existiert ein $t \in \N$ (thershold)  und $p \in \N$ mit $p \geq 1$ und $x^{t+p} = x^t \in M$
+		\begin{figure}[h!]
+			\centering
+			\begin{tikzpicture}[node distance=1.9cm, auto]
+			\node (1) {$1$};
+			\node (x) [right of=1] {$x$};
+			\node (x2) [right of=x]{$x^2$};
+			\node (dots) [right of=x2]{$\ldots$};
+			\node (xt) [right of=dots]{$x^t$};
+			\node (xt1) [above right of=xt] {$x^{t+1}$};
+			\node (xtpm1)  [ below right of = xt] {$x^{t+p -1}$};
+			\node (dotslow) [below right of=xt1]{ $\ldots$};
+			
+			
+			\draw[ ->] (1) -- (x) node[ midway,sloped,above,rotate=0] { };
+			\draw[->] (x) -- (x2) node[midway,sloped,above,rotate=0] {};
+			\draw[->] (x2) -- (dots) node[midway,sloped,above,rotate=0] {};
+			\draw[->] (dots) -- (xt) node[midway,sloped,above,rotate=0] {};
+			\draw[->] (xt) edge   [bend left] (xt1) node[midway,sloped,above,rotate=0] {};
+			\draw[->] (xt1) edge   [bend left](dotslow) node[midway,sloped,above,rotate=0] {};
+			\draw[->] (dotslow) edge   [bend left] (xtpm1) node[midway,sloped,above,rotate=0] {};
+			\draw[->] (xtpm1) edge   [bend left] (xt) node[midway,sloped,above,rotate=0] {};
+			
+			\end{tikzpicture}
+		\end{figure} 
+		\newline
+
+	Wir sehen dass in der Folge $( x^i \mid i \in \N)$ ein $i < j$ mit $x^i = x^j$ existiert. Wir wählen nun $i=t$ minimal, dann ist $t+p = j$ minimal. 
+	Es folgt 
+	\begin{align*}
+		x^i = x^{2i} \implies i \geq t &\iff x^{t+j} = x^{2t + 2j} = x^{i + t2j} \\
+		&\iff j \equiv t + 2j \mod p \\
+		&\iff t \equiv -j \mod p
+	\end{align*}
+	\bewiesen
+
+\subsubsection{Beobachtung}
+	Sei $x^{t+p} = x^t$, dann gilt 
+	\begin{align*}
+	x^t \geqslant_{\mathcal{L, R}} x^{t+1} \geqslant_{\mathcal{L, R}} \ldots \geqslant_{\mathcal{L, R}} x^{t+p-1} \geqslant_{\mathcal{L, R}} x^{t+p} = x^t
+ 	\end{align*}
+ 	Weiter sehen wir
+ 	\begin{align*}
+ 		&\implies x^t \greh x^t \, \, \forall i \in \N \\
+ 		&\implies \forall x \text{ gilt } x^{t+i} \in \mathcal{H}(x\pom), \text{ wobei } x\pom \in E(M)
+ 	\end{align*}
+ 	
+\subsubsection{Lemma}
+ 	Sei $G \leq M$ eine Unterhalbgruppe, die eine Gruppe ist, dann $x\pom = y\pom = 1_G$
+ 	Es gilt dann $\forall x,y \in G \implies \exists x\pom = e \in M, \, e = 1_G$ und $ G \leq \mathcal H(e)$
+ 	
+ 
+\subsubsection{Lemma 7.42 (DAM)}
+	Sei $s \grej t$ und $M$ endlich mit $s = ptu$. Dann ist $t=qsv$. Nun gilt folgendes 
+	\begin{enumerate}[label = \alph*)]
+		\item $s \lgrereq t \implies s \grer t$ (analog dazu für $\grel$)
+		\item $\mathcal{L}(s) \cap \mathcal{R}(t) \not = \emptyset$
+		\item $\mathcal{D} = \mathcal{J}$
+	\end{enumerate}
+
+\subsubsection{Beweis des Lemma 7.42 (DAM)}
+Der Beweis dazu ist auch im Buch (englischer Version) unter dem Lemma 7.42 zu finden.
+	\begin{enumerate}[label = \alph*)]
+		\item Sei $s \lgrereq t \implies s = tu$. Dann gilt 
+			\begin{align*}
+				t=qsv = qtuv&= q(qtuv)uv \\
+				&= q\pom t(uv)\pom \\
+				&= q\pom t(uv)\pom(uv)\pom \\
+				&= t(uv)\pom \in tuM = sM
+			\end{align*}
+			Es folgt also $t \lgrereq s \implies t \grer S$
+			\bewiesen
+		
+		\item Sei $s=ptu$ und $t=qsv$. Dann gilt 
+				\begin{align*}
+					s=ptu &= (pq)s(uv) \\
+					&=(pq)\pom s(vu)\pom \\
+					&= (pq)\pom(pq)\pom s (uv)\pom \\
+					&= (pq)\pom s
+				\end{align*}
+				
+			$\implies s \lgreleq qs \implies s \grel qs$. Es bleibt dann zu zeigen, dass $qs \grer t$. 
+			Dies folgt durch Symetrie: $s \lgrereq sv \lgrereq s \implies s \grer sv$. \\ 
+			Also gilt $qs \grer qsv = t \implies qs \in \mathcal{L}(s) \cap \mathcal{R}(t) \not = \emptyset$
+				\bewiesen
+		
+		\item Da $\mathcal{D} \subseteq \mathcal{J}$ gilt, reicht es zu zeigen dass $(s,t) \in \mathcal{J}$ und $(s,t) \in \mathcal{L} \circ \mathcal{R}$ gilt. 
+		Nach b) gilt $\exists qs = z$ mit $s \grel z \grer t$. Dies zeigt die Behauptung.
+		\bewiesen
+	\end{enumerate}
 
 \section{Divisoren, aperiodische Monoide - Vorlesung 11}
 \subsection{Divisoren}
