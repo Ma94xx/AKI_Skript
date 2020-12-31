@@ -67,9 +67,9 @@
 %Einstellungen für Code Fragmente
 \lstset{ 
 	backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
-%	basicstyle=\footnotesize,        % the size of the fonts that are used for the code
-%	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-%	breaklines=true,                 % sets automatic line breaking
+	%	basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+	%	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	%	breaklines=true,                 % sets automatic line breaking
 	captionpos=b,                    % sets the caption-position to bottom
 	commentstyle=\color{mygreen},    % comment style
 	deletekeywords={...},            % if you want to delete keywords from the given language
@@ -158,8 +158,8 @@
 
 %Erzeugt das "bewiesen" Kästen rechts unten
 \newcommand{\bewiesen}{
-
-\begin{flushright}
+	
+	\begin{flushright}
 		$\square$  \\
 \end{flushright}}
 
@@ -174,94 +174,94 @@
 \setlength\parindent{0pt}
 
 \begin{document}
-\maketitle
-\newpage
-\tableofcontents
-\newpage
-
+	\maketitle
+	\newpage
+	\tableofcontents
+	\newpage
+	
 \section{Grundlagen - Vorlesung 1}
 \subsection{Diedergruppen}
 \subsubsection{Definition}
-		   Die Diedergruppe $D_n$ ist die Bewegungsgruppe des regelmä\ss igen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
-		   
-		   Dabei ist das $n$-Eck durch folgende Knoten und Kanten definiert: 
-		   \begin{align*}
-		   	\text{Knotenmenge: } &\mathbb{Z}/n\mathbb{Z} \\
-		   	\text{Kanten: } &\{ \{i, i+1\} \mid i \in \mathbb{Z}/n\mathbb{Z} \}  \\
-		   \end{align*}
-		   
-		   Weiter sind die Drehungen und Spiegelungen bijektive Abbildung von Knoten auf Knoten der Form
-		   \begin{align*}
-		   	&f: \mathbb{Z}/n\mathbb{Z} \iso \mathbb{Z}/n\mathbb{Z},\, wobei\\
-		   	&f(i+1) \in \{f(i)+1, f(i)-1\}\, gilt.
-		   \end{align*}
-		   
-		   Zu jeden $n \in \mathbb{N}$ gehört eine Diedergruppe $D_n$ mit $|D_n| = 2n$. 
-		  
+Die Diedergruppe $D_n$ ist die Bewegungsgruppe des regelmä\ss igen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
+
+Dabei ist das $n$-Eck durch folgende Knoten und Kanten definiert: 
+\begin{align*}
+	\text{Knotenmenge: } &\mathbb{Z}/n\mathbb{Z} \\
+	\text{Kanten: } &\{ \{i, i+1\} \mid i \in \mathbb{Z}/n\mathbb{Z} \}  \\
+\end{align*}
+
+Weiter sind die Drehungen und Spiegelungen bijektive Abbildung von Knoten auf Knoten der Form
+\begin{align*}
+	&f: \mathbb{Z}/n\mathbb{Z} \iso \mathbb{Z}/n\mathbb{Z},\, wobei\\
+	&f(i+1) \in \{f(i)+1, f(i)-1\}\, gilt.
+\end{align*}
+
+Zu jeden $n \in \mathbb{N}$ gehört eine Diedergruppe $D_n$ mit $|D_n| = 2n$. 
+
 
 \subsubsection{Eigenschaften von Diedergruppen}
-		Wir bezeichnen die Spiegelung mit $\sigma$ und die Drehung im Uhrzeiger mit $\delta$. Dann gilt Folgendes:
-		
-		\begin{align*}
-			\sigma(j)&=-j\\
-			\delta(j)&=j+1\\
-			\sigma^2 = id &= \delta^n = \delta^0 \\ 	 
-		\end{align*}
-		Dies bedeutet, dass $n$-faches drehen oder doppeltes Spiegeln eines  $n$-Ecks keine Änderung bewirkt.  \\
-		Daraus lässt sich dann folgender Satz ableiten mit $\forall \varepsilon, \varepsilon', m, m' \in \mathbb{Z}$: 
-		
-		\begin{align*}
-			\sigma^\varepsilon\delta^m = \sigma^{\varepsilon'}\delta^{m'} \iff \varepsilon \equiv \varepsilon' (2) \text{ und } m \equiv m' (n)
-		\end{align*}
-		Weiter gilt, dass $\sigma\delta = \delta^{-1}\sigma$, also dass erst spiegeln und dann drehen denselben Effekt hat wie in die andere Richtung drehen und dann spiegeln. Im Folgenden wird gezeigt, weshalb dies gilt:
-		
-		\begin{align*}
-			\sigma \delta(j) = \sigma(j+1) = -(j + 1) = -j -1 = \delta^{-1}(-j)=\delta^{-1}\sigma(j)
-		\end{align*}
-		\bewiesen
-		Dieser Satz gibt uns also die Möglichkeit das $\sigma$ nach rechts oder links zu schieben und wir können die Gleichheit $\sigma\delta\sigma = \delta^{-1}$ folgern.
-		
+Wir bezeichnen die Spiegelung mit $\sigma$ und die Drehung im Uhrzeiger mit $\delta$. Dann gilt Folgendes:
+
+\begin{align*}
+	\sigma(j)&=-j\\
+	\delta(j)&=j+1\\
+	\sigma^2 = id &= \delta^n = \delta^0 \\ 	 
+\end{align*}
+Dies bedeutet, dass $n$-faches drehen oder doppeltes Spiegeln eines  $n$-Ecks keine Änderung bewirkt.  \\
+Daraus lässt sich dann folgender Satz ableiten mit $\forall \varepsilon, \varepsilon', m, m' \in \mathbb{Z}$: 
+
+\begin{align*}
+	\sigma^\varepsilon\delta^m = \sigma^{\varepsilon'}\delta^{m'} \iff \varepsilon \equiv \varepsilon' (2) \text{ und } m \equiv m' (n)
+\end{align*}
+Weiter gilt, dass $\sigma\delta = \delta^{-1}\sigma$, also dass erst spiegeln und dann drehen denselben Effekt hat wie in die andere Richtung drehen und dann spiegeln. Im Folgenden wird gezeigt, weshalb dies gilt:
+
+\begin{align*}
+	\sigma \delta(j) = \sigma(j+1) = -(j + 1) = -j -1 = \delta^{-1}(-j)=\delta^{-1}\sigma(j)
+\end{align*}
+\bewiesen
+Dieser Satz gibt uns also die Möglichkeit das $\sigma$ nach rechts oder links zu schieben und wir können die Gleichheit $\sigma\delta\sigma = \delta^{-1}$ folgern.
+
 \subsubsection{Fixpunkte in Diedergruppen}
-		Ein Fixpunkt $x$ einer Abbildung $f$ ist ein Punkt, für den $f(x) = x$ gilt. Da die Elemente der Diedergruppe durch $\sigma\delta^i(j)$ dargestellt werden können, fragen wir uns, wann folgende Gleichheit gilt:
-		\begin{align*}
-			\sigma\delta^i(j) = j
-		\end{align*} 
-		
-		Wegen
-		\begin{align*}
-			\sigma\delta^i(j) & = j \iff \\
-			\sigma(j+1) & = j \iff \\
-			-j -i & = j \iff \\
-			-i & = 2j
-		\end{align*} 
-		ist dies der Fall, wenn $-i = 2j \textrm{ in } \mathbb Z /n \mathbb Z$ gilt. Für ungerades $n$ existiert für alle $i$ genau ein $j$, welches diese Gleichheit erfüllt. Für gerades $n$ unterscheiden wir weiter nach der Parität von $i$. Falls auch $i$ gerade ist, existieren genau $2$ verschiedene $j$ und falls $i$ ungerade ist, existiert keine Lösung. Damit ergeben sich bestimmte Fixpunkte für die Drehungen und Spiegelungen, welche in Tabelle~\ref{tab:diederFixpunkte} aufgezeigt sind.
-		\begin{table*}[h]
-			\centering
-		\begin{tabular}{lll}
-			\toprule[2pt]
-			Abbildung & Parität von $n$ & Fixpunkte\\
-			\midrule
-			$\sigma$ & ungerade & $\{i\}$ \\
-			\addlinespace
-			$\sigma$ & gerade & $ \left \{
-			\begin{array}{ll}
-				\{0,\frac{n}{2}\}\textrm{, falls }i \equiv 0 \, (2)\\
-				\emptyset\textrm{, falls } i \equiv 1\, (2)
-			\end{array}
-			\right. $ \\
-			\addlinespace
-			$\delta^k$ & gerade oder ungerade & $ \left \{
-			\begin{array}{ll}
+Ein Fixpunkt $x$ einer Abbildung $f$ ist ein Punkt, für den $f(x) = x$ gilt. Da die Elemente der Diedergruppe durch $\sigma\delta^i(j)$ dargestellt werden können, fragen wir uns, wann folgende Gleichheit gilt:
+\begin{align*}
+	\sigma\delta^i(j) = j
+\end{align*} 
+
+Wegen
+\begin{align*}
+	\sigma\delta^i(j) & = j \iff \\
+	\sigma(j+1) & = j \iff \\
+	-j -i & = j \iff \\
+	-i & = 2j
+\end{align*} 
+ist dies der Fall, wenn $-i = 2j \textrm{ in } \mathbb Z /n \mathbb Z$ gilt. Für ungerades $n$ existiert für alle $i$ genau ein $j$, welches diese Gleichheit erfüllt. Für gerades $n$ unterscheiden wir weiter nach der Parität von $i$. Falls auch $i$ gerade ist, existieren genau $2$ verschiedene $j$ und falls $i$ ungerade ist, existiert keine Lösung. Damit ergeben sich bestimmte Fixpunkte für die Drehungen und Spiegelungen, welche in Tabelle~\ref{tab:diederFixpunkte} aufgezeigt sind.
+\begin{table*}[h]
+	\centering
+	\begin{tabular}{lll}
+		\toprule[2pt]
+		Abbildung & Parität von $n$ & Fixpunkte\\
+		\midrule
+		$\sigma$ & ungerade & $\{i\}$ \\
+		\addlinespace
+		$\sigma$ & gerade & $ \left \{
+		\begin{array}{ll}
+			\{0,\frac{n}{2}\}\textrm{, falls }i \equiv 0 \, (2)\\
+			\emptyset\textrm{, falls } i \equiv 1\, (2)
+		\end{array}
+		\right. $ \\
+		\addlinespace
+		$\delta^k$ & gerade oder ungerade & $ \left \{
+		\begin{array}{ll}
 			\emptyset\textrm{, falls }1\leq k < n\\
 			\Z/n\Z\textrm{, falls } k \equiv 0\, (n)
-			\end{array}
-			\right. $ \\
-			\bottomrule[2pt]
-		\end{tabular}
-		\caption{Fixpunkte der Abbildungen in Diedergruppen.}
+		\end{array}
+		\right. $ \\
+		\bottomrule[2pt]
+	\end{tabular}
+	\caption{Fixpunkte der Abbildungen in Diedergruppen.}
 	\label{tab:diederFixpunkte}
-	\end{table*}
-		
+\end{table*}
+
 \subsubsection{Erweiterung auf unendliche Gruppen}
 
 Im Fall $n=0$ ist das $n$-Eck die unendliche gerade $\Z/0\Z = \Z$.
@@ -276,110 +276,110 @@ Dann gilt $D_0 = \{\sigma, \delta, \overline{\delta}\}^*$ mit
 	\delta\overline{\delta} & = \overline{\delta}\delta = 1 \\
 	\sigma\delta\sigma & = \overline{\delta}\, .
 \end{align*}
-		
-\section{Gruppentheorie 1 - Vorlesung 2}
-\subsection{Untergruppen}
-\subsubsection{Definition}
-		Sei im folgenden $G=(G, \cdot, 1)$ eine Gruppe. Dann gilt 
-		\begin{align*}
-			H \subseteq G \text{ ist eine Untergruppe} \iff H \not = \emptyset \text{ und } \forall g, h \in H : gh^{-1} \in H
-		\end{align*}
-		$H$ ist also eine Untergruppe von $G$, genau dann wenn $H$ nicht leer ist und für alle Elemente Inverse vorhanden sind.  
 
-
-\subsection{Nebeklassen}
-\subsubsection{Definition}
-		Für eine Untergruppe $H \leq G$ sind die folgenden Nebenklassen definiert
-		\begin{align*}
-			 G/H &= \{gH \subseteq G \mid g \in G\} \quad \text{Rechtsnebenklasse } \\
-			 H/G &= \{Hg \subseteq G \mid g \in G\} \quad \text{Linksnebenklasse } 
-		\end{align*}
-		wobei $gH$ die Multiplikation von  g mit allen Elementen aus $H$ ist. 
-
-\subsubsection{Größe von Nebenklassen}
-		Wir definieren die folgende Abbildung
-		\begin{align*}
-			\forall f,g \in G \text{ ist } (f^{-1}g \cdot): gH \iso fH \text{ bijektiv mit der Umkehrabbildung } (gf^{-1}\cdot)
-		\end{align*}
-		Wir können dann folgern dass 
-		\begin{align*}
-			gH \iso H \iso Hf \quad \text{ für alle } f,g \in G
-		\end{align*}
-		Es gilt also $|gH| = |Hf| = |H|$
-
-\subsubsection{Gleichheit von Nebenklassen}
-		Im Folgenden wird gezeigt dass $gH \cap fH \not = \emptyset \iff gH = fH$ gilt.
-		Die Rückrichtung ist hierbei trivial, da der Schnitt von $gH$ und $fH$ bei Gleichheit offensichtlich nicht leer ist. \\
-		
-		Für die Hin-Richtung seinen $h_1, h_2 \in H$ mit $gh_1 = fh_2$
-		\begin{align*}
-			&\implies g=fh_2h_1^{-1} \in fH \\
-			&\implies gH \subseteq fH. 
-		\end{align*}
-		Analog dazu gilt $fH \subseteq gH \implies gH = fH$
-		\bewiesen
-		
-\subsubsection{Graphische Interpretation von Nebenklassen}
-Sei $G= (G, \cdot, 1)$ eine Gruppe und $H\leq G$
-\begin{figure}[h!]
-	\centering
-	$G=\begin{array}{c}
+	\section{Gruppentheorie 1 - Vorlesung 2}
+	\subsection{Untergruppen}
+	\subsubsection{Definition}
+	Sei im folgenden $G=(G, \cdot, 1)$ eine Gruppe. Dann gilt 
+	\begin{align*}
+		H \subseteq G \text{ ist eine Untergruppe} \iff H \not = \emptyset \text{ und } \forall g, h \in H : gh^{-1} \in H
+	\end{align*}
+	$H$ ist also eine Untergruppe von $G$, genau dann wenn $H$ nicht leer ist und für alle Elemente Inverse vorhanden sind.  
 	
-	\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
-		\begin{scope}[yshift=1.5cm,y=1cm]
-			\node [fit={(0,0) (1,3)}, label=center:{$H$}] {};
-		\end{scope}
-	\begin{scope}[yshift=1.5cm,y=1cm]
-		\node [fit={(1,0) (5,1)}, label=center:{$fH$}] {};
-	\end{scope}
-	\begin{scope}[yshift=2.5cm,y=1cm]
-		\node [fit={(1,0) (5,1)}, label=center:{$\vdots$}] {};
-	\end{scope}
-	\begin{scope}[yshift=3.5cm,y=1cm]
-		\node [fit={(1,0) (5,1)}, label=center:{$gH$}] {};
-	\end{scope}
 	
-	\end{tikzpicture} 
-\end{array}
-= 
-\begin{array}{c}
-	\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
-	\begin{scope}[yshift=1.5cm,y=1cm]
-	\node [fit={(0,0) (1,3)}, label=center:{$H$}] {};
-	\end{scope}
-	\begin{scope}[yshift=1.5cm,y=1cm]
-	\node [fit={(1,3) (2,0)}, label=center:{$Hg$}] {};
-	\end{scope}
-	\begin{scope}[yshift=1.5cm,y=1cm]
-	\node [fit={(2,0) (3,3)}, label=center:{$\ldots$}] {};
-	\end{scope}
-	\begin{scope}[yshift=1.5cm,y=1cm]
-	\node [fit={(3,3) (4,0)}, label=center:{$Hf$}] {};
-	\end{scope}
+	\subsection{Nebeklassen}
+	\subsubsection{Definition}
+	Für eine Untergruppe $H \leq G$ sind die folgenden Nebenklassen definiert
+	\begin{align*}
+		G/H &= \{gH \subseteq G \mid g \in G\} \quad \text{Rechtsnebenklasse } \\
+		H/G &= \{Hg \subseteq G \mid g \in G\} \quad \text{Linksnebenklasse } 
+	\end{align*}
+	wobei $gH$ die Multiplikation von  g mit allen Elementen aus $H$ ist. 
 	
-	\end{tikzpicture} 
-\end{array}$
-\caption{Zerlegung von $G$ in Links bzw. Rechtsnebenklassen}
-\end{figure}
-
-Wir sehen dass $|H|=|gH| = |Hf|$ gilt
-
-\subsection{Repräsentantensysteme}		
-\subsubsection{Definition}
+	\subsubsection{Größe von Nebenklassen}
+	Wir definieren die folgende Abbildung
+	\begin{align*}
+		\forall f,g \in G \text{ ist } (f^{-1}g \cdot): gH \iso fH \text{ bijektiv mit der Umkehrabbildung } (gf^{-1}\cdot)
+	\end{align*}
+	Wir können dann folgern dass 
+	\begin{align*}
+		gH \iso H \iso Hf \quad \text{ für alle } f,g \in G
+	\end{align*}
+	Es gilt also $|gH| = |Hf| = |H|$
+	
+	\subsubsection{Gleichheit von Nebenklassen}
+	Im Folgenden wird gezeigt dass $gH \cap fH \not = \emptyset \iff gH = fH$ gilt.
+	Die Rückrichtung ist hierbei trivial, da der Schnitt von $gH$ und $fH$ bei Gleichheit offensichtlich nicht leer ist. \\
+	
+	Für die Hin-Richtung seinen $h_1, h_2 \in H$ mit $gh_1 = fh_2$
+	\begin{align*}
+		&\implies g=fh_2h_1^{-1} \in fH \\
+		&\implies gH \subseteq fH. 
+	\end{align*}
+	Analog dazu gilt $fH \subseteq gH \implies gH = fH$
+	\bewiesen
+	
+	\subsubsection{Graphische Interpretation von Nebenklassen}
+	Sei $G= (G, \cdot, 1)$ eine Gruppe und $H\leq G$
+	\begin{figure}[h!]
+		\centering
+		$G=\begin{array}{c}
+			
+			\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
+				\begin{scope}[yshift=1.5cm,y=1cm]
+					\node [fit={(0,0) (1,3)}, label=center:{$H$}] {};
+				\end{scope}
+				\begin{scope}[yshift=1.5cm,y=1cm]
+					\node [fit={(1,0) (5,1)}, label=center:{$fH$}] {};
+				\end{scope}
+				\begin{scope}[yshift=2.5cm,y=1cm]
+					\node [fit={(1,0) (5,1)}, label=center:{$\vdots$}] {};
+				\end{scope}
+				\begin{scope}[yshift=3.5cm,y=1cm]
+					\node [fit={(1,0) (5,1)}, label=center:{$gH$}] {};
+				\end{scope}
+				
+			\end{tikzpicture} 
+		\end{array}
+		= 
+		\begin{array}{c}
+			\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
+				\begin{scope}[yshift=1.5cm,y=1cm]
+					\node [fit={(0,0) (1,3)}, label=center:{$H$}] {};
+				\end{scope}
+				\begin{scope}[yshift=1.5cm,y=1cm]
+					\node [fit={(1,3) (2,0)}, label=center:{$Hg$}] {};
+				\end{scope}
+				\begin{scope}[yshift=1.5cm,y=1cm]
+					\node [fit={(2,0) (3,3)}, label=center:{$\ldots$}] {};
+				\end{scope}
+				\begin{scope}[yshift=1.5cm,y=1cm]
+					\node [fit={(3,3) (4,0)}, label=center:{$Hf$}] {};
+				\end{scope}
+				
+			\end{tikzpicture} 
+		\end{array}$
+		\caption{Zerlegung von $G$ in Links bzw. Rechtsnebenklassen}
+	\end{figure}
+	
+	Wir sehen dass $|H|=|gH| = |Hf|$ gilt
+	
+	\subsection{Repräsentantensysteme}		
+	\subsubsection{Definition}
 	Sei $R_H := \{r(gH) \mid gH \in G/H\} \subseteq G$ mit der folgenden bijektiven  Abbildung
 	\begin{align*}
 		R_H \iso G/H \\
 		r(gH) \mapsto gH 
 	\end{align*}
-
-\subsection{Satz von Lagrange}		
-\subsubsection{Definition und Beweis}
+	
+	\subsection{Satz von Lagrange}		
+	\subsubsection{Definition und Beweis}
 	Wir definieren die folgende Abbildung
 	\begin{align*}
 		\lambda: (G/H) \times H &\iso G \text{ ist bijektiv} \\
 		(gH, h) &\mapsto r(gH) \cdot h
 	\end{align*}
-	 
+	
 	Nun bezeichnen wir mit $[G:H] = |G/H|$ den Index von $H$ in $G$. \\ 
 	Wenn jetzt $R = \{r(gH) \mid g \in G \}$ ein Linksrepresentantensystem (LRS) ist, \\ 
 	dann ist $R^{-1} = \{r(gH)^{-1} \mid g \in G \}$ ein RRS. 
@@ -389,20 +389,20 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 	Wenn für $|G| < \infty $ gilt, ist $|H| < \infty $ und $|G| = |G/H| \cdot |H|$ und 
 	außerdem sind $\{gH \mid g \in G \}$ und $\{Hg \mid g \in G \}$ Partitionen. Weiter gilt $|gH| = |Hf| \;\;\forall g,f \in G$. \\
 	Also gilt $|G| = [G:H] \cdot |H|$ 
-
-
-\subsection{Der Homomorphiesatz}		
-\subsubsection{Grundlagen Homomorphismus}
+	
+	
+	\subsection{Der Homomorphiesatz}		
+	\subsubsection{Grundlagen Homomorphismus}
 	Eine Abbildung $\varphi: G \to F$ heißt Homomorphismus\footnote{ab hier abgekürzt Hom.} falls $\forall g,h \in G : \varphi(gh) = \varphi(g)\varphi(h)$ \\
 	\begin{enumerate}[label=\roman*)]
 		\item $\varphi(1_G) = 1_H$ ~\par
-			Denn $g=1\cdot g \implies \varphi(g)=\varphi(1)\varphi(g) \implies 1_H = \varphi(g) \varphi(g)^{-1} = \varphi(1)$
+		Denn $g=1\cdot g \implies \varphi(g)=\varphi(1)\varphi(g) \implies 1_H = \varphi(g) \varphi(g)^{-1} = \varphi(1)$
 		
 		\item $\varphi(g^{-1})=\varphi(g)^{-1}$ ~\par
-			Denn $\varphi(1)=\varphi(gg^{-1}) \implies 1_h = \varphi(g)\varphi(g^{-1}) \implies \varphi(g)^{-1} = \varphi(g^{-1})$
+		Denn $\varphi(1)=\varphi(gg^{-1}) \implies 1_h = \varphi(g)\varphi(g^{-1}) \implies \varphi(g)^{-1} = \varphi(g^{-1})$
 	\end{enumerate}
-
-\subsubsection{Lemma}
+	
+	\subsubsection{Lemma}
 	Ein Hom. $\varphi: G \to F$ ist injektiv $\iff$ $ker(\varphi) = \{g \in G \mid \varphi(g)= 1\} = \{1\}$ 
 	
 	Im Folgenden geben hierfür einen Beweis an in dem wir $\varphi(g) = \varphi(h) \iff \varphi(gh^{-1}) = \{1\} $ zeigen:
@@ -411,41 +411,41 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 		&\implies [\varphi(gh^{-1}) = \{1\} \implies gh^{-1} = 1 \implies g = h] \\ 
 		&\implies \varphi \text{ ist injektiv}
 	\end{align*}
-
-\subsubsection{Homomorphiesatz}
+	
+	\subsubsection{Homomorphiesatz}
 	Sei $\varphi: G \to F$ ein Hom.  und $N = ker(\varphi)$. \\
 	Dann induziert $\varphi$ ein Hom. $\overline{\varphi} : G/N \to F$ der injektiv ist durch $\overline{\varphi}(gH) = \varphi(g)$ 
 	\newline
 	
 	Also induziert $\varphi$ einen Isomorphismus $\overline{\varphi}: G/N \iso im(G) = \{\varphi(g) \mid g \in G\} \leq F$
-
-\subsubsection{Beweis Homomorphiesatz}
+	
+	\subsubsection{Beweis Homomorphiesatz}
 	\begin{enumerate}[label=\arabic*)]
 		\item $\overline{\varphi}$ ist wohldefiniert ~\par
-				Sei $f\in gH \implies \varphi(f) \in \varphi(g)N = \{\varphi(g)\}$
+		Sei $f\in gH \implies \varphi(f) \in \varphi(g)N = \{\varphi(g)\}$
 		
 		\item $\overline{\varphi}$ ist injektiv ~\par
-			$ker(\overline{\varphi}) = ker(\varphi) = N = 1_{G/N}$
+		$ker(\overline{\varphi}) = ker(\varphi) = N = 1_{G/N}$
 	\end{enumerate}
-
-\subsubsection{Beispiel für den Homomorphiesatz}
+	
+	\subsubsection{Beispiel für den Homomorphiesatz}
 	Wir definieren 
-		\begin{align*}
-			exp = \begin{cases}
+	\begin{align*}
+		exp = \begin{cases}
 			\mathbb{R} \to \mathbb{C}^\ast\\
 			x \mapsto e^{2\pi i x}
-			\end{cases}
-		\end{align*}
+		\end{cases}
+	\end{align*}
 	Dann ist $ker(exp) = \mathbb Z $.\\ 
-	 Also ist $\mathbb R / \mathbb Z \cong \{z \in \mathbb C \mid |z| = 1\}$	
-
-
-
-\subsection{Normalteiler}		
-\subsubsection{Definition}
+	Also ist $\mathbb R / \mathbb Z \cong \{z \in \mathbb C \mid |z| = 1\}$	
+	
+	
+	
+	\subsection{Normalteiler}		
+	\subsubsection{Definition}
 	$H \subseteq G$ heißt Normalteiler ($H\trianglelefteq G$) falls $\forall g \in G : gH = Hg$. 
-
-\subsubsection{Satz zu Normalteilern}
+	
+	\subsubsection{Satz zu Normalteilern}
 	Sei $H \subseteq G$, dann sind die folgenden Aussagen äquivalent: 
 	\begin{enumerate}[label=\arabic*)]
 		\item $H\trianglelefteq G$
@@ -453,43 +453,43 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 		\item Es existiert ein Hom. $\varphi: G \to F$ mit $ker(\varphi) = \{g \in G \mid \varphi(g)= 1\} = H$
 		\item $\forall g \in G : gHg^{-1} \subseteq H$ und $H \leq G$
 	\end{enumerate}
-
+	
 	Im Folgenden wird die Äquivalenz der Aussagen gezeigt: 
 	\begin{itemize}
 		\item $1)\rightarrow 2)$ ~\par
-			$H\trianglelefteq G \implies gHfH = g(Hf)H = g(fH)H = gfH$
-			\begin{align*}
-				&\text{ Neutrales Element: } &&1_{G/H} = H \\
-				&\text{ Inverse: } &&(gH)^{-1} = H^{-1}g^{-1}= Hg^{-1}=g^{-1}H \\
-				&\text{ Assoziativität: } &&(fH)(gH)(hH)= fghH\\
-			\end{align*}
-			
+		$H\trianglelefteq G \implies gHfH = g(Hf)H = g(fH)H = gfH$
+		\begin{align*}
+			&\text{ Neutrales Element: } &&1_{G/H} = H \\
+			&\text{ Inverse: } &&(gH)^{-1} = H^{-1}g^{-1}= Hg^{-1}=g^{-1}H \\
+			&\text{ Assoziativität: } &&(fH)(gH)(hH)= fghH\\
+		\end{align*}
+		
 		\item $2)\rightarrow 3)$ ~\par
 		Sei $\varphi : G \to G/H $ und $\varphi(g) = gH$, dann
-			\begin{align*}
-				ker(\varphi) = \{g \in G \mid gH = H\} = H = 1_{G/H}
-			\end{align*}
+		\begin{align*}
+			ker(\varphi) = \{g \in G \mid gH = H\} = H = 1_{G/H}
+		\end{align*}
 		
 		\item $3)\rightarrow 4)$~\par
 		Sei $H = ker(\varphi)$, dann
-			\begin{align*}
-				\varphi(gHg^{-1}) = \varphi(gg^{-1}) = \varphi(1) \subseteq H 
-			\end{align*}
+		\begin{align*}
+			\varphi(gHg^{-1}) = \varphi(gg^{-1}) = \varphi(1) \subseteq H 
+		\end{align*}
 		
 		\item $4)\rightarrow 1)$~\par
 		$\forall g \in G : gHg^{-1} \subseteq H$
-			\begin{align*}
+		\begin{align*}
 			&\implies  \forall g \in G : H \subseteq g^{-1}Hg \\
 			&\implies \forall g \in G : H \subseteq gHg^{-1} \\
 			&\implies gHg^{-1} = H \\
 			&\implies gH = Hg
-			\end{align*}
+		\end{align*}
 	\end{itemize}
-
-
-
-\subsection{G-Mengen}		
-\subsubsection{Definition}
+	
+	
+	
+	\subsection{G-Mengen}		
+	\subsubsection{Definition}
 	Sei $G = (G, \cdot, 1)$ eine Gruppe und $X$ eine Menge.
 	Dann operiert $G$ auf $X$ falls folgende Abbildung existiert 
 	\begin{align*}
@@ -497,23 +497,23 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 		(g,x) \mapsto gx
 	\end{align*}
 	Mit der Eigenschaft $g(h(x)) = gh(x)$ und $g(1) = id_x$
-
-\subsubsection{Homomorphismus auf G-Mengen}
+	
+	\subsubsection{Homomorphismus auf G-Mengen}
 	Ein Hom. von $G$-Mengen $X,Y$ ist eine Abbildung 
 	\begin{align*}
 		f: X \to Y \text{ mit } f(gx) = gf(x)
 	\end{align*}
-
-\subsubsection{Fixpunkte in G-Mengen}
-	Sei $X$ eine  $G$-Menge. Dann heißt $x$ ein Fixpunkt von $g \in G$ falls $gx=x$. \\
+	
+	\subsubsection{Fixpunkte in G-Mengen}
+	Sei $X$ eine  $G$-Menge. Dann heißt $x$ ein Fixpunkt von $g \in G$ falls $gx=x$. \\
 	Weiter ist die Menge der Fixpunkte eine Untergruppe von $G$
 	\begin{align*}
 		Fix(x) = \{g \in G \mid  gx = x\} \leq G 
 	\end{align*}
-
-
-\subsection{Das Bahnenlemma}		
-\subsubsection{Definition einer Bahn}
+	
+	
+	\subsection{Das Bahnenlemma}		
+	\subsubsection{Definition einer Bahn}
 	Wir definieren eine Bahn wie folgt $$Bahn(x) = Orbit(x) = G\cdot x = \{gx \mid  g \in G \}$$
 	
 	
@@ -522,15 +522,15 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 	\begin{align*}
 		G/Fix(x) \to Gx \\ 
 		gFix(x) \mapsto gx
-	 \end{align*}
-	 Diese ist wohldefiniert, da $h \in gFix(x) \implies h=gf$ mit $f \in Fix(x)$. \\ 
-	 Also $h(x) = gf(x) = g(x)$ 
-
-
-\subsubsection{Bahnenlemma}
+	\end{align*}
+	Diese ist wohldefiniert, da $h \in gFix(x) \implies h=gf$ mit $f \in Fix(x)$. \\ 
+	Also $h(x) = gf(x) = g(x)$ 
+	
+	
+	\subsubsection{Bahnenlemma}
 	Das Bahnenlemma besagt $$Gx \cap Gy \not = \emptyset \iff Gx = Gy$$
 	Im Allgemeinen also $$ X = \dot{\bigcup} \{Gx \mid  x \in X \}$$ Wobei hier die disjunkte Vereinigung mit dem Punkt gekennzeichnet wird. 
-\subsubsection{Beweis des Bahnenlemmas}
+	\subsubsection{Beweis des Bahnenlemmas}
 	Die Rückrichtung ist hier ebenfalls trivial (wie bei dem sehr ähnlichen Resultat über Nebenklassen). Wir zeigen deshalb die andere Richtung. \\ 
 	
 	Sei $gx = hy$ für $g,h \in G$
@@ -540,38 +540,38 @@ Wir sehen dass $|H|=|gH| = |Hf|$ gilt
 		&\implies Gy \subseteq Gx
 	\end{align*}
 	Analog dazu $Gx \subseteq Gy \implies Gx = Gy$
-
-\subsubsection{Graphische Interpretation einer Bahn}
-
-Sei $X$ eine $G$-Menge und 
-
-\begin{figure}[h!]
-	\centering
-	$X=\begin{array}{c}
 	
-	\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
-	\begin{scope}[y=1.5cm]
-	\node [fit={(4,0) (7,1)}, label=center:{$Gx_1$}] {};
-	\end{scope}		
-	\begin{scope}[yshift=1.5cm,y=1cm]
-	\node [fit={(0,-1.5) (4,1)}, label=center:{$Gx_2$}] {};
-	\node [fit={(4,0) (7,1)}, label=center:{$Gx_3$}] {};
-	\end{scope}
-	\begin{scope}[yshift=2.5cm,y=1.2cm]
-	\node [fit={(0,0) (5,1)}, label=center:{$Gx_4$}] {};
-	\node [fit={(5,0) (7,1)}, label=center:{$Gx_5$}] {};
-	\end{scope}
-	\end{tikzpicture}
-\end{array}$
-\caption{Disjunkte Zerlegung von $X$ in Bahnen}
-\end{figure}
-Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$ wobei $p$ eine Primzahl ist, und daraus folgt $\forall x \in X : |Gx|=1$ oder $|Gx|=p$
-
-\subsection{Satz von Cauchy}		
-\subsubsection{Definition}
+	\subsubsection{Graphische Interpretation einer Bahn}
+	
+	Sei $X$ eine $G$-Menge und 
+	
+	\begin{figure}[h!]
+		\centering
+		$X=\begin{array}{c}
+			
+			\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
+				\begin{scope}[y=1.5cm]
+					\node [fit={(4,0) (7,1)}, label=center:{$Gx_1$}] {};
+				\end{scope}		
+				\begin{scope}[yshift=1.5cm,y=1cm]
+					\node [fit={(0,-1.5) (4,1)}, label=center:{$Gx_2$}] {};
+					\node [fit={(4,0) (7,1)}, label=center:{$Gx_3$}] {};
+				\end{scope}
+				\begin{scope}[yshift=2.5cm,y=1.2cm]
+					\node [fit={(0,0) (5,1)}, label=center:{$Gx_4$}] {};
+					\node [fit={(5,0) (7,1)}, label=center:{$Gx_5$}] {};
+				\end{scope}
+			\end{tikzpicture}
+		\end{array}$
+		\caption{Disjunkte Zerlegung von $X$ in Bahnen}
+	\end{figure}
+	Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$ wobei $p$ eine Primzahl ist, und daraus folgt $\forall x \in X : |Gx|=1$ oder $|Gx|=p$
+	
+	\subsection{Satz von Cauchy}		
+	\subsubsection{Definition}
 	Sei $G$ eine endliche Gruppe und $p \in \mathbb P$ mit $p \mid |G|$. \\
 	Dann existiert $g \in G$ mit $g \not = 1$ und $ g^p = 1$. Also $ord(g)= p$
-\subsubsection{Beweis}
+	\subsubsection{Beweis}
 	Wir betrachten die Menge der Tupel $(g_1, g_p) \in G^p$ mit $g_1 \cdot \ldots \cdot g_p = 1$. 
 	Sei nun 
 	\begin{align*}
@@ -580,32 +580,32 @@ Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$
 		&= |G^{p-1}|
 	\end{align*}
 	Nun soll $\mathbb Z /p\mathbb Z$ auf $T$ operieren durch
-	 \begin{align*}
+	\begin{align*}
 		T = (\underbrace{g_1, \ldots, g_m}_{\substack{u}}, \underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}) \implies m\cdot T = (\underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}, \underbrace{g_1, \ldots, g_m}_{\substack{u}})
 	\end{align*}
 	Es gilt also $uv = 1 \iff v(uv)v^{-1} = 1 = u = 1$, da $|G^{-1}| = n^{p-1}$ und $p \mid n^{p-1} $ da $p \mid n$.
 	Weiter haben Bahnen entweder die Länge $1$ oder $p$, da $\mathbb Z /p\mathbb Z$ nur zwei Untergruppen hat.
-
+	
 	\begin{align*}
 		\mathbb Z /p\mathbb Z \cdot (1, \ldots, 1) = (1, \ldots, 1) \\
 		\{(g, \ldots, g) \mid gP= 1 \} \implies \exists g \text{ mit } gP = 1
 	\end{align*}
-\bewiesen
-
-\section{Gruppentheorie 2 - Vorlesung 3}
-\subsection{p-Gruppen}
-\subsubsection{Definition p-Gruppe}
+	\bewiesen
+	
+	\section{Gruppentheorie 2 - Vorlesung 3}
+	\subsection{p-Gruppen}
+	\subsubsection{Definition p-Gruppe}
 	$G$ heißt $p$-Gruppe falls $p$ eine Primzahl ist und $|G| \in p^{\mathbb N}$
-
-\subsubsection{Das Zentrum einer Gruppe}
+	
+	\subsubsection{Das Zentrum einer Gruppe}
 	Wir definieren das Zentrum einer Gruppe wie folgt $$Zentrum(G)= Z(G) = \{g \in G \mid  \forall x \in G: xg = gx\}$$
-
-\subsubsection{Satz über das Zentrum}
+	
+	\subsubsection{Satz über das Zentrum}
 	\begin{align*}
 		G \text{ ist eine $p$-Gruppe} \implies Z(G) \not = \{1\}
 	\end{align*}
-
-\subsubsection{Beweis des Satzes}
+	
+	\subsubsection{Beweis des Satzes}
 	$G$ operiert auf sich selbst durch $x \mapsto gxg^{-1}$. Dann ist $G$ disjunkt zerlegt in Bahnen. Für jede Bahn gilt $|G/Fix(x)|$. 
 	Also $Fix(x) \not= G \implies p \mid |G/Fix(x)|$. Dann gilt 
 	\begin{align*}
@@ -619,116 +619,116 @@ Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$
 	Wir können dann daraus schließen dass $G/Z(G)$ eine $p$-Gruppe mit $Z(G/Z(G)) \not = \{1\}$ oder $G=Z(G)$ ist.
 	\bewiesen
 	
-\subsection{Zyklische Gruppen}
-\subsubsection{Nilpotenz}
+	\subsection{Zyklische Gruppen}
+	\subsubsection{Nilpotenz}
 	Eine Gruppe $G$ heißt nilpotent falls es eine Kette von Gruppen gibt, sodass
 	\begin{align*}
 		\langle 1 \rangle &= G_0, G_1, \ldots, G_M = G  \text{ und } G_K/Z(G) = G_{k-1} \text{ für } 1 \leq k \leq k
 	\end{align*}
-
-\subsubsection{Beispiele nilpotenter Gruppen}
+	
+	\subsubsection{Beispiele nilpotenter Gruppen}
 	\begin{itemize}
 		\item $|D_3| = 6$ ist die kleinste nicht nilpotente Gruppe, da $Z(D_3) = \{1\}$ und somit nicht kommutativ.
 		\item $|D_4| = 8$ ist nilpotent und kommutativ, da $D_4/Z(D_4) = \mathbb Z/2 \mathbb Z \times \mathbb Z /2\mathbb Z$
 	\end{itemize}
-
-\subsubsection{Zyklische Gruppe}
+	
+	\subsubsection{Zyklische Gruppe}
 	Eine Gruppe $G$ heißt zyklisch falls $\exists g \in G$ mit $G=g^{\mathbb Z}$
-
-\subsubsection{Satz zu zyklischen Gruppen}
+	
+	\subsubsection{Satz zu zyklischen Gruppen}
 	$|G| < \infty$ und $G$ zyklisch $\implies \exists g \in G$ mit $G =\{g^0, g^1, \ldots, g^{|G| -1} \}$  
-
-\subsubsection{Beweis des Satzes }
- Betrachte $g, g^2, g^3, \ldots$ für $g^{\mathbb Z}$. Dann existiert ein $i,j$ mit $0 \leq i < j $ sodass $g^i = g^j$. Daraus ergibt sich dass $1 = g^{j-i}$ gilt. \\
- Betrachte nun ein minimales $n \in \mathbb N_+$ mit $g^n = g^0 = 1$ (\OE  $\, \,G \not = \{1\}$).
- Da $n$ minimal ist, sind  $g, \ldots g^{n-1}$ paarweise verschieden. Ferner gilt $g^i = g^j \implies i \equiv j \mod n \implies G \cong (\mathbb Z /n\mathbb Z, +, 0)$
- \bewiesen
- 
-\subsubsection{Satz zu zyklischen Gruppen}
- 	$H \leq G$ zyklisch $\implies H$ ist zyklisch
- 	
-\subsubsection{Beweis des Satzes}
- 	\OE  $\, \, \{1\} \not = H \not = G$ und  $G \cong \mathbb Z /n\mathbb Z$ für $n=0,2,3$\\ 
- 	\newline
- 	Es existiert ein minimales $d > 0$ mit $g^d \in H$ für $G = g^{\mathbb Z}$. Dann gilt $d\mathbb Z \leq H$ in $\mathbb Z /n\mathbb Z$. 
- 	Wir zeigen $d\mathbb Z = H$: 
- 	
- 	Sei ein $a \in H$, dann gilt $a\in r + d\mathbb Z$ mit $0 \leq r < d$ 
- 	\begin{align*}
- 		&\implies r \in H \\
- 		&\implies r = 0 \\
- 		&\implies a \in d\mathbb Z \\ 
- 		&\implies H \text{ ist zyklisch}
- 	\end{align*}
-		Falls $n=0$ ist, dann $d\mathbb Z \cong \mathbb Z$, und falls $|\mathbb Z /n\mathbb | Z < \infty$ ist, also $n \geq 2$, 
-		dann ist $d\cdot \frac{n}{d} \equiv 0 \mod n$ und $d$ hat die Ordnung $\frac{n}{d}$. Also $|G/H|= d$
-
-\subsection{Permutations Gruppen}
-\subsubsection{Permutations Gruppe}
-		Wir schreiben ab jetzt $[n] = \{1, \ldots, n\}$ für $n \in \mathbb N$.  \\ 
-		\newline
-		Sei $X$ eine Menge, dann ist die Permutationsgruppe zu $X$ wie folgt definiert 
-		$$Perm(X)= \{ f: X \iso X \mid f \text{ ist eine bijektive Abbildung}\}$$
-
-\subsubsection{Symetrische Gruppe}
-Eine symetrische Gruppe $S_n$ wird gebildet durch $$S_n = Perm([n])$$ mit $\pi = (\pi(1), \ldots, \pi(n)) \in S_n$
-
-\subsubsection{q-Zykel}
+	
+	\subsubsection{Beweis des Satzes }
+	Betrachte $g, g^2, g^3, \ldots$ für $g^{\mathbb Z}$. Dann existiert ein $i,j$ mit $0 \leq i < j $ sodass $g^i = g^j$. Daraus ergibt sich dass $1 = g^{j-i}$ gilt. \\
+	Betrachte nun ein minimales $n \in \mathbb N_+$ mit $g^n = g^0 = 1$ (\OE  $\, \,G \not = \{1\}$).
+	Da $n$ minimal ist, sind  $g, \ldots g^{n-1}$ paarweise verschieden. Ferner gilt $g^i = g^j \implies i \equiv j \mod n \implies G \cong (\mathbb Z /n\mathbb Z, +, 0)$
+	\bewiesen
+	
+	\subsubsection{Satz zu zyklischen Gruppen}
+	$H \leq G$ zyklisch $\implies H$ ist zyklisch
+	
+	\subsubsection{Beweis des Satzes}
+	\OE  $\, \, \{1\} \not = H \not = G$ und  $G \cong \mathbb Z /n\mathbb Z$ für $n=0,2,3$\\ 
+	\newline
+	Es existiert ein minimales $d > 0$ mit $g^d \in H$ für $G = g^{\mathbb Z}$. Dann gilt $d\mathbb Z \leq H$ in $\mathbb Z /n\mathbb Z$. 
+	Wir zeigen $d\mathbb Z = H$: 
+	
+	Sei ein $a \in H$, dann gilt $a\in r + d\mathbb Z$ mit $0 \leq r < d$ 
+	\begin{align*}
+		&\implies r \in H \\
+		&\implies r = 0 \\
+		&\implies a \in d\mathbb Z \\ 
+		&\implies H \text{ ist zyklisch}
+	\end{align*}
+	Falls $n=0$ ist, dann $d\mathbb Z \cong \mathbb Z$, und falls $|\mathbb Z /n\mathbb | Z < \infty$ ist, also $n \geq 2$, 
+	dann ist $d\cdot \frac{n}{d} \equiv 0 \mod n$ und $d$ hat die Ordnung $\frac{n}{d}$. Also $|G/H|= d$
+	
+	\subsection{Permutations Gruppen}
+	\subsubsection{Permutations Gruppe}
+	Wir schreiben ab jetzt $[n] = \{1, \ldots, n\}$ für $n \in \mathbb N$.  \\ 
+	\newline
+	Sei $X$ eine Menge, dann ist die Permutationsgruppe zu $X$ wie folgt definiert 
+	$$Perm(X)= \{ f: X \iso X \mid f \text{ ist eine bijektive Abbildung}\}$$
+	
+	\subsubsection{Symetrische Gruppe}
+	Eine symetrische Gruppe $S_n$ wird gebildet durch $$S_n = Perm([n])$$ mit $\pi = (\pi(1), \ldots, \pi(n)) \in S_n$
+	
+	\subsubsection{q-Zykel}
 	Ein $\pi \in S_n$ heißt $q$-Zykel falls $$ \exists I \in \binom{[n]}{q} = \text{ Träger von $\pi$}$$ mit $\pi(i_j) = i_{(j+1)}, \, j \in \mathbb Z / q \mathbb Z$ und $\pi(m)= m$ $\forall m \in [n]  \setminus  I$. \\ 
 	Wir schreiben dann für einen $q$-Zykel eine Folge $(i_1, \ldots, i_q) = (i_{p+1}, \ldots, i_q, i_1, \ldots, i_p)$
-
-\subsubsection{Transposition}
+	
+	\subsubsection{Transposition}
 	Ein $2$-Zykel heißt Transposition $$\mathcal T_n = \{ \tau \in S_n  \mid \tau = (i, j), \, 1 \leq i \leq j \leq n\}$$
 	Weiter gilt $$\binom{n}{k} = |\{ \pi \in S_n \mid \pi \text{ ist Produkt von $k$- Zykeln  mit paarweise verschiedenen disjunkten Trägern} \}|$$
-\subsubsection{Graphische Interpretation von Zykeln}
+	\subsubsection{Graphische Interpretation von Zykeln}
 	\begin{figure}[h!]
 		\centering
 		$ \pi = c_1, \ldots, c_k = \begin{array}{ccc}
-		\begin{tikzpicture}[->,scale=.7] 
-		\foreach \a/\t in {90/.,-30/.,210/.}{
-			\node (\t) at (\a:1cm) {$\bullet$};
-			\draw (\a-20:1cm)  arc (\a-20:\a-100:1cm);
-		} 
-		\end{tikzpicture}
-	\end{array} \ldots
-	\begin{array}{ccc}
-	\begin{tikzpicture}[->,scale=.7] 
-	\foreach \a/\t in {90/.,-90/.}{
-		\node (\t) at (\a:1cm) {$\bullet$};
-		\draw (\a-20:1cm)  arc (\a-20:\a-160:1cm);
-	} 
-	\end{tikzpicture}
-	\end{array}
-	\ldots
-	\begin{array}{ccc}
-	\begin{tikzpicture}[->,scale=.7] 
-	\foreach \a/\t in {90/.}{
-		\node (\t) at (\a:1cm) {$\bullet$};
-		\draw (\a-20:1cm)  arc (\a-20:\a-340:1cm);
-	} 
-	\end{tikzpicture}
-	\end{array}$
-	\caption{$c_1$ bis $c_k$}
+			\begin{tikzpicture}[->,scale=.7] 
+				\foreach \a/\t in {90/.,-30/.,210/.}{
+					\node (\t) at (\a:1cm) {$\bullet$};
+					\draw (\a-20:1cm)  arc (\a-20:\a-100:1cm);
+				} 
+			\end{tikzpicture}
+		\end{array} \ldots
+		\begin{array}{ccc}
+			\begin{tikzpicture}[->,scale=.7] 
+				\foreach \a/\t in {90/.,-90/.}{
+					\node (\t) at (\a:1cm) {$\bullet$};
+					\draw (\a-20:1cm)  arc (\a-20:\a-160:1cm);
+				} 
+			\end{tikzpicture}
+		\end{array}
+		\ldots
+		\begin{array}{ccc}
+			\begin{tikzpicture}[->,scale=.7] 
+				\foreach \a/\t in {90/.}{
+					\node (\t) at (\a:1cm) {$\bullet$};
+					\draw (\a-20:1cm)  arc (\a-20:\a-340:1cm);
+				} 
+			\end{tikzpicture}
+		\end{array}$
+		\caption{$c_1$ bis $c_k$}
 	\end{figure}
-
-\subsubsection{Bubblesort-Lemma}
-		 $\tau_n$ erzeugt $S_n = Perm(\{1, \ldots, n\})$. Oder anders fomuliert: \\
-		 Die symetrische Gruppe $S_n$ wird durch $n-1$ Transpositionen $(i, i+1)$ erzeugt.
-	 	\newline
-	 	
-	 	Den Beweis liefert der Bubblesort Algorithmus! 
-		Genauer gilt: $S_n$ wird erzeugt von $\tau \in T_n$ mit $\tau= (i, i+1)$ für $1 \leq i < n$
-		\newline
-			
-		Sei $\pi$ eine beliebige permutation in $S_n$. Verwendet man nun den Bubblesort Algorithmus zum sortieren durch die Transposition $(i, i+1$ wobei $1 \leq i <n $ gilt, so erhält man die Identität. Man führe nun den Algorithmus rückwärts aus, starte also bei der Identität, so kommt man zum gewünschten Ergebnis.
-
-\subsubsection{Signum}
- 	Sei $\pi \in S_n$. Dann ist das Signum wie folgt definiert $$sign(\pi) = \prod_{1 \leq i \leq j \leq n} \frac{\pi(j) - \pi(i)}{j -i}$$
-
-\subsubsection{Signum - Betrags - Lemma}
+	
+	\subsubsection{Bubblesort-Lemma}
+	$\tau_n$ erzeugt $S_n = Perm(\{1, \ldots, n\})$. Oder anders fomuliert: \\
+	Die symetrische Gruppe $S_n$ wird durch $n-1$ Transpositionen $(i, i+1)$ erzeugt.
+	\newline
+	
+	Den Beweis liefert der Bubblesort Algorithmus! 
+	Genauer gilt: $S_n$ wird erzeugt von $\tau \in T_n$ mit $\tau= (i, i+1)$ für $1 \leq i < n$
+	\newline
+	
+	Sei $\pi$ eine beliebige permutation in $S_n$. Verwendet man nun den Bubblesort Algorithmus zum sortieren durch die Transposition $(i, i+1$ wobei $1 \leq i <n $ gilt, so erhält man die Identität. Man führe nun den Algorithmus rückwärts aus, starte also bei der Identität, so kommt man zum gewünschten Ergebnis.
+	
+	\subsubsection{Signum}
+	Sei $\pi \in S_n$. Dann ist das Signum wie folgt definiert $$sign(\pi) = \prod_{1 \leq i \leq j \leq n} \frac{\pi(j) - \pi(i)}{j -i}$$
+	
+	\subsubsection{Signum - Betrags - Lemma}
 	Es gilt: $|sign(\pi) |= 1$
-
-\subsubsection{Beweis des Lemmas}
+	
+	\subsubsection{Beweis des Lemmas}
 	Die Aussage gilt da 
 	\begin{align*}
 		sign(\pi) &= \ddfrac{\prod_{1 \leq i \leq j \leq n}  |\pi(j) - \pi(i)|}{\prod_{1 \leq i \leq j \leq n}  |j -i|} = \ddfrac{ \prod_{ \{i,j\} \in \binom{[n]}{2}} |\pi(j) - \pi(i)| }{ \prod_{ \{i,j\} \in \binom{[n]}{2}} |j - i|} = 1
@@ -737,35 +737,35 @@ Eine symetrische Gruppe $S_n$ wird gebildet durch $$S_n = Perm([n])$$ mit $\pi =
 	
 	Dann ist $sign(\pi)= 1^{|F(\pi)|}$ und somit ist $sign(id) = +1$ und $sign(\tau) = \frac{j-i}{i-j} = -1$ für $\tau= (i,j) \in T_n$
 	\bewiesen
-
-\subsubsection{Signum - Hom. - Lemma}
+	
+	\subsubsection{Signum - Hom. - Lemma}
 	$$ sign: S_n \to \{ \pm 1\} \text{ ist ein Hom.}$$
-
-\subsubsection{Beweis des Lemmas}
+	
+	\subsubsection{Beweis des Lemmas}
 	Es gilt 
 	\begin{align*}
 		sign(\pi\sigma) = \prod_{ i < j} \ddfrac{\pi\sigma(j) - \pi \sigma(i)}{j -i} &=  \ddfrac{\pi\sigma(j) - \pi \sigma(i)}{\sigma(j) -\sigma(i)} \cdot \prod_{ i < j}\ddfrac{\pi\sigma(j) - \pi \sigma(i)}{j -i} = sign(\pi) sign(\sigma)
 	\end{align*}
 	\bewiesen
 	Weiter gilt $ker(sign) = A_n = $ alternerirende Gruppe über $n$ und $A_n \trianglelefteq S_n$ und $|A_n| = \binom{n!}{2}$ für $n \geq 2$ 
-
-\section{Gruppentheorie 3 - Vorlesung 4}
-\subsection{Semidirekte Produkte}
-\subsubsection{Direktes Produkt}
+	
+	\section{Gruppentheorie 3 - Vorlesung 4}
+	\subsection{Semidirekte Produkte}
+	\subsubsection{Direktes Produkt}
 	Für zwei Gruppen $H$ und $F$ ist das direkte Produkt die Gruppe $H \times F$ mit  $$(h,f)(h', f') = (hh', ff')$$
-
-\subsubsection{Semidirektes Produkt}
+	
+	\subsubsection{Semidirektes Produkt}
 	$G = H \rtimes F$ ist ein semi direktes Produkt, falls $H \trianglelefteq G$, $F \leq G$,  $G = H\cdot F$ und $H \cap F = \{1\}$ mit 
 	$$(h,f)(h',f') = hfh'(f^{-1}f)f' = (h\varphi(f)(h'), ff')$$
 	mit $\varphi \in Aut(H)$ wobei $Aut(H)$ die Menge der Automorphismen in $H$ ist.
-
-\subsubsection{Konstruktion 1 von semidirekten Produkten}
+	
+	\subsubsection{Konstruktion 1 von semidirekten Produkten}
 	Seien $H, F$ Gruppen und $\varphi: F\to Aut(H)$ ein Hom. \\ 
 	Wir nehmen $G = H \times F$ als Menge und $$ (h,f)(h',f') = (h\varphi(f)h', ff')$$
 	Dann ist $H= H \times \{1\}$ und $H \trianglelefteq H \times F$. 
 	Weiter ist dann $F = \{1\} \times F \leq F$ und $G= H\cdot I$ und $H\cap F = \{1\}$
-
-\subsubsection{Korrektheit der Konstruktion 1}
+	
+	\subsubsection{Korrektheit der Konstruktion 1}
 	Es ist $(h_1, f_1)(h_2, f_2)(h_3, f_3) = (h, f_1f_2f_3)$ mit 
 	\begin{align*}
 		h&=h_1\varphi(f_1)[h_2\varphi(f_2)(h_3)] \\
@@ -773,70 +773,70 @@ Eine symetrische Gruppe $S_n$ wird gebildet durch $$S_n = Perm([n])$$ mit $\pi =
 	\end{align*} 
 	\\ 
 	Und für die Inversen ist $(h, f)^{-1} = (h', f^{-1}) \text{ mit } h\varphi(f)(h')= 1$ aber $h' = \varphi(f^{-1})(h^{-1})$
-
-\subsubsection{Exakte Sequenzen}
-Eine Sequenz von Homs. $\varphi_i: G_{i-1} \to G_i$ mit $i \in I$ wobei $I$ linear geordnet ist, heißt exakt falls $$\forall i \in I : im(\varphi_i) = ker(\varphi_{i+1})$$ gilt
+	
+	\subsubsection{Exakte Sequenzen}
+	Eine Sequenz von Homs. $\varphi_i: G_{i-1} \to G_i$ mit $i \in I$ wobei $I$ linear geordnet ist, heißt exakt falls $$\forall i \in I : im(\varphi_i) = ker(\varphi_{i+1})$$ gilt
 	\begin{figure}[h!]
 		\centering
-	\begin{equation*}
-		\begin{tikzcd}[column sep=3.5pc]
+		\begin{equation*}
+			\begin{tikzcd}[column sep=3.5pc]
 				\ldots \arrow{r}{\varphi_{i-1}} & G_{i -1} \arrow{r}{\varphi_{i}} & G_{i} \arrow{r}{\varphi_{i+1}} & G_{i+1} \ldots 
-		\end{tikzcd}
-	\end{equation*}
+			\end{tikzcd}
+		\end{equation*}
 		\caption{Graphische Darstellung einer Sequenz}
-\end{figure}
-
-\subsubsection{Konstruktion 2 von semidirekten Produkten}
-Eine zweite Möglichkeit zur Konstruktion von semidirekten Produkten ist durch sogenannte kurze exakte Sequenzen möglich. 
-Wir betrachten dabei die folgende Sequenz
-\begin{figure}[h!]
-	\centering
-	\begin{equation*}
-	\begin{tikzcd}[column sep=2.5pc]
-	1 \arrow{r}{} & H \arrow{r}{\varphi} & G \arrow{r}{\psi} & F \arrow{r}{} & 1
-	\end{tikzcd}
-	\end{equation*}
-	\caption{Kurze exakte Sequenz}
-\end{figure} 
-
-Dabei gilt, dass $\varphi : H \to G$ injektiv ist und dass $\psi : G \to F$ surjektiv ist. Somit entsteht der folgende Isomorphismus $$\overline{\psi} : G/H \iso F$$
-
-\subsubsection{Satz über Konstruktion 2}
-$G$ ist ein semidirektes Produkt $G = H\rtimes F$ mit der exakten Sequenz $$1 \to H \to G \to F \to 1$$ falls ein Hom. $s: F \to G$ existiert  mit $\psi s = id_F$
-
-\section{Gruppentheorie 4 - Vorlesung 5}
-\subsection{Einfache Gruppen}
-\subsubsection{Definition einfach}
+	\end{figure}
+	
+	\subsubsection{Konstruktion 2 von semidirekten Produkten}
+	Eine zweite Möglichkeit zur Konstruktion von semidirekten Produkten ist durch sogenannte kurze exakte Sequenzen möglich. 
+	Wir betrachten dabei die folgende Sequenz
+	\begin{figure}[h!]
+		\centering
+		\begin{equation*}
+			\begin{tikzcd}[column sep=2.5pc]
+				1 \arrow{r}{} & H \arrow{r}{\varphi} & G \arrow{r}{\psi} & F \arrow{r}{} & 1
+			\end{tikzcd}
+		\end{equation*}
+		\caption{Kurze exakte Sequenz}
+	\end{figure} 
+	
+	Dabei gilt, dass $\varphi : H \to G$ injektiv ist und dass $\psi : G \to F$ surjektiv ist. Somit entsteht der folgende Isomorphismus $$\overline{\psi} : G/H \iso F$$
+	
+	\subsubsection{Satz über Konstruktion 2}
+	$G$ ist ein semidirektes Produkt $G = H\rtimes F$ mit der exakten Sequenz $$1 \to H \to G \to F \to 1$$ falls ein Hom. $s: F \to G$ existiert  mit $\psi s = id_F$
+	
+	\section{Gruppentheorie 4 - Vorlesung 5}
+	\subsection{Einfache Gruppen}
+	\subsubsection{Definition einfach}
 	Eine Gruppe $G$ heißt einfach wenn sie nur zwei Normalteiler besitzt, also nur $1$ und $G$ selbst.
-
-\subsubsection{Beispiele für einfache Gruppen}
- \begin{itemize}
- 	\item $\mathbb Z / p \mathbb Z$ für eine Primzahl $p$ ist einfach 
- 	\item $G$ ist einfach und nicht abelsch, falls $[G, G] =1$
- \end{itemize}
-
-\subsection{Kommutative Untergruppen}
-\subsubsection{Definition kommutative Untergruppe}
+	
+	\subsubsection{Beispiele für einfache Gruppen}
+	\begin{itemize}
+		\item $\mathbb Z / p \mathbb Z$ für eine Primzahl $p$ ist einfach 
+		\item $G$ ist einfach und nicht abelsch, falls $[G, G] =1$
+	\end{itemize}
+	
+	\subsection{Kommutative Untergruppen}
+	\subsubsection{Definition kommutative Untergruppe}
 	Für eine Gruppe $G$ ist $[G, G] = \langle [g, h] \mid g, h \rangle$ mit $[g, h] = g^{-1}h^{-1}gh$ die kommutative Untergruppe. 
-
-\subsubsection{Satz über Kommutativität}
+	
+	\subsubsection{Satz über Kommutativität}
 	Für eine Gruppe $G$ gilt $$ G \text{ abelsch } \iff [G, G] = 1$$
-
-\subsubsection{Beweis des Satzes}
+	
+	\subsubsection{Beweis des Satzes}
 	Es gilt $g^{-1}h^{-1}gh = 1 \iff gh = hg$ also folgt $G$ ist abelsch. 
 	\bewiesen
-
-\subsubsection{Definition von auflösbar}
+	
+	\subsubsection{Definition von auflösbar}
 	Jede abelsche Gruppe ist auflösbar. Jede nicht abelsche Gruppe ist auflösbar falls die ''abgeleitete'' Untergruppe $[G, G]$ von $G$ verschieden ist und auflösbar. 
 	\begin{equation*}
 		1 \leq \ldots \leq G^{(2)} = [G^{(1)}, G^{(1)} ] \leq G^{(1)} = [G, G ] \leq G  
 	\end{equation*}
-
-\subsection{Alternierende Gruppen}
-\subsubsection{Erzeugungs Lemma}
+	
+	\subsection{Alternierende Gruppen}
+	\subsubsection{Erzeugungs Lemma}
 	Für $n \geq 5$ wird $A_n$ von der Menge der doppelten Transpositionen oder der Menge der $3$-Zykel erzeugt.
-
-\subsubsection{Beweis des Lemmas}
+	
+	\subsubsection{Beweis des Lemmas}
 	Wir wissen dass $\pi \in A_n \iff sign(\pi) = 1$ gilt, und somit auch dass $A_n$ von einem Produkt $\tau \tau'$ mit $\tau, \tau' \in \mathcal T_n$ erzeugt wird, 
 	da $S_n$ von $\mathcal T_n$ erzeugt wird. 
 	\newline 
@@ -852,25 +852,25 @@ $G$ ist ein semidirektes Produkt $G = H\rtimes F$ mit der exakten Sequenz $$1 \t
 	
 	Deshalb kann man $(1,2,3)$ als Produkt von zwei Permutationen des Typ $(2,2)$ schreiben.
 	\bewiesen
-
-\subsubsection{Lemma}
-Sei $n \geq 5$ und $\sigma$ ein $3$-Zykel, dann existiert ein $\pi \in A_n$, sodass $\pi\sigma\pi^{-1} = (1,2,3)$
-
-\subsubsection{Beweis des Lemmas}
+	
+	\subsubsection{Lemma}
+	Sei $n \geq 5$ und $\sigma$ ein $3$-Zykel, dann existiert ein $\pi \in A_n$, sodass $\pi\sigma\pi^{-1} = (1,2,3)$
+	
+	\subsubsection{Beweis des Lemmas}
 	Man sieht deutlich, dass $\pi \in S_n$ existiert, sodass $\pi\sigma\pi^{-1} = (1,2,3)$. 
 	Wenn $\pi \in S_n$ gilt, dann sind wir bereits fertig. 
 	\newline
 	
 	Anderenfalls definieren wir $\pi' = (4,5)$ und $\pi \in A_n$.  Wir schließen daraus 
-		\begin{align*}
-			\pi'\sigma\pi'^{-1} = (4,5)\pi\sigma\pi^{-1}(4,5) = (4,5)(1,2,3)(4,5) = (1,2,3)
-		\end{align*}
-		\bewiesen
-		
-\subsubsection{Lemma}
+	\begin{align*}
+		\pi'\sigma\pi'^{-1} = (4,5)\pi\sigma\pi^{-1}(4,5) = (4,5)(1,2,3)(4,5) = (1,2,3)
+	\end{align*}
+	\bewiesen
+	
+	\subsubsection{Lemma}
 	Sei $n \geq 3$ und $K \trianglelefteq S_n$, dann ist $K \in \{ \{1\}, A_n, S_n\}$
 	
-\subsubsection{Beweis des Lemmas}
+	\subsubsection{Beweis des Lemmas}
 	Wir nehmen an dass $\{1\} \not = K$. Sei $N= K \cap A_n$, dann ist $N$ ein Normalteiler in $S_n$. Es reicht an dieser Stelle aus, zu zeigen dass dies $N=A_n$ impliziert. \\ 
 	Tatsächlich gilt $N = A_n \implies K \in \{ A_n, S_n\}$, da $[S_n : A_n] = 2$ ist.
 	\newline
@@ -888,9 +888,9 @@ Sei $n \geq 5$ und $\sigma$ ein $3$-Zykel, dann existiert ein $\pi \in A_n$, sod
 	Anderenfalls ist $\rho\tau \in N$ vom Typ $(2,2)$. Alle Permutationen des Typ(2,2) sind in $S_n$ konjugiert. Daher haben wir wieder $N=A_n$
 	\bewiesen
 	
-\subsubsection{Lemma}
+	\subsubsection{Lemma}
 	Sei $N \trianglelefteq A_n$ und $\pi \in S_n$, dann ist auch $\pi N\pi^{-1} \trianglelefteq A_n$. Genauer sogar $\tau N \tau \trianglelefteq A_n$ für alle $\tau \in \mathcal T_n$
-\subsubsection{Beweis des Lemmas}
+	\subsubsection{Beweis des Lemmas}
 	Zuerst ein direkter Beweis: \\
 	Für $\pi \in A_n$ ist bereits alles bekannt. Es reicht also zu zeigen dass $\sigma\rho N\tau\sigma^{-1} = \tau N \tau$ für $\sigma \in A_n$ und $\tau\in S_n \setminus A_n$. Dies ist äquivalent zu $ \tau \sigma \tau N \tau \sigma^{-1}\sigma \subseteq N$, da $\tau\sigma\tau \in A_n$ und $N\trianglelefteq A_n$. 
 	\newline
@@ -904,82 +904,82 @@ Sei $n \geq 5$ und $\sigma$ ein $3$-Zykel, dann existiert ein $\pi \in A_n$, sod
 	
 	Die allgemeine Aussage ist, dass $N \trianglelefteq H$ und $\varphi \in Aut(H)$ und somit $\varphi(N) \trianglelefteq H$ gilt. 
 	\bewiesen
-
-\subsubsection{Satz über die Einfachheit von alternierenden Gruppen}
+	
+	\subsubsection{Satz über die Einfachheit von alternierenden Gruppen}
 	Für $n \geq 5$ ist $A_n$ einfach. (C.Jordan, 1875).
-
-\subsubsection{Strategie zum Beweis des Satzes}
+	
+	\subsubsection{Strategie zum Beweis des Satzes}
 	$\tau \in \mathcal T_n$ soll eine feste Transposition sein. Wir zeigen durch Widerspruch dass $A_n$ einfach ist. Dazu nehmen wir an, dass ein $N \trianglelefteq A_n$ existiert, sodass $\{1\} \triangleleft N \triangleleft A_n$ gilt.  \\
 	
 	Wir wissen, dass $S_n$ nur die Normalteiler $\{1\}, A_n$ und $S_n$ hat, und dadurch können wir schließen, dass $\tau N\tau \not = N$ ist, da sonst $N = \tau N \tau $ ein Normalteiler in $S_n$ wäre. Wir erinnern uns daran, dass $\tau N \tau \trianglelefteq A_n$ gilt. \\
 	Durch folgende Schritte können wir dann einen Widerspruch herleiten: 
-
-\begin{enumerate}[label=\arabic*.]
-	\item Der Schnitt ist trivial: $N \cap \tau N \tau = \{1\}$
-	\item Das Produkt $N(\tau N \tau)$ ist ein Normalteiler in $S_n$, da $N \subseteq N(\tau N \tau) \leq A_n$. \\ 
+	
+	\begin{enumerate}[label=\arabic*.]
+		\item Der Schnitt ist trivial: $N \cap \tau N \tau = \{1\}$
+		\item Das Produkt $N(\tau N \tau)$ ist ein Normalteiler in $S_n$, da $N \subseteq N(\tau N \tau) \leq A_n$. \\ 
 		Dies implieziert $N(\tau N \tau) = A_n$.
-	\item Da $N\cap \tau N \tau =  \{1\}$ und $N(  \tau N \tau ) = A_n$ ist, schließen wir, dass $n! = 2 |N|^2$ ist. Sogar, dass $4 \mid n$ und somit das $|N|$ gerade sein muss. 
- 	\item Der Widerspruch entsteht entweder dadurch dass wir zeigen dass $\frac{n!}{2}$ keine Quadratzahl ist, mit der Hilfe des Bertrandschen Postulates, oder durch den Satz von Cauchy
-\end{enumerate}
+		\item Da $N\cap \tau N \tau =  \{1\}$ und $N(  \tau N \tau ) = A_n$ ist, schließen wir, dass $n! = 2 |N|^2$ ist. Sogar, dass $4 \mid n$ und somit das $|N|$ gerade sein muss. 
+		\item Der Widerspruch entsteht entweder dadurch dass wir zeigen dass $\frac{n!}{2}$ keine Quadratzahl ist, mit der Hilfe des Bertrandschen Postulates, oder durch den Satz von Cauchy
+	\end{enumerate}
 	Die Punkte $1$ -$3$ werden durch die folgenden Lemma (\ref{lemma1}, \ref{lemma2}, und \ref{lemma3}) gezeigt. 
-
-\subsubsection{Lemma \label{lemma1}}
+	
+	\subsubsection{Lemma \label{lemma1}}
 	$N \cap \tau N \tau = \{1\}$, also dass der Schnitt trivial ist.
-\subsubsection{Beweis des Lemma \ref{lemma1}}
-		$N \cap \tau N \tau$ ist ein Normalteiler in $A_n$. Jedes $\pi \in S_n \setminus A_n$ kann auch als $\pi = \tau\sigma$ mit $\sigma \in A_n$ geschrieben werden.
-		Wir betrachten 
-		\begin{align*}
-			\pi N \pi^{-1} &= \tau \sigma N \sigma^{-1} \tau = \tau N \tau  \\ 
-			\pi \tau N \tau \pi^{-1} &= N
-		\end{align*} 
-		da $\pi\tau \in A_n$ ist. 
-		Deshalb ist $\pi(\tau N \tau \cap N) \pi^{-1} \subseteq N \cap \tau N \tau$ und $\tau N \tau \cap N$ ist Normalteiler in $S_n$. Da $S_n$ ganz in $A_n$ liegt, folgt daraus dass $\tau N \tau \cap N = \{1\}$. 
-		\bewiesen
-
-\subsubsection{Lemma \label{lemma2}}
-		Das Produkt $N(\tau N \tau)$ ist ein Normalteiler in $S_n$, da $N \subseteq N(\tau N \tau) \leq A_n$. \\ 
-		Dies impliziert $N(\tau N \tau) = A_n$.
-\subsubsection{Beweis des Lemma \ref{lemma2}}
-		Nach Blatt 1, Aufgabe 3 der Übungen ist $N(\tau N \tau) \trianglelefteq A_n$. Ferner ist für $\pi = \sigma\tau \in S_N \setminus A_n$ mit $\sigma \in A_n$ 
-		\begin{align*}
-			\pi N(\tau N\tau) \pi^{-1} &= \sigma \tau N (\tau N \tau) \tau \sigma^{-1}  \\ 
-			&= \sigma N \tau N \tau \sigma^{-1} \\
-			&= N(\tau N \tau)
-		\end{align*}
+	\subsubsection{Beweis des Lemma \ref{lemma1}}
+	$N \cap \tau N \tau$ ist ein Normalteiler in $A_n$. Jedes $\pi \in S_n \setminus A_n$ kann auch als $\pi = \tau\sigma$ mit $\sigma \in A_n$ geschrieben werden.
+	Wir betrachten 
+	\begin{align*}
+		\pi N \pi^{-1} &= \tau \sigma N \sigma^{-1} \tau = \tau N \tau  \\ 
+		\pi \tau N \tau \pi^{-1} &= N
+	\end{align*} 
+	da $\pi\tau \in A_n$ ist. 
+	Deshalb ist $\pi(\tau N \tau \cap N) \pi^{-1} \subseteq N \cap \tau N \tau$ und $\tau N \tau \cap N$ ist Normalteiler in $S_n$. Da $S_n$ ganz in $A_n$ liegt, folgt daraus dass $\tau N \tau \cap N = \{1\}$. 
 	\bewiesen
-
-\subsubsection{Lemma \label{lemma3}}
+	
+	\subsubsection{Lemma \label{lemma2}}
+	Das Produkt $N(\tau N \tau)$ ist ein Normalteiler in $S_n$, da $N \subseteq N(\tau N \tau) \leq A_n$. \\ 
+	Dies impliziert $N(\tau N \tau) = A_n$.
+	\subsubsection{Beweis des Lemma \ref{lemma2}}
+	Nach Blatt 1, Aufgabe 3 der Übungen ist $N(\tau N \tau) \trianglelefteq A_n$. Ferner ist für $\pi = \sigma\tau \in S_N \setminus A_n$ mit $\sigma \in A_n$ 
+	\begin{align*}
+		\pi N(\tau N\tau) \pi^{-1} &= \sigma \tau N (\tau N \tau) \tau \sigma^{-1}  \\ 
+		&= \sigma N \tau N \tau \sigma^{-1} \\
+		&= N(\tau N \tau)
+	\end{align*}
+	\bewiesen
+	
+	\subsubsection{Lemma \label{lemma3}}
 	Es gilt $N\cap \tau N \tau =  \{1\}$ und $N(  \tau N \tau ) = A_n$. Also muss $n! = 2 |N|^2$ ein. Sogar, $4 \mid n$ und somit $|N|$ gerade . 
-\subsubsection{Beweis des Lemma \ref{lemma3}}
-Sei $\sigma, \sigma' \in N$ und $\pi', \pi \in \tau N \tau$, sodass $\sigma\pi' = \sigma'\pi$ ist. Dann ist $\sigma^{-1}\sigma' = \pi'\pi^{-1} \in N \cap \tau N \tau = \{1\}$. Dadurch ist $\sigma = \sigma'$ und $\pi' = \pi$. Somit ergibt sich 
-\begin{align*}
-	|A_n| = |N\tau N\tau| = |\tau N \tau| = |N|^2
-\end{align*}
-Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da $n!$ duch $4$ teilbar ist für $n \geq 4$. 
-\bewiesen
-
-\subsubsection{Beweis des Satzes mit Bertrandschem Postulat}
+	\subsubsection{Beweis des Lemma \ref{lemma3}}
+	Sei $\sigma, \sigma' \in N$ und $\pi', \pi \in \tau N \tau$, sodass $\sigma\pi' = \sigma'\pi$ ist. Dann ist $\sigma^{-1}\sigma' = \pi'\pi^{-1} \in N \cap \tau N \tau = \{1\}$. Dadurch ist $\sigma = \sigma'$ und $\pi' = \pi$. Somit ergibt sich 
+	\begin{align*}
+		|A_n| = |N\tau N\tau| = |\tau N \tau| = |N|^2
+	\end{align*}
+	Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da $n!$ duch $4$ teilbar ist für $n \geq 4$. 
+	\bewiesen
+	
+	\subsubsection{Beweis des Satzes mit Bertrandschem Postulat}
 	Das Bertrandsche postulat besagt dass für $1 \leq m \in \mathbb R$ eine Primzahl $p$ mit $m < p \leq 2m$ existiert. 
 	\newline
 	Sei nun $m =\frac{n}{2}$, dann existiert eine Primzahl $p$ mit $\frac{n}{2} < p \leq n$. Da $n \geq 5$ ist, gilt $p > 2$. Somit gilt $p \mid \frac{n!}{2}$ aber $p^2 > 2p >  n$. Damit teil $p$ aber nicht $n!$. Ein Widerspruch!
-\bewiesen
-
-\subsubsection{Beweis des Satzes mit Satz von Cauchy}
-		Da $|N|$ eine nicht triviale Gruppe gerade rOrdnung ist, besagt der Satz von Cauchy, dass $N$ eine Element $\sigma$ mit $ord(\sigma) = 2$ existiert. 
-		Dann kann $\sigma$ als gerade Anzahl an Zyklen geschreieben werden mit der Ordnung $2$. 
-\begin{align*}
-	\sigma = c_0 \cdot \ldots \cdot c_k
-\end{align*} 
+	\bewiesen
+	
+	\subsubsection{Beweis des Satzes mit Satz von Cauchy}
+	Da $|N|$ eine nicht triviale Gruppe gerade rOrdnung ist, besagt der Satz von Cauchy, dass $N$ eine Element $\sigma$ mit $ord(\sigma) = 2$ existiert. 
+	Dann kann $\sigma$ als gerade Anzahl an Zyklen geschreieben werden mit der Ordnung $2$. 
+	\begin{align*}
+		\sigma = c_0 \cdot \ldots \cdot c_k
+	\end{align*} 
 	wobei $k\geq 1$ und $c_0, \ldots, c_k$ Zyklen der Ordnung $2$ und paarweise disjunkt sind. Damit gilt $c_ic_j = c_jc_i$ für alle $i,j$. 
 	Sei nun $\tau = c_0$, dann $N \cap \tau N \tau = \{1\}$, da dies für alle $\tau \in \mathcal T_n$ gilt. Somit erhalten wir durch $\sigma\tau = \tau \sigma$
-\begin{align*}
-	\sigma = \tau\sigma\tau \in N\cap \tau N \tau
-\end{align*} 
+	\begin{align*}
+		\sigma = \tau\sigma\tau \in N\cap \tau N \tau
+	\end{align*} 
 	Dies impliziert jedoch $\sigma = 1$. Ein Widerspruch! 
-
-\section{Gruppentheorie 5 - Vorlesung 6}
-\subsection{Kranzprodukte}
-\subsubsection{Vorraussetzungen}
+	
+	\section{Gruppentheorie 5 - Vorlesung 6}
+	\subsection{Kranzprodukte}
+	\subsubsection{Vorraussetzungen}
 	Sei $M = (M, +, 0)$ nicht notwendig kommutativ und $N=(N, \cdot, 1)$ beides Monoide, sowie $X$ eine Menge. 
 	Dann operiert $N$ von rechts auf $M^x = \{ f: X \to M \mid \text{ f ist eine Abbilidung} \}$. Wir schreiben statt $f(x)$ nun $xf$. 
 	Somit operiert $N$ auf $M^X$ von links 
@@ -987,10 +987,10 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 		nf : X \to M \\ 
 		x(n\cdot f) := (xn)f = xnf 
 	\end{align*}
-\subsubsection{Definition konstante Funktion}
-	 Wir definieren die konstante Funktion	$$\forall y:  c_y(x) = xc_y = y \, \, \, \forall x$$ 
-
-\subsubsection{Definition Kranzprodukt}
+	\subsubsection{Definition konstante Funktion}
+	Wir definieren die konstante Funktion	$$\forall y:  c_y(x) = xc_y = y \, \, \, \forall x$$ 
+	
+	\subsubsection{Definition Kranzprodukt}
 	Nun heißt $M \wr N$ Kranzprodukt, falls $M^X \rtimes N$ gilt, mit 
 	\begin{align*}
 		(f,m)(g,n) = (f + mg, mn) \text{ mit } x(f+mg) = xf + mg \, \, \, \forall x
@@ -998,41 +998,41 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 	Wir können also die Klammern ''vergessen''. Somit ist das Kranzprodukt wieder ein Monoid.
 	
 	
-\subsubsection{Beweis}
+	\subsubsection{Beweis}
 	Das neutrale Element $1_{M \wr N} = (c_0, 1)$.
-	 Nun zeigen wir noch im Folgenden die Assoziativität
-	 \begin{align*}
-	 	[(f,m)(g,m)](h,n) = (f +kg, km)(h,n) = (f +kg + kmh, kmn) \\
-	 	(f,m)[(g,m)(h,n)] = (f,k)(g +mn, mn) = (f + k ( g +mh)) 
-	 \end{align*}
-	 Nun bleibt zu zeigen dass $\forall x : x(f+kg + kmh) \overset{!}{=} x(f+k(g+mh))$. \\
-	 Dies gilt, da 
-	 	\begin{align*}
-	 		x(f+k(g+mh)) = xf+(xk)(g + mh) = xf + xkg + xkmh
-		 \end{align*}
+	Nun zeigen wir noch im Folgenden die Assoziativität
+	\begin{align*}
+		[(f,m)(g,m)](h,n) = (f +kg, km)(h,n) = (f +kg + kmh, kmn) \\
+		(f,m)[(g,m)(h,n)] = (f,k)(g +mn, mn) = (f + k ( g +mh)) 
+	\end{align*}
+	Nun bleibt zu zeigen dass $\forall x : x(f+kg + kmh) \overset{!}{=} x(f+k(g+mh))$. \\
+	Dies gilt, da 
+	\begin{align*}
+		x(f+k(g+mh)) = xf+(xk)(g + mh) = xf + xkg + xkmh
+	\end{align*}
 	\bewiesen
-
-\subsubsection{Satz}
+	
+	\subsubsection{Satz}
 	Seien $M, N$ Gruppen, dann ist $M^X \rtimes N$ eine Gruppe. Oder: Falls $M, N$ Gruppen sind, dann folgt dass  $M \wr N $ eine Gruppe ist.
-
-\subsubsection{Beweis}
+	
+	\subsubsection{Beweis}
 	Gesucht ist für alle $(f, m)$ ein $(g,n)$ mit $(f, m)(g,n) = (c_0, 1)$. Es bleibt zu zeigen dass für alle $(f,m)(g, m^{-1}) = f+mg$ mit $\forall x . xf + xmg = 0$ gilt. \\
 	Dafür setzen wir $xg = -xm^{-1}f$. Dann ist $$xf-xnm^{-1}f = xf-xf = 0$$	\bewiesen
 	
-\subsubsection{Satz}
+	\subsubsection{Satz}
 	Wir betrachten erneut die Sequenz 
 	\begin{figure}[h!]
 		\centering
 		\begin{equation*}
-		\begin{tikzcd}[column sep=1.5pc]
-		1 \arrow{r}{} & H \arrow{r}{} & G \arrow{r}{\psi} & F \arrow{r}{} & 1
-		\end{tikzcd}
+			\begin{tikzcd}[column sep=1.5pc]
+				1 \arrow{r}{} & H \arrow{r}{} & G \arrow{r}{\psi} & F \arrow{r}{} & 1
+			\end{tikzcd}
 		\end{equation*}
 	\end{figure} \\ 
 	Sei $\{[x] \in G \mid Hx, \, \, x \in F\}$ ein Repräsentantensystem von $F$ und $[1] = 1$. 
 	Dann ist $$\varphi: G \to H \wr F = H^F \rtimes F$$ eine Einbettung von Gruppen mit $\varphi(g) = (f_g, \psi(g))$ und $f_g(x) = [x]g[xg]^{-1}$ für $x \in F$. \\  Insbesondere ist $$G \leq H^F \rtimes F$$
-
-\subsubsection{Beweis}
+	
+	\subsubsection{Beweis}
 	Es gilt $\psi[xg] = H\psi(xg) = Hx\psi(g)$. Daher ist
 	\begin{align*}
 		\psi([x]g[xg]^{-1}) = Hx\psi(g)(x\psi(g)^{-1}) = H = 1 \in F
@@ -1043,41 +1043,41 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 	\end{align*}
 	mit 
 	\begin{align*}
-	x(f_n \cdot hf_g) = [x]h\underbrace{[xh]^{-1}[xh]}_{\substack{=1}}g[xhg] = [x]hg[xh_g] = xf_{h_g}
+		x(f_n \cdot hf_g) = [x]h\underbrace{[xh]^{-1}[xh]}_{\substack{=1}}g[xhg] = [x]hg[xh_g] = xf_{h_g}
 	\end{align*}
 	Dies impliziert dann dass $\varphi((f_n, h)(f_g,g)) = (\varphi h_{n_g}, h_g)$ und somit $\varphi$ ein Hom. ist. 
 	Abschließend gilt 
 	\begin{align*}
-	\varphi(f_g, g) = 1 \in H \wr F &\implies \psi(g) = H \\
-	&\implies g \in H \text{ und } xfg = 1 \, \, \forall x \\ 
-	&\implies 1f_g = [1]g[1g]^{-1} = g \cdot 1 = 1 \\
-	&\implies g = 1
+		\varphi(f_g, g) = 1 \in H \wr F &\implies \psi(g) = H \\
+		&\implies g \in H \text{ und } xfg = 1 \, \, \forall x \\ 
+		&\implies 1f_g = [1]g[1g]^{-1} = g \cdot 1 = 1 \\
+		&\implies g = 1
 	\end{align*}
 	\bewiesen
-
-\section{Erkennbare Mengen 1 - Vorlesung 7}
-\subsection{Rationale Mengen und Sternfreie Sprachen}
-\subsubsection{Definition Rationale Menge ($\rat$)}
+	
+	\section{Erkennbare Mengen 1 - Vorlesung 7}
+	\subsection{Rationale Mengen und Sternfreie Sprachen}
+	\subsubsection{Definition Rationale Menge ($\rat$)}
 	Sei $M$ eine Monoid (z.B $M = \sigstern$) 
 	\begin{enumerate}[label=\arabic*)]
 		\item $L \subseteq M $ und $ |L| \leq \infty$ dann $L \in \rat(M)$
 		\item $L_1, L_2 \in \rat(M) \implies L_1 \cup L_2 \in \rat(M), \, \, L_1 \cdot L_2 \in \rat(M)$ \\ 
 		wobei $ L_1 \cdot L_2 = \{w \in M \mid \exists u,v \in M : w = uv, \, \, u \in L_1 \, v \in L_2\}$
-	\item
-	\begin{align*}
-		L_1^\ast = \bigcup_{i \geq 0} L^i \in \rat(M) \text{ mit } L^0=\{1_m\} \text{ und } L^{i+1} = L^iL
-	\end{align*}
-	Man beachte, dass $\bigcup_{i \geq 0} L^i $ hierbei das erzeugte Untermonoid von $L$ in $M$ ist.
-		\end{enumerate}
-
-
-\subsubsection{Definition Sternfreie Sprachen ($\starfree$)}
+		\item
+		\begin{align*}
+			L_1^\ast = \bigcup_{i \geq 0} L^i \in \rat(M) \text{ mit } L^0=\{1_m\} \text{ und } L^{i+1} = L^iL
+		\end{align*}
+		Man beachte, dass $\bigcup_{i \geq 0} L^i $ hierbei das erzeugte Untermonoid von $L$ in $M$ ist.
+	\end{enumerate}
+	
+	
+	\subsubsection{Definition Sternfreie Sprachen ($\starfree$)}
 	\begin{enumerate}[label=\arabic*)]
 		\item $L \subseteq M $ und $ |L| < \infty \implies L \in \starfree(M)$
 		\item $L_1, L_2 \in \starfree(M) \implies L_1 \cup L_2 \in \starfree(M), \, \, L_1 \cdot L_2 \in \starfree(M)$  und $M \setminus L = \overline{L} \in \starfree(M)$\\ 
 	\end{enumerate}
-
-\subsubsection{Beispiele für Sternfreie Sprachen}
+	
+	\subsubsection{Beispiele für Sternfreie Sprachen}
 	Sei $\Sigma = \{a,b\}$, dann gilt $(aa)^\ast \not\in \starfree(\sigstern)$, aber $(ab)^\ast \in \starfree(\sigstern)$. Es gilt $\sigstern \in \starfree(\sigstern)$, da $\sigstern = \overline{\emptyset}$. 
 	\newline
 	
@@ -1089,18 +1089,18 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 	\begin{align*}
 		\overline{(ab)}^\ast = \sigstern aa \sigstern \cup \sigstern bb \sigstern \cup b\sigstern \cup \sigstern a
 	\end{align*}
-
- 
-
-\subsubsection{Definition erkennbare Sprachen ($\rec$)}
+	
+	
+	
+	\subsubsection{Definition erkennbare Sprachen ($\rec$)}
 	Wir definieren $\rec$ wie folgt  $$L \in \rec(M) \iff \exists \varphi : M \to N$$ ein Hom. von Monoiden mit $|N| \leq \infty$ und $\varphi\inv\varphi(L) = L$
 	Das heißt $\forall w \ in M$ gilt $w\in L \iff w \in \varphi(L) \subseteq N$.
-
-\subsubsection{Definition aperiodisch}
-	$N$ ist aperiodisch genau dann wenn alle Unterguppen von $N$ trivial sind, bzw $N$ gruppenfrei ist.
- 
 	
-\subsubsection{Satz von Schützenberger}
+	\subsubsection{Definition aperiodisch}
+	$N$ ist aperiodisch genau dann wenn alle Unterguppen von $N$ trivial sind, bzw $N$ gruppenfrei ist.
+	
+	
+	\subsubsection{Satz von Schützenberger}
 	Es gilt 
 	\begin{align*}
 		\exists \varphi: \sigstern \to N \text{ ist ein Hom. mit } |N| \leq &\infty \text{ und } \varphi\inv\varphi(L) = L \text{ und $N$ ist aperiodisch} \\ 
@@ -1108,40 +1108,40 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 		\synt(L) &\text{ ist aperiodisch}
 	\end{align*}
 	
-\subsubsection{Definition DFA über M}
+	\subsubsection{Definition DFA über M}
 	Ein DFA über einem Monoid $M$ ist ein Tupel $(Q, \cdot, q_0, F)$. 
 	\begin{enumerate}[label=\arabic*)]
 		\item $\cdot: Q \times M \to Q$ ist eine Operation von $M$ auf $Q$ von rechts. Das heißt also
-			\begin{align*}
-				(q \cdot u) \cdot v = q(uv) \text{ und } q1_m = q \text{ gilt } \forall q \in Q \text{ und } \forall u,v \in M
-			\end{align*}
-		\item $|Q| < \infty$ ist eine endliche Menge von Zuständen $F\subseteq Q,  \, q_0 \in Q$. \\
+		\begin{align*}
+			(q \cdot u) \cdot v = q(uv) \text{ und } q1_m = q \text{ gilt } \forall q \in Q \text{ und } \forall u,v \in M
+		\end{align*}
+		\item $|Q| < \infty$ ist eine endliche Menge von Zuständen $F\subseteq Q,  \, q_0 \in Q$. \\
 		Dies definiert dann $L(A) = \{w \in M \mid q_0w \in F\}$
 	\end{enumerate}
-
-\subsubsection{Beispiel für einen DFA über M}
+	
+	\subsubsection{Beispiel für einen DFA über M}
 	Sei $L \in \rec(M)$ und vermöge $\varphi: M \to N$ ein Hom. \\ 
 	Dann definiert dies einen DFA $A = (Q,\cdot, q_0, F)$ mit $L(A) = L$ und $N = Q$. 
 	Hierbei ist $q_0 = 1_M \in N$. 
 	\begin{itemize}
-	\item $\cdot : N \times M \to N$ mit $qu := q\varphi(u)$. Dann gilt
-	\begin{align*}
-		(q \cdot u)\cdot v = (q\varphi(u))v = q \varphi(u)\varphi(v) = q(\varphi(uv)) = q(uv)
-	\end{align*}
-	\item $q = q \cdot 1_M = q \cdot \varphi(N) = q1_N = q$
-	\item $F = \{\varphi(u) \mid u \in L \}$
-\end{itemize}
-
-\section{Erkennbare Mengen 2 - Vorlesung 8}
-\subsection{Abschlusseigenschaften von $\rat$ und $\rec$}
-\subsubsection{$\rat$ Abschluss unter Hom.}
+		\item $\cdot : N \times M \to N$ mit $qu := q\varphi(u)$. Dann gilt
+		\begin{align*}
+			(q \cdot u)\cdot v = (q\varphi(u))v = q \varphi(u)\varphi(v) = q(\varphi(uv)) = q(uv)
+		\end{align*}
+		\item $q = q \cdot 1_M = q \cdot \varphi(N) = q1_N = q$
+		\item $F = \{\varphi(u) \mid u \in L \}$
+	\end{itemize}
+	
+	\section{Erkennbare Mengen 2 - Vorlesung 8}
+	\subsection{Abschlusseigenschaften von $\rat$ und $\rec$}
+	\subsubsection{$\rat$ Abschluss unter Hom.}
 	Es gilt $h: M' \to M$ ist ein Hom. und es gilt $$L' \in \rat(M') \implies h(L) \in \rat(M)$$
-
-\subsubsection{$\rec$ Abschluss unter Hom.}
+	
+	\subsubsection{$\rec$ Abschluss unter Hom.}
 	Es gilt $h: M' \to M$ ist ein Hom. und es gilt $$L' \in \rec(M') \implies h\inv(L) \in \rec(M)$$
-
-\subsection{DFA durch $A_L$}
-\subsubsection{Definition}
+	
+	\subsection{DFA durch $A_L$}
+	\subsubsection{Definition}
 	Sei $Q_L = \{L(u) \mid u \in M\}$ mit der Leistung des Wortes $L(u) = \{ w \in M \mid uw \in L\}$. Weiter ist 
 	\begin{align*}
 		\cdot: Q_L \times M  \to Q_L
@@ -1152,217 +1152,217 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 		f: Q \to Q'
 	\end{align*} ein Morphismus, falls $f(q)u=f(qu)$ und $f(q_1) = q_0'$ mit $f(F) \subseteq F'$ gilt.
 	Wir folgern daraus, dass $L(A) \subseteq L(A')$ mit $L(A) = L(A') \iff f\inv(F') = F$ gilt. 
-
-\subsubsection{Lemma}
+	
+	\subsubsection{Lemma}
 	Sei $A = (Q, \cdot, q_0, F)$ ein deterministischer Automat mit $L = L(A)$ und $A_L = (Q_L, \cdot, q_L, F_L)$ der Automat $L$ mit $Q_L = \{L(u) \mid u \in M\}$.  \\
 	
 	Wir setzen $A' = (\{q_u \mid u \in M\}, \cdot, q_0, \{q_0u \in F \mid u \in M\})$, dann definiert $$f: \{q_0u \mid u \in M\} \to Q_L$$ und $f(q_0u) = L(u)$ einen surjektiven Morphismus.
-
-\subsubsection{Beweisskizze Lemma}
+	
+	\subsubsection{Beweisskizze Lemma}
 	Definiere die Leistung $L(q)$ für $q \in Q$ mit $$L(q) = \{v \in M \mid qv \in F\}$$ Allgemein gilt dann $L(q_0U) = \{v \in M \mid q_0uv \in F\} = \{v \in M \mid uv \in F\} \implies \ldots$ triv. \\
 	Also ist $A_L$ der kleinste Automat der $L$ erkennt.
-
-\subsection{Syntaktische Kongruenz}
-\subsubsection{Definition}
+	
+	\subsection{Syntaktische Kongruenz}
+	\subsubsection{Definition}
 	Sei $L \subseteq M$. Wir definieren dann $[u] = \{u \in M \mid u \equiv_L v\}$ mit $$ u \equiv_L v \iff \forall x,y \in M : (xuy \in L \iff xvy \in L)$$
 	
-\subsubsection{Lemma}
+	\subsubsection{Lemma}
 	$\equiv_L$ ist eine Kongruenz, also gilt $[u][v]=[uv]$ 
-
-\subsubsection{Beweis des Lemmas}
+	
+	\subsubsection{Beweis des Lemmas}
 	Wir zeigen $u \equiv_L u'$ und $v \equiv_L v' \overset{!}{\implies} uv \equiv_L u'v'$. 
 	
 	Betrachte $x,y \in M$ mit $$xuvy \in L \iff xu'vy \in L \iff xu'v'y \in L$$ Also ist $\pi: M \to \synt(L), \, u \mapsto [u]$ ein surjektiver Hom. 
 	
-\subsubsection{Satz}
-	 Sei $h: M \to N$ ein Hom. mit $h\inv(h(L)) = L$. Dann definiert $f:h(m) \to \synt(L)$ durch $h(u) = [u]$ einen surjektiven Hom. 
-
-\subsubsection{Beweis des Satzes}	 
+	\subsubsection{Satz}
+	Sei $h: M \to N$ ein Hom. mit $h\inv(h(L)) = L$. Dann definiert $f:h(m) \to \synt(L)$ durch $h(u) = [u]$ einen surjektiven Hom. 
+	
+	\subsubsection{Beweis des Satzes}	 
 	Zu zeigen ist (nur), dass $h(u) = h(v) \implies [u]=[v]$. triv.
 	
-\subsubsection{Konsequenz des Satzes}	
+	\subsubsection{Konsequenz des Satzes}	
 	$\synt(L)$ ist das kleinste Monoid dass $L$ erkennt. 
-
-\subsubsection{Graphische Interpretation}	
-
+	
+	\subsubsection{Graphische Interpretation}	
+	
 	\begin{figure}[h!]
 		\centering
-			\begin{tikzpicture}[node distance=3cm, auto]
-				\node (A) {$h:M$};
-				\node (B) [right of=A] {$h(M) = N' \leq N$};
-				\node (C) [below of=A] {$\synt(L)$};
-				
-				\draw[-{Stealth}] (A) to node {} (B);
-				\draw[-{Stealth}, dashed] (B) to node [] {$\exists! f: f(n) = [u], \text{ falls } u = h(u)$} (C);
-				\draw[-{Stealth}] (A) to node [swap] {$\pi : u \mapsto [u]$} (C);
-			\end{tikzpicture}
-			\caption{Zu zeigen: $u = h(u) = h(v) \implies [u] = [v]$}
+		\begin{tikzpicture}[node distance=3cm, auto]
+			\node (A) {$h:M$};
+			\node (B) [right of=A] {$h(M) = N' \leq N$};
+			\node (C) [below of=A] {$\synt(L)$};
+			
+			\draw[-{Stealth}] (A) to node {} (B);
+			\draw[-{Stealth}, dashed] (B) to node [] {$\exists! f: f(n) = [u], \text{ falls } u = h(u)$} (C);
+			\draw[-{Stealth}] (A) to node [swap] {$\pi : u \mapsto [u]$} (C);
+		\end{tikzpicture}
+		\caption{Zu zeigen: $u = h(u) = h(v) \implies [u] = [v]$}
 	\end{figure}
-
-\subsubsection{Folgerung des Satzes}	
+	
+	\subsubsection{Folgerung des Satzes}	
 	$L \in rec(M) \implies |\synt(L)| < \infty \implies A_L \text{ ist ein DFA, dh. } Q_L = \{L(u) \mid u \in M\} \text{ ist endlich}$
-
-\subsubsection{Beweis}
-	 Sei $L \subseteq M$ und sei $A = (Q, \cdot, q_0, F)$ ein deterministischer endlicher Automat mit $L = L(A)$. \\
-	 Dann ist $(Q^Q, \cdot, id_Q)$ ein Monoid mit  $Q^Q = \{ f : Q \to Q \mid f\text{ ist eine Abbildung}\}$ und $(f \circ g)(q) = g f(q)$, sowie $$ \varphi : M \to Q^Q, \, \, u \mapsto f_a$$  mit $f_u(q) = q_u$. \\
-	 
-	 Weiter ist $(f_u \circ f_v)(q) = quv$ und $T = \{f_u \mid u \in M\}$, und somit $\varphi: M \to T$. Für $Q=n$ gilt $|T| \leq n^n \in 2^{n \log n}$. 
-	 \begin{figure}[h!]
-	 	\centering
-	 	\begin{tikzpicture}[node distance=3cm, auto]
-	 	\node (A) {$M$};
-	 	\node (B) [right of=A] {$T$};
-	 	\node (C) [below of=A] {$\synt(L)$};
-	 	
-	 	\draw[-{Stealth}] (A) to node {} (B);
-	 	\draw[-{Stealth}, dashed] (B) to node [] {$\psi$} (C);
-	 	\draw[-{Stealth}] (A) to node [swap] {$y \mapsto [y]$} (C);
-	 	\end{tikzpicture}
-	 \end{figure}
- 
- Zu zeigen ist also $f_u = f_v \overset{!}{\implies} [u] = [v]$. 
- 
- Wir betrachten nun $x, y \in M$ mit $xuy \in L \implies q_0xu \in F$ und $q_0xu = f_a(q_0x) = f_v(q_0x)$. Dann folgt
- 	\begin{align*}
- 		q_0xvy \in F &\implies xvy \in L\\
- 		&\implies \psi \text{ ist wohldefiniert}
- 	\end{align*}
- 	
-	 Umgekehrt sei nun $Q = Q_L = \{L(x) \mid x \in M\} =$ Zustände des minimalen deterministischen Automaten. Dann gilt $[u]= [v] \implies f_u = f_v$. Dies ist begründet durch
-	  \begin{align*}
-	  	[u]= [ v ] \implies f_u(L(x)) &= L(x)u \\
-	  	&= L(xu) = \{y \mid xuy \in L\} \\ 
-	  	&= \{y \mid xvy \in L\} \\
-	  	&= L(x)v 
-	 \end{align*}
-	 $\implies \forall x L(x)u = L(x)v \implies f_u = f_v$
-	 \bewiesen
-	 
-\subsubsection{Konsequenz des Satzes}
-	$\synt(L) \cong T = \{f_U \mid u \in M\}$
-
-\subsubsection{Satz von McKnight}
-	Es gilt 
+	
+	\subsubsection{Beweis}
+	Sei $L \subseteq M$ und sei $A = (Q, \cdot, q_0, F)$ ein deterministischer endlicher Automat mit $L = L(A)$. \\
+	Dann ist $(Q^Q, \cdot, id_Q)$ ein Monoid mit  $Q^Q = \{ f : Q \to Q \mid f\text{ ist eine Abbildung}\}$ und $(f \circ g)(q) = g f(q)$, sowie $$ \varphi : M \to Q^Q, \, \, u \mapsto f_a$$  mit $f_u(q) = q_u$. \\
+	
+	Weiter ist $(f_u \circ f_v)(q) = quv$ und $T = \{f_u \mid u \in M\}$, und somit $\varphi: M \to T$. Für $Q=n$ gilt $|T| \leq n^n \in 2^{n \log n}$. 
+	\begin{figure}[h!]
+		\centering
+		\begin{tikzpicture}[node distance=3cm, auto]
+			\node (A) {$M$};
+			\node (B) [right of=A] {$T$};
+			\node (C) [below of=A] {$\synt(L)$};
+			
+			\draw[-{Stealth}] (A) to node {} (B);
+			\draw[-{Stealth}, dashed] (B) to node [] {$\psi$} (C);
+			\draw[-{Stealth}] (A) to node [swap] {$y \mapsto [y]$} (C);
+		\end{tikzpicture}
+	\end{figure}
+	
+	Zu zeigen ist also $f_u = f_v \overset{!}{\implies} [u] = [v]$. 
+	
+	Wir betrachten nun $x, y \in M$ mit $xuy \in L \implies q_0xu \in F$ und $q_0xu = f_a(q_0x) = f_v(q_0x)$. Dann folgt
 	\begin{align*}
-			\rec(M) \subseteq \rat(M) &\iff M \in \rat(M)\\ 
-			 &\iff M \text{ ist endlich erzeugt} \\ 
-			 &\iff \exists \Sigma \text{ endlich und } \pi : \sigstern \to M \text{ ist surjektiver Hom. }
+		q_0xvy \in F &\implies xvy \in L\\
+		&\implies \psi \text{ ist wohldefiniert}
 	\end{align*}
 	
-\subsubsection{Beweis des Satzes von McKnight}
+	Umgekehrt sei nun $Q = Q_L = \{L(x) \mid x \in M\} =$ Zustände des minimalen deterministischen Automaten. Dann gilt $[u]= [v] \implies f_u = f_v$. Dies ist begründet durch
+	\begin{align*}
+		[u]= [ v ] \implies f_u(L(x)) &= L(x)u \\
+		&= L(xu) = \{y \mid xuy \in L\} \\ 
+		&= \{y \mid xvy \in L\} \\
+		&= L(x)v 
+	\end{align*}
+	$\implies \forall x L(x)u = L(x)v \implies f_u = f_v$
+	\bewiesen
+	
+	\subsubsection{Konsequenz des Satzes}
+	$\synt(L) \cong T = \{f_U \mid u \in M\}$
+	
+	\subsubsection{Satz von McKnight}
+	Es gilt 
+	\begin{align*}
+		\rec(M) \subseteq \rat(M) &\iff M \in \rat(M)\\ 
+		&\iff M \text{ ist endlich erzeugt} \\ 
+		&\iff \exists \Sigma \text{ endlich und } \pi : \sigstern \to M \text{ ist surjektiver Hom. }
+	\end{align*}
+	
+	\subsubsection{Beweis des Satzes von McKnight}
 	Es gilt $\emptyset, M \in \rec(M)$. Vermöge $$h: M \to \{1\}$$ Wenn $M \in \rat(M)$ ist, dann folgt daraus $M=L$ für einen regulären Ausdruck für $M$. 
 	
 	Zu zeigen ist also nur die andere Richtung. 
 	\newline
 	
-	Sei $\pi : \sigstern \to M$ ein surjektiver Hom. und $|\Sigma| < \infty$, mit $L \in \rec(M) \implies L \in \rat(M)$. 
-
-		\begin{equation*}
-			\begin{tikzcd}[column sep=1.5pc]
-				\sigstern \arrow{r}{\pi} & M \arrow{r}{h} & N 
-			\end{tikzcd}
-		\end{equation*}
-		mit $|N| < \infty$ und $h\inv(h(L)) = L$. Dann folgt $\pi\inv(L) \in \rec(M) \implies \exists \text{ DFA } A \text{ und } \pi\inv(L) = L(A)$. Betrachte nun $\pi\pi\inv(L) = L \in \rat(M)$
-		\bewiesen
-		
-\subsubsection{Definition NFA über M}
+	Sei $\pi : \sigstern \to M$ ein surjektiver Hom. und $|\Sigma| < \infty$, mit $L \in \rec(M) \implies L \in \rat(M)$. 
+	
+	\begin{equation*}
+		\begin{tikzcd}[column sep=1.5pc]
+			\sigstern \arrow{r}{\pi} & M \arrow{r}{h} & N 
+		\end{tikzcd}
+	\end{equation*}
+	mit $|N| < \infty$ und $h\inv(h(L)) = L$. Dann folgt $\pi\inv(L) \in \rec(M) \implies \exists \text{ DFA } A \text{ und } \pi\inv(L) = L(A)$. Betrachte nun $\pi\pi\inv(L) = L \in \rat(M)$
+	\bewiesen
+	
+	\subsubsection{Definition NFA über M}
 	Ein DFA über einem Monoid $M$ ist ein Tupel $(Q, \delta, I, F)$ mit $I, F \subseteq Q$ wobei $$\delta \subseteq Q \times M \times Q$$ und $|\delta| < \infty$. 
 	Duch $L(A) = \{w \in M \mid \exists w = u_1 \ldots u_n\}$ und der Pfad 
-		\begin{equation*}
+	\begin{equation*}
 		\begin{tikzcd}[column sep=1.7pc]
 			q_0\arrow{r}{u_1} &  q_1 \arrow{r}{u_2} & \ldots \arrow{r}{u_n} & q_n
 		\end{tikzcd}
-		\end{equation*}
-		Dabei ist $q_i \overset{u_i}{\longrightarrow } q_{i+1} \in \delta \forall i, q_0 \in T, q_n \in F$.
-		
-\subsubsection{Satz}
+	\end{equation*}
+	Dabei ist $q_i \overset{u_i}{\longrightarrow } q_{i+1} \in \delta \forall i, q_0 \in T, q_n \in F$.
+	
+	\subsubsection{Satz}
 	Es gilt $$ L \in \rat(M) \iff \exists \text{ NFA mit } L(A) = L $$
-
-\subsubsection{Beweis des Satz}
+	
+	\subsubsection{Beweis des Satz}
 	Wie in der Vorlesung Formale Sprachen und Automatentheorie
 	
-\section{Syntaktische Monoide- Vorlesung 9}
-\subsection{Wortprobleme in Gruppen}
-\subsubsection{Definition}
+	\section{Syntaktische Monoide- Vorlesung 9}
+	\subsection{Wortprobleme in Gruppen}
+	\subsubsection{Definition}
 	Sei $\pi : \sigstern \to G$ eine Präsentation einer endlich erzeugten Gruppe. Dann definiert $$\wop(G) = \{ w \in \sigstern \mid \pi(w)=1 \in G\}$$
-
-\subsubsection{Lemma}
+	
+	\subsubsection{Lemma}
 	Es gilt $\synt(\wop(G))=G$ mit 
-		\begin{align*}
-			\pi : \sigstern &\to \synt(L) \\
-			u &\mapsto [u]
-		\end{align*}
-
-\subsubsection{Beweis des Lemmas}
+	\begin{align*}
+		\pi : \sigstern &\to \synt(L) \\
+		u &\mapsto [u]
+	\end{align*}
+	
+	\subsubsection{Beweis des Lemmas}
 	Für die Hin-Richtung gilt $\pi(u) = \pi(v)$. Daraus folgt dann
 	\begin{align*}
-		 xuy \in \wop(G) &\iff \pi(x)\pi(u)\pi(y) = 1 \in G \\
-			&\iff \pi(x)\pi(v)\pi(y) = 1 \\
-			&\iff xvy \in \wop(G)
+		xuy \in \wop(G) &\iff \pi(x)\pi(u)\pi(y) = 1 \in G \\
+		&\iff \pi(x)\pi(v)\pi(y) = 1 \\
+		&\iff xvy \in \wop(G)
 	\end{align*}
 	Daraus schließen wir $u \equivWP v$
 	\newline
 	
 	Für die Rück-Richtung sei jetzt $u \equivWP v$. Dann gilt 
-		\begin{align*}
-			1\cdot u \cdot y \in \wop(G) &\iff  \pi(y) = \pi(u)\inv
-		\end{align*}
-		Daraus folgt $1vy \in \wop(G)$, und somit ist $\pi(y) = \pi(v)\inv$. Also $\pi(u) = \pi(v)$
-		\bewiesen
-
-\subsubsection{Korrolar}
+	\begin{align*}
+		1\cdot u \cdot y \in \wop(G) &\iff  \pi(y) = \pi(u)\inv
+	\end{align*}
+	Daraus folgt $1vy \in \wop(G)$, und somit ist $\pi(y) = \pi(v)\inv$. Also $\pi(u) = \pi(v)$
+	\bewiesen
+	
+	\subsubsection{Korrolar}
 	Wir können ohne Beweis also schließen $$|G| < \infty \iff \wop(G) \text{ ist reguläre Spräche}$$
-
-\subsubsection{Satz}
+	
+	\subsubsection{Satz}
 	Sei $L \in \rec(G)$, dann gibt es eine Untergruppe (sogar einen Normalteiler $H \trianglelefteq G$) von endlichem Index, und es existieren Elemente
 	$g_1, \ldots, g_n$ so, dass $L = g_1H \cup g_2H \cup \ldots \cup g_nH$.   
-
-\subsubsection{Beweis des Satzes}
+	
+	\subsubsection{Beweis des Satzes}
 	Sei $L \in \rec(G) \implies h\inv(F)$ für einen Hom. $h:G \to N$, und $|N| < \infty$. \\
 	
 	\OE $\, \, h$ ist surjektiv und $h:G \to N \implies N$  ist eine Gruppe. 
 	
 	Sei nun $h(g) \in N$ und $H= ker(n) \trianglelefteq G$ von endlichem Index, dann folgt $h(gH) \in F$ somit $gH \subseteq L$
 	\bewiesen
-
-\subsubsection{Folgerung des Satzes}	
+	
+	\subsubsection{Folgerung des Satzes}	
 	Ist $G$ eine unendliche Gruppe, $L \subseteq G$ endlich (zB. $L = \{1\}$), dann ist $L \in rat(G) \setminus \rec(G)$
 	
-\subsection{Syntaktische Kongruenzen}
-\subsubsection{Definition Idempotenz}
+	\subsection{Syntaktische Kongruenzen}
+	\subsubsection{Definition Idempotenz}
 	Ein Element $e$ aus einem Monoid $M$ heißt idempotent, falls $$e^2 = e$$
 	Dann können wir die folgende Menge definieren $$E(M) = \{ eeM \mid e^2 = 2\}$$ mit $1\in E(M)$
-
-\subsubsection{Definition lokales Monoid}
+	
+	\subsubsection{Definition lokales Monoid}
 	Sei $S$ eine Halbgruppe mit $E(S) = \{e \in S \mid e^2 = e\}$  und $e \in E(S)$, dann gibt es eine Unterhalbgruppe $eSe \leq S$ und sogar ein Monoid, da 	$e(exe) = (exe)e$, wobei 
 	\begin{align*}
 		eS^1e &= eSe \cup \{ee\} \\
 		&=eSe \cup \{e\}
 	\end{align*}
 	Das Monoid $eMe$ nennt man das lokale Monoid bei $eeE(M)$
-
-\subsubsection{Definition Teilwort}
+	
+	\subsubsection{Definition Teilwort}
 	Ein Wort $w = a_1 \ldots a_n$ heißt Teilwort von $w$ falls $w \in \sigstern a_1 \sigstern a_2 \sigstern \ldots a_n\sigstern$ gilt
-
-\subsubsection{Beispiele} 
+	
+	\subsubsection{Beispiele} 
 	\begin{itemize}
 		\item Sei $\Sigma = \{a, b\}$ und $\synt((ab)^\ast) = \{1, a ,b , ab, ba, 0\} = B^1_2 =$ Brandt-Monoid mit $2$ Erzeugenden und den folgenden Rechenregeln für alle $x$: 
-			\begin{align*}
-				1x &= x1 = x   &&aba = a  &&&a^2=b^2 = 0\\
-				0x &= x0 = 0   &&bab = b 
-			\end{align*}
-			Weiter ist $$\pi: \sigstern \to B^1_2$$ definiert durch $\pi(a) = a$ und $\pi(b) = b$. Dann gilt 
-			\begin{align*}
-				(ab)^n &\equiv 1 \text{ für } n = 0 \\
-				(ab)^n &\equiv ab \text{ für } n \geq 1 
-			\end{align*} Die idempotenten Elemente sind: $1, ab ,ba, 0$
+		\begin{align*}
+			1x &= x1 = x   &&aba = a  &&&a^2=b^2 = 0\\
+			0x &= x0 = 0   &&bab = b 
+		\end{align*}
+		Weiter ist $$\pi: \sigstern \to B^1_2$$ definiert durch $\pi(a) = a$ und $\pi(b) = b$. Dann gilt 
+		\begin{align*}
+			(ab)^n &\equiv 1 \text{ für } n = 0 \\
+			(ab)^n &\equiv ab \text{ für } n \geq 1 
+		\end{align*} Die idempotenten Elemente sind: $1, ab ,ba, 0$
 		\item Betrachte $M = \{1, a, b, 0\}$ mit den Rechenregeln 
-			\begin{align*}
-				ab &= 0    && a^2 = 0 &&&b^2 = b \\
-				b(ba) &= ba   &&(ba)a = ba &&& (ba)b = 0 \\
-				a(ba) &= 0  &&(ba)^2 = (ba)(ba) = 0
-			\end{align*}
-			Somit ist zu erkennen dass nur $ba$ nicht idempotent ist. 
+		\begin{align*}
+			ab &= 0    && a^2 = 0 &&&b^2 = b \\
+			b(ba) &= ba   &&(ba)a = ba &&& (ba)b = 0 \\
+			a(ba) &= 0  &&(ba)^2 = (ba)(ba) = 0
+		\end{align*}
+		Somit ist zu erkennen dass nur $ba$ nicht idempotent ist. 
 		\item Wir betrachten die kontextfreie Grammatik $\mathscr{G}$ gegeben durch die Regeln $$A \to \alpha \text{ mit } A \in V, \alpha \in (\Sigma \cup V)^\ast$$ oder $$\varepsilon \to \alpha \in (V \cup \Sigma)^\ast$$. 
 		
 		Dann sei $\mathscr{G}: \Sigma = \{a, b\}$ mit 
@@ -1377,75 +1377,75 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 		\newline
 		\textbf{Antwort:} Es gilt $a^nb^2a^n \in L \iff n+m \equiv 0 (2)$ und wir wissen dass $$(ab)^2(ba)^n \iff n = m$$ Somit folgt: $L$ ist nicht regulär.
 	\end{itemize}
-
-\section{Halbgruppentheorie - Vorlesung 10}
-\subsection{Greens Relations}
-\subsubsection{Definition Ideal}
+	
+	\section{Halbgruppentheorie - Vorlesung 10}
+	\subsection{Greens Relations}
+	\subsubsection{Definition Ideal}
 	Bei Idealen eines Rings unterscheidet man in sogenannte Links-, Rechts- und Beidseitige Ideale. 
-	Sei $I \subseteq R$ für einen Ring $R$. Dann ist $I$ ein Linksideal, falls 
+	Sei $I \subseteq R$ für einen Ring $R$. Dann ist $I$ ein Linksideal, falls 
 	\begin{enumerate}[label= \arabic*.)]
 		\item $(I, +)$ bildet eine Untergruppe von $R$ 
 		\item $\forall a \in I, r \in R : r \cdot a \in I  $
 	\end{enumerate}
-\subsubsection{Definition Greensrelations}	
+	\subsubsection{Definition Greensrelations}	
 	Die folgenden Relationen sind alles Äquivalenz Relationen. 
 	\begin{align*}
 		\mathcal L \subseteq M \times M: x \grel y &\iff Mx = My \\ 
-			&\iff x,y \text{ erzeugen identische Linksideale} \\
-		\mathcal R \subseteq M \times M: x \grer y &\iff xM = yM  \\ 
-			&\iff x,y \text{ erzeugen identische Rechtsideale} \\
+		&\iff x,y \text{ erzeugen identische Linksideale} \\
+		\mathcal R \subseteq M \times M: x \grer y &\iff xM = yM  \\ 
+		&\iff x,y \text{ erzeugen identische Rechtsideale} \\
 		\mathcal J \subseteq M \times M: x \grej y &\iff MxM = MyM \\ 
 		\mathcal H = \mathcal L \cap \mathcal R: x \greh y &\iff x \grel y \text{ und } x \grer y
 	\end{align*}
 	
 	Sowie 
 	\begin{align*}
-	\mathcal L \subseteq M \times M: x \lgreleq y &\iff Mx \subseteq My \\
-	\mathcal R \subseteq M \times M: x \lgrereq y &\iff xM \subseteq yM \\
-	\mathcal J \subseteq M \times M: x \lgrejeq y &\iff MxM \subseteq MyM 
+		\mathcal L \subseteq M \times M: x \lgreleq y &\iff Mx \subseteq My \\
+		\mathcal R \subseteq M \times M: x \lgrereq y &\iff xM \subseteq yM \\
+		\mathcal J \subseteq M \times M: x \lgrejeq y &\iff MxM \subseteq MyM 
 	\end{align*}
 	
-	 Im Allgemeinen gilt für $R \subseteq X \times Y$ und $S \subseteq Y \times Z$
-	 \begin{align*}
-	 	R \circ S &= \{(x,y) \in X \times Z \mid \exists y \in Y: (x,y) \in R, (y, z) \in S\} 
-	 \end{align*} 
-	 Bezogen auf die Greensrelations bedeutet das $$\mathcal L \circ \mathcal R = \{ (x,y) \subseteq M \times M \mid \exists z \in M : x \grel z \grer y \}$$
-	 \newline
-	 
-	 Somit entsteht dann entsteht folgendes Bild 
-	 \begin{figure}[h!]
-	 	\centering
-	 	\begin{tikzpicture}[node distance=3cm, auto]
-	 	\node (H) {$\mathcal{H}$};
-	 	\node (L) [above right of=H] {$\mathcal{L}$};
-	 	\node (R) [below right of=H] {$\mathcal{R}$};
-	 	\node (LUR) [below right of=L] {$\mathcal L \cup \mathcal R$};
-	 	\node (LDR) [right of=LUR] {$\mathcal L \circ \mathcal R = \mathcal D$};
-	 	\node (J) [right of=LDR] {$\mathcal J$};
-	 	
-	 	\draw[-] (H) -- (L) node[midway,sloped,above,rotate=0] {$\subseteq$};
-	 	\draw[-] (H) -- (R) node[midway,sloped,below,rotate=0] {$\subseteq$};
-	 	\draw[-] (L) -- (LUR) node[midway,sloped,above,rotate=0] {$\subseteq$};
-	 	\draw[-] (R) -- (LUR) node[midway,sloped,below,rotate=0] {$\subseteq$};
-	 	\draw[-] (LUR) -- (LDR) node[midway,sloped,above,rotate=0] {$\subseteq$};
-	 	\draw[-] (LDR) -- (J) node[midway,sloped,above,rotate=0] {$\subseteq$};
-	 	\end{tikzpicture}
-	 	\caption{Die Verbindungen zwischen den einzelnen Greensrelations}
-	 \end{figure} \\ 
- 
- 	Im Allgemeinen gilt $\mathcal D \not = \mathcal J$, für endliche Halbgruppen jedoch $\mathcal D = \mathcal J$. Dies werden wir später noch zeigen. 
-
-\subsubsection{Definition K-Trivial}		
+	Im Allgemeinen gilt für $R \subseteq X \times Y$ und $S \subseteq Y \times Z$
+	\begin{align*}
+		R \circ S &= \{(x,y) \in X \times Z \mid \exists y \in Y: (x,y) \in R, (y, z) \in S\} 
+	\end{align*} 
+	Bezogen auf die Greensrelations bedeutet das $$\mathcal L \circ \mathcal R = \{ (x,y) \subseteq M \times M \mid \exists z \in M : x \grel z \grer y \}$$
+	\newline
+	
+	Somit entsteht dann entsteht folgendes Bild 
+	\begin{figure}[h!]
+		\centering
+		\begin{tikzpicture}[node distance=3cm, auto]
+			\node (H) {$\mathcal{H}$};
+			\node (L) [above right of=H] {$\mathcal{L}$};
+			\node (R) [below right of=H] {$\mathcal{R}$};
+			\node (LUR) [below right of=L] {$\mathcal L \cup \mathcal R$};
+			\node (LDR) [right of=LUR] {$\mathcal L \circ \mathcal R = \mathcal D$};
+			\node (J) [right of=LDR] {$\mathcal J$};
+			
+			\draw[-] (H) -- (L) node[midway,sloped,above,rotate=0] {$\subseteq$};
+			\draw[-] (H) -- (R) node[midway,sloped,below,rotate=0] {$\subseteq$};
+			\draw[-] (L) -- (LUR) node[midway,sloped,above,rotate=0] {$\subseteq$};
+			\draw[-] (R) -- (LUR) node[midway,sloped,below,rotate=0] {$\subseteq$};
+			\draw[-] (LUR) -- (LDR) node[midway,sloped,above,rotate=0] {$\subseteq$};
+			\draw[-] (LDR) -- (J) node[midway,sloped,above,rotate=0] {$\subseteq$};
+		\end{tikzpicture}
+		\caption{Die Verbindungen zwischen den einzelnen Greensrelations}
+	\end{figure} \\ 
+	
+	Im Allgemeinen gilt $\mathcal D \not = \mathcal J$, für endliche Halbgruppen jedoch $\mathcal D = \mathcal J$. Dies werden wir später noch zeigen. 
+	
+	\subsubsection{Definition K-Trivial}		
 	Sei $K \in \{\mathcal{H}, \mathcal{L},\mathcal{R}, \mathcal{D}, \mathcal{J}\}$, dann heißt $\sim$, also die Relation,  $K$-Trivial, falls $$x \sim_K y \implies x = y$$
-
-\subsubsection{Lemma}
+	
+	\subsubsection{Lemma}
 	Sei $x \in M$ und $|M| < \infty$, dann existiert genau eine Potenz $x^n \in M$ mit $x^n = x^{2n}$. Also gilt $x^n \in E(M))$ und wird mit $x\pom = x^n$ bezeichnet. 		
-\newpage
-\subsubsection{Beweis des Lemmas}
+	\newpage
+	\subsubsection{Beweis des Lemmas}
 	Es gilt $\forall x \in M $ existiert ein $t \in \N$ (thershold)  und $p \in \N$ mit $p \geq 1$ und $x^{t+p} = x^t \in M$
-		\begin{figure}[h!]
-			\centering
-			\begin{tikzpicture}[node distance=1.9cm, auto]
+	\begin{figure}[h!]
+		\centering
+		\begin{tikzpicture}[node distance=1.9cm, auto]
 			\node (1) {$1$};
 			\node (x) [right of=1] {$x$};
 			\node (x2) [right of=x]{$x^2$};
@@ -1465,10 +1465,10 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 			\draw[->] (dotslow) edge   [bend left] (xtpm1) node[midway,sloped,above,rotate=0] {};
 			\draw[->] (xtpm1) edge   [bend left] (xt) node[midway,sloped,above,rotate=0] {};
 			
-			\end{tikzpicture}
-		\end{figure} 
-		\newline
-
+		\end{tikzpicture}
+	\end{figure} 
+	\newline
+	
 	Wir sehen dass in der Folge $( x^i \mid i \in \N)$ ein $i < j$ mit $x^i = x^j$ existiert. Wir wählen nun $i=t$ minimal, dann ist $t+p = j$ minimal. 
 	Es folgt 
 	\begin{align*}
@@ -1477,67 +1477,70 @@ Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da 
 		&\iff t \equiv -j \mod p
 	\end{align*}
 	\bewiesen
-
-\subsubsection{Beobachtung}
+	
+	\subsubsection{Beobachtung}
 	Sei $x^{t+p} = x^t$, dann gilt 
 	\begin{align*}
-	x^t \geqslant_{\mathcal{L, R}} x^{t+1} \geqslant_{\mathcal{L, R}} \ldots \geqslant_{\mathcal{L, R}} x^{t+p-1} \geqslant_{\mathcal{L, R}} x^{t+p} = x^t
- 	\end{align*}
- 	Weiter sehen wir
- 	\begin{align*}
- 		&\implies x^t \greh x^t \, \, \forall i \in \N \\
- 		&\implies \forall x \text{ gilt } x^{t+i} \in \mathcal{H}(x\pom), \text{ wobei } x\pom \in E(M)
- 	\end{align*}
- 	
-\subsubsection{Lemma}
- 	Sei $G \leq M$ eine Unterhalbgruppe, die eine Gruppe ist, dann $x\pom = y\pom = 1_G$
- 	Es gilt dann $\forall x,y \in G \implies \exists x\pom = e \in M, \, e = 1_G$ und $ G \leq \mathcal H(e)$
- 	
- 
-\subsubsection{Lemma 7.42 (DAM)}
+		x^t \geqslant_{\mathcal{L, R}} x^{t+1} \geqslant_{\mathcal{L, R}} \ldots \geqslant_{\mathcal{L, R}} x^{t+p-1} \geqslant_{\mathcal{L, R}} x^{t+p} = x^t
+	\end{align*}
+	Weiter sehen wir
+	\begin{align*}
+		&\implies x^t \greh x^t \, \, \forall i \in \N \\
+		&\implies \forall x \text{ gilt } x^{t+i} \in \mathcal{H}(x\pom), \text{ wobei } x\pom \in E(M)
+	\end{align*}
+	
+	\subsubsection{Lemma}
+	Sei $G \leq M$ eine Unterhalbgruppe, die eine Gruppe ist, dann $x\pom = y\pom = 1_G$
+	Es gilt dann $\forall x,y \in G \implies \exists x\pom = e \in M, \, e = 1_G$ und $ G \leq \mathcal H(e)$
+	
+	
+	\subsubsection{Lemma 7.42 (DAM)}
 	Sei $s \grej t$ und $M$ endlich mit $s = ptu$. Dann ist $t=qsv$. Nun gilt folgendes 
 	\begin{enumerate}[label = \alph*)]
 		\item $s \lgrereq t \implies s \grer t$ (analog dazu für $\grel$)
 		\item $\mathcal{L}(s) \cap \mathcal{R}(t) \not = \emptyset$
 		\item $\mathcal{D} = \mathcal{J}$
 	\end{enumerate}
-
-\subsubsection{Beweis des Lemma 7.42 (DAM)}
-Der Beweis dazu ist auch im Buch (englischer Version) unter dem Lemma 7.42 zu finden.
+	
+	\subsubsection{Beweis des Lemma 7.42 (DAM)}
+	Der Beweis dazu ist auch im Buch (englischer Version) unter dem Lemma 7.42 zu finden.
 	\begin{enumerate}[label = \alph*)]
 		\item Sei $s \lgrereq t \implies s = tu$. Dann gilt 
-			\begin{align*}
-				t=qsv = qtuv&= q(qtuv)uv \\
-				&= q\pom t(uv)\pom \\
-				&= q\pom t(uv)\pom(uv)\pom \\
-				&= t(uv)\pom \in tuM = sM
-			\end{align*}
-			Es folgt also $t \lgrereq s \implies t \grer S$
-			\bewiesen
+		\begin{align*}
+			t=qsv = qtuv&= q(qtuv)uv \\
+			&= q\pom t(uv)\pom \\
+			&= q\pom t(uv)\pom(uv)\pom \\
+			&= t(uv)\pom \in tuM = sM
+		\end{align*}
+		Es folgt also $t \lgrereq s \implies t \grer S$
+		\bewiesen
 		
 		\item Sei $s=ptu$ und $t=qsv$. Dann gilt 
-				\begin{align*}
-					s=ptu &= (pq)s(uv) \\
-					&=(pq)\pom s(vu)\pom \\
-					&= (pq)\pom(pq)\pom s (uv)\pom \\
-					&= (pq)\pom s
-				\end{align*}
-				
-			$\implies s \lgreleq qs \implies s \grel qs$. Es bleibt dann zu zeigen, dass $qs \grer t$. 
-			Dies folgt durch Symetrie: $s \lgrereq sv \lgrereq s \implies s \grer sv$. \\ 
-			Also gilt $qs \grer qsv = t \implies qs \in \mathcal{L}(s) \cap \mathcal{R}(t) \not = \emptyset$
-				\bewiesen
+		\begin{align*}
+			s=ptu &= (pq)s(uv) \\
+			&=(pq)\pom s(vu)\pom \\
+			&= (pq)\pom(pq)\pom s (uv)\pom \\
+			&= (pq)\pom s
+		\end{align*}
+		
+		$\implies s \lgreleq qs \implies s \grel qs$. Es bleibt dann zu zeigen, dass $qs \grer t$. 
+		Dies folgt durch Symetrie: $s \lgrereq sv \lgrereq s \implies s \grer sv$. \\ 
+		Also gilt $qs \grer qsv = t \implies qs \in \mathcal{L}(s) \cap \mathcal{R}(t) \not = \emptyset$
+		\bewiesen
 		
 		\item Da $\mathcal{D} \subseteq \mathcal{J}$ gilt, reicht es zu zeigen dass $(s,t) \in \mathcal{J}$ und $(s,t) \in \mathcal{L} \circ \mathcal{R}$ gilt. 
 		Nach b) gilt $\exists qs = z$ mit $s \grel z \grer t$. Dies zeigt die Behauptung.
 		\bewiesen
 	\end{enumerate}
-
-\section{Divisoren, aperiodische Monoide - Vorlesung 11}
-\subsection{Divisoren}
-\subsubsection{Definition}
-
-\subsection{aperiodische Monoide}
-\subsubsection{Definition}
-
+	
+	\section{Divisoren, aperiodische Monoide - Vorlesung 11}
+	\subsection{Divisoren}
+	\subsubsection{Definition}
+	
+	\subsection{aperiodische Monoide}
+	\subsubsection{Definition}
+	
 \end{document}
+
+
+
