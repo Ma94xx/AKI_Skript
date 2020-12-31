@@ -423,7 +423,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	
 	\subsubsection{Homomorphiesatz}
 	Sei $\varphi: G \to F$ ein Hom.  und $N = ker(\varphi)$. \\
-	Dann induziert $\varphi$ ein Hom. $\overline{\varphi} : G/N \to F$ der injektiv ist durch $\overline{\varphi}(gH) = \varphi(g)$ 
+	Dann induziert $\varphi$ ein Hom. $\overline{\varphi} : G/N \to F$ der injektiv ist durch $\overline{\varphi}(gN) = \varphi(g)$ 
 	\newline
 	
 	Also induziert $\varphi$ einen Isomorphismus $\overline{\varphi}: G/N \iso im(G) = \{\varphi(g) \mid g \in G\} \leq F$
@@ -431,7 +431,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\subsubsection{Beweis Homomorphiesatz}
 	\begin{enumerate}[label=\arabic*)]
 		\item $\overline{\varphi}$ ist wohldefiniert ~\par
-		Sei $f\in gH \implies \varphi(f) \in \varphi(g)N = \{\varphi(g)\}$
+		Sei $f\in gN \implies \varphi(f) \in \varphi(g)N = \{\varphi(g)\}$
 		
 		\item $\overline{\varphi}$ ist injektiv ~\par
 		$ker(\overline{\varphi}) = ker(\varphi) = N = 1_{G/N}$
@@ -1642,7 +1642,7 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	Sei jetzt $c \in U(M)$ und angenommen $cM \cap Mc = M \implies \exists d : cd = d$. Dann folgt dass jedes $c$ ein Rechtsinverses hat und somit dass $M$ eine Gruppe ist.
 	\bewiesen
 	
-\subsection{aperiodische Monoide}
+\subsection{Aperiodische Monoide}
 \subsubsection{Definition lokales Untermonoid}
 	Sei $M$ eine Halbgruppe  und $E(M) = \{eeM \mid e^2 = e\}$. Dann ist das lokale Untermonoid bei $e$ definiert durch die Menge $eMe$ mit 
 	 \[
