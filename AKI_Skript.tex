@@ -31,6 +31,7 @@
 \usepackage{booktabs}
 \usetikzlibrary{decorations,decorations.markings,decorations.text}
 \usepackage{tabularx}
+\usetikzlibrary{arrows}
 
 
 \hypersetup{
@@ -1336,12 +1337,12 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\subsubsection{Folgerung des Satzes}	
 	Ist $G$ eine unendliche Gruppe, $L \subseteq G$ endlich (zB. $L = \{1\}$), dann ist $L \in rat(G) \setminus \rec(G)$
 	
-	\subsection{Syntaktische Kongruenzen}
-	\subsubsection{Definition Idempotenz}
+\subsection{Syntaktische Kongruenzen}
+\subsubsection{Definition Idempotenz}
 	Ein Element $e$ aus einem Monoid $M$ heißt idempotent, falls $$e^2 = e$$
 	Dann können wir die folgende Menge definieren $$E(M) = \{ eeM \mid e^2 = 2\}$$ mit $1\in E(M)$
 	
-	\subsubsection{Definition lokales Monoid}
+\subsubsection{Definition lokales Monoid}
 	Sei $S$ eine Halbgruppe mit $E(S) = \{e \in S \mid e^2 = e\}$  und $e \in E(S)$, dann gibt es eine Unterhalbgruppe $eSe \leq S$ und sogar ein Monoid, da 	$e(exe) = (exe)e$, wobei 
 	\begin{align*}
 		eS^1e &= eSe \cup \{ee\} \\
@@ -1349,10 +1350,10 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\end{align*}
 	Das Monoid $eMe$ nennt man das lokale Monoid bei $eeE(M)$
 	
-	\subsubsection{Definition Teilwort}
+\subsubsection{Definition Teilwort}
 	Ein Wort $w = a_1 \ldots a_n$ heißt Teilwort von $w$ falls $w \in \sigstern a_1 \sigstern a_2 \sigstern \ldots a_n\sigstern$ gilt
 	
-	\subsubsection{Beispiele} 
+\subsubsection{Beispiele} 
 	\begin{itemize}
 		\item Sei $\Sigma = \{a, b\}$ und $\synt((ab)^\ast) = \{1, a ,b , ab, ba, 0\} = B^1_2 =$ Brandt-Monoid mit $2$ Erzeugenden und den folgenden Rechenregeln für alle $x$: 
 		\begin{align*}
@@ -1386,16 +1387,16 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 		\textbf{Antwort:} Es gilt $a^nb^2a^n \in L \iff n+m \equiv 0 (2)$ und wir wissen dass $$(ab)^2(ba)^n \iff n = m$$ Somit folgt: $L$ ist nicht regulär.
 	\end{itemize}
 	
-	\section{Halbgruppentheorie - Vorlesung 10}
-	\subsection{Greens Relations}
-	\subsubsection{Definition Ideal}
+\section{Halbgruppentheorie - Vorlesung 10}
+\subsection{Greens Relations}
+\subsubsection{Definition Ideal}
 	Bei Idealen eines Rings unterscheidet man in sogenannte Links-, Rechts- und Beidseitige Ideale. 
 	Sei $I \subseteq R$ für einen Ring $R$. Dann ist $I$ ein Linksideal, falls 
 	\begin{enumerate}[label= \arabic*.)]
 		\item $(I, +)$ bildet eine Untergruppe von $R$ 
 		\item $\forall a \in I, r \in R : r \cdot a \in I  $
 	\end{enumerate}
-	\subsubsection{Definition Greensrelations}	
+\subsubsection{Definition Greensrelations}	
 	Die folgenden Relationen sind alles Äquivalenz Relationen. 
 	\begin{align*}
 		\mathcal L \subseteq M \times M: x \grel y &\iff Mx = My \\ 
@@ -1442,14 +1443,14 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\end{figure} \\ 
 	
 	Im Allgemeinen gilt $\mathcal D \not = \mathcal J$, für endliche Halbgruppen jedoch $\mathcal D = \mathcal J$. Dies werden wir später noch zeigen. 
-	
-	\subsubsection{Definition K-Trivial}		
+	\newpage
+\subsubsection{Definition K-Trivial}		
 	Sei $K \in \{\mathcal{H}, \mathcal{L},\mathcal{R}, \mathcal{D}, \mathcal{J}\}$, dann heißt $\sim$, also die Relation,  $K$-Trivial, falls $$x \sim_K y \implies x = y$$
 	
-	\subsubsection{Lemma}
+\subsubsection{Lemma}
 	Sei $x \in M$ und $|M| < \infty$, dann existiert genau eine Potenz $x^n \in M$ mit $x^n = x^{2n}$. Also gilt $x^n \in E(M))$ und wird mit $x\pom = x^n$ bezeichnet. 		
-	\newpage
-	\subsubsection{Beweis des Lemmas}
+
+\subsubsection{Beweis des Lemmas}
 	Es gilt $\forall x \in M $ existiert ein $t \in \N$ (thershold)  und $p \in \N$ mit $p \geq 1$ und $x^{t+p} = x^t \in M$
 	\begin{figure}[h!]
 		\centering
@@ -1541,13 +1542,114 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 		\bewiesen
 	\end{enumerate}
 	
-	\section{Divisoren, aperiodische Monoide - Vorlesung 11}
-	\subsection{Divisoren}
-	\subsubsection{Definition}
+\section{Divisoren, aperiodische Monoide - Vorlesung 11}
+\subsection{Divisoren}
+\subsubsection{Definition Subquotient}
+	Sei $L \subseteq M$ und $A$ ein DFA mit $L=L(A)$. \\ 
+	Dann existiert ein Subautomat $A'$ mit $Q_L = \{L(u) \mid u \in M\}$ und $L(u) = \{ v \in M \mid uv \in L\}$. 
+	Wir nennen dann $A_L$ den Subquotient von $A$.
 	
-	\subsection{aperiodische Monoide}
-	\subsubsection{Definition}
+	\begin{figure}[h!]
+		\centering
+		\begin{tikzpicture}[node distance=2.5cm, auto]
+		\node (AS) {$A'$};
+		\node (A) [right of=AS] {$A$};
+		\node (AL) [below of=AS] {$A_L$};
 	
+		\draw[right hook->] (AS) -- (A) node[ midway,sloped,above,rotate=0] { };
+		\draw[ ->>] (AS) -- (AL) node[ midway,right,rotate=0] { $q = u \mapsto L(u)$};
+		\end{tikzpicture}
+	\end{figure} 
+
+\subsubsection{Definition Subquotient}
+	Wir betrachten nun $\varphi: M \to N$ mit $L = \varphi\inv \varphi(L)$ und $\varphi$ erkennt $L \subseteq M$.
+		\begin{figure}[h!]
+			\centering
+			\begin{tikzpicture}[node distance=2.9cm, auto]
+				\node (M) {$M$};
+				\node (PM) [right of=AS] {$\varphi(M) \leq N$};
+				\node (ML) [below of=AS] {$M_L$};
+				
+				\draw[->] (M) -- (PM) node[ midway,sloped,above,rotate=0] { $\varphi$};
+				\draw[ ->] (M) -- (ML) node[ midway,right,rotate=0] { $\varphi_L$};
+				\draw[ dotted, ->] (PM) -- (ML) node[ midway,right,rotate=0] {$\exists! \psi$};
+			\end{tikzpicture}
+	\end{figure} 
+
+ Wobei $M_L = \{[u] \mid u \in M\}$, $ \psi(\varphi(u))= [u]$, und $[u] =\{u \in M \mid u \equiv_L v\}$ gilt
+
+\subsubsection{Definition Divisor}
+	$M$ ist ein Divisor von $N$, falls es ein Untermonoid $N'$ von $N$ gibt und ein surjektiverHom. $$\psi: N' \to M$$ existiert. Wir schreiben dann $M \prec N$
+
+\subsubsection{Beispiel}
+	Sie $Q_8 = \pm \{1, i ,j, k\}$ mit $i^2 = j^2 = k^2 = -1$ und den folgenden Rechenregeln
+		\begin{align*}
+			ij &= k && jk = i  \\ 
+			ik&=-j 	&& ki = j \\
+			 ji&= -k && kj = -i \\
+		\end{align*}
+Wir betrachten also eine Art ''Stellwerk'''
+\begin{figure}[h!]
+	\centering
+	$ \begin{array}{ccc}
+	\begin{tikzpicture}[->,scale=.7] 
+	\foreach \a/\t in {90/j,-30/k,210/i}{
+		\node (\t) at (\a:1cm) {$\t$};
+		\draw (\a-20:1cm)  arc (\a-20:\a-100:1cm);
+	} 
+	\end{tikzpicture}
+	\end{array}$
+\end{figure}
+
+Dann gilt $Z(Q_8) = \{1, -1\}$ und $Q_8/Z(Q_8) = V = \Z/2\Z \times\Z/2\Z$.
+Wir behaupten dann, dass $V$ der Divisor in $Q_8  \rtimes \Z / 3\Z$ (semidirektes Produkt), aber weder eine Untergruppe noch ein Quotient ist.
+
+Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $\mathbb{F}_3 = \Z / 3\Z$ ist ein Körper.
+
+\subsubsection{Definition lokaler Divisor}
+		Sei $M$ eine Monoid und $c \in M$. Dann sei $M_c = cM \cap Mc \subseteq M$ und $\circ$ die Multiplikation mit $$xc \circ cy = xcy$$
+		Dann heißt $M_c = (\{cM \cap Mc\}, \circ, c)$ der lokale Divisor von $M$ bei $c$.
+
+\subsubsection{Wohldefiniertheit und Assoziativiät der Definition}
+	Für die Wohldefiniertheit sei $x'c \circ cy' = x'cy'$, und seien $x = x'c = x''c$ und $y = cy' = cy''$. Es ist zu zeigen dass $x'c \circ cy' = x''c \circ cy''$ gilt. Dies ist der Fall, da $$x'c \circ cy' = x'cy' = x''cy' = x''cy''$$ gilt. 
+	
+	Für die Assoziativität gilt 
+		\begin{align*}
+			(x'c \circ y'c)z'c &= (x'y')z'c \\
+				&= x'(y'z')c \\
+				&= x'c \cdot (y'c \cdot z'c)
+		\end{align*}
+		\bewiesen
+
+\subsubsection{Beweis $M_c$ ist Divisor von M}
+	Betrachte $\{x \in M \mid xc \in cM\}$ und die Rechtsmultiplikation durch $\rho_c$. Sei $\{x \in M \mid xc \in cM\}$ das lokale Monoid, dann gilt $1 \in \{x \in M \mid xc \in cM\}$ und $xc \in cM$ sowie $yc \in cM$ und so folgt $x \cdot yc \in M$. Nun gilt $$\rho_c(xy) = xyc = xc \circ ye = \rho_c(x) \circ \rho_c(y)$$ und somit ist 
+	\begin{align*}
+		\rho_c : \{x \in M \mid xc \in cM\} &\to cM \cap Mc \\
+		 x &\mapsto xc
+	\end{align*} wobei $\rho_c$ ein surjektiver Hom. ist. \\
+	Mit $cx = yc \in M_c$ gilt dann $z = \rho_c(y)$ und $y \in \{x \in M \mid xc \in cM\}$
+	\bewiesen
+
+\subsubsection{Lemma}
+	Sei $c\in M$, dann gilt $$M_c = cM \cap Mc = M \iff c \in U(M) \iff 1 \in cM \cap Mc$$
+	Also $\exists d : cd = dc = 1$, und insbesondere $c \in U(M)$ und $|M| < \infty$. Somit gilt $|M_c| < |M|$
+	
+\subsubsection{Beweis des Lemmas}
+	Sei $c \in U(M)$ und $cd = dc = 1$, dann gilt $\{x \in M \mid xc \in cM\}  = M$ und $cM = Md = M$ und $\rho_c\rho_d = id_M = \rho_d\rho_c$. 
+	Beachte: $U(M) = M \iff M$ ist Gruppe! 
+	Sei jetzt $c \in U(M)$ und angenommen $cM \cap Mc = M \implies \exists d cd = d$. Dann folgt dass jedes $c$ ein Rechtsinverses hat und somit dass $M$ eine Gruppe ist.
+
+\subsection{aperiodische Monoide}
+\subsubsection{Definition lokales Untermonoid}
+	Sei $M$ eine Halbgruppe  und $E(M) = \{eeM \mid e^2 = e\}$. Dann ist das lokale Untermonoid bei $e$ definiert durch die Menge $eMe$ mit 
+ \[
+	\left. 
+	\begin{array}{lr}
+	exe = eye \in M\\
+	e(exe) = (exe)e = exe 
+	\end{array}\right\} \implies e \text{ ist neutral}
+\]
+	Falls $M$ ein Monoid ist und $e\not = 1$, dann gilt $eMe \subsetneq M$ für $e^2 = e$
 \end{document}
 
 
