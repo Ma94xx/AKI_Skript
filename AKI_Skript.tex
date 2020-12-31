@@ -28,6 +28,7 @@
 \usepackage{mathrsfs}
 \usepackage{tikz-cd}
 \usepackage[bottom]{footmisc}
+\usepackage{booktabs}
 \usetikzlibrary{decorations,decorations.markings,decorations.text}
 
 
@@ -173,44 +174,100 @@
 \section{Grundlagen - Vorlesung 1}
 \subsection{Diedergruppen}
 \subsubsection{Definition}
-		   Eine Diedergruppe ist die Bewegungsgruppe des regelmäßigen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
+		   Die Diedergruppe $D_n$ ist die Bewegungsgruppe des regelmä\ss igen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
 		   
-		   Das $n$-Eck wird durch Knoten und Kanten beschrieben und eine Drehung/Spiegelung wird durch eine Abbildung wie folgt definiert: 
+		   Dabei ist das $n$-Eck durch folgende Knoten und Kanten definiert: 
 		   \begin{align*}
-		   	\text{Knoten: } &\mathbb{Z}/n\mathbb{Z} \\
+		   	\text{Knotenmenge: } &\mathbb{Z}/n\mathbb{Z} \\
 		   	\text{Kanten: } &\{ \{i, i+1\} \mid i \in \mathbb{Z}/n\mathbb{Z} \}  \\
-		   	\text{Abbildung von Knoten in Knoten: } &f: \mathbb{Z}/n\mathbb{Z} \iso \mathbb{Z}/n\mathbb{Z}\\
 		   \end{align*}
 		   
-		   Zu jeden $n$ gehört eine $D_n$ mit $|D_n| = 2n$
+		   Weiter sind die Drehungen und Spiegelungen bijektive Abbildung von Knoten auf Knoten der Form
+		   \begin{align*}
+		   	&f: \mathbb{Z}/n\mathbb{Z} \iso \mathbb{Z}/n\mathbb{Z},\, wobei\\
+		   	&f(i+1) \in \{f(i)+1, f(i)-1\}\, gilt.
+		   \end{align*}
+		   
+		   Zu jeden $n \in \mathbb{N}$ gehört eine Diedergruppe $D_n$ mit $|D_n| = 2n$. 
+		  
 
 \subsubsection{Eigenschaften von Diedergruppen}
-		Wir bezeichnen die Spieglung mit $\sigma$ und die Drehung im Uhrzeiger mit $\delta$. Dann gelten folgende Regeln:
+		Wir bezeichnen die Spiegelung mit $\sigma$ und die Drehung im Uhrzeiger mit $\delta$. Dann gilt Folgendes:
 		
 		\begin{align*}
-			\sigma^2 = id = \delta^n = \delta^0 \\ 	 
+			\sigma(j)&=-j\\
+			\delta(j)&=j+1\\
+			\sigma^2 = id &= \delta^n = \delta^0 \\ 	 
 		\end{align*}
-		In Worten bedeutet dies, dass $n$-faches drehen oder doppeltes Spiegeln eines  $n$-Ecks keine Änderung bewirkt.  \\
+		Dies bedeutet, dass $n$-faches drehen oder doppeltes Spiegeln eines  $n$-Ecks keine Änderung bewirkt.  \\
 		Daraus lässt sich dann folgender Satz ableiten mit $\forall \varepsilon, \varepsilon', m, m' \in \mathbb{Z}$: 
 		
 		\begin{align*}
 			\sigma^\varepsilon\delta^m = \sigma^{\varepsilon'}\delta^{m'} \iff \varepsilon \equiv \varepsilon' (2) \text{ und } m \equiv m' (n)
 		\end{align*}
-		Weiter gilt, dass $\sigma\delta = \delta^{-1}\sigma$, also dass erst spiegeln und dann drehen den selben Effekt hat wie in die andere Richtung drehen und dann spiegeln. Im folgenden wird gezeigt weshalb dies gilt
+		Weiter gilt, dass $\sigma\delta = \delta^{-1}\sigma$, also dass erst spiegeln und dann drehen denselben Effekt hat wie in die andere Richtung drehen und dann spiegeln. Im Folgenden wird gezeigt, weshalb dies gilt:
 		
 		\begin{align*}
-			\sigma \delta(j) = \sigma(j+1) = -(1 + j) = -j -1 = \delta^{-1}(-j)=\delta^{-1}\sigma(j)
+			\sigma \delta(j) = \sigma(j+1) = -(j + 1) = -j -1 = \delta^{-1}(-j)=\delta^{-1}\sigma(j)
 		\end{align*}
 		\bewiesen
-		Dieser Satz gibt uns also die Möglichkeit das $\sigma$ nach rechts zu schieben.
+		Dieser Satz gibt uns also die Möglichkeit das $\sigma$ nach rechts oder links zu schieben und wir können die Gleichheit $\sigma\delta\sigma = \delta^{-1}$ folgern.
 		
 \subsubsection{Fixpunkte in Diedergruppen}
-		Ein Fixpunkt $x$ einer Abbildung ist ein Punkt bei dem $f(x) = x$ gilt. Für Diedergruppen fragen wir uns also ab wann 
+		Ein Fixpunkt $x$ einer Abbildung $f$ ist ein Punkt, für den $f(x) = x$ gilt. Da die Elemente der Diedergruppe durch $\sigma\delta^i(j)$ dargestellt werden können, fragen wir uns, wann folgende Gleichheit gilt:
 		\begin{align*}
-			\sigma\delta^i(j) = j = \sigma(i+j) = -i -j
-		\end{align*} gilt. 
-		Dies ist der Fall, wenn $-i = 2j \in \mathbb Z /n \mathbb Z$ mit ungeradem $n$ gilt. Bei Spiegelungen existiert also genau ein Knoten $j$ für alle $i$. Falls $n$ gerade ist, existieren entweder genau $2$ (das wäre dann $-i = 2j$ und $ i + \frac{n}{2}$) oder gar kein Fixpunkt. Für Drehungen ist nur $n$ bzw. $id$ eine Fixpunkt. 
+			\sigma\delta^i(j) = j
+		\end{align*} 
 		
+		Wegen
+		\begin{align*}
+			\sigma\delta^i(j) & = j \iff \\
+			\sigma(j+1) & = j \iff \\
+			-j -i & = j \iff \\
+			-i & = 2j
+		\end{align*} 
+		ist dies der Fall, wenn $-i = 2j \textrm{ in } \mathbb Z /n \mathbb Z$ gilt. Für ungerades $n$ existiert für alle $i$ genau ein $j$, welches diese Gleichheit erfüllt. Für gerades $n$ unterscheiden wir weiter nach der Parität von $i$. Falls auch $i$ gerade ist, existieren genau $2$ verschiedene $j$ und falls $i$ ungerade ist, existiert keine Lösung. Damit ergeben sich bestimmte Fixpunkte für die Drehungen und Spiegelungen, welche in Tabelle~\ref{tab:diederFixpunkte} aufgezeigt sind.
+		\begin{table*}[h]
+			\centering
+		\begin{tabular}{lll}
+			\toprule[2pt]
+			Abbildung & Parität von $n$ & Fixpunkte\\
+			\midrule
+			$\sigma$ & ungerade & $\{i\}$ \\
+			\addlinespace
+			$\sigma$ & gerade & $ \left \{
+			\begin{array}{ll}
+				\{0,\frac{n}{2}\}\textrm{, falls }i \equiv 0 \, (2)\\
+				\emptyset\textrm{, falls } i \equiv 1\, (2)
+			\end{array}
+			\right. $ \\
+			\addlinespace
+			$\delta^k$ & gerade oder ungerade & $ \left \{
+			\begin{array}{ll}
+			\emptyset\textrm{, falls }1\leq k < n\\
+			\Z/n\Z\textrm{, falls } k \equiv 0\, (n)
+			\end{array}
+			\right. $ \\
+			\bottomrule[2pt]
+		\end{tabular}
+		\caption{Fixpunkte der Abbildungen in Diedergruppen.}
+	\label{tab:diederFixpunkte}
+	\end{table*}
+		
+\subsubsection{Erweiterung auf unendliche Gruppen}
+
+Im Fall $n=0$ ist das $n$-Eck die unendliche gerade $\Z/0\Z = \Z$.
+
+Durch Einführen eines weiteren Zeichens $\overline{\delta}$ für negative Potenzen von $\delta$ gelten dieselben Rechenregeln wie im endlichen Fall.
+
+Dann gilt $D_0 = \{\sigma, \delta, \overline{\delta}\}^*$ mit
+\begin{align*}
+	\sigma^i(j) & = j+i\\
+	\delta(j) & = -j \\
+	\sigma^2 & = 1\\
+	\delta\overline{\delta} & = \overline{\delta}\delta = 1 \\
+	\sigma\delta\sigma & = \overline{\delta}\, .
+\end{align*}
 		
 \section{Gruppentheorie 1 - Vorlesung 2}
 \subsection{Untergruppen}
