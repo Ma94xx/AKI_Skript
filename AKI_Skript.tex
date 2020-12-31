@@ -1107,6 +1107,8 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	
 	\subsubsection{Definition aperiodisch}
 	$N$ ist aperiodisch genau dann wenn alle Unterguppen von $N$ trivial sind, bzw $N$ gruppenfrei ist.
+	Alternativ gilt: Ein Monoid $M$	ist aperidodisch, falls $$\exists t \in \N \text{ mit } x^{t+1} = x^t \forall x \in M$$
+	Falls $M$ endlich ist, gilt $$M \text{ ist aperiodisch} \iff \forall x \in M \exists t \in \N : x^{t+1} = x^t$$
 	
 	
 	\subsubsection{Satz von Schützenberger}
@@ -1637,19 +1639,26 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 \subsubsection{Beweis des Lemmas}
 	Sei $c \in U(M)$ und $cd = dc = 1$, dann gilt $\{x \in M \mid xc \in cM\}  = M$ und $cM = Md = M$ und $\rho_c\rho_d = id_M = \rho_d\rho_c$. 
 	Beachte: $U(M) = M \iff M$ ist Gruppe! 
-	Sei jetzt $c \in U(M)$ und angenommen $cM \cap Mc = M \implies \exists d cd = d$. Dann folgt dass jedes $c$ ein Rechtsinverses hat und somit dass $M$ eine Gruppe ist.
-
+	Sei jetzt $c \in U(M)$ und angenommen $cM \cap Mc = M \implies \exists d : cd = d$. Dann folgt dass jedes $c$ ein Rechtsinverses hat und somit dass $M$ eine Gruppe ist.
+	\bewiesen
+	
 \subsection{aperiodische Monoide}
 \subsubsection{Definition lokales Untermonoid}
 	Sei $M$ eine Halbgruppe  und $E(M) = \{eeM \mid e^2 = e\}$. Dann ist das lokale Untermonoid bei $e$ definiert durch die Menge $eMe$ mit 
- \[
-	\left. 
-	\begin{array}{lr}
-	exe = eye \in M\\
-	e(exe) = (exe)e = exe 
-	\end{array}\right\} \implies e \text{ ist neutral}
-\]
-	Falls $M$ ein Monoid ist und $e\not = 1$, dann gilt $eMe \subsetneq M$ für $e^2 = e$
+	 \[
+		\left. 
+		\begin{array}{lr}
+		exe = eye \in M\\
+		e(exe) = (exe)e = exe 
+		\end{array}\right\} \implies e \text{ ist neutral}
+	\]
+		Falls $M$ ein Monoid ist und $e\not = 1$, dann gilt $eMe \subsetneq M$ für $e^2 = e$
+
+\subsubsection{Satz}
+	Sei $N$ ein Divisor von $M$, dann gilt: $$M \text{ ist aperiodisch} \implies N \text{ ist aperiodisch}$$
+
+
+
 \end{document}
 
 
