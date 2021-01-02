@@ -293,43 +293,49 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\begin{align*}
 		H \subseteq G \text{ ist eine Untergruppe} \iff H \not = \emptyset \text{ und } \forall g, h \in H : gh^{-1} \in H
 	\end{align*}
-	$H$ ist also eine Untergruppe von $G$, genau dann wenn $H$ nicht leer ist und für alle Elemente Inverse vorhanden sind.  
+	$H$ ist also eine Untergruppe von $G$ genau dann, wenn $H$ nicht leer ist, abgeschlossen ist und für alle Elemente ein Inverses enthält. Aus diesen Bedingungen folgt direkt, dass dann auch $1 \in H$ gilt.
+	Für Untergruppen ist die Schreibweise $H\leq G$ üblich.
 	
 	
-	\subsection{Nebeklassen}
+	\subsection{Nebenklassen}
 	\subsubsection{Definition}
-	Für eine Untergruppe $H \leq G$ sind die folgenden Nebenklassen definiert
+	Für eine Untergruppe $H \leq G$ sind die folgenden Nebenklassen definiert:
 	\begin{align*}
-		G/H &= \{gH \subseteq G \mid g \in G\} \quad \text{Rechtsnebenklasse } \\
-		H/G &= \{Hg \subseteq G \mid g \in G\} \quad \text{Linksnebenklasse } 
+		G/H &= \{gH \subseteq G \mid g \in G\} \quad \text{Menge der Linksnebenklassen } \\
+		H/G &= \{Hg \subseteq G \mid g \in G\} \quad \text{Menge der Rechtsnebenklassen } 
 	\end{align*}
-	wobei $gH$ die Multiplikation von  g mit allen Elementen aus $H$ ist. 
+	wobei $gH$ die Multiplikation von  g mit allen Elementen aus $H$ ist, also die Linksnebenklasse bezüglich dem Element $g$. 
 	
-	\subsubsection{Größe von Nebenklassen}
-	Wir definieren die folgende Abbildung
+	\subsubsection{Grö\ss e von Nebenklassen}
+	Wir definieren die folgenden Abbildungen
 	\begin{align*}
-		\forall f,g \in G \text{ ist } (f^{-1}g \cdot): gH \iso fH \text{ bijektiv mit der Umkehrabbildung } (gf^{-1}\cdot)
+		\forall f,g \in G \text{ ist } (fg^{-1} \cdot):& gH \iso fH \\
+		& gh \mapsto fh = fg^{-1}gh
 	\end{align*}
-	Wir können dann folgern dass 
+	Diese ist bijektiv mit der Umkehrabbildung $(gf^{-1}\cdot)$.
+	Wir können dann folgern, dass 
 	\begin{align*}
-		gH \iso H \iso Hf \quad \text{ für alle } f,g \in G
+		gH \iso H \iso Hf \quad \text{ für alle } f,g \in G \text{ gilt.}
 	\end{align*}
-	Es gilt also $|gH| = |Hf| = |H|$
+	Es gilt also $|gH| = |Hf| = |H|\text{ für alle } f,g \in G$.
 	
-	\subsubsection{Gleichheit von Nebenklassen}
-	Im Folgenden wird gezeigt dass $gH \cap fH \not = \emptyset \iff gH = fH$ gilt.
-	Die Rückrichtung ist hierbei trivial, da der Schnitt von $gH$ und $fH$ bei Gleichheit offensichtlich nicht leer ist. \\
+	\subsubsection{Gleichheit und Disjunktheit von Nebenklassen}
+	Sowohl $G/H$ als auch $H/G$ sind jeweils Partitionen von $G$.
+	Um das zu beweisen, wird im Folgenden gezeigt, dass $gH \cap fH \not = \emptyset \iff gH = fH$ gilt.
+	Die Rückrichtung ist hierbei trivial, da der Schnitt von $gH$ und $fH$ bei Gleichheit offensichtlich nicht leer ist, sofern die Nebenklassen an sich nicht leer sind, was per Definition gegeben ist. \\
 	
-	Für die Hin-Richtung seinen $h_1, h_2 \in H$ mit $gh_1 = fh_2$
+	Für den Beweis der Hinrichtung seinen $h_1, h_2 \in H$ mit $gh_1 = fh_2$
 	\begin{align*}
 		&\implies g=fh_2h_1^{-1} \in fH \\
 		&\implies gH \subseteq fH. 
 	\end{align*}
-	Analog dazu gilt $fH \subseteq gH \implies gH = fH$
+	Analog dazu kann man $fH \subseteq gH$ zeigen, womit $gH = fH$ folgt.
 	\bewiesen
 	
 	\subsubsection{Graphische Interpretation von Nebenklassen}
-	Sei $G= (G, \cdot, 1)$ eine Gruppe und $H\leq G$
+	Sei $G= (G, \cdot, 1)$ eine Gruppe und $H\leq G$. 
+	In Abbildung \ref{fig:nebenklassen} sind mögliche Partitionen von $G$ dargestellt.
+	Dies veranschaulicht, dass Links- und Rechtsnebenklassen (i.A. verschiedene) gleichmäßige Partitionen von $G$ sind.
 	\begin{figure}[h!]
 		\centering
 		$G=\begin{array}{c}
@@ -339,13 +345,13 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 					\node [fit={(0,0) (1,3)}, label=center:{$H$}] {};
 				\end{scope}
 				\begin{scope}[yshift=1.5cm,y=1cm]
-					\node [fit={(1,0) (5,1)}, label=center:{$fH$}] {};
+					\node [fit={(1,0) (4,1)}, label=center:{$fH$}] {};
 				\end{scope}
 				\begin{scope}[yshift=2.5cm,y=1cm]
-					\node [fit={(1,0) (5,1)}, label=center:{$\vdots$}] {};
+					\node [fit={(1,0) (4,1)}, label=center:{$\vdots$}] {};
 				\end{scope}
 				\begin{scope}[yshift=3.5cm,y=1cm]
-					\node [fit={(1,0) (5,1)}, label=center:{$gH$}] {};
+					\node [fit={(1,0) (4,1)}, label=center:{$gH$}] {};
 				\end{scope}
 				
 			\end{tikzpicture} 
@@ -369,36 +375,41 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 			\end{tikzpicture} 
 		\end{array}$
 		\caption{Zerlegung von $G$ in Links bzw. Rechtsnebenklassen}
+		\label{fig:nebenklassen}
 	\end{figure}
 	
-	Wir sehen dass $|H|=|gH| = |Hf|$ gilt
+	Wir sehen, dass $|H|=|gH| = |Hf|$ gilt.
 	
 	\subsection{Repräsentantensysteme}		
 	\subsubsection{Definition}
-	Sei $R_H := \{r(gH) \mid gH \in G/H\} \subseteq G$ mit der folgenden bijektiven  Abbildung
+	Ein Repräsentantensystem soll für eine Klasseneinteilung aus jeder Klasse genau ein Element enthalten.
+	Auf Linksnebenklassen bezogen, wählt man ein Element aus jeder Klasse $gH \in G/H$ (analog für Rechtsnebenklassen).
+	Dieses Element bezeichnen wir mit $r(gH)$ für die Klasse $gH$. 
+	Dann ist $R_H := \{r(gH) \mid gH \in G/H\} \subseteq G$ ein Repräsentantensystem.
+	Mit der bijektiven  Abbildung
 	\begin{align*}
 		R_H \iso G/H \\
 		r(gH) \mapsto gH 
 	\end{align*}
+	kann man sehen, dass das Repräsentantensystem offensichtlich gleichmächtig wie die Menge der Klassen ist.
+	\subsection{Satz von Lagrange}	
+	\subsubsection{Definition}
+	Für eine Gruppe $G$ mit Untergruppe $H$ gilt:
+	\begin{align*}
+		|G| = [G:H] \cdot |H|\, ,
+	\end{align*}	
+	wobei $[G:H]$ als Index von $H$ in $G$ bezeichnet wird und die Anzahl der Nebenklassen von $H$ in $G$ angibt. Für den Index gilt $[G:H] = |G/H| = |H/G|$, da man für ein Linksrepresentantensystem $R = \{r(gH) \mid g \in G \}$, wegen $H=H^{-1}$ und $(rH)^{-1} = H^{-1}r^{-1} = Hr^{-1}$, ein Rechtsrepräsentantensystem
+	 $R^{-1} = \{r(gH)^{-1} \mid g \in G \}$ definieren kann und somit $|G/H| = |H/G|$ , da gilt.
 	
-	\subsection{Satz von Lagrange}		
-	\subsubsection{Definition und Beweis}
+	\subsubsection{Beweis}
 	Wir definieren die folgende Abbildung
 	\begin{align*}
-		\lambda: (G/H) \times H &\iso G \text{ ist bijektiv} \\
+		\lambda: (G/H) \times H &\iso G \\
 		(gH, h) &\mapsto r(gH) \cdot h
 	\end{align*}
-	
-	Nun bezeichnen wir mit $[G:H] = |G/H|$ den Index von $H$ in $G$. \\ 
-	Wenn jetzt $R = \{r(gH) \mid g \in G \}$ ein Linksrepresentantensystem (LRS) ist, \\ 
-	dann ist $R^{-1} = \{r(gH)^{-1} \mid g \in G \}$ ein RRS. 
-	Denn es gilt $(rH)^{-1} = H^{-1}r^{-1} = Hr^{-1}$, da $H=H^{-1}$.
-	Also gilt $|G/H| = |H/G|$ \\
-	
-	Wenn für $|G| < \infty $ gilt, ist $|H| < \infty $ und $|G| = |G/H| \cdot |H|$ und 
-	außerdem sind $\{gH \mid g \in G \}$ und $\{Hg \mid g \in G \}$ Partitionen. Weiter gilt $|gH| = |Hf| \;\;\forall g,f \in G$. \\
-	Also gilt $|G| = [G:H] \cdot |H|$ 
-	
+	und wollen zeigen, dass diese bijektiv ist, woraus der Satz diekt folgt.
+	Die Injektivität ist hierbei trivial, da die Nebenklassen disjunkt sind und man mit unterschiedlichen Nebenklassen oder unterschiedlichen Elementen aus $H$ somit nicht dasselbe Element in $G$ über $\lambda$ erreichen kann. Die Surjektivität ist auch trivial, da die Klasseneinteilung eine Partition von $G$ ist.
+	\bewiesen	
 	
 	\subsection{Der Homomorphiesatz}		
 	\subsubsection{Grundlagen Homomorphismus}
