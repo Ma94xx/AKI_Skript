@@ -513,62 +513,66 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	
 	\subsection{G-Mengen}		
 	\subsubsection{Definition}
-	Sei $G = (G, \cdot, 1)$ eine Gruppe und $X$ eine Menge.
+	Sei $G = (G, *, 1)$ eine Gruppe und $X$ eine Menge.
 	Dann operiert $G$ auf $X$ falls folgende Abbildung existiert 
 	\begin{align*}
-		\cdot : G \times X \to X \\ 
-		(g,x) \mapsto gx
+		\cdot : &G \times X \to X \\ 
+		&(g,x) \mapsto gx \quad \text{(man schreibt auch g(x) statt (g,x))}
 	\end{align*}
-	Mit der Eigenschaft $g(h(x)) = gh(x)$ und $g(1) = id_x$
+	sodass $\forall g,h \in G: g(h(x)) = (g*h)(x)$ und $(1,X) = id_X$ gilt.
 	
-	\subsubsection{Homomorphismus auf G-Mengen}
-	Ein Hom. von $G$-Mengen $X,Y$ ist eine Abbildung 
+	Die Menge $X$ zusammen mit der Operation von $G$ auf $X$ wird dann als G-Menge bezeichnet.
+	
+	\subsubsection{Homomorphismen auf G-Mengen}
+	Ein Hom. von $G$-Mengen $X$ mit der Operation $\cdot$ und $Y$ mit der Operation $\star$ ist eine Abbildung 
 	\begin{align*}
-		f: X \to Y \text{ mit } f(gx) = gf(x)
+		f: X \to Y \text{ mit } f(g \cdot x) = g \star f(x)\, ,
 	\end{align*}
+	wobei $g \in G$ gilt.
 	
 	\subsubsection{Fixpunkte in G-Mengen}
-	Sei $X$ eine  $G$-Menge. Dann heißt $x$ ein Fixpunkt von $g \in G$ falls $gx=x$. \\
-	Weiter ist die Menge der Fixpunkte eine Untergruppe von $G$
+	Sei $X$ eine  $G$-Menge. Dann hei\ss t $x$ ein Fixpunkt von $g \in G$ falls $gx=x$. \\
+	Weiter ist für alle $x \in X$ die Menge $Fix(x)$  der Fixpunkte eine Untergruppe von $G$:
 	\begin{align*}
 		Fix(x) = \{g \in G \mid  gx = x\} \leq G 
 	\end{align*}
 	
 	
 	\subsection{Das Bahnenlemma}		
-	\subsubsection{Definition einer Bahn}
-	Wir definieren eine Bahn wie folgt $$Bahn(x) = Orbit(x) = G\cdot x = \{gx \mid  g \in G \}$$
+	\subsubsection{Definition Bahn}
+	Wir definieren die Bahn eines Elements $x \in X$ wie folgt: $$Bahn(x) = Orbit(x) = G\cdot x = \{gx \mid  g \in G \}$$
 	
 	
-	Ebenfalls gilt das $Gx \cong G/Fix(x)$ ein Isomorphismus von $G$-Mengen ist, wobei $Gx$ ist eine $G$-Menge ist. 
-	Dies ist wie folgt zu begründen. Wir betrachten die folgende Abbildung
+	Ebenfalls gilt, dass die Bahn eine G-Menge und isomorph zu $G/Fix(x)$ ist. 
+	Dies kann man mit der folgenden Bijektion begründen:
 	\begin{align*}
 		G/Fix(x) \to Gx \\ 
 		gFix(x) \mapsto gx
 	\end{align*}
-	Diese ist wohldefiniert, da $h \in gFix(x) \implies h=gf$ mit $f \in Fix(x)$. \\ 
-	Also $h(x) = gf(x) = g(x)$ 
+	Die Bijektion ist wohldefiniert, da für jedes Element $h \in gFix(x)$ gilt, dass $h=gf$ mit einem $f \in Fix(x)$. \\ 
+	Also folgt $hx = gf(x) = g(x)$.\\
+	Mit dem Wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist, kann man insbesondere für den Spezialfall, dass $|G| = p$ für eine Primzahl $p$ gilt, folgern, dass $\forall x \in X : |Gx|=1$ \vee\, $|Gx|=p$ gelten muss.
 	
 	
 	\subsubsection{Bahnenlemma}
-	Das Bahnenlemma besagt $$Gx \cap Gy \not = \emptyset \iff Gx = Gy$$
-	Im Allgemeinen also $$ X = \dot{\bigcup} \{Gx \mid  x \in X \}$$ Wobei hier die disjunkte Vereinigung mit dem Punkt gekennzeichnet wird. 
+	Das Bahnenlemma besagt $$Gx \cap Gy \not = \emptyset \iff Gx = Gy\, .$$
+	Im Allgemeinen folgt also $$ X = \dot{\bigcup} \{Gx \mid  x \in X \}\, ,$$ wobei hier die disjunkte Vereinigung benutzt wird, welche durch den Punkt über dem Vereinigungszeichen gekennzeichnet wird. 
 	\subsubsection{Beweis des Bahnenlemmas}
-	Die Rückrichtung ist hier ebenfalls trivial (wie bei dem sehr ähnlichen Resultat über Nebenklassen). Wir zeigen deshalb die andere Richtung. \\ 
+	Die Rückrichtung ist hier ebenfalls trivial (wie bei dem sehr ähnlichen Resultat über Nebenklassen). Wir zeigen deshalb nur die erste Richtung $"\implies"$. \\ 
 	
 	Sei $gx = hy$ für $g,h \in G$
 	\begin{align*}
-		&\implies h^{-1}g(x) = y \\
+		&\implies h^{-1}gx = y \\
 		&\implies y \in Gx \\
 		&\implies Gy \subseteq Gx
 	\end{align*}
-	Analog dazu $Gx \subseteq Gy \implies Gx = Gy$
+	Analog dazu kann man $Gx \subseteq Gy$ zeigen, was insgesamt zu $Gx = Gy$ führt.
 	
 	\subsubsection{Graphische Interpretation einer Bahn}
 	
-	Sei $X$ eine $G$-Menge und 
+	Sei $X$ eine $G$-Menge. Dann kann man sich die Zerlegung von $X$ durch die Operation von $G$ wie in Abbildung~\ref{fig:bahnen} dargestellt, vorstellen.
 	
-	\begin{figure}[h!]
+	\begin{figure}[H]
 		\centering
 		$X=\begin{array}{c}
 			
@@ -587,31 +591,39 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 			\end{tikzpicture}
 		\end{array}$
 		\caption{Disjunkte Zerlegung von $X$ in Bahnen}
+		\label{fig:bahnen}
 	\end{figure}
-	Wir wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist. Also gilt $|G| = p$ wobei $p$ eine Primzahl ist, und daraus folgt $\forall x \in X : |Gx|=1$ oder $|Gx|=p$
+	
+	
 	
 	\subsection{Satz von Cauchy}		
 	\subsubsection{Definition}
 	Sei $G$ eine endliche Gruppe und $p \in \mathbb P$ mit $p \mid |G|$. \\
-	Dann existiert $g \in G$ mit $g \not = 1$ und $ g^p = 1$. Also $ord(g)= p$
+	Dann existiert $g \in G$ mit $g \not = 1$ und $ g^p = 1$. Also $ord(g)= p$. (Und $G$ enthält eine Untergruppe, die isomorph ist zu $\Z/p\Z$.)
 	\subsubsection{Beweis}
-	Wir betrachten die Menge der Tupel $(g_1, g_p) \in G^p$ mit $g_1 \cdot \ldots \cdot g_p = 1$. 
-	Sei nun 
-	\begin{align*}
-		T &= |\{(g_1, \ldots, g_p) \mid  g_1 \cdot \ldots \cdot g_p = 1 \}| \\
+	Wir betrachten die Menge der Tupel $(g_1,\ldots , g_p) \in G^p$ mit $g_1 \cdot \ldots \cdot g_p = 1$ und nennen diese Menge $T$. Also $T = \{(g_1, \ldots, g_p) \mid  g_1 \cdot \ldots \cdot g_p = 1 \}$. 
+	Nun gilt
+		\begin{align*}
+		|T| &= |\{(g_1, \ldots, g_p) \mid  g_1 \cdot \ldots \cdot g_p = 1 \}| \\
 		&= |\{(g_1, \ldots, g_{p-1}) \in G^{p-1} \}| \\
-		&= |G^{p-1}|
+		&= |G|^{p-1}
 	\end{align*}
 	Nun soll $\mathbb Z /p\mathbb Z$ auf $T$ operieren durch
 	\begin{align*}
-		T = (\underbrace{g_1, \ldots, g_m}_{\substack{u}}, \underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}) \implies m\cdot T = (\underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}, \underbrace{g_1, \ldots, g_m}_{\substack{u}})
+		m \cdot (g_1,\ldots ,g_p) = (g_{1+m},\ldots ,g_{p+m})\, ,
 	\end{align*}
-	Es gilt also $uv = 1 \iff v(uv)v^{-1} = 1 = u = 1$, da $|G^{-1}| = n^{p-1}$ und $p \mid n^{p-1} $ da $p \mid n$.
-	Weiter haben Bahnen entweder die Länge $1$ oder $p$, da $\mathbb Z /p\mathbb Z$ nur zwei Untergruppen hat.
+	wobei die Indizes aus $\Z/p\Z$ sind. 
+	Das entspricht einem zyklischen Shift um $m$ und lässt sich folgenderma\ss en veranschaulichen:.
+	\begin{align*}
+		t = (\underbrace{g_1, \ldots, g_m}_{\substack{u}}, \underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}) \text{ und } m\cdot t = (\underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}, \underbrace{g_1, \ldots, g_m}_{\substack{u}})
+	\end{align*}
+	Es gilt also $uv = 1 \iff v(uv)v^{-1} = 1 \iff vu = 1$.\\
+	Weiter gilt $|G|^{p-1} = n^{p-1}$ und $p \mid n^{p-1} $, da $p \mid n$
+	und Bahnen haben entweder die Länge $1$ oder $p$, da $\mathbb Z /p\mathbb Z$ nur zwei Untergruppen hat. 
+	Damit folgt, dass die Menge $\{(g, \ldots, g) \mid g^p= 1 \}$ mindestens ein von $(1,\ldots, 1)$ verschiedenes Element enthalten muss und damit
 	
 	\begin{align*}
-		\mathbb Z /p\mathbb Z \cdot (1, \ldots, 1) = (1, \ldots, 1) \\
-		\{(g, \ldots, g) \mid gP= 1 \} \implies \exists g \text{ mit } gP = 1
+		 \implies \exists g \text{ mit } g^p = 1
 	\end{align*}
 	\bewiesen
 	
