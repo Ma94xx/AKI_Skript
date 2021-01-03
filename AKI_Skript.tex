@@ -375,7 +375,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 				
 			\end{tikzpicture} 
 		\end{array}$
-		\caption{Zerlegung von $G$ in Links bzw. Rechtsnebenklassen}
+		\caption{Zerlegung von $G$ in Links- bzw. Rechtsnebenklassen}
 		\label{fig:nebenklassen}
 	\end{figure}
 	
@@ -413,32 +413,34 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\bewiesen	
 	
 	\subsection{Der Homomorphiesatz}		
-	\subsubsection{Grundlagen Homomorphismus}
-	Eine Abbildung $\varphi: G \to F$ heißt Homomorphismus\footnote{ab hier abgekürzt Hom.} falls $\forall g,h \in G : \varphi(gh) = \varphi(g)\varphi(h)$ \\
+	\subsubsection{Grundlagen: Homomorphismus}
+	Seien $G,F$ Gruppen. 
+	Eine Abbildung $\varphi: G \to F$ hei\ss t Homomorphismus\footnote{ab hier abgekürzt Hom.}, falls $\forall g,h \in G : \varphi(gh) = \varphi(g)\varphi(h)$ gilt. Daraus folgt:\\
 	\begin{enumerate}[label=\roman*)]
-		\item $\varphi(1_G) = 1_H$ ~\par
-		Denn $g=1\cdot g \implies \varphi(g)=\varphi(1)\varphi(g) \implies 1_H = \varphi(g) \varphi(g)^{-1} = \varphi(1)$
+		\item $\varphi(1_G) = 1_F$ ~\par
+		Denn $g=1_G\cdot g \implies \varphi(g)=\varphi(1_G\cdot g)=\varphi(1_G)\varphi(g) \implies \varphi(1_G) = \varphi(g) \varphi(g)^{-1} = 1_F$
 		
 		\item $\varphi(g^{-1})=\varphi(g)^{-1}$ ~\par
-		Denn $\varphi(1)=\varphi(gg^{-1}) \implies 1_h = \varphi(g)\varphi(g^{-1}) \implies \varphi(g)^{-1} = \varphi(g^{-1})$
+		Denn $\varphi(1_G)=\varphi(gg^{-1}) \implies 1_F =\varphi(gg^{-1})= \varphi(g)\varphi(g^{-1}) \implies \varphi(g)^{-1} = \varphi(g^{-1})$
 	\end{enumerate}
 	
-	\subsubsection{Lemma}
+	\subsubsection{Lemma: Injektive Homomorphismen}
 	Ein Hom. $\varphi: G \to F$ ist injektiv $\iff$ $ker(\varphi) = \{g \in G \mid \varphi(g)= 1\} = \{1\}$ 
 	
-	Im Folgenden geben hierfür einen Beweis an in dem wir $\varphi(g) = \varphi(h) \iff \varphi(gh^{-1}) = \{1\} $ zeigen:
+	Die Richtung $"\implies "$ ist trivial, da definiert ist, dass das Einselement auf das Einselement abgebildet wird und bei einer injektiven Abbildung kein weiteres Element aus $G$ auf dasselbe Element in $F$ abgebildet werden kann.
+	Im Folgenden beweisen wir die zweite Richtung unter Benutzung der Äquivalenz $\varphi(g) = \varphi(h) \iff \varphi(gh^{-1}) = \{1\} $:
 	\begin{align*}
-		\varphi \text{ ist injektiv } &\implies ker(\varphi) = \{1\} \\
+		&ker(\varphi) = \{1\} \\
 		&\implies [\varphi(gh^{-1}) = \{1\} \implies gh^{-1} = 1 \implies g = h] \\ 
 		&\implies \varphi \text{ ist injektiv}
 	\end{align*}
 	
-	\subsubsection{Homomorphiesatz}
+	\subsubsection{Definition Homomorphiesatz}
 	Sei $\varphi: G \to F$ ein Hom.  und $N = ker(\varphi)$. \\
-	Dann induziert $\varphi$ ein Hom. $\overline{\varphi} : G/N \to F$ der injektiv ist durch $\overline{\varphi}(gN) = \varphi(g)$ 
+	Dann induziert $\varphi$ einen injektiven Hom. $\overline{\varphi} : G/N \to F$ durch $\overline{\varphi}(gN) = \varphi(g)$.
 	\newline
 	
-	Also induziert $\varphi$ einen Isomorphismus $\overline{\varphi}: G/N \iso im(G) = \{\varphi(g) \mid g \in G\} \leq F$
+	Genauer induziert $\varphi$ also einen Isomorphismus $\overline{\varphi}: G/N \iso im(G) = \{\varphi(g) \mid g \in G\} \leq F$.
 	
 	\subsubsection{Beweis Homomorphiesatz}
 	\begin{enumerate}[label=\arabic*)]
@@ -452,22 +454,21 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\subsubsection{Beispiel für den Homomorphiesatz}
 	Wir definieren 
 	\begin{align*}
-		exp = \begin{cases}
-			\mathbb{R} \to \mathbb{C}^\ast\\
-			x \mapsto e^{2\pi i x}
-		\end{cases}
+		exp: &\,\mathbb{R} \to \mathbb{C}^\ast\\
+			 &\, x \mapsto e^{2\pi i x}
 	\end{align*}
 	Dann ist $ker(exp) = \mathbb Z $.\\ 
-	Also ist $\mathbb R / \mathbb Z \cong \{z \in \mathbb C \mid |z| = 1\}$	
+	Also ist $\mathbb R / \mathbb Z \cong \{z \in \mathbb C \mid |z| = 1\}$.
 	
 	
 	
 	\subsection{Normalteiler}		
 	\subsubsection{Definition}
-	$H \subseteq G$ heißt Normalteiler ($H\trianglelefteq G$) falls $\forall g \in G : gH = Hg$. 
+	$H \leq G$ hei\ss t Normalteiler, falls $\forall g \in G : gH = Hg$ gilt.
+	Man schreibt dann $H\trianglelefteq G$. 
 	
 	\subsubsection{Satz zu Normalteilern}
-	Sei $H \subseteq G$, dann sind die folgenden Aussagen äquivalent: 
+	Sei $H \subseteq G$. Dann sind die folgenden Aussagen äquivalent: 
 	\begin{enumerate}[label=\arabic*)]
 		\item $H\trianglelefteq G$
 		\item $H \leq G$ und $gH \cdot fH = gfH$ definiert eine Gruppenstruktur auf $G/H$
@@ -477,31 +478,32 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	
 	Im Folgenden wird die Äquivalenz der Aussagen gezeigt: 
 	\begin{itemize}
-		\item $1)\rightarrow 2)$ ~\par
-		$H\trianglelefteq G \implies gHfH = g(Hf)H = g(fH)H = gfH$
+		\item $1)\implies 2)$ ~\par
+		$H\trianglelefteq G \implies gHfH = g(Hf)H = g(fH)H = gfHH = gfH$ mit
 		\begin{align*}
-			&\text{ Neutrales Element: } &&1_{G/H} = H \\
-			&\text{ Inverse: } &&(gH)^{-1} = H^{-1}g^{-1}= Hg^{-1}=g^{-1}H \\
+			&\text{ Neutralem Element: } &&1_{G/H} = H \\
+			&\text{ Inversen: } &&(gH)^{-1} = H^{-1}g^{-1}= Hg^{-1}=g^{-1}H \\
 			&\text{ Assoziativität: } &&(fH)(gH)(hH)= fghH\\
 		\end{align*}
 		
-		\item $2)\rightarrow 3)$ ~\par
-		Sei $\varphi : G \to G/H $ und $\varphi(g) = gH$, dann
+		\item $2)\implies 3)$ ~\par
+		Wir wählen $F=G/H$.
+		Dann ist $\varphi : G \to G/H $, $\varphi(g) = gH$ ein Hom. mit
 		\begin{align*}
 			ker(\varphi) = \{g \in G \mid gH = H\} = H = 1_{G/H}
 		\end{align*}
 		
-		\item $3)\rightarrow 4)$~\par
+		\item $3)\implies 4)$~\par
 		Sei $H = ker(\varphi)$, dann
 		\begin{align*}
 			\varphi(gHg^{-1}) = \varphi(gg^{-1}) = \varphi(1) \subseteq H 
 		\end{align*}
 		
-		\item $4)\rightarrow 1)$~\par
+		\item $4)\implies 1)$~\par
 		$\forall g \in G : gHg^{-1} \subseteq H$
 		\begin{align*}
-			&\implies  \forall g \in G : H \subseteq g^{-1}Hg \\
-			&\implies \forall g \in G : H \subseteq gHg^{-1} \\
+			&\implies  \forall g \in G : H \subseteq g^{-1}Hg &| \text{ durch } g\cdot \text{ und } \cdot g^{-1}\\
+			&\implies \forall g \in G : H \subseteq gHg^{-1} &| \text{ da jedes Elemet ein Inverses ist}\\
 			&\implies gHg^{-1} = H \\
 			&\implies gH = Hg
 		\end{align*}
