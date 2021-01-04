@@ -185,7 +185,7 @@
 \section{Grundlagen - Vorlesung 1}
 \subsection{Diedergruppen}
 \subsubsection{Definition}
-Die Diedergruppe $D_n$ ist die Bewegungsgruppe des regelmä\ss igen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
+Die Diedergruppe $D_n$ ist die Bewegungsgruppe des regelmäßigen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
 
 Nun ist das $n$-Eck durch folgende Knoten und Kanten definiert: 
 \begin{align*}
@@ -298,8 +298,8 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	Für Untergruppen ist die Schreibweise $H\leq G$ üblich.
 	
 	
-	\subsection{Nebenklassen}
-	\subsubsection{Definition}
+\subsection{Nebenklassen}
+\subsubsection{Definition}
 	Für eine Untergruppe $H \leq G$ sind die folgenden Nebenklassen definiert:
 	\begin{align*}
 		G/H &= \{gH \subseteq G \mid g \in G\} \quad \text{Menge der Linksnebenklassen } \\
@@ -307,20 +307,20 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\end{align*}
 	wobei $gH$ die Multiplikation von  g mit allen Elementen aus $H$ ist, also die Linksnebenklasse bezüglich dem Element $g$. 
 	
-	\subsubsection{Grö\ss e von Nebenklassen}
-	Wir definieren die folgenden Abbildungen
+	\subsubsection{Größe von Nebenklassen}
+	Wir definieren die folgenden Abbildungen $	\forall f,g \in G$ ist
 	\begin{align*}
-		\forall f,g \in G \text{ ist } (fg^{-1} \cdot):& gH \iso fH \\
-		& gh \mapsto fh = fg^{-1}gh
+	(fg^{-1} \cdot): gH &\iso fH \\
+		gh &\mapsto fh = fg^{-1}gh
 	\end{align*}
 	Diese ist bijektiv mit der Umkehrabbildung $(gf^{-1}\cdot)$.
-	Wir können dann folgern, dass 
+	Wir können dann folgern, dass $\forall f,g \in G$
 	\begin{align*}
-		gH \iso H \iso Hf \quad \text{ für alle } f,g \in G \text{ gilt.}
-	\end{align*}
+		gH \iso H \iso Hf 
+	\end{align*} 
 	Es gilt also $|gH| = |Hf| = |H|\text{ für alle } f,g \in G$.
 	
-	\subsubsection{Gleichheit und Disjunktheit von Nebenklassen}
+\subsubsection{Gleichheit und Disjunktheit von Nebenklassen}
 	Sowohl $G/H$ als auch $H/G$ sind jeweils Partitionen von $G$.
 	Um das zu beweisen, wird im Folgenden gezeigt, dass $gH \cap fH \not = \emptyset \iff gH = fH$ gilt.
 	Die Rückrichtung ist hierbei trivial, da der Schnitt von $gH$ und $fH$ bei Gleichheit offensichtlich nicht leer ist, sofern die Nebenklassen an sich nicht leer sind, was per Definition gegeben ist. \\
@@ -389,8 +389,8 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	Dann ist $R_H := \{r(gH) \mid gH \in G/H\} \subseteq G$ ein Repräsentantensystem.
 	Mit der bijektiven  Abbildung
 	\begin{align*}
-		R_H \iso G/H \\
-		r(gH) \mapsto gH 
+		R_H &\iso G/H \\
+		r(gH) &\mapsto gH 
 	\end{align*}
 	kann man sehen, dass das Repräsentantensystem offensichtlich gleichmächtig wie die Menge der Klassen ist.
 	\subsection{Satz von Lagrange}	
@@ -415,7 +415,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\subsection{Der Homomorphiesatz}		
 	\subsubsection{Grundlagen: Homomorphismus}
 	Seien $G,F$ Gruppen. 
-	Eine Abbildung $\varphi: G \to F$ hei\ss t Homomorphismus\footnote{ab hier abgekürzt Hom.}, falls $\forall g,h \in G : \varphi(gh) = \varphi(g)\varphi(h)$ gilt. Daraus folgt:\\
+	Eine Abbildung $\varphi: G \to F$ heißt Homomorphismus\footnote{ab hier abgekürzt Hom.}, falls $\forall g,h \in G : \varphi(gh) = \varphi(g)\varphi(h)$ gilt. Daraus folgt:\\
 	\begin{enumerate}[label=\roman*)]
 		\item $\varphi(1_G) = 1_F$ ~\par
 		Denn $g=1_G\cdot g \implies \varphi(g)=\varphi(1_G\cdot g)=\varphi(1_G)\varphi(g) \implies \varphi(1_G) = \varphi(g) \varphi(g)^{-1} = 1_F$
@@ -430,7 +430,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	Die Richtung $"\implies "$ ist trivial, da definiert ist, dass das Einselement auf das Einselement abgebildet wird und bei einer injektiven Abbildung kein weiteres Element aus $G$ auf dasselbe Element in $F$ abgebildet werden kann.
 	Im Folgenden beweisen wir die zweite Richtung unter Benutzung der Äquivalenz $\varphi(g) = \varphi(h) \iff \varphi(gh^{-1}) = \{1\} $:
 	\begin{align*}
-		&ker(\varphi) = \{1\} \\
+		ker(\varphi) &= \{1\} \\
 		&\implies [\varphi(gh^{-1}) = \{1\} \implies gh^{-1} = 1 \implies g = h] \\ 
 		&\implies \varphi \text{ ist injektiv}
 	\end{align*}
@@ -464,7 +464,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	
 	\subsection{Normalteiler}		
 	\subsubsection{Definition}
-	$H \leq G$ hei\ss t Normalteiler, falls $\forall g \in G : gH = Hg$ gilt.
+	$H \leq G$ heißt Normalteiler, falls $\forall g \in G : gH = Hg$ gilt.
 	Man schreibt dann $H\trianglelefteq G$. 
 	
 	\subsubsection{Satz zu Normalteilern}
@@ -531,7 +531,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	wobei $g \in G$ gilt.
 	
 	\subsubsection{Fixpunkte in G-Mengen}
-	Sei $X$ eine  $G$-Menge. Dann hei\ss t $x$ ein Fixpunkt von $g \in G$ falls $gx=x$. \\
+	Sei $X$ eine  $G$-Menge. Dann heißt t $x$ ein Fixpunkt von $g \in G$ falls $gx=x$. \\
 	Weiter ist für alle $x \in X$ die Menge $Fix(x)$  der Fixpunkte eine Untergruppe von $G$:
 	\begin{align*}
 		Fix(x) = \{g \in G \mid  gx = x\} \leq G 
@@ -551,7 +551,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\end{align*}
 	Die Bijektion ist wohldefiniert, da für jedes Element $h \in gFix(x)$ gilt, dass $h=gf$ mit einem $f \in Fix(x)$. \\ 
 	Also folgt $hx = gf(x) = g(x)$.\\
-	Mit dem Wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist, kann man insbesondere für den Spezialfall, dass $|G| = p$ für eine Primzahl $p$ gilt, folgern, dass $\forall x \in X : |Gx|=1$ \vee\, $|Gx|=p$ gelten muss.
+	Mit dem Wissen, dass $|Gx|=|G/Fix(x)|$ ein Teiler von $|G|$ ist, kann man insbesondere für den Spezialfall, dass $|G| = p$ für eine Primzahl $p$ gilt, folgern, dass $\forall x \in X : |Gx|=1$ $\vee\, $$|Gx|=p$ gelten muss.
 	
 	
 	\subsubsection{Bahnenlemma}
@@ -613,7 +613,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 		m \cdot (g_1,\ldots ,g_p) = (g_{1+m},\ldots ,g_{p+m})\, ,
 	\end{align*}
 	wobei die Indizes aus $\Z/p\Z$ sind. 
-	Das entspricht einem zyklischen Shift um $m$ und lässt sich folgenderma\ss en veranschaulichen:.
+	Das entspricht einem zyklischen Shift um $m$ und lässt sich folgendermaßen veranschaulichen:.
 	\begin{align*}
 		t = (\underbrace{g_1, \ldots, g_m}_{\substack{u}}, \underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}) \text{ und } m\cdot t = (\underbrace{g_{m+1}, \ldots, g_p}_{\substack{v}}, \underbrace{g_1, \ldots, g_m}_{\substack{u}})
 	\end{align*}
