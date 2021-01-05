@@ -1830,6 +1830,27 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	Durch den \textit{Bayb-Step} gilt $\{v \in B^t \mid c \varphi(v)c = t\} \in \starfree(B) \subseteq \starfree(A)$. \\
 	
 	Weiter gilt $\sigma\inv(K_1 \cap K_2) = \sigma\inv(K_1) \cup \sigma\inv(K_2)$ sowie $\sigma\inv(T^\ast \setminus K-1) = (c\bast)^\ast \setminus K_1 \in \starfree$, denn $(c\bast)^\ast = c \aast$
+	
+	\begin{figure}[h!]
+		\centering
+		\begin{tikzpicture}[node distance=5.5cm, auto]
+		\node (cb) {$\{1\} \cup c\aast =(c\bast)^\ast$};
+		\node (t) [right of=cb] {$T^\ast$};
+		\node (xm) [below of=cb] {$M' = \{c \in M \mid xc \in cM \}$};
+		\node (mc) [right of=xm] {$M_c = (\{cM \cap Mc\}, \cdot, c)$};
+		
+		\draw[->] (cb) -- (t) node[ midway,sloped,above,rotate=0] { $\sigma$};
+		\draw[ ->] (cb) -- (xm) node[ midway,right,rotate=0] { $\varphi$};
+		\draw[ ->] (xm) -- (mc) node[ midway,above,rotate=0] { $\rho_c$};
+		\draw[ ->] (t) -- (mc) node[ midway,right,rotate=0] { $t \mapsto ctc$};
+		\end{tikzpicture}
+	\end{figure} 
+	Es gilt also $\sigma(cv_1 \cdots cv_k) = [v_1] \cdots [v_k] \in T^k \subseteq T^\ast$ mit $T = \{ \varphi(v) \mid  v |in \bast\} \subseteq M$ und $T$ ein endliches Alphabet.
+	\newline
+	
+	Noch zu zeigen bleibt also $K_1, K_2 \in \starfree(T)$ mit struktureller Induktion. Es operiert $\sigma\inv (K_i) \in \starfree(A) \implies \sigma\inv(K_1K_2) \in \starfree(A)$.
+	So folgt, dass $\sigma\inv(K_1K_2) = \sigma\inv(K_1) \sigma\inv(K_2) \in \starfree(A)$. 
+	\bewiesen
 \end{document}
 
 
