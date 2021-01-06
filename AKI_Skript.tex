@@ -854,7 +854,8 @@
 	Sei $(h,f)\in G$. $(h, f)^{-1} = (h', f^{-1})$ mit $h' = \varphi(f^{-1})(h^{-1})$, weil $h\varphi(f)(h')= 1$ gelten muss.
 		
 	\subsubsection{Exakte Sequenzen}
-	Eine Sequenz von Homs. $\varphi_i: G_{i-1} \to G_i$ mit $i \in I$ wobei $I$ linear geordnet ist, heißt exakt falls $$\forall i \in I : im(\varphi_i) = ker(\varphi_{i+1})$$ gilt
+	Eine Sequenz von Homs. $\varphi_i: G_{i-1} \to G_i$ mit $i \in I$ wobei $I$ eine linear geordnete Menge ist, hei\ss t exakte Sequenz, falls $$\forall i \in I : im(\varphi_i) = ker(\varphi_{i+1})$$ gilt.\\
+	Abbildung~\ref{fig:sequenz} veranschaulicht die Idee von Hom. Sequenzen.
 	\begin{figure}[h!]
 		\centering
 		\begin{equation*}
@@ -862,26 +863,28 @@
 				\ldots \arrow{r}{\varphi_{i-1}} & G_{i -1} \arrow{r}{\varphi_{i}} & G_{i} \arrow{r}{\varphi_{i+1}} & G_{i+1} \ldots 
 			\end{tikzcd}
 		\end{equation*}
-		\caption{Graphische Darstellung einer Sequenz}
+		\caption{Graphische Darstellung einer Sequenz.}
+		\label{fig:sequenz}
 	\end{figure}
-	
-	\subsubsection{Konstruktion 2 von semidirekten Produkten}
-	Eine zweite Möglichkeit zur Konstruktion von semidirekten Produkten ist durch sogenannte kurze exakte Sequenzen möglich. 
-	Wir betrachten dabei die folgende Sequenz
-	\begin{figure}[h!]
-		\centering
+
+	\subsubsection{Kurze Exakte Sequenzen}
+	Eine kurze exakte Sequenz ist eine exakte Sequenz der Form 
 		\begin{equation*}
 			\begin{tikzcd}[column sep=2.5pc]
-				1 \arrow{r}{} & H \arrow{r}{\varphi} & G \arrow{r}{\psi} & F \arrow{r}{} & 1
+				\{1\} \arrow{r}{} & H \arrow{r}{\varphi} & G \arrow{r}{\psi} & F \arrow{r}{} & \{1\}\, ,
 			\end{tikzcd}
 		\end{equation*}
-		\caption{Kurze exakte Sequenz}
-	\end{figure} 
+	wobei $\varphi: H \mapsto G$ injektiv ist, $\psi: G \mapsto F$ surjektiv ist, und die induzierte Abbildung $\overline{\psi} : G/H \iso F$ ein Isomorphismus ist.
 	
-	Dabei gilt, dass $\varphi : H \to G$ injektiv ist und dass $\psi : G \to F$ surjektiv ist. Somit entsteht der folgende Isomorphismus $$\overline{\psi} : G/H \iso F$$
-	
-	\subsubsection{Satz über Konstruktion 2}
-	$G$ ist ein semidirektes Produkt $G = H\rtimes F$ mit der exakten Sequenz $$1 \to H \to G \to F \to 1$$ falls ein Hom. $s: F \to G$ existiert  mit $\psi s = id_F$
+	\subsubsection{Konstruktionsmöglichkeit 2 für semidirekte Produkte}
+	Eine zweite Möglichkeit zur Konstruktion von semidirekten Produkten entsteht durch den folgenden Zusammenhang mit exakten Sequenzen.\\
+	$G$ ist ein semidirektes Produkt $G = H\rtimes F$ mit der exakten Sequenz 
+	\begin{equation*}
+		\begin{tikzcd}[column sep=2.5pc]
+			\{1\} \arrow{r}{} & H \arrow{r}{\varphi} & G \arrow{r}{\psi} & F \arrow{r}{} & \{1\}\, ,
+		\end{tikzcd}
+	\end{equation*}
+	falls ein Hom. $s: F \to G$ existiert  mit $\psi s = id_F$.
 	
 	\section{Gruppentheorie 4 - Vorlesung 5}
 	\subsection{Einfache Gruppen}
