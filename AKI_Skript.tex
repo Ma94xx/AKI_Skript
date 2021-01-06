@@ -151,6 +151,13 @@
 \newcommand{\lgredeq}{\leqslant_{\mathcal{D}}}
 \newcommand{\lgreyeq}{\leqslant_{\mathcal{Y}}}
 
+\newcommand{\lcal}{\mathcal L}
+\newcommand{\rcal}{\mathcal R}
+\newcommand{\hcal}{\mathcal H}
+\newcommand{\jcal}{\mathcal J}
+\newcommand{\dcal}{\mathcal D}
+
+
 \newcommand{\rgreleq}{\geqslant_{\mathcal{L}}}
 \newcommand{\rgrereq}{\geqslant_{\mathcal{R}}}
 \newcommand{\rgrejeq}{\geqslant_{\mathcal{J}}}
@@ -1452,7 +1459,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 		\textbf{Antwort:} Es gilt $a^nb^2a^n \in L \iff n+m \equiv 0 (2)$ und wir wissen dass $$(ab)^2(ba)^n \iff n = m$$ Somit folgt: $L$ ist nicht regulär.
 	\end{itemize}
 	
-\section{Halbgruppentheorie - Vorlesung 10}
+\section{Halbgruppentheorie Teil 1 - Vorlesung 10}
 \subsection{Greens Relations}
 \subsubsection{Definition Ideal}
 	Bei Idealen eines Rings unterscheidet man in sogenannte Links-, Rechts- und Beidseitige Ideale. 
@@ -1476,7 +1483,10 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\begin{align*}
 		\mathcal L \subseteq M \times M: x \lgreleq y &\iff Mx \subseteq My \\
 		\mathcal R \subseteq M \times M: x \lgrereq y &\iff xM \subseteq yM \\
-		\mathcal J \subseteq M \times M: x \lgrejeq y &\iff MxM \subseteq MyM 
+		\mathcal J \subseteq M \times M: x \lgrejeq y &\iff MxM \subseteq MyM  \\
+		\mathcal H \subseteq M \times M: x \lgreheq y &\iff x \lgreleq y \land x \lgrereq y \\
+		(s,t) \in \mathcal{D} &\iff \exists z: (s,z) \in \mathcal L \land (z,t) \in \mathcal R \\ 
+		&\iff (s,t) \in \mathcal L \mathcal{R} =  \mathcal R \mathcal{L}
 	\end{align*}
 	
 	Im Allgemeinen gilt für $R \subseteq X \times Y$ und $S \subseteq Y \times Z$
@@ -1576,7 +1586,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 		\item $\mathcal{D} = \mathcal{J}$
 	\end{enumerate}
 	
-	\subsubsection{Beweis des Lemma 7.42 (DAM)}
+	\subsubsection{Beweis des Lemma 7.42 \label{dam}(DAM)}
 	Der Beweis dazu ist auch im Buch (englischer Version) unter dem Lemma 7.42 zu finden.
 	\begin{enumerate}[label = \alph*)]
 		\item Sei $s \lgrereq t \implies s = tu$. Dann gilt 
@@ -1858,15 +1868,15 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	$$ K \in \starfree(T) \implies \sigma\inv(K) \in \starfree(A)$$ Wir zeigen $K = \{1\} \implies \sigma\inv(1) \cap (c\bast)^\ast = \{1\} \in \bast$ und $\{1\} \in \starfree(A)$.
 	\newline
 	
-	Dafür sei $t \in T$, dann ist $\sigma\inv(t) |in \starfree(K)$, denn 
+	Dafür sei $t \in T$, dann ist $\sigma\inv(t) \in \starfree(K)$, denn 
 	\begin{align*}
 		w \in \sigma\inv(t) \cap(c\bast)^\ast \iff w = cv \text{ mit } c \in \bast \text{ und } v \varphi(v)c = t
 	\end{align*} 
 	Durch den \textit{Bayb-Step} gilt $\{v \in B^t \mid c \varphi(v)c = t\} \in \starfree(B) \subseteq \starfree(A)$. \\
+	\newpage
 	
-	Weiter gilt $\sigma\inv(K_1 \cap K_2) = \sigma\inv(K_1) \cup \sigma\inv(K_2)$ sowie $\sigma\inv(T^\ast \setminus K-1) = (c\bast)^\ast \setminus K_1 \in \starfree$, denn $(c\bast)^\ast = c \aast$
-	
-	\begin{figure}[h!]
+	Weiter gilt $\sigma\inv(K_1 \cap K_2) = \sigma\inv(K_1) \cup \sigma\inv(K_2)$ sowie $\sigma\inv(T^\ast \setminus K_1) = (c\bast)^\ast \setminus K_1 \in \starfree$, denn $(c\bast)^\ast = c \aast$
+	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[node distance=5.5cm, auto]
 		\node (cb) {$\{1\} \cup c\aast =(c\bast)^\ast$};
@@ -1877,15 +1887,260 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 		\draw[->] (cb) -- (t) node[ midway,sloped,above,rotate=0] { $\sigma$};
 		\draw[ ->] (cb) -- (xm) node[ midway,right,rotate=0] { $\varphi$};
 		\draw[ ->] (xm) -- (mc) node[ midway,above,rotate=0] { $\rho_c$};
-		\draw[ ->] (t) -- (mc) node[ midway,right,rotate=0] { $t \mapsto ctc$};
+		\draw[ ->] (t) -- (mc) node[ midway,right,rotate=0] { $t \mapsto .42ctc$};
 		\end{tikzpicture}
 	\end{figure} 
-	Es gilt also $\sigma(cv_1 \cdots cv_k) = [v_1] \cdots [v_k] \in T^k \subseteq T^\ast$ mit $T = \{ \varphi(v) \mid  v |in \bast\} \subseteq M$ und $T$ ein endliches Alphabet.
+
+	Es gilt also $\sigma(cv_1 \cdots cv_k) = [v_1] \cdots [v_k] \in T^k \subseteq T^\ast$ mit $T = \{ \varphi(v) \mid  v \in \bast\} \subseteq M$ und $T$ ein endliches Alphabet.
 	\newline
 	
 	Noch zu zeigen bleibt also $K_1, K_2 \in \starfree(T)$ mit struktureller Induktion. Es operiert $\sigma\inv (K_i) \in \starfree(A) \implies \sigma\inv(K_1K_2) \in \starfree(A)$.
 	So folgt, dass $\sigma\inv(K_1K_2) = \sigma\inv(K_1) \sigma\inv(K_2) \in \starfree(A)$. 
 	\bewiesen
+	
+\section{Halbgruppentheorie Teil 2- Vorlesung 13}
+\subsection{Greens Relations Teil 2}
+\subsubsection{Lemma}
+	Sei $s \lgreleq t$ und $s \grej t$, dann gilt $s \grel t$ (Analog für $\grer$)
+
+\subsubsection{Lemma}
+	Es gilt $\hcal(c) \subseteq M_c = cM \cap Mc$, denn 
+	\begin{align*}
+		x \in \hcal(c) &\implies x \grer c \land x \grel c \\ 
+		&\implies x \lgreheq c \\ 
+		&\implies x \in cM \cap Mc
+	\end{align*}
+
+\subsubsection{Strukturelle Aussagen}
+	Wir wollen die folgenden Sätze zeigen:
+	\begin{enumerate}[label = \alph*)]
+			\item  \label{Aussage1}$(\hcal(c), \circ, c) = U(M_c, \circ, c)$ ist das Schützenberger Produkt auf $\hcal(c)$
+			\item  \label{Aussage2} Seien $s \grer t$ mit $s = tu \land t = sv$. Dann gilt $\rho_v: M_s \to M_t$ ist ein Isomorphismus von $(sM \cap Ms, \circ, s)$ auf $(tM \cap Mt, \cdot, t)$ und vermöge $x \mapsto xv$
+			\item  \label{Aussage3} Sei $s = tu$, $t = sv$ und $s \grej t$ sowie $s \grer t$, dann gilt $\rho_v: \lcal(s) \iso \lcal(t)$ ist bijektiv. 
+			\item  \label{Aussage4} $\rho_c$ ist respektiv die $\hcal$-Klasse mit $\hcal(x)v = \hcal(xv)$
+	\end{enumerate}
+
+\subsubsection{Beweis der Aussage \ref{Aussage1}}
+	Für $x \greh c $ folgt $c = yx$ und $yc \in Mc$, da $cM = xM$
+	\begin{align*}
+		&\implies yc \circ x = yc = c \\
+		&\implies x \in U(M_c, \circ, c)
+	\end{align*}
+	Für die andere Richtung sei $x = x'c = cx'' \in U(M_c)$, dann gilt: 
+	\begin{align*}
+		&\implies \exists y'c = c y'' \text{ mit } (x'c)y'' = y'(cx'') =c \\
+		&\implies c \lgreheq x \quad\text{ Hier gilt auch } x \in M_c
+	\end{align*}
+	Somit $x \lgreheq c \implies x \greh c$
+	\bewiesen
+	
+\subsubsection{Beweis der Aussage \ref{Aussage2}}
+	Seien $x = x's = sx''$ und $\rho_c(x) = xv$, dann gilt $xv = x'sv \in Mt$. Ferner ist $xv = sx''v = tux''v \in tM$. 
+	Es folgt dann $\rho_s(M_s) \subseteq Mt$ und $\rho_v$ ist ein Hom. Dies gilt da:  
+		\begin{align*}
+			\rho_v(x's)\circ \rho_v(y's) &= x'sv \circ y'sv \\ 
+			&= x'y'sv \\
+			&= x'y't
+		\end{align*}
+	Somit ist dann 
+		\begin{align*}
+			\rho_v(x's \circ y's) &= \rho_v(x'y's) \\
+			&= x'y'sv \\
+			&= x'y't
+		\end{align*}
+	Weiter gilt dass $\rho_v: Ms \to Mt$ ein Isomorphismus für $s \grer t$ ist. Um dies zu sehen, betrachten wir $x = x's \in Ms$. Dann gilt 
+	\begin{align*}
+		\rho_u\rho_v(x) &= \rho_u(x'sv) \\
+		&= x'svu \\
+		&= x'tu \\
+		&=x's \\
+		&\implies \rho_v \text{ ist injektiv}
+	\end{align*}
+	Analog dazu für $\rho_u: Mt \to Ms$ ist injektiv. Also folgt $\rho_u\rho_v = \rho_v\rho_u = id$
+	\bewiesen
+	
+\subsubsection{Beweis der Aussage \ref{Aussage3}}
+	Sei $x \grel s$, aber $Mx = Ms$, dann folgt $Mxv = Msu = Mt$ und ist somit bijektiv, da $\rho_u\rho_v = id$
+	\bewiesen
+	
+\subsubsection{Beweis der Aussage \ref{Aussage4}}
+	Sei $x\grel s$ dann folgt daraus $ xv \grel sv \grel t \implies xv \grej t$. Und somit ist $xv \lgrereq x$, nach dem Lemma \ref{dam} (im Buch 7.42) gilt dann $xu \grer x$ 
+
+%Sorry dass das hässlich is aber ich bekomme es nicht hin dass es zentriert in der Seite eingebettet ist :(
+%Wegen mir können wir das auch raus lassen
+
+	\begin{figure}[H]
+		\centering
+	\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
+			
+			\begin{scope}[yshift=1.5cm,y=1cm]
+				\node [fit={(0,2) (1,3)}, label={[align=left] $\lcal$- Klasse \\ $\quad \quad \downarrow$}] {$s$}; 
+			\end{scope}
+			
+			\begin{scope}[yshift=0.5cm,y=1cm]
+				\node [fit={(0,1) (1,3)}, label=center:{$\vdots$}] {};
+			\end{scope}
+			
+			\begin{scope}[yshift=0.5cm,y=1cm]
+				\node [fit={(0,0) (1,1)}, label=below:{}] {$x$};
+			\end{scope}
+			
+			\begin{scope}[yshift=3.5cm,y=1cm]
+				\node [fit={(1,0) (4,1)}, label=center:{$\cdots$}] {};
+			\end{scope}
+			
+			\begin{scope}[yshift=3.5cm,y=1cm]
+				\node [fit={(1,-3) (4,-2)}, label=center:{$\cdots$}] {};
+			\end{scope}
+			
+			\begin{scope}[yshift=3.5cm,y=1cm]
+				\node [fit={(4,0) (5,1)}, label=below:{}] {$t$};
+			\end{scope}
+			
+			\begin{scope}[yshift=3.5cm,y=1cm]
+				\node [fit={(4,0) (5,-2)}, label=center:{$\vdots$}] {};
+			\end{scope}
+			
+			\begin{scope}[yshift=3.5cm,y=1cm]
+				\node [fit={(4,-2) (5,-3)}, label=right:{$\leftarrow \rcal$- Klasse }] {$xv$};
+			\end{scope}
+			
+			\begin{scope}[yshift=2.5cm,y=1cm]
+				\node [fit={(1,-1) (4,1)}] { $\vdots$};
+			\end{scope}
+		
+		\end{tikzpicture} 
+
+	\caption{Eggbox Diagram}
+	\end{figure}
+	Die Aussage folgt wenn man $x \grer y \implies xv \grer x \sim y \grer yv$ und \\ 
+	 $x \grel y \implies xv \grel t \sim y \grer yv$ betrachtet. 
+	\bewiesen
+
+\subsubsection{Korrolar}
+	Seien $s\grej t \in M$ und $M$ endlich, also $\exists z: s \grer z \grel t$ ($\dcal = \jcal$). 
+	Dann ist $s = zv$ und $t =uz$, und somit ist: 
+	
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}[node distance=3.5cm, auto]
+		\node (lam) {$\lambda_u\rho_v: (\hcal(s), \circ, s)$};
+		\node (ht) [right of=lam] {$(\hcal(t), \circ, t)$};
+		\node (hz) [below of=lam] {$(\hcal(z), \circ, z)$};
+
+		\draw[->] (lam) -- (ht) node[ midway,sloped,above,rotate=0] { $\sim$};
+		\draw[  ] (lam) -- (hz) node[midway,sloped, above, rotate=0] { $\sim$};
+		\draw[ ->] (lam) -- (hz) node[ midway,left=.2,rotate=0] { $\rho_v$};
+		\draw[ ->] (ht) -- (hz) node[ midway,right=.2cm,rotate=0] { $\lambda_u$};
+		\draw[  ] (ht) -- (hz) node[midway,sloped, above, rotate=0] { $\sim$};
+		\end{tikzpicture}
+	\end{figure} 
+
+\subsubsection{Definition Regulär}	
+	Ein $s \in M$ heißt regulär, falls $\exists r: srs = s$ gilt. 
+
+\subsubsection{Lemma}
+	Es gilt $srs=s \implies s \grer sr$ und $(sr)^2 = sr \in E(M)$	
+
+\subsubsection{Beweis des Lemmas}
+	Sei $s\lgrereq s$ und $sr \lgrereq srs = s$. Dann folgt daraus $s \grer sr$. Außerdem ist $(sr)(sr) = (srs) \land sr \in E(M)$
+	\bewiesen
+
+\subsubsection{Satz}
+	Für ein endliches $M$ sind die folgenden Aussagen äuquivalent für eine $\dcal$-Klasse D: 
+		\begin{enumerate}[label=\arabic*.)]
+			\item $D$ ist regulär $\iff \exists s \in D$ und $v \in M$ mit $srs = s$ (d.h $\exists s \in D$ und $s$ regulär)
+			\item $\exists e \in E(M)$ und $e \in D$
+			\item $\forall s \in D: s$ ist regulär
+			\item Jede $\lcal$-Klasse in $D$ und jede $\rcal$-Klasse von $D$ enthält eine Idempotenz
+		\end{enumerate}
+
+\subsubsection{Beweis des Satzes}
+	Sei $srs = s$ regulär und $s \in D \implies sr \grer s$ sowie $sr = e \in E(M)$. Dann folgt 
+	\begin{align*}
+		&\implies \exists e \in M: e \grer s \text{ und } e^2 = e \\
+		&\implies s \in eM \\
+		&\implies es = s \text{ da } s=es' \implies es = es' = s
+	\end{align*}
+	Somit folgt 2.)
+	\newline
+	
+	Wir zeigen jetzt $e^2 = e \grer s$. Betrachte dazu $e=sr \implies s = es = srs$. Daraus folgt $s$ ist regulär und somit dass alle $\rcal$-Klassen zu $e$ reguläre sein müssen.
+	Analog gilt die für die $\lcal$-Klassen. \\
+	Somit folgt 3.)
+	\newline
+	
+	Also existiert $s \in D$ regulär und somit folgt $\rcal(s)$ und $\lcal(s)$ enthalten eine Idempotenz. \\
+	Somit folgt 4.)
+
+\subsubsection{Satz}
+	Seien $s,t \in D$ für eine $\dcal$-Klasse $D$ und sei $M$ endlich. Sei weiter $st \in D$, dann ist $D$ regulär und $st \in \rcal(s) \cap \lcal(t)$. 
+	Ferner gilt $\exists e \in \lcal(s) \cap \rcal(t)$, und somit $$\exists e \in \rcal(t) \cap \lcal(s) \text{ mit } e=e^2 \implies st \in \rcal(s) \cap \lcal(t)$$
+		\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
+		
+		\begin{scope}[yshift=1.5cm,y=1cm]
+			\node [fit={(0,2) (1,3)}] {$s$}; 
+		\end{scope}
+		
+		\begin{scope}[yshift=0.5cm,y=1cm]
+			\node [fit={(0,1) (1,3)}, label=center:{$\vdots$}] {};
+		\end{scope}
+		
+		\begin{scope}[yshift=0.5cm,y=1cm]
+			\node [fit={(0,0) (1,1)}, label=below:{}] {$e$};
+		\end{scope}
+		
+		\begin{scope}[yshift=3.5cm,y=1cm]
+			\node [fit={(1,0) (4,1)}, label=center:{$\cdots$}] {};
+		\end{scope}
+		
+		\begin{scope}[yshift=3.5cm,y=1cm]
+			\node [fit={(1,-3) (4,-2)}, label=center:{$\cdots$}] {};
+		\end{scope}
+		
+		\begin{scope}[yshift=3.5cm,y=1cm]
+			\node [fit={(4,0) (5,1)}, label=below:{}] {$st$};
+		\end{scope}
+		
+		\begin{scope}[yshift=3.5cm,y=1cm]
+			\node [fit={(4,0) (5,-2)}, label=center:{$\vdots$}] {};
+		\end{scope}
+		
+		\begin{scope}[yshift=3.5cm,y=1cm]
+			\node [fit={(4,-2) (5,-3)}] {$t$};
+		\end{scope}
+		
+		\begin{scope}[yshift=2.5cm,y=1cm]
+			\node [fit={(1,-1) (4,1)}] { $\vdots$};
+		\end{scope}
+		
+		\end{tikzpicture} 
+	\end{figure}
+
+\subsubsection{Beweis des Satzes}
+	Seien $s,t \in D$ mit $st \in D$. Dann ist $s \grej t \grej st$ sowie $st \lgrereq s$ und $st \lgreleq t \implies st \in \rcal(s) \cap \lcal(t)$
+	Betrachte nun 
+	\begin{align*}
+		\rho_t : \lcal(s) &\to \lcal(st) = \lcal(t) \\
+		x &\mapsto xt
+	\end{align*}
+	Dann folgt dass $\exists! e \in \lcal(s): et = t$. Ferner gilt $e \in R(t)$, da $\rho_t$ die $\rcal$-Klasse  enthält und somit folgt 
+		\begin{align*}
+			e = ty \implies e^2 &= (et)y \\
+			&=ty = e
+		\end{align*}
+		$\implies e \in E(M)$ mit $e \in \lcal(s) \cap \rcal(t)$. 
+	\newline
+	
+	Umgekehrt sei $e^2 = e \in \lcal(s) \cap \rcal(t)$. Zu zeigen ist $st \in \lcal(s) \cap \rcal(t)$. \\
+	Wegen $ t \in eM$ und $e^2 = e$ gilt $et =t$.
+	Nun folgt durch $e \in \lcal(s)$, dass $\rho_t = st \in \lcal(s)$ ist. \\ 
+	Ferner gilt $\rho_t(s) \grer s \implies st \in \lcal(s) \cap \rcal(t)$.
+	\bewiesen
+	
+
 \end{document}
 
 
