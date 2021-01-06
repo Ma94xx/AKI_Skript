@@ -191,32 +191,32 @@
 	\tableofcontents
 	\newpage
 	
-\section{Grundlagen - Vorlesung 1}
-\subsection{Diedergruppen}
-\subsubsection{Definition}
-Die Diedergruppe $D_n$ ist die Bewegungsgruppe des regelmä\ss igen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
-
-Nun ist das $n$-Eck durch folgende Knoten und Kanten definiert: 
-\begin{align*}
-	\text{Knotenmenge: } &\mathbb{Z}/n\mathbb{Z} \\
-	\text{Kanten: } &\{ \{i, i+1\} \mid i \in \mathbb{Z}/n\mathbb{Z} \}  \\
-\end{align*}
-
-Weiter sind die Drehungen und Spiegelungen bijektive Abbildung von Knoten auf Knoten der Form
-\begin{align*}
-	&f: \mathbb{Z}/n\mathbb{Z} \iso \mathbb{Z}/n\mathbb{Z},\, \text{ wobei }\\
-	&f(i+1) \in \{f(i)+1, f(i)-1\}\, \text{ gilt}
-\end{align*}
-
-Zu jeden $n \in \mathbb{N}$ gehört eine Diedergruppe $D_n$ mit $|D_n| = 2n$. 
-Diese $2n$ Elemente sind Äuivalenzklassen aus Sequenzen von $\delta s$ und $\sigma s$.
-Wie in \ref{sec:diederEigenschaften} zu sehen sein wird, führt bei $\sigma$ die Kongruenz modulo $2$ und bei $\delta$ die Kongruenz modulo $n$ zum selben Bild, weshalb es gesamt $2n$ verschiedene Bilder gibt.
-
-
-Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sigma_{i=1}^{k}\alpha_i \, | \, \alpha_i \in \{\sigma, \delta\}, k \in \N\}$ besteht und als Verknüpfung die Konkatenation hat, also die Hintereinanderausführung der Abbildungssequenzen.
-
-
-\subsubsection{Eigenschaften von Diedergruppen}
+	\section{Grundlagen - Vorlesung 1}
+	\subsection{Diedergruppen}
+	\subsubsection{Definition}
+	Die Diedergruppe $D_n$ ist die Bewegungsgruppe des regelmä\ss igen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
+	
+	Nun ist das $n$-Eck durch folgende Knoten und Kanten definiert: 
+	\begin{align*}
+		\text{Knotenmenge: } &\mathbb{Z}/n\mathbb{Z} \\
+		\text{Kanten: } &\{ \{i, i+1\} \mid i \in \mathbb{Z}/n\mathbb{Z} \}  \\
+	\end{align*}
+	
+	Weiter sind die Drehungen und Spiegelungen bijektive Abbildung von Knoten auf Knoten der Form
+	\begin{align*}
+		&f: \mathbb{Z}/n\mathbb{Z} \iso \mathbb{Z}/n\mathbb{Z},\, \text{ wobei }\\
+		&f(i+1) \in \{f(i)+1, f(i)-1\}\, \text{ gilt}
+	\end{align*}
+	
+	Zu jeden $n \in \mathbb{N}$ gehört eine Diedergruppe $D_n$ mit $|D_n| = 2n$. 
+	Diese $2n$ Elemente sind Äuivalenzklassen aus Sequenzen von $\delta s$ und $\sigma s$.
+	Wie in \ref{sec:diederEigenschaften} zu sehen sein wird, führt bei $\sigma$ die Kongruenz modulo $2$ und bei $\delta$ die Kongruenz modulo $n$ zum selben Bild, weshalb es gesamt $2n$ verschiedene Bilder gibt.
+	
+	
+	Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sigma_{i=1}^{k}\alpha_i \, | \, \alpha_i \in \{\sigma, \delta\}, k \in \N\}$ besteht und als Verknüpfung die Konkatenation hat, also die Hintereinanderausführung der Abbildungssequenzen.
+	
+	
+	\subsubsection{Eigenschaften von Diedergruppen}
 	\label{sec:diederEigenschaften}
 	Wir bezeichnen die Spiegelung mit $\sigma$ und die Drehung im Uhrzeiger mit $\delta$. Dann gilt Folgendes:
 	
@@ -238,64 +238,64 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\end{align*}
 	\bewiesen
 	Dieser Satz gibt uns also die Möglichkeit das $\sigma$ nach rechts oder links zu schieben und wir können die Gleichheit $\sigma\delta\sigma = \delta^{-1}$ folgern.
-
-\subsubsection{Fixpunkte in Diedergruppen}
-		Ein Fixpunkt $x$ einer Abbildung $f$ ist ein Punkt, für den $f(x) = x$ gilt. Da die Elemente der Diedergruppe durch $\sigma\delta^i(j)$ dargestellt werden können, fragen wir uns, wann folgende Gleichheit gilt:
-		\begin{align*}
-			\sigma\delta^i(j) = j
-		\end{align*} 
-		
-		Wegen
-		\begin{align*}
-			\sigma\delta^i(j)  = j &\iff \sigma(j+1)  = j  \\
+	
+	\subsubsection{Fixpunkte in Diedergruppen}
+	Ein Fixpunkt $x$ einer Abbildung $f$ ist ein Punkt, für den $f(x) = x$ gilt. Da die Elemente der Diedergruppe durch $\sigma\delta^i(j)$ dargestellt werden können, fragen wir uns, wann folgende Gleichheit gilt:
+	\begin{align*}
+		\sigma\delta^i(j) = j
+	\end{align*} 
+	
+	Wegen
+	\begin{align*}
+		\sigma\delta^i(j)  = j &\iff \sigma(j+1)  = j  \\
 		&\iff 	-j -i  = j \\
 		&\iff 	-i  = 2j
-		\end{align*} 
-		ist dies der Fall, wenn $-i = 2j \textrm{ in } \mathbb Z /n \mathbb Z$ gilt. Für ungerades $n$ existiert für alle $i$ genau ein $j$, welches diese Gleichheit erfüllt. Für gerades $n$ unterscheiden wir weiter nach der Parität von $i$. Falls auch $i$ gerade ist, existieren genau $2$ verschiedene $j$ und falls $i$ ungerade ist, existiert keine Lösung. Damit ergeben sich bestimmte Fixpunkte für die Drehungen und Spiegelungen, welche in Tabelle~\ref{tab:diederFixpunkte} aufgezeigt sind.
-		\begin{table*}[h]
-			\centering
-			\begin{tabular}{lll}
-				\toprule[2pt]
-				Abbildung & Parität von $n$ & Fixpunkte\\
-				\midrule
-				$\sigma$ & ungerade & $\{i\}$ \\
-				\addlinespace
-				$\sigma$ & gerade & $ \left \{
+	\end{align*} 
+	ist dies der Fall, wenn $-i = 2j \textrm{ in } \mathbb Z /n \mathbb Z$ gilt. Für ungerades $n$ existiert für alle $i$ genau ein $j$, welches diese Gleichheit erfüllt. Für gerades $n$ unterscheiden wir weiter nach der Parität von $i$. Falls auch $i$ gerade ist, existieren genau $2$ verschiedene $j$ und falls $i$ ungerade ist, existiert keine Lösung. Damit ergeben sich bestimmte Fixpunkte für die Drehungen und Spiegelungen, welche in Tabelle~\ref{tab:diederFixpunkte} aufgezeigt sind.
+	\begin{table*}[h]
+		\centering
+		\begin{tabular}{lll}
+			\toprule[2pt]
+			Abbildung & Parität von $n$ & Fixpunkte\\
+			\midrule
+			$\sigma$ & ungerade & $\{i\}$ \\
+			\addlinespace
+			$\sigma$ & gerade & $ \left \{
 			
-				%Lässt mehr Abstand zwischen den Zeilen, erhöht lesbarkeit denke ich :) 
-				\arraycolsep=1.4pt\def\arraystretch{1.5}
-				\begin{array}{ll}
-					\{0,\frac{n}{2}\}\textrm{, falls }i \equiv 0 \, (2)\\
-					\emptyset\textrm{, falls } i \equiv 1\, (2)
-				\end{array}
-				\right. $ \\
-				\addlinespace
-				$\delta^k$ & gerade oder ungerade & $ \left \{
-				\arraycolsep=1.4pt\def\arraystretch{1.5}
-				\begin{array}{ll}
-					\emptyset\textrm{, falls }1\leq k < n\\
-					\Z/n\Z\textrm{, falls } k \equiv 0\, (n)
-				\end{array}
-				\right. $ \\
-				\bottomrule[2pt]
-			\end{tabular}
-			\caption{Fixpunkte der Abbildungen in Diedergruppen.}
-			\label{tab:diederFixpunkte}
-		\end{table*}
-		
-		\subsubsection{Erweiterung auf unendliche Gruppen}
-		
-		Im Fall $n=0$ ist das $n$-Eck die unendliche gerade $\Z/0\Z = \Z$.
-		
-		Durch Einführen eines weiteren Zeichens $\overline{\delta}$ für negative Potenzen von $\delta$ gelten dieselben Rechenregeln wie im endlichen Fall.
-		
-		Dann gilt $D_0 = \{\sigma, \delta, \overline{\delta}\}^*$ mit
-		\begin{align*}
-			\sigma^i(j) & = j+i &&\delta(j)  = -j \\
-			\sigma^2 & = 1 &&\delta\overline{\delta} = \overline{\delta}\delta = 1 \\
-			\sigma\delta\sigma & = \overline{\delta}
-		\end{align*}
-
+			%Lässt mehr Abstand zwischen den Zeilen, erhöht lesbarkeit denke ich :) 
+			\arraycolsep=1.4pt\def\arraystretch{1.5}
+			\begin{array}{ll}
+				\{0,\frac{n}{2}\}\textrm{, falls }i \equiv 0 \, (2)\\
+				\emptyset\textrm{, falls } i \equiv 1\, (2)
+			\end{array}
+			\right. $ \\
+			\addlinespace
+			$\delta^k$ & gerade oder ungerade & $ \left \{
+			\arraycolsep=1.4pt\def\arraystretch{1.5}
+			\begin{array}{ll}
+				\emptyset\textrm{, falls }1\leq k < n\\
+				\Z/n\Z\textrm{, falls } k \equiv 0\, (n)
+			\end{array}
+			\right. $ \\
+			\bottomrule[2pt]
+		\end{tabular}
+		\caption{Fixpunkte der Abbildungen in Diedergruppen.}
+		\label{tab:diederFixpunkte}
+	\end{table*}
+	
+	\subsubsection{Erweiterung auf unendliche Gruppen}
+	
+	Im Fall $n=0$ ist das $n$-Eck die unendliche gerade $\Z/0\Z = \Z$.
+	
+	Durch Einführen eines weiteren Zeichens $\overline{\delta}$ für negative Potenzen von $\delta$ gelten dieselben Rechenregeln wie im endlichen Fall.
+	
+	Dann gilt $D_0 = \{\sigma, \delta, \overline{\delta}\}^*$ mit
+	\begin{align*}
+		\sigma^i(j) & = j+i &&\delta(j)  = -j \\
+		\sigma^2 & = 1 &&\delta\overline{\delta} = \overline{\delta}\delta = 1 \\
+		\sigma\delta\sigma & = \overline{\delta}
+	\end{align*}
+	
 	\section{Gruppentheorie 1 - Vorlesung 2}
 	\subsection{Untergruppen}
 	\subsubsection{Definition}
@@ -307,8 +307,8 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	Für Untergruppen ist die Schreibweise $H\leq G$ üblich.
 	
 	
-\subsection{Nebenklassen}
-\subsubsection{Definition}
+	\subsection{Nebenklassen}
+	\subsubsection{Definition}
 	Für eine Untergruppe $H \leq G$ sind die folgenden Nebenklassen definiert:
 	\begin{align*}
 		G/H &= \{gH \subseteq G \mid g \in G\} \quad \text{Menge der Linksnebenklassen } \\
@@ -319,7 +319,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\subsubsection{Grö\ss e von Nebenklassen}
 	Wir definieren die folgenden Abbildungen $	\forall f,g \in G$ ist
 	\begin{align*}
-	(fg^{-1} \cdot): gH &\iso fH \\
+		(fg^{-1} \cdot): gH &\iso fH \\
 		gh &\mapsto fh = fg^{-1}gh
 	\end{align*}
 	Diese ist bijektiv mit der Umkehrabbildung $(gf^{-1}\cdot)$.
@@ -329,7 +329,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\end{align*} 
 	Es gilt also $|gH| = |Hf| = |H|\text{ für alle } f,g \in G$.
 	
-\subsubsection{Gleichheit und Disjunktheit von Nebenklassen}
+	\subsubsection{Gleichheit und Disjunktheit von Nebenklassen}
 	Sowohl $G/H$ als auch $H/G$ sind jeweils Partitionen von $G$.
 	Um das zu beweisen, wird im Folgenden gezeigt, dass $gH \cap fH \not = \emptyset \iff gH = fH$ gilt.
 	Die Rückrichtung ist hierbei trivial, da der Schnitt von $gH$ und $fH$ bei Gleichheit offensichtlich nicht leer ist, sofern die Nebenklassen an sich nicht leer sind, was per Definition gegeben ist. \\
@@ -409,7 +409,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 		|G| = [G:H] \cdot |H|\, ,
 	\end{align*}	
 	wobei $[G:H]$ als Index von $H$ in $G$ bezeichnet wird und die Anzahl der Nebenklassen von $H$ in $G$ angibt. Für den Index gilt $[G:H] = |G/H| = |H/G|$, da man für ein Linksrepresentantensystem $R = \{r(gH) \mid g \in G \}$, wegen $H=H^{-1}$ und $(rH)^{-1} = H^{-1}r^{-1} = Hr^{-1}$, ein Rechtsrepräsentantensystem
-	 $R^{-1} = \{r(gH)^{-1} \mid g \in G \}$ definieren kann und somit $|G/H| = |H/G|$ , da gilt.
+	$R^{-1} = \{r(gH)^{-1} \mid g \in G \}$ definieren kann und somit $|G/H| = |H/G|$ , da gilt.
 	
 	\subsubsection{Beweis}
 	Wir definieren die folgende Abbildung
@@ -464,7 +464,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	Wir definieren 
 	\begin{align*}
 		exp: &\,\mathbb{R} \to \mathbb{C}^\ast\\
-			 &\, x \mapsto e^{2\pi i x}
+		&\, x \mapsto e^{2\pi i x}
 	\end{align*}
 	Dann ist $ker(exp) = \mathbb Z $.\\ 
 	Also ist $\mathbb R / \mathbb Z \cong \{z \in \mathbb C \mid |z| = 1\}$.
@@ -612,7 +612,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\subsubsection{Beweis}
 	Wir betrachten die Menge der Tupel $(g_1,\ldots , g_p) \in G^p$ mit $g_1 \cdot \ldots \cdot g_p = 1$ und nennen diese Menge $T$. Also $T = \{(g_1, \ldots, g_p) \mid  g_1 \cdot \ldots \cdot g_p = 1 \}$. 
 	Nun gilt
-		\begin{align*}
+	\begin{align*}
 		|T| &= |\{(g_1, \ldots, g_p) \mid  g_1 \cdot \ldots \cdot g_p = 1 \}| \\
 		&= |\{(g_1, \ldots, g_{p-1}) \in G^{p-1} \}| \\
 		&= |G|^{p-1}
@@ -632,7 +632,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	Damit folgt, dass die Menge $\{(g, \ldots, g) \mid g^p= 1 \}$ mindestens ein von $(1,\ldots, 1)$ verschiedenes Element enthalten muss und damit
 	
 	\begin{align*}
-		 \implies \exists g \text{ mit } g^p = 1
+		\implies \exists g \text{ mit } g^p = 1
 	\end{align*}
 	\bewiesen
 	
@@ -663,10 +663,10 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\end{align*}
 	Wir wissen, dass das Zentrum auf jeden Fall die $1$ enthält und, da das Zentrum kongruent modulo $p$ zu einer Gruppe mit $|G| \in p^{\N}$ sein muss, muss es also mindestens $p$ Elemente enthalten. Daraus folgt also $p \mid |Z(G)|$, was $Z(G) \neq \{1\}$ zur Folge hat. 
 	\bewiesen
-
+	
 	
 	Wir können daraus weiter schlie\ss en, dass auch $G/Z(G)$ eine $p$-Gruppe ist mit $Z(G/Z(G)) \not = \{1\}$ oder $G=Z(G)$.
-
+	
 	
 	\subsection{Zyklische Gruppen}
 	\subsubsection{Nilpotenz}
@@ -717,7 +717,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	
 	\subsection{Permutationsgruppen}
 	\subsubsection{Definition}
-
+	
 	Sei $X$ eine Menge, dann ist die Permutationsgruppe $Perm(X)$ zu $X$ wie folgt definiert:
 	$$Perm(X)= \{ f: X \iso X \mid f \text{ ist eine bijektive Abbildung}\}$$
 	Die Gruppenoperation ist dabei die Hintereinanderausführung.
@@ -800,7 +800,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 		sign(\pi) &= \ddfrac{\prod_{1 \leq i < j \leq n}  |\pi(j) - \pi(i)|}{\prod_{1 \leq i < j \leq n}  |j -i|} = \ddfrac{ \prod_{ \{i,j\} \in \binom{[n]}{2}} |\pi(j) - \pi(i)| }{ \prod_{ \{i,j\} \in \binom{[n]}{2}} |j - i|} = \ddfrac{ \prod_{ \{i,j\} \in \binom{[n]}{2}} |j - i| }{ \prod_{ \{i,j\} \in \binom{[n]}{2}} |j - i|} = 1
 	\end{align*}
 	\bewiesen
-
+	
 	Dann folgt nun $sign(\pi)= 1^{|F(\pi)|}$. 
 	Somit ist $sign(id) = +1$ und $sign(\tau) = \frac{j-i}{i-j} = -1$ für $\tau= (i,j) \in \mathcal T_n$.
 	
@@ -812,7 +812,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	Seien $\pi, \sigma \in S_n$. Es gilt 
 	\begin{align*}
 		sign(\pi\sigma) &= \prod_{1 \leq i < j \leq n} \ddfrac{\pi\sigma(j) - \pi \sigma(i)}{j -i} = \prod_{1 \leq i < j \leq n} \ddfrac{\pi\sigma(j) - \pi \sigma(i)}{\sigma(j) -\sigma(i)} \cdot \prod_{1 \leq i < j \leq n}\ddfrac{\sigma(j) - \sigma(i)}{j -i}\\
-		 &= \prod_{1 \leq i < j \leq n} \ddfrac{\pi(j) - \pi (i)}{j -i} \cdot \prod_{1 \leq i < j \leq n}\ddfrac{\sigma(j) - \sigma(i)}{j -i} = sign(\pi) sign(\sigma)\, .
+		&= \prod_{1 \leq i < j \leq n} \ddfrac{\pi(j) - \pi (i)}{j -i} \cdot \prod_{1 \leq i < j \leq n}\ddfrac{\sigma(j) - \sigma(i)}{j -i} = sign(\pi) sign(\sigma)\, .
 	\end{align*}
 	\bewiesen
 	Weiter bezeichnen wir $ker(sign) = A_n$ als die alternierende Gruppe über $n$.
@@ -852,7 +852,7 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	Das neutrale Element ist $(1,1)$.\\
 	Nun bleibt die Existenz von Inversen zu zeigen.
 	Sei $(h,f)\in G$. $(h, f)^{-1} = (h', f^{-1})$ mit $h' = \varphi(f^{-1})(h^{-1})$, weil $h\varphi(f)(h')= 1$ gelten muss.
-	
+		
 	\subsubsection{Exakte Sequenzen}
 	Eine Sequenz von Homs. $\varphi_i: G_{i-1} \to G_i$ mit $i \in I$ wobei $I$ linear geordnet ist, heißt exakt falls $$\forall i \in I : im(\varphi_i) = ker(\varphi_{i+1})$$ gilt
 	\begin{figure}[h!]
@@ -1409,12 +1409,12 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\subsubsection{Folgerung des Satzes}	
 	Ist $G$ eine unendliche Gruppe, $L \subseteq G$ endlich (zB. $L = \{1\}$), dann ist $L \in rat(G) \setminus \rec(G)$
 	
-\subsection{Syntaktische Kongruenzen}
-\subsubsection{Definition Idempotenz}
+	\subsection{Syntaktische Kongruenzen}
+	\subsubsection{Definition Idempotenz}
 	Ein Element $e$ aus einem Monoid $M$ heißt idempotent, falls $$e^2 = e$$
 	Dann können wir die folgende Menge definieren $$E(M) = \{ eeM \mid e^2 = 2\}$$ mit $1\in E(M)$
 	
-\subsubsection{Definition lokales Monoid}
+	\subsubsection{Definition lokales Monoid}
 	Sei $S$ eine Halbgruppe mit $E(S) = \{e \in S \mid e^2 = e\}$  und $e \in E(S)$, dann gibt es eine Unterhalbgruppe $eSe \leq S$ und sogar ein Monoid, da 	$e(exe) = (exe)e$, wobei 
 	\begin{align*}
 		eS^1e &= eSe \cup \{ee\} \\
@@ -1422,10 +1422,10 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\end{align*}
 	Das Monoid $eMe$ nennt man das lokale Monoid bei $eeE(M)$
 	
-\subsubsection{Definition Teilwort}
+	\subsubsection{Definition Teilwort}
 	Ein Wort $w = a_1 \ldots a_n$ heißt Teilwort von $w$ falls $w \in \sigstern a_1 \sigstern a_2 \sigstern \ldots a_n\sigstern$ gilt
 	
-\subsubsection{Beispiele} 
+	\subsubsection{Beispiele} 
 	\begin{itemize}
 		\item Sei $\Sigma = \{a, b\}$ und $\synt((ab)^\ast) = \{1, a ,b , ab, ba, 0\} = B^1_2 =$ Brandt-Monoid mit $2$ Erzeugenden und den folgenden Rechenregeln für alle $x$: 
 		\begin{align*}
@@ -1459,16 +1459,16 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 		\textbf{Antwort:} Es gilt $a^nb^2a^n \in L \iff n+m \equiv 0 (2)$ und wir wissen dass $$(ab)^2(ba)^n \iff n = m$$ Somit folgt: $L$ ist nicht regulär.
 	\end{itemize}
 	
-\section{Halbgruppentheorie Teil 1 - Vorlesung 10}
-\subsection{Greens Relations}
-\subsubsection{Definition Ideal}
+	\section{Halbgruppentheorie Teil 1 - Vorlesung 10}
+	\subsection{Greens Relations}
+	\subsubsection{Definition Ideal}
 	Bei Idealen eines Rings unterscheidet man in sogenannte Links-, Rechts- und Beidseitige Ideale. 
 	Sei $I \subseteq R$ für einen Ring $R$. Dann ist $I$ ein Linksideal, falls 
 	\begin{enumerate}[label= \arabic*.)]
 		\item $(I, +)$ bildet eine Untergruppe von $R$ 
 		\item $\forall a \in I, r \in R : r \cdot a \in I  $
 	\end{enumerate}
-\subsubsection{Definition Greensrelations}	
+	\subsubsection{Definition Greensrelations}	
 	Die folgenden Relationen sind alles Äquivalenz Relationen. 
 	\begin{align*}
 		\mathcal L \subseteq M \times M: x \grel y &\iff Mx = My \\ 
@@ -1519,13 +1519,13 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	
 	Im Allgemeinen gilt $\mathcal D \not = \mathcal J$, für endliche Halbgruppen jedoch $\mathcal D = \mathcal J$. Dies werden wir später noch zeigen. 
 	\newpage
-\subsubsection{Definition K-Trivial}		
+	\subsubsection{Definition K-Trivial}		
 	Sei $K \in \{\mathcal{H}, \mathcal{L},\mathcal{R}, \mathcal{D}, \mathcal{J}\}$, dann heißt $\sim$, also die Relation,  $K$-Trivial, falls $$x \sim_K y \implies x = y$$
 	
-\subsubsection{Lemma}
+	\subsubsection{Lemma}
 	Sei $x \in M$ und $|M| < \infty$, dann existiert genau eine Potenz $x^n \in M$ mit $x^n = x^{2n}$. Also gilt $x^n \in E(M))$ und wird mit $x\pom = x^n$ bezeichnet. 		
-
-\subsubsection{Beweis des Lemmas}
+	
+	\subsubsection{Beweis des Lemmas}
 	Es gilt $\forall x \in M $ existiert ein $t \in \N$ (thershold)  und $p \in \N$ mit $p \geq 1$ und $x^{t+p} = x^t \in M$
 	\begin{figure}[h!]
 		\centering
@@ -1617,9 +1617,9 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 		\bewiesen
 	\end{enumerate}
 	
-\section{Divisoren, aperiodische Monoide - Vorlesung 11}
-\subsection{Divisoren}
-\subsubsection{Definition Subquotient}
+	\section{Divisoren, aperiodische Monoide - Vorlesung 11}
+	\subsection{Divisoren}
+	\subsubsection{Definition Subquotient}
 	Sei $L \subseteq M$ und $A$ ein DFA mit $L=L(A)$. \\ 
 	Dann existiert ein Subautomat $A'$ mit $Q_L = \{L(u) \mid u \in M\}$ und $L(u) = \{ v \in M \mid uv \in L\}$. 
 	Wir nennen dann $A_L$ den Subquotient von $A$.
@@ -1627,146 +1627,146 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\begin{figure}[h!]
 		\centering
 		\begin{tikzpicture}[node distance=2.5cm, auto]
-		\node (AS) {$A'$};
-		\node (A) [right of=AS] {$A$};
-		\node (AL) [below of=AS] {$A_L$};
-	
-		\draw[right hook->] (AS) -- (A) node[ midway,sloped,above,rotate=0] { };
-		\draw[ ->>] (AS) -- (AL) node[ midway,right,rotate=0] { $q = u \mapsto L(u)$};
+			\node (AS) {$A'$};
+			\node (A) [right of=AS] {$A$};
+			\node (AL) [below of=AS] {$A_L$};
+			
+			\draw[right hook->] (AS) -- (A) node[ midway,sloped,above,rotate=0] { };
+			\draw[ ->>] (AS) -- (AL) node[ midway,right,rotate=0] { $q = u \mapsto L(u)$};
 		\end{tikzpicture}
 	\end{figure} 
-
-\subsubsection{Definition Subquotient}
-	Wir betrachten nun $\varphi: M \to N$ mit $L = \varphi\inv \varphi(L)$ und $\varphi$ erkennt $L \subseteq M$.
-		\begin{figure}[h!]
-			\centering
-			\begin{tikzpicture}[node distance=2.9cm, auto]
-				\node (M) {$M$};
-				\node (PM) [right of=AS] {$\varphi(M) \leq N$};
-				\node (ML) [below of=AS] {$M_L$};
-				
-				\draw[->] (M) -- (PM) node[ midway,sloped,above,rotate=0] { $\varphi$};
-				\draw[ ->] (M) -- (ML) node[ midway,right,rotate=0] { $\varphi_L$};
-				\draw[ dotted, ->] (PM) -- (ML) node[ midway,right,rotate=0] {$\exists! \psi$};
-			\end{tikzpicture}
+	
+	\subsubsection{Definition Subquotient}
+	Wir betrachten nun $\varphi: M \to N$ mit $L = \varphi\inv \varphi(L)$ und $\varphi$ erkennt $L \subseteq M$.
+	\begin{figure}[h!]
+		\centering
+		\begin{tikzpicture}[node distance=2.9cm, auto]
+			\node (M) {$M$};
+			\node (PM) [right of=AS] {$\varphi(M) \leq N$};
+			\node (ML) [below of=AS] {$M_L$};
+			
+			\draw[->] (M) -- (PM) node[ midway,sloped,above,rotate=0] { $\varphi$};
+			\draw[ ->] (M) -- (ML) node[ midway,right,rotate=0] { $\varphi_L$};
+			\draw[ dotted, ->] (PM) -- (ML) node[ midway,right,rotate=0] {$\exists! \psi$};
+		\end{tikzpicture}
 	\end{figure} 
-
- Wobei $M_L = \{[u] \mid u \in M\}$, $ \psi(\varphi(u))= [u]$, und $[u] =\{u \in M \mid u \equiv_L v\}$ gilt
-
-\subsubsection{Definition Divisor}
+	
+	Wobei $M_L = \{[u] \mid u \in M\}$, $ \psi(\varphi(u))= [u]$, und $[u] =\{u \in M \mid u \equiv_L v\}$ gilt
+	
+	\subsubsection{Definition Divisor}
 	$M$ ist ein Divisor von $N$, falls es ein Untermonoid $N'$ von $N$ gibt und ein surjektiverHom. $$\psi: N' \to M$$ existiert. Wir schreiben dann $M \prec N$
-
-\subsubsection{Beispiel}
+	
+	\subsubsection{Beispiel}
 	Sie $Q_8 = \pm \{1, i ,j, k\}$ mit $i^2 = j^2 = k^2 = -1$ und den folgenden Rechenregeln
-		\begin{align*}
-			ij &= k && jk = i  \\ 
-			ik&=-j 	&& ki = j \\
-			 ji&= -k && kj = -i \\
-		\end{align*}
-Wir betrachten also eine Art ''Stellwerk'''
-\begin{figure}[h!]
-	\centering
-	$ \begin{array}{ccc}
-	\begin{tikzpicture}[->,scale=.7] 
-	\foreach \a/\t in {90/j,-30/k,210/i}{
-		\node (\t) at (\a:1cm) {$\t$};
-		\draw (\a-20:1cm)  arc (\a-20:\a-100:1cm);
-	} 
-	\end{tikzpicture}
-	\end{array}$
-\end{figure}
-
-Dann gilt $Z(Q_8) = \{1, -1\}$ und $Q_8/Z(Q_8) = V = \Z/2\Z \times\Z/2\Z$.
-Wir behaupten dann, dass $V$ der Divisor in $Q_8  \rtimes \Z / 3\Z$ (semidirektes Produkt), aber weder eine Untergruppe noch ein Quotient ist.
-
-Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $\mathbb{F}_3 = \Z / 3\Z$ ist ein Körper.
-
-\subsubsection{Definition lokaler Divisor}
-		Sei $M$ eine Monoid und $c \in M$. Dann sei $M_c = cM \cap Mc \subseteq M$ und $\circ$ die Multiplikation mit $$xc \circ cy = xcy$$
-		Dann heißt $M_c = (\{cM \cap Mc\}, \circ, c)$ der lokale Divisor von $M$ bei $c$.
-
-\subsubsection{Wohldefiniertheit und Assoziativiät der Definition}
+	\begin{align*}
+		ij &= k && jk = i  \\ 
+		ik&=-j 	&& ki = j \\
+		ji&= -k && kj = -i \\
+	\end{align*}
+	Wir betrachten also eine Art ''Stellwerk'''
+	\begin{figure}[h!]
+		\centering
+		$ \begin{array}{ccc}
+			\begin{tikzpicture}[->,scale=.7] 
+				\foreach \a/\t in {90/j,-30/k,210/i}{
+					\node (\t) at (\a:1cm) {$\t$};
+					\draw (\a-20:1cm)  arc (\a-20:\a-100:1cm);
+				} 
+			\end{tikzpicture}
+		\end{array}$
+	\end{figure}
+	
+	Dann gilt $Z(Q_8) = \{1, -1\}$ und $Q_8/Z(Q_8) = V = \Z/2\Z \times\Z/2\Z$.
+	Wir behaupten dann, dass $V$ der Divisor in $Q_8  \rtimes \Z / 3\Z$ (semidirektes Produkt), aber weder eine Untergruppe noch ein Quotient ist.
+	
+	Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $\mathbb{F}_3 = \Z / 3\Z$ ist ein Körper.
+	
+	\subsubsection{Definition lokaler Divisor}
+	Sei $M$ eine Monoid und $c \in M$. Dann sei $M_c = cM \cap Mc \subseteq M$ und $\circ$ die Multiplikation mit $$xc \circ cy = xcy$$
+	Dann heißt $M_c = (\{cM \cap Mc\}, \circ, c)$ der lokale Divisor von $M$ bei $c$.
+	
+	\subsubsection{Wohldefiniertheit und Assoziativiät der Definition}
 	Für die Wohldefiniertheit sei $x'c \circ cy' = x'cy'$, und seien $x = x'c = x''c$ und $y = cy' = cy''$. Es ist zu zeigen dass $x'c \circ cy' = x''c \circ cy''$ gilt. Dies ist der Fall, da $$x'c \circ cy' = x'cy' = x''cy' = x''cy''$$ gilt. 
 	
 	Für die Assoziativität gilt 
-		\begin{align*}
-			(x'c \circ y'c)z'c &= (x'y')z'c \\
-				&= x'(y'z')c \\
-				&= x'c \cdot (y'c \cdot z'c)
-		\end{align*}
-		\bewiesen
-
-\subsubsection{Beweis $M_c$ ist Divisor von M}
+	\begin{align*}
+		(x'c \circ y'c)z'c &= (x'y')z'c \\
+		&= x'(y'z')c \\
+		&= x'c \cdot (y'c \cdot z'c)
+	\end{align*}
+	\bewiesen
+	
+	\subsubsection{Beweis $M_c$ ist Divisor von M}
 	Betrachte $\{x \in M \mid xc \in cM\}$ und die Rechtsmultiplikation durch $\rho_c$. Sei $\{x \in M \mid xc \in cM\}$ das lokale Monoid, dann gilt $1 \in \{x \in M \mid xc \in cM\}$ und $xc \in cM$ sowie $yc \in cM$ und so folgt $x \cdot yc \in M$. Nun gilt $$\rho_c(xy) = xyc = xc \circ ye = \rho_c(x) \circ \rho_c(y)$$ und somit ist 
 	\begin{align*}
 		\rho_c : \{x \in M \mid xc \in cM\} &\to cM \cap Mc \\
-		 x &\mapsto xc
+		x &\mapsto xc
 	\end{align*} wobei $\rho_c$ ein surjektiver Hom. ist. \\
 	Mit $cx = yc \in M_c$ gilt dann $z = \rho_c(y)$ und $y \in \{x \in M \mid xc \in cM\}$
 	\bewiesen
-
-\subsubsection{Lemma}
+	
+	\subsubsection{Lemma}
 	Sei $c\in M$, dann gilt $$M_c = cM \cap Mc = M \iff c \in U(M) \iff 1 \in cM \cap Mc$$
 	Also $\exists d : cd = dc = 1$, und insbesondere $c \in U(M)$ und $|M| < \infty$. Somit gilt $|M_c| < |M|$
 	
-\subsubsection{Beweis des Lemmas}
+	\subsubsection{Beweis des Lemmas}
 	Sei $c \in U(M)$ und $cd = dc = 1$, dann gilt $\{x \in M \mid xc \in cM\}  = M$ und $cM = Md = M$ und $\rho_c\rho_d = id_M = \rho_d\rho_c$. 
 	Beachte: $U(M) = M \iff M$ ist Gruppe! 
 	Sei jetzt $c \in U(M)$ und angenommen $cM \cap Mc = M \implies \exists d : cd = d$. Dann folgt dass jedes $c$ ein Rechtsinverses hat und somit dass $M$ eine Gruppe ist.
 	\bewiesen
 	
-\subsection{Aperiodische Monoide}
-\subsubsection{Definition lokales Untermonoid}
+	\subsection{Aperiodische Monoide}
+	\subsubsection{Definition lokales Untermonoid}
 	Sei $M$ eine Halbgruppe  und $E(M) = \{eeM \mid e^2 = e\}$. Dann ist das lokale Untermonoid bei $e$ definiert durch die Menge $eMe$ mit 
-	 \[
-		\left. 
-		\begin{array}{lr}
+	\[
+	\left. 
+	\begin{array}{lr}
 		exe = eye \in M\\
 		e(exe) = (exe)e = exe 
-		\end{array}\right\} \implies e \text{ ist neutral}
+	\end{array}\right\} \implies e \text{ ist neutral}
 	\]
-		Falls $M$ ein Monoid ist und $e\not = 1$, dann gilt $eMe \subsetneq M$ für $e^2 = e$
-
-\subsubsection{Satz}
+	Falls $M$ ein Monoid ist und $e\not = 1$, dann gilt $eMe \subsetneq M$ für $e^2 = e$
+	
+	\subsubsection{Satz}
 	Sei $N$ ein Divisor von $M$, dann gilt: $$M \text{ ist aperiodisch} \implies N \text{ ist aperiodisch}$$
-
-\section{Beweis Satz von Schützenberger - Vorlesung 12}
-\subsection{Vorbereitungen}
-\subsubsection{Satz}
+	
+	\section{Beweis Satz von Schützenberger - Vorlesung 12}
+	\subsection{Vorbereitungen}
+	\subsubsection{Satz}
 	Seien $L_1, L_2 \in \starfree(\aast)$ und $t_i \in \N$ gewollt mit $\forall n \in \aast: u^{t_i +1} \equiv_{L_i} u^{t_i}$ für $i = 1,2$.
 	Dann gilt $$u^{t+1} \equiv_K u^t$$ für $t = t_1 +t _2 +1$ und $K = L_1 \cdot L_2$
-
-\subsubsection{Beweis des Satzes}
+	
+	\subsubsection{Beweis des Satzes}
 	Zu zeigen ist 
 	\begin{align*}
 		\forall x,y \in \aast: xu^{t-1}y \in L_1L_2 \iff  xu^{t}y \in L_1L_2 = K
 	\end{align*}
 	Dafür sei $s \in \{t, t-1\}$ und $xu^sy \in L_1L_2$. Nun existieren drei Fälle: 
-		\begin{enumerate}[label= \arabic*.]
-			\item $x=u_1x$ und $x'u^sy \in L_2$ sowie $u_1 \in L \implies xu^{\pm1} \in L_1L_2$ 
-			\item $xu^sy' \in L_1$ und $y = y'u_2$ sowie $u \in L_2$ (Analaog!)
-			\item $xu^{s_1}u'u''u^{s_2}y$ mit $xu^{s_1}u' \in L_1$ und $u''u^s= y \in L_2$ mit $u'u'' = u$
-		\end{enumerate}
+	\begin{enumerate}[label= \arabic*.]
+		\item $x=u_1x$ und $x'u^sy \in L_2$ sowie $u_1 \in L \implies xu^{\pm1} \in L_1L_2$ 
+		\item $xu^sy' \in L_1$ und $y = y'u_2$ sowie $u \in L_2$ (Analaog!)
+		\item $xu^{s_1}u'u''u^{s_2}y$ mit $xu^{s_1}u' \in L_1$ und $u''u^s= y \in L_2$ mit $u'u'' = u$
+	\end{enumerate}
 	Die Behauptung folgt nun, da $s_1 + s_2 + 1 = s$ gilt.
 	\bewiesen
-
-\subsubsection{Folgerung des Satz}
+	
+	\subsubsection{Folgerung des Satz}
 	Sei $M$ aperiodisch und $N$ ein Divisor, dann ist $N$ auch aperiodisch. 
 	Sei nun $L \subseteq \aast$ und $\varphi\inv(\varphi(L))= L$ für einen Hom. $\varphi: M \to N$ und $|N| < \infty$ aperiodisch. 
 	Dann ist das $\synt$ ein Divisor von $N$ also aperiodisch. 
-
-\subsection{Satz und Beweis}
-\subsubsection{Satzes (Schützenberger)}
+	
+	\subsection{Satz und Beweis}
+	\subsubsection{Satzes (Schützenberger)}
 	Es gilt 
 	\begin{align*}
-	L \in \starfree(A) &\iff L \text{ wird von einem endlichen aperiodischen Monoid erkannt } \\ 
-	&\iff \synt(L) \text{ ist aperiodisch }
+		L \in \starfree(A) &\iff L \text{ wird von einem endlichen aperiodischen Monoid erkannt } \\ 
+		&\iff \synt(L) \text{ ist aperiodisch }
 	\end{align*}
-
-\subsubsection{Beweis des Satzes (Schützenberger) - Erste Richtung}
+	
+	\subsubsection{Beweis des Satzes (Schützenberger) - Erste Richtung}
 	Sei $L \in \starfree(A)$ und $|L| < \infty$, dann folgt $\synt(L)$ ist aperiodisch. Seien nun $L_1, L_2 \in \starfree(A)$ und 
 	\begin{align*}
-	\varphi_{i} : \aast \to N_i
+		\varphi_{i} : \aast \to N_i
 	\end{align*} ein erkennender Hom. mit $\varphi_i\inv\varphi_{i}(L_1) = L_1$ und $|N_i| < \infty$ wobei $N_i$ aperiodisch ist.
 	Es folgt nun dass $|N_1 \times N_2| \infty$ und $N_1 \times N_2$ aperiodisch ist. Wir setzen 
 	\begin{align*}
@@ -1775,12 +1775,12 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	\end{align*} $\varphi$ erkennt nun $L_1, \,L_2,  \, L_1 \cap L_2,   \,L_1 \cup L_2,  \, \aast \setminus L_i$ für $i = 1,2$.
 	Man sieht nun dass $L_1, Ö_2 \in \starfree(A) \implies \synt(L_i)$ aperiodisch gilt (induktiv). Wir schließen daraus, dass $\synt(L_1 \cdot L_2)$ aperiodisch ist. 
 	Es bleibt die Rückrichttung zu zeigen. 
-
-\subsubsection{Beweis des Satzes (Schützenberger) - Lemma \label{Lemma:Schütz}}
+	
+	\subsubsection{Beweis des Satzes (Schützenberger) - Lemma \label{Lemma:Schütz}}
 	Sei $M$ aperiodisch, und $\forall x \in M: x^{t+1} = x^t $, wobei $M \not = \{1\}$ und $M = \langle \Sigma \rangle$ gilt. 
 	Dann gibt es ein $c \in \Sigma$ mit $1 \not \in cM \cap Mc$
-
-\subsubsection{Beweis des Satzes (Schützenberger) - Beweis des Lemmas}
+	
+	\subsubsection{Beweis des Satzes (Schützenberger) - Beweis des Lemmas}
 	Sei $w \in McM$ mit $w = 1$. Dann ist $w = ucv$. 
 	\begin{align*}
 		&\implies uc(ucu)v = 1 \\
@@ -1791,8 +1791,8 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	Analog dazu gilt $ucv = 1 \implies u = 1$. Also gilt $w = 1 \implies c = 1$. 
 	Da nun $M \not \{1\}$ gilt, existiert ein $c = \Sigma$ mit $c \not = 1$. Sollte es eine $1 \in cM \cap Mc \subseteq McM$ geben, dann ist $c = 1$
 	\bewiesen
-
-\subsubsection{Beweis des Satzes (Schützenberger) - Zweite Richtung}
+	
+	\subsubsection{Beweis des Satzes (Schützenberger) - Zweite Richtung}
 	Sei $\synt(L)$ aperiodisch und endlich, dann gilt $ L \in \synt(A)$. Weiter sei $\varphi: \aast \to \synt(L)$ ein surjektiver Hom. Beachte $A_1 = \{a \in A \mid \varphi(a) = 1\}$.
 	Dann folgt aus dem Lemma \ref{Lemma:Schütz} $$\varphi\inv(1) = \aast_1$$ sowie $\aast_1 \in \starfree(A)$.
 	\newline
@@ -1802,18 +1802,18 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	\newline
 	
 	Man betrachte nun den \textit{Gigant-Step}: Es gilt
-		\begin{align*}
-			(|M'|, |A'|) \leq (|M|, |A|) \iff |M'| < |M|
-		\end{align*}
+	\begin{align*}
+		(|M'|, |A'|) \leq (|M|, |A|) \iff |M'| < |M|
+	\end{align*}
 	Oder  den \textit{Baby-Step}: Es ist $|M'| = |M|$ und $|A'| \leq |A|$ falls $|A'| < |A|$. 
 	\newline
 	
 	Sei nun $\varphi\inv\varphi(L) = \bigcup \{\varphi\inv(P) \mid p \in \varphi(L)\}$. Wir zeigen dann $ \varphi\inv(P) \in \starfree(A)$. \\ 
 	Es ist $\varphi\inv(1) = \aast_1$ mit $A_1 = \{a \in A \mid \varphi(a) = 1\}$ und 
-		\begin{align*}
-			\aast_1 = A \setminus \bigcup \{\aast a \aast \mid  a \in A \setminus A_1\} \in \starfree(A)
-		\end{align*}
-
+	\begin{align*}
+		\aast_1 = A \setminus \bigcup \{\aast a \aast \mid  a \in A \setminus A_1\} \in \starfree(A)
+	\end{align*}
+	
 	da $\aast = \aast \setminus \emptyset$ und $\emptyset \in \starfree(A)$. Wir zeigen daher nur $\varphi\inv(p) \in \starfree(A)$ für $P \not = 1$.  \\
 	
 	Es gilt $$\varphi\inv(p) = \bigcup \{\varphi\inv (s) c \varphi\inv(r) \mid s\varphi(c)r = p, \, \varphi(c) \not = 1, \, c \in A\}$$
@@ -1822,15 +1822,15 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	
 	Wir nehmen hier nun ohne Einschränkung an dass $\aast \cap M = \{1, c\}$ duch Mengenschreibweise umbenannt werden kann. 
 	Man schreibt dann $\aast = \bast \cup \bast (c \bast) c \bast$ für $B = A \setminus \{c\}$. Zeige nun $\varphi\inv(p) \cap \bast(c\bast)^\ast c\bast \in \starfree(A)$: 
-		\begin{align*}
-			\varphi\inv(p) \cap \bast(c\bast)^\ast c\bast = \bigcup \{(\varphi\inv(q) \cap \bast)(\varphi\inv(r)\cap(c\bast)^\ast c) (\varphi\inv(s) \cap \bast) \mid p = qrs\}
-		\end{align*} 
+	\begin{align*}
+		\varphi\inv(p) \cap \bast(c\bast)^\ast c\bast = \bigcup \{(\varphi\inv(q) \cap \bast)(\varphi\inv(r)\cap(c\bast)^\ast c) (\varphi\inv(s) \cap \bast) \mid p = qrs\}
+	\end{align*} 
 	Also gilt $\varphi\inv(q) \cap \bast \in \starfree(B) \subseteq \starfree(A)$ nach dem \textit{Baby-Step} ($|B| < |A|$). 
 	\newline
-		
+	
 	Es reicht also wenn wir zeigen dass $\varphi\inv(p) \cap (c\bast)c \in \starfree(A)$ für alle $p \in M$ gilt. 
 	
-		\begin{figure}[h!]
+	\begin{figure}[h!]
 		\centering
 		\begin{tikzpicture}[node distance=5.5cm, auto]
 			\node (cb) {$(c\bast)^\ast$};
@@ -1851,24 +1851,24 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	\end{itemize}
 	Es gilt $$\varphi\ast(p) \cap (c\bast)^\ast c = \bigcup \{\varphi\inv(q) \cap (c\bast)^\ast\mid qc = p\}c$$ Wähle nun $q \in \varphi(c\bast)^\ast$ fest und zeige $\varphi\inv(q) \cap (c\bast)^\ast \in \starfree(A)$. \\ 
 	Es gilt 
-		\begin{align*}
-			w \in \varphi\inv(q) \cap (c\bast)^\ast c \iff w = vc \text{ für ein } v \text{ mit } \varphi(v) = q
-		\end{align*} 
+	\begin{align*}
+		w \in \varphi\inv(q) \cap (c\bast)^\ast c \iff w = vc \text{ für ein } v \text{ mit } \varphi(v) = q
+	\end{align*} 
 	Also ist $\rho_c\varphi(v) = q \cdot c$ und $v =cv_1 \cdots cv_k$ mit $k \geq 0$ für alle $i \in \bast$ eindeutig. Man sieht dann $\sigma(v) = [v_1] \cdot [v_k] \in T^k \subseteq T^\ast$ mit 
-		\begin{align*}
-			\psi(v) &= [cv_1c] \circ \ldots \circ [cv_kc] \\
-			&= cv_1 \cdots cv_kc \\
-			&= \varphi(v) \cdot c \\ 
-			&=\rho_c \varphi(v) \\
-			&= qc \in M_c = cM \cap Mc
-		\end{align*}
-		\newline
-		
+	\begin{align*}
+		\psi(v) &= [cv_1c] \circ \ldots \circ [cv_kc] \\
+		&= cv_1 \cdots cv_kc \\
+		&= \varphi(v) \cdot c \\ 
+		&=\rho_c \varphi(v) \\
+		&= qc \in M_c = cM \cap Mc
+	\end{align*}
+	\newline
+	
 	Nun \textit{ Gigant-Step- Induktion}: Es gilt $\psi(qc) \in \starfree(T)$, da $|M_c| < |M|$. Beachte $|T| \leq |M|$. Es bleibt jetzt nur noch zu zeigen dass 
 	$$ K \in \starfree(T) \implies \sigma\inv(K) \in \starfree(A)$$ Wir zeigen $K = \{1\} \implies \sigma\inv(1) \cap (c\bast)^\ast = \{1\} \in \bast$ und $\{1\} \in \starfree(A)$.
 	\newline
 	
-	Dafür sei $t \in T$, dann ist $\sigma\inv(t) \in \starfree(K)$, denn 
+	Dafür sei $t \in T$, dann ist $\sigma\inv(t) \in \starfree(K)$, denn 
 	\begin{align*}
 		w \in \sigma\inv(t) \cap(c\bast)^\ast \iff w = cv \text{ mit } c \in \bast \text{ und } v \varphi(v)c = t
 	\end{align*} 
@@ -1879,18 +1879,18 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[node distance=5.5cm, auto]
-		\node (cb) {$\{1\} \cup c\aast =(c\bast)^\ast$};
-		\node (t) [right of=cb] {$T^\ast$};
-		\node (xm) [below of=cb] {$M' = \{c \in M \mid xc \in cM \}$};
-		\node (mc) [right of=xm] {$M_c = (\{cM \cap Mc\}, \cdot, c)$};
-		
-		\draw[->] (cb) -- (t) node[ midway,sloped,above,rotate=0] { $\sigma$};
-		\draw[ ->] (cb) -- (xm) node[ midway,right,rotate=0] { $\varphi$};
-		\draw[ ->] (xm) -- (mc) node[ midway,above,rotate=0] { $\rho_c$};
-		\draw[ ->] (t) -- (mc) node[ midway,right,rotate=0] { $t \mapsto .42ctc$};
+			\node (cb) {$\{1\} \cup c\aast =(c\bast)^\ast$};
+			\node (t) [right of=cb] {$T^\ast$};
+			\node (xm) [below of=cb] {$M' = \{c \in M \mid xc \in cM \}$};
+			\node (mc) [right of=xm] {$M_c = (\{cM \cap Mc\}, \cdot, c)$};
+			
+			\draw[->] (cb) -- (t) node[ midway,sloped,above,rotate=0] { $\sigma$};
+			\draw[ ->] (cb) -- (xm) node[ midway,right,rotate=0] { $\varphi$};
+			\draw[ ->] (xm) -- (mc) node[ midway,above,rotate=0] { $\rho_c$};
+			\draw[ ->] (t) -- (mc) node[ midway,right,rotate=0] { $t \mapsto .42ctc$};
 		\end{tikzpicture}
 	\end{figure} 
-
+	
 	Es gilt also $\sigma(cv_1 \cdots cv_k) = [v_1] \cdots [v_k] \in T^k \subseteq T^\ast$ mit $T = \{ \varphi(v) \mid  v \in \bast\} \subseteq M$ und $T$ ein endliches Alphabet.
 	\newline
 	
@@ -1898,29 +1898,29 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	So folgt, dass $\sigma\inv(K_1K_2) = \sigma\inv(K_1) \sigma\inv(K_2) \in \starfree(A)$. 
 	\bewiesen
 	
-\section{Halbgruppentheorie Teil 2- Vorlesung 13}
-\subsection{Greens Relations Teil 2}
-\subsubsection{Lemma}
-	Sei $s \lgreleq t$ und $s \grej t$, dann gilt $s \grel t$ (Analog für $\grer$)
-
-\subsubsection{Lemma}
+	\section{Halbgruppentheorie Teil 2- Vorlesung 13}
+	\subsection{Greens Relations Teil 2}
+	\subsubsection{Lemma}
+	Sei $s \lgreleq t$ und $s \grej t$, dann gilt $s \grel t$ (Analog für $\grer$)
+	
+	\subsubsection{Lemma}
 	Es gilt $\hcal(c) \subseteq M_c = cM \cap Mc$, denn 
 	\begin{align*}
 		x \in \hcal(c) &\implies x \grer c \land x \grel c \\ 
 		&\implies x \lgreheq c \\ 
 		&\implies x \in cM \cap Mc
 	\end{align*}
-
-\subsubsection{Strukturelle Aussagen}
+	
+	\subsubsection{Strukturelle Aussagen}
 	Wir wollen die folgenden Sätze zeigen:
 	\begin{enumerate}[label = \alph*)]
-			\item  \label{Aussage1}$(\hcal(c), \circ, c) = U(M_c, \circ, c)$ ist das Schützenberger Produkt auf $\hcal(c)$
-			\item  \label{Aussage2} Seien $s \grer t$ mit $s = tu \land t = sv$. Dann gilt $\rho_v: M_s \to M_t$ ist ein Isomorphismus von $(sM \cap Ms, \circ, s)$ auf $(tM \cap Mt, \cdot, t)$ und vermöge $x \mapsto xv$
-			\item  \label{Aussage3} Sei $s = tu$, $t = sv$ und $s \grej t$ sowie $s \grer t$, dann gilt $\rho_v: \lcal(s) \iso \lcal(t)$ ist bijektiv. 
-			\item  \label{Aussage4} $\rho_c$ ist respektiv die $\hcal$-Klasse mit $\hcal(x)v = \hcal(xv)$
+		\item  \label{Aussage1}$(\hcal(c), \circ, c) = U(M_c, \circ, c)$ ist das Schützenberger Produkt auf $\hcal(c)$
+		\item  \label{Aussage2} Seien $s \grer t$ mit $s = tu \land t = sv$. Dann gilt $\rho_v: M_s \to M_t$ ist ein Isomorphismus von $(sM \cap Ms, \circ, s)$ auf $(tM \cap Mt, \cdot, t)$ und vermöge $x \mapsto xv$
+		\item  \label{Aussage3} Sei $s = tu$, $t = sv$ und $s \grej t$ sowie $s \grer t$, dann gilt $\rho_v: \lcal(s) \iso \lcal(t)$ ist bijektiv. 
+		\item  \label{Aussage4} $\rho_c$ ist respektiv die $\hcal$-Klasse mit $\hcal(x)v = \hcal(xv)$
 	\end{enumerate}
-
-\subsubsection{Beweis der Aussage \ref{Aussage1}}
+	
+	\subsubsection{Beweis der Aussage \ref{Aussage1}}
 	Für $x \greh c $ folgt $c = yx$ und $yc \in Mc$, da $cM = xM$
 	\begin{align*}
 		&\implies yc \circ x = yc = c \\
@@ -1929,25 +1929,25 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	Für die andere Richtung sei $x = x'c = cx'' \in U(M_c)$, dann gilt: 
 	\begin{align*}
 		&\implies \exists y'c = c y'' \text{ mit } (x'c)y'' = y'(cx'') =c \\
-		&\implies c \lgreheq x \quad\text{ Hier gilt auch } x \in M_c
+		&\implies c \lgreheq x \quad\text{ Hier gilt auch } x \in M_c
 	\end{align*}
 	Somit $x \lgreheq c \implies x \greh c$
 	\bewiesen
 	
-\subsubsection{Beweis der Aussage \ref{Aussage2}}
+	\subsubsection{Beweis der Aussage \ref{Aussage2}}
 	Seien $x = x's = sx''$ und $\rho_c(x) = xv$, dann gilt $xv = x'sv \in Mt$. Ferner ist $xv = sx''v = tux''v \in tM$. 
 	Es folgt dann $\rho_s(M_s) \subseteq Mt$ und $\rho_v$ ist ein Hom. Dies gilt da:  
-		\begin{align*}
-			\rho_v(x's)\circ \rho_v(y's) &= x'sv \circ y'sv \\ 
-			&= x'y'sv \\
-			&= x'y't
-		\end{align*}
+	\begin{align*}
+		\rho_v(x's)\circ \rho_v(y's) &= x'sv \circ y'sv \\ 
+		&= x'y'sv \\
+		&= x'y't
+	\end{align*}
 	Somit ist dann 
-		\begin{align*}
-			\rho_v(x's \circ y's) &= \rho_v(x'y's) \\
-			&= x'y'sv \\
-			&= x'y't
-		\end{align*}
+	\begin{align*}
+		\rho_v(x's \circ y's) &= \rho_v(x'y's) \\
+		&= x'y'sv \\
+		&= x'y't
+	\end{align*}
 	Weiter gilt dass $\rho_v: Ms \to Mt$ ein Isomorphismus für $s \grer t$ ist. Um dies zu sehen, betrachten wir $x = x's \in Ms$. Dann gilt 
 	\begin{align*}
 		\rho_u\rho_v(x) &= \rho_u(x'sv) \\
@@ -1959,19 +1959,19 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	Analog dazu für $\rho_u: Mt \to Ms$ ist injektiv. Also folgt $\rho_u\rho_v = \rho_v\rho_u = id$
 	\bewiesen
 	
-\subsubsection{Beweis der Aussage \ref{Aussage3}}
+	\subsubsection{Beweis der Aussage \ref{Aussage3}}
 	Sei $x \grel s$, aber $Mx = Ms$, dann folgt $Mxv = Msu = Mt$ und ist somit bijektiv, da $\rho_u\rho_v = id$
 	\bewiesen
 	
-\subsubsection{Beweis der Aussage \ref{Aussage4}}
+	\subsubsection{Beweis der Aussage \ref{Aussage4}}
 	Sei $x\grel s$ dann folgt daraus $ xv \grel sv \grel t \implies xv \grej t$. Und somit ist $xv \lgrereq x$, nach dem Lemma \ref{dam} (im Buch 7.42) gilt dann $xu \grer x$ 
-
-%Sorry dass das hässlich is aber ich bekomme es nicht hin dass es zentriert in der Seite eingebettet ist :(
-%Wegen mir können wir das auch raus lassen
-
+	
+	%Sorry dass das hässlich is aber ich bekomme es nicht hin dass es zentriert in der Seite eingebettet ist :(
+	%Wegen mir können wir das auch raus lassen
+	
 	\begin{figure}[H]
 		\centering
-	\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
+		\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
 			
 			\begin{scope}[yshift=1.5cm,y=1cm]
 				\node [fit={(0,2) (1,3)}, label={[align=left] $\lcal$- Klasse \\ $\quad \quad \downarrow$}] {$s$}; 
@@ -2008,54 +2008,54 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 			\begin{scope}[yshift=2.5cm,y=1cm]
 				\node [fit={(1,-1) (4,1)}] { $\vdots$};
 			\end{scope}
-		
+			
 		\end{tikzpicture} 
-
-	\caption{Eggbox Diagram}
+		
+		\caption{Eggbox Diagram}
 	\end{figure}
 	Die Aussage folgt wenn man $x \grer y \implies xv \grer x \sim y \grer yv$ und \\ 
-	 $x \grel y \implies xv \grel t \sim y \grer yv$ betrachtet. 
+	$x \grel y \implies xv \grel t \sim y \grer yv$ betrachtet. 
 	\bewiesen
-
-\subsubsection{Korrolar}
+	
+	\subsubsection{Korrolar}
 	Seien $s\grej t \in M$ und $M$ endlich, also $\exists z: s \grer z \grel t$ ($\dcal = \jcal$). 
 	Dann ist $s = zv$ und $t =uz$, und somit ist: 
 	
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[node distance=3.5cm, auto]
-		\node (lam) {$\lambda_u\rho_v: (\hcal(s), \circ, s)$};
-		\node (ht) [right of=lam] {$(\hcal(t), \circ, t)$};
-		\node (hz) [below of=lam] {$(\hcal(z), \circ, z)$};
-
-		\draw[->] (lam) -- (ht) node[ midway,sloped,above,rotate=0] { $\sim$};
-		\draw[  ] (lam) -- (hz) node[midway,sloped, above, rotate=0] { $\sim$};
-		\draw[ ->] (lam) -- (hz) node[ midway,left=.2,rotate=0] { $\rho_v$};
-		\draw[ ->] (ht) -- (hz) node[ midway,right=.2cm,rotate=0] { $\lambda_u$};
-		\draw[  ] (ht) -- (hz) node[midway,sloped, above, rotate=0] { $\sim$};
+			\node (lam) {$\lambda_u\rho_v: (\hcal(s), \circ, s)$};
+			\node (ht) [right of=lam] {$(\hcal(t), \circ, t)$};
+			\node (hz) [below of=lam] {$(\hcal(z), \circ, z)$};
+			
+			\draw[->] (lam) -- (ht) node[ midway,sloped,above,rotate=0] { $\sim$};
+			\draw[  ] (lam) -- (hz) node[midway,sloped, above, rotate=0] { $\sim$};
+			\draw[ ->] (lam) -- (hz) node[ midway,left=.2,rotate=0] { $\rho_v$};
+			\draw[ ->] (ht) -- (hz) node[ midway,right=.2cm,rotate=0] { $\lambda_u$};
+			\draw[  ] (ht) -- (hz) node[midway,sloped, above, rotate=0] { $\sim$};
 		\end{tikzpicture}
 	\end{figure} 
-
-\subsubsection{Definition Regulär}	
+	
+	\subsubsection{Definition Regulär}	
 	Ein $s \in M$ heißt regulär, falls $\exists r: srs = s$ gilt. 
-
-\subsubsection{Lemma}
+	
+	\subsubsection{Lemma}
 	Es gilt $srs=s \implies s \grer sr$ und $(sr)^2 = sr \in E(M)$	
-
-\subsubsection{Beweis des Lemmas}
+	
+	\subsubsection{Beweis des Lemmas}
 	Sei $s\lgrereq s$ und $sr \lgrereq srs = s$. Dann folgt daraus $s \grer sr$. Außerdem ist $(sr)(sr) = (srs) \land sr \in E(M)$
 	\bewiesen
-
-\subsubsection{Satz}
+	
+	\subsubsection{Satz}
 	Für ein endliches $M$ sind die folgenden Aussagen äuquivalent für eine $\dcal$-Klasse D: 
-		\begin{enumerate}[label=\arabic*.)]
-			\item $D$ ist regulär $\iff \exists s \in D$ und $v \in M$ mit $srs = s$ (d.h $\exists s \in D$ und $s$ regulär)
-			\item $\exists e \in E(M)$ und $e \in D$
-			\item $\forall s \in D: s$ ist regulär
-			\item Jede $\lcal$-Klasse in $D$ und jede $\rcal$-Klasse von $D$ enthält eine Idempotenz
-		\end{enumerate}
-
-\subsubsection{Beweis des Satzes}
+	\begin{enumerate}[label=\arabic*.)]
+		\item $D$ ist regulär $\iff \exists s \in D$ und $v \in M$ mit $srs = s$ (d.h $\exists s \in D$ und $s$ regulär)
+		\item $\exists e \in E(M)$ und $e \in D$
+		\item $\forall s \in D: s$ ist regulär
+		\item Jede $\lcal$-Klasse in $D$ und jede $\rcal$-Klasse von $D$ enthält eine Idempotenz
+	\end{enumerate}
+	
+	\subsubsection{Beweis des Satzes}
 	Sei $srs = s$ regulär und $s \in D \implies sr \grer s$ sowie $sr = e \in E(M)$. Dann folgt 
 	\begin{align*}
 		&\implies \exists e \in M: e \grer s \text{ und } e^2 = e \\
@@ -2072,54 +2072,54 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	
 	Also existiert $s \in D$ regulär und somit folgt $\rcal(s)$ und $\lcal(s)$ enthalten eine Idempotenz. \\
 	Somit folgt 4.)
-
-\subsubsection{Satz}
+	
+	\subsubsection{Satz}
 	Seien $s,t \in D$ für eine $\dcal$-Klasse $D$ und sei $M$ endlich. Sei weiter $st \in D$, dann ist $D$ regulär und $st \in \rcal(s) \cap \lcal(t)$. 
 	Ferner gilt $\exists e \in \lcal(s) \cap \rcal(t)$, und somit $$\exists e \in \rcal(t) \cap \lcal(s) \text{ mit } e=e^2 \implies st \in \rcal(s) \cap \lcal(t)$$
-		\begin{figure}[H]
+	\begin{figure}[H]
 		\centering
 		\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
-		
-		\begin{scope}[yshift=1.5cm,y=1cm]
-			\node [fit={(0,2) (1,3)}] {$s$}; 
-		\end{scope}
-		
-		\begin{scope}[yshift=0.5cm,y=1cm]
-			\node [fit={(0,1) (1,3)}, label=center:{$\vdots$}] {};
-		\end{scope}
-		
-		\begin{scope}[yshift=0.5cm,y=1cm]
-			\node [fit={(0,0) (1,1)}, label=below:{}] {$e$};
-		\end{scope}
-		
-		\begin{scope}[yshift=3.5cm,y=1cm]
-			\node [fit={(1,0) (4,1)}, label=center:{$\cdots$}] {};
-		\end{scope}
-		
-		\begin{scope}[yshift=3.5cm,y=1cm]
-			\node [fit={(1,-3) (4,-2)}, label=center:{$\cdots$}] {};
-		\end{scope}
-		
-		\begin{scope}[yshift=3.5cm,y=1cm]
-			\node [fit={(4,0) (5,1)}, label=below:{}] {$st$};
-		\end{scope}
-		
-		\begin{scope}[yshift=3.5cm,y=1cm]
-			\node [fit={(4,0) (5,-2)}, label=center:{$\vdots$}] {};
-		\end{scope}
-		
-		\begin{scope}[yshift=3.5cm,y=1cm]
-			\node [fit={(4,-2) (5,-3)}] {$t$};
-		\end{scope}
-		
-		\begin{scope}[yshift=2.5cm,y=1cm]
-			\node [fit={(1,-1) (4,1)}] { $\vdots$};
-		\end{scope}
-		
+			
+			\begin{scope}[yshift=1.5cm,y=1cm]
+				\node [fit={(0,2) (1,3)}] {$s$}; 
+			\end{scope}
+			
+			\begin{scope}[yshift=0.5cm,y=1cm]
+				\node [fit={(0,1) (1,3)}, label=center:{$\vdots$}] {};
+			\end{scope}
+			
+			\begin{scope}[yshift=0.5cm,y=1cm]
+				\node [fit={(0,0) (1,1)}, label=below:{}] {$e$};
+			\end{scope}
+			
+			\begin{scope}[yshift=3.5cm,y=1cm]
+				\node [fit={(1,0) (4,1)}, label=center:{$\cdots$}] {};
+			\end{scope}
+			
+			\begin{scope}[yshift=3.5cm,y=1cm]
+				\node [fit={(1,-3) (4,-2)}, label=center:{$\cdots$}] {};
+			\end{scope}
+			
+			\begin{scope}[yshift=3.5cm,y=1cm]
+				\node [fit={(4,0) (5,1)}, label=below:{}] {$st$};
+			\end{scope}
+			
+			\begin{scope}[yshift=3.5cm,y=1cm]
+				\node [fit={(4,0) (5,-2)}, label=center:{$\vdots$}] {};
+			\end{scope}
+			
+			\begin{scope}[yshift=3.5cm,y=1cm]
+				\node [fit={(4,-2) (5,-3)}] {$t$};
+			\end{scope}
+			
+			\begin{scope}[yshift=2.5cm,y=1cm]
+				\node [fit={(1,-1) (4,1)}] { $\vdots$};
+			\end{scope}
+			
 		\end{tikzpicture} 
 	\end{figure}
-
-\subsubsection{Beweis des Satzes}
+	
+	\subsubsection{Beweis des Satzes}
 	Seien $s,t \in D$ mit $st \in D$. Dann ist $s \grej t \grej st$ sowie $st \lgrereq s$ und $st \lgreleq t \implies st \in \rcal(s) \cap \lcal(t)$
 	Betrachte nun 
 	\begin{align*}
@@ -2127,11 +2127,11 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 		x &\mapsto xt
 	\end{align*}
 	Dann folgt dass $\exists! e \in \lcal(s): et = t$. Ferner gilt $e \in R(t)$, da $\rho_t$ die $\rcal$-Klasse  enthält und somit folgt 
-		\begin{align*}
-			e = ty \implies e^2 &= (et)y \\
-			&=ty = e
-		\end{align*}
-		$\implies e \in E(M)$ mit $e \in \lcal(s) \cap \rcal(t)$. 
+	\begin{align*}
+		e = ty \implies e^2 &= (et)y \\
+		&=ty = e
+	\end{align*}
+	$\implies e \in E(M)$ mit $e \in \lcal(s) \cap \rcal(t)$. 
 	\newline
 	
 	Umgekehrt sei $e^2 = e \in \lcal(s) \cap \rcal(t)$. Zu zeigen ist $st \in \lcal(s) \cap \rcal(t)$. \\
@@ -2140,8 +2140,7 @@ Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $
 	Ferner gilt $\rho_t(s) \grer s \implies st \in \lcal(s) \cap \rcal(t)$.
 	\bewiesen
 	
-
+	
 \end{document}
-
 
 
