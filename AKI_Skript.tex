@@ -814,27 +814,37 @@ Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sig
 	\section{Gruppentheorie 3 - Vorlesung 4}
 	\subsection{Semidirekte Produkte}
 	\subsubsection{Direktes Produkt}
-	Für zwei Gruppen $H$ und $F$ ist das direkte Produkt die Gruppe $H \times F$ mit  $$(h,f)(h', f') = (hh', ff')$$
+	Für zwei Gruppen $H$ und $F$ ist das Gruppe $H \times F$ mit  der komponentenweisen Verknüfung $$(h,f)(h', f') = (hh', ff')$$ definiert als das direkte Produkt.
 	
 	\subsubsection{Semidirektes Produkt}
-	$G = H \rtimes F$ ist ein semi direktes Produkt, falls $H \trianglelefteq G$, $F \leq G$,  $G = H\cdot F$ und $H \cap F = \{1\}$ mit 
-	$$(h,f)(h',f') = hfh'(f^{-1}f)f' = (h\varphi(f)(h'), ff')$$
-	mit $\varphi \in Aut(H)$ wobei $Aut(H)$ die Menge der Automorphismen in $H$ ist.
-	
-	\subsubsection{Konstruktion 1 von semidirekten Produkten}
+	Das semidirekte Produkt ist ein Spezialfall des direkten Produkts.
+	$G = H \rtimes F$ ist ein semidirektes Produkt, falls $H \trianglelefteq G$, $F \leq G$,  $G = H\cdot F$ und $H \cap F = \{1\}$ gilt. 
+	Die Gruppenoperation ist dabei 
+	$$(h,f)(h',f') = hfh'(f^{-1}f)f' = h(fh'f^{-1})ff'  = (h\varphi(f)(h'), ff')$$
+	mit $\varphi(f) \in Aut(H)$.
+	$Aut(H)$ ist die Menge der Automorphismen in $H$.
+	\newline
+	$S_3 = \Z/3\Z \rtimes \Z/2\Z$ ist ein Beispiel für ein semidirektes Produkt.
+	\subsubsection{Konstruktionsmöglichkeit 1 für semidirekte Produkte}
 	Seien $H, F$ Gruppen und $\varphi: F\to Aut(H)$ ein Hom. \\ 
-	Wir nehmen $G = H \times F$ als Menge und $$ (h,f)(h',f') = (h\varphi(f)h', ff')$$
-	Dann ist $H= H \times \{1\}$ und $H \trianglelefteq H \times F$. 
-	Weiter ist dann $F = \{1\} \times F \leq F$ und $G= H\cdot I$ und $H\cap F = \{1\}$
+	Wir nehmen $G = H \times F$ als Menge und $$ (h,f)(h',f') = (h\varphi(f)h', ff')$$ als Verknüpfung.\\
+	Dann ist $H= H \times \{1\}$ und damit $H \trianglelefteq H \times F$. 
+	Weiter ist dann $F = \{1\} \times F \leq G$ und $G= H\cdot F$, sowie $H\cap F = \{1\}$.
+	Gesamt sind also alle Bedingungen für ein semidirektes Produkt erfüllt.
 	
-	\subsubsection{Korrektheit der Konstruktion 1}
+	\subsubsection{Korrektheit der Konstruktionsmöglichkeit 1}
+	Um die Korrektheit zu beweisen, muss gezeigt werden, dass $G$ eine Gruppe ist.
+	Zuerst zeigen wir die Gültigkeit des Assoziativgesetzes für $G$.
 	Es ist $(h_1, f_1)(h_2, f_2)(h_3, f_3) = (h, f_1f_2f_3)$ mit 
 	\begin{align*}
 		h&=h_1\varphi(f_1)[h_2\varphi(f_2)(h_3)] \\
-		&=h_1\varphi(f_1)(h_2)\varphi(f_1f_2)(h_3)
+		&=h_1\varphi(f_1)(h_2)\varphi(f_1f_2)(h_3)\\
+		&=[h_1\varphi(f_1)(h_2)]\varphi(f_1f_2)(h_3)\, .
 	\end{align*} 
 	\\ 
-	Und für die Inversen ist $(h, f)^{-1} = (h', f^{-1}) \text{ mit } h\varphi(f)(h')= 1$ aber $h' = \varphi(f^{-1})(h^{-1})$
+	Das neutrale Element ist $(1,1)$.\\
+	Nun bleibt die Existenz von Inversen zu zeigen.
+	Sei $(h,f)\in G$. $(h, f)^{-1} = (h', f^{-1})$ mit $h' = \varphi(f^{-1})(h^{-1})$, weil $h\varphi(f)(h')= 1$ gelten muss.
 	
 	\subsubsection{Exakte Sequenzen}
 	Eine Sequenz von Homs. $\varphi_i: G_{i-1} \to G_i$ mit $i \in I$ wobei $I$ linear geordnet ist, heißt exakt falls $$\forall i \in I : im(\varphi_i) = ker(\varphi_{i+1})$$ gilt
