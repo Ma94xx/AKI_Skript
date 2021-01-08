@@ -888,44 +888,53 @@
 	
 	\section{Gruppentheorie 4 - Vorlesung 5}
 	\subsection{Einfache Gruppen}
-	\subsubsection{Definition einfach}
-	Eine Gruppe $G$ heißt einfach wenn sie nur zwei Normalteiler besitzt, also nur $1$ und $G$ selbst.
+	\subsubsection{Definition}
+	Eine Gruppe $G$ hei\ss t einfach, wenn sie außer $\{1\}$ und $G$ selbst keine weiteren Normalteiler besitzt.
 	
-	\subsubsection{Beispiele für einfache Gruppen}
+	\subsubsection{Beispiele}
 	\begin{itemize}
-		\item $\mathbb Z / p \mathbb Z$ für eine Primzahl $p$ ist einfach 
-		\item $G$ ist einfach und nicht abelsch, falls $[G, G] =1$
+		\item $\mathbb Z / p \mathbb Z$ mit $p \in \mathbb{P}$ ist einfach. 
+		\item $\mathbb Z / n \mathbb Z$ mit $n \in \N \wedge n \notin \mathbb{P}$ ist nicht einfach. 
 	\end{itemize}
 	
-	\subsection{Kommutative Untergruppen}
-	\subsubsection{Definition kommutative Untergruppe}
-	Für eine Gruppe $G$ ist $[G, G] = \langle [g, h] \mid g, h \rangle$ mit $[g, h] = g^{-1}h^{-1}gh$ die kommutative Untergruppe. 
+	\subsection{Kommutate Untergruppen}
+	\subsubsection{Definition}
+	Für eine Gruppe $G$, ist $[G, G] = \langle [g, h] \mid g, h \in G \rangle$ mit $[g, h] = g^{-1}h^{-1}gh$ die kommutate Untergruppe. \\
+	\newline
+	Wenn $G$ einfach und nicht abelsch ist, dann gilt $[G, G] =1$. 
 	
-	\subsubsection{Satz über Kommutativität}
-	Für eine Gruppe $G$ gilt $$ G \text{ abelsch } \iff [G, G] = 1$$
+	\subsubsection{Satz: Kommutate Untergruppen abelscher Gruppen}
+	Für eine Gruppe $G$ gilt: $$ G \text{ abelsch } \iff [G, G] = 1$$
 	
 	\subsubsection{Beweis des Satzes}
-	Es gilt $g^{-1}h^{-1}gh = 1 \iff gh = hg$ also folgt $G$ ist abelsch. 
+	Es gilt $g^{-1}h^{-1}gh = 1 \iff gh = hg \iff G$ ist abelsch. 
 	\bewiesen
 	
-	\subsubsection{Definition von auflösbar}
-	Jede abelsche Gruppe ist auflösbar. Jede nicht abelsche Gruppe ist auflösbar falls die ''abgeleitete'' Untergruppe $[G, G]$ von $G$ verschieden ist und auflösbar. 
+	\subsubsection{Definition: auflösbar}
+	Jede abelsche Gruppe ist auflösbar. Jede nicht abelsche Gruppe ist auflösbar, falls die ''abgeleitete'' Untergruppe $[G, G]$ von $G$ verschieden und auflösbar ist. 
+	Für eine auflösbare Gruppe, kann man also eine Folge der Form
 	\begin{equation*}
 		1 \leq \ldots \leq G^{(2)} = [G^{(1)}, G^{(1)} ] \leq G^{(1)} = [G, G ] \leq G  
 	\end{equation*}
+	finden.
 	
 	\subsection{Alternierende Gruppen}
-	\subsubsection{Erzeugungs Lemma}
-	Für $n \geq 5$ wird $A_n$ von der Menge der doppelten Transpositionen oder der Menge der $3$-Zykel erzeugt.
+	
+	\subsubsection{Definition}
+	Die Alternierende Gruppe $A_n$ für $n \in \N$ enthält genau diejenigen Elemente $\pi \in S_n$, für die $sign(\pi)$ positiv ist, also $$A_n=\{\pi\, | \, \pi \in S_n \wedge sign(\pi) = 1\}\, .$$
+	\subsubsection{Lemma: Erzeugung von $A_n$}
+	Für $n \geq 5$ wird $A_n$ sowohl von der Menge der Doppel-Transpositionen als auch von der Menge der $3$-Zykel erzeugt.\\
+	Hierbei gilt, dass eine Doppel-Transposition das Produkt $(i,j)(k,l)$ zweier Transpositionen mit disjunkten Elementen $i,j,k,l$ ist.
 	
 	\subsubsection{Beweis des Lemmas}
-	Wir wissen dass $\pi \in A_n \iff sign(\pi) = 1$ gilt, und somit auch dass $A_n$ von einem Produkt $\tau \tau'$ mit $\tau, \tau' \in \mathcal T_n$ erzeugt wird, 
+	Wir wissen dass $\pi \in A_n \iff sign(\pi) = 1$ gilt und somit auch, dass $A_n$ von einem Produkt $\tau \tau'$ mit $\tau, \tau' \in \mathcal T_n$ erzeugt wird, 
 	da $S_n$ von $\mathcal T_n$ erzeugt wird. 
 	\newline 
 	
-	Die Menge der $3$-Zykel erzeugt $A_n$ durch 
+	Die Menge der $3$-Zykel erzeugt $A_n$, da man alle $3$-Zykel als Doppel-Trasnposition darstellen kann.
+	Es gilt 
 	\begin{align*}
-		(1,2)(3,4) = (1,2,3)(3,4,5) \text{ und } (1,2)(2,3) = (1,2,3)
+		(1,2)(3,4) = (1,2,3)(3,4,2) \text{ und } (1,2)(2,3) = (1,2,3)\, .
 	\end{align*}
 	Mit $n\geq 5$ können wir schreiben 
 	\begin{align*}
@@ -935,18 +944,19 @@
 	Deshalb kann man $(1,2,3)$ als Produkt von zwei Permutationen des Typ $(2,2)$ schreiben.
 	\bewiesen
 	
-	\subsubsection{Lemma}
-	Sei $n \geq 5$ und $\sigma$ ein $3$-Zykel, dann existiert ein $\pi \in A_n$, sodass $\pi\sigma\pi^{-1} = (1,2,3)$
+	\subsubsection{Lemma: $3$-Zykel sind konjugiert in $A_n$}
+	Sei $n \geq 5$ und $\sigma$ ein $3$-Zykel. Dann existiert ein $\pi \in A_n$, sodass $\pi\sigma\pi^{-1} = (1,2,3)$.
 	
 	\subsubsection{Beweis des Lemmas}
 	Man sieht deutlich, dass $\pi \in S_n$ existiert, sodass $\pi\sigma\pi^{-1} = (1,2,3)$. 
-	Wenn $\pi \in S_n$ gilt, dann sind wir bereits fertig. 
+	Wenn $\pi \in A_n$ gilt, dann sind wir bereits fertig. 
 	\newline
 	
-	Anderenfalls definieren wir $\pi' = (4,5)$ und $\pi \in A_n$.  Wir schließen daraus 
+	Anderenfalls definieren wir $\pi' = (4,5)\pi \in A_n$.  Wir schlie\ss en daraus 
 	\begin{align*}
-		\pi'\sigma\pi'^{-1} = (4,5)\pi\sigma\pi^{-1}(4,5) = (4,5)(1,2,3)(4,5) = (1,2,3)
+		\pi'\sigma\pi'^{-1} = (4,5)\pi\sigma\pi^{-1}(4,5) = (4,5)(1,2,3)(4,5) = (1,2,3)\,,
 	\end{align*}
+	wodurch die Behauptung folgt.
 	\bewiesen
 	
 	\subsubsection{Lemma}
