@@ -959,113 +959,112 @@
 	wodurch die Behauptung folgt.
 	\bewiesen
 	
-	\subsubsection{Lemma}
-	Sei $n \geq 3$ und $K \trianglelefteq S_n$, dann ist $K \in \{ \{1\}, A_n, S_n\}$
+	\subsubsection{Lemma: Normalteiler von $S_n$}
+	Sei $n \geq 3$ und $K \trianglelefteq S_n$, dann ist $K \in \{ \{1\}, A_n, S_n\}$.
 	
 	\subsubsection{Beweis des Lemmas}
-	Wir nehmen an dass $\{1\} \not = K$. Sei $N= K \cap A_n$, dann ist $N$ ein Normalteiler in $S_n$. Es reicht an dieser Stelle aus, zu zeigen dass dies $N=A_n$ impliziert. \\ 
-	Tatsächlich gilt $N = A_n \implies K \in \{ A_n, S_n\}$, da $[S_n : A_n] = 2$ ist.
+	Wir nehmen an, dass $\{1\} \not = K$ gilt. Sei $N= K \cap A_n$, dann ist $N$ als Schnitt zweier Normalteiler selbst ein Normalteiler in $S_n$. Es reicht an dieser Stelle aus, zu zeigen, dass dies $N=A_n$ impliziert, da $N = A_n \implies K \in \{ A_n, S_n\}$ dann folgt, wegen $[S_n : A_n] = 2$.
 	\newline
 	
-	Um nun zu erkennen dass $N=A_n$ ist, wählen wir $\sigma \in N$ mit $I \not = \sigma(i)$. Da $\sigma$ keine Transposition ist, gibt es kein $j \in \{i, \sigma(i)\}$ sodass $j \not=\sigma(j)$ gilt. \\
+	Um nun zu zeigen, dass $N=A_n$ gilt, wählen wir $\sigma \in N$ und $i$ mit $i \not = \sigma(i)$. Da $\sigma$ keine Transposition ist, gibt es noch ein $j \notin \{i, \sigma(i)\}$ sodass $j \not=\sigma(j)$ gilt. \\
 	
 	Sei nun $\tau = (i, j)$ und $\rho = (\sigma(i), \sigma(j))$. 
-	Wir behaupten dann dass $\rho\tau = \sigma\tau\sigma^{-1}\tau$ gilt, und $\sigma\tau\sigma^{-1}\tau \in N$ ist. Um die Behauptnung nun zu zeigen, beweisen wir $\rho\sigma = \sigma\rho$. 
+	Wir behaupten dann, dass $\rho\tau = \sigma\tau\sigma^{-1}\tau$ gilt, und $\sigma\tau\sigma^{-1}\tau \in N$ ist. Um diese Behauptung zu zeigen, beweisen wir $\rho\sigma = \sigma\tau$. 
+	Es gilt:
 	\begin{align*}
-		\rho\sigma(j) &= \sigma(i) = \sigma\tau(i) \text{ und } \rho\sigma(i) = \sigma(j) = \sigma\tau(i) \\
-		\rho\sigma(k) &= \sigma(k) = \sigma\tau(k) \text{ für } k \not \in \{i, j\}
+		\rho\sigma(j) &= \sigma(i) = \sigma\tau(j) \text{, } \rho\sigma(i) = \sigma(j) = \sigma\tau(i) \text{ und }\\
+		\rho\sigma(k) &= \sigma(k) = \sigma\tau(k) \text{ für } k \not \in \{i, j\}\, .
 	\end{align*}
 	
-	Wenn nun $\sigma(j) = i$ gilt, dann ist $\rho\tau \in N$ ein $3$-Zykel und somit $N=A_n$. 
-	Anderenfalls ist $\rho\tau \in N$ vom Typ $(2,2)$. Alle Permutationen des Typ(2,2) sind in $S_n$ konjugiert. Daher haben wir wieder $N=A_n$
+	Wenn nun $\sigma(j) = i$ gilt, dann ist $\rho\tau \in N$ ein $3$-Zykel und somit in $A_n$, was zu $N=A_n$ führt. 
+	Anderenfalls ist $\rho\tau \in N$ vom Typ $(2,2)$. Alle Permutationen des Typ(2,2) sind in $S_n$ konjugiert. Daher haben wir wieder $N=A_n$.
 	\bewiesen
 	
-	\subsubsection{Lemma}
-	Sei $N \trianglelefteq A_n$ und $\pi \in S_n$, dann ist auch $\pi N\pi^{-1} \trianglelefteq A_n$. Genauer sogar $\tau N \tau \trianglelefteq A_n$ für alle $\tau \in \mathcal T_n$
+	\subsubsection{Lemma: Normalteiler von Normalteilern}
+	Sei $N \trianglelefteq A_n$ und $\pi \in S_n$, dann ist auch $\pi N\pi^{-1} \trianglelefteq A_n$. Genauer gilt $\tau N \tau \trianglelefteq A_n$ für alle $\tau \in \mathcal T_n$.
 	\subsubsection{Beweis des Lemmas}
 	Zuerst ein direkter Beweis: \\
-	Für $\pi \in A_n$ ist bereits alles bekannt. Es reicht also zu zeigen dass $\sigma\rho N\tau\sigma^{-1} = \tau N \tau$ für $\sigma \in A_n$ und $\tau\in S_n \setminus A_n$. Dies ist äquivalent zu $ \tau \sigma \tau N \tau \sigma^{-1}\sigma \subseteq N$, da $\tau\sigma\tau \in A_n$ und $N\trianglelefteq A_n$. 
+	Falls $\pi \in A_n$ gilt, ist die Behauptung direkt offensichtlich. Es reicht also zu zeigen, dass $\sigma\tau N\tau\sigma^{-1} = \tau N \tau$ für $\sigma \in A_n$ und $\tau\in S_n \setminus A_n$ gilt. Dies ist äquivalent zu $ \tau \sigma \tau N \tau \sigma^{-1}\tau \subseteq N$. Auch in diesem Fall folgt die Behauptung direkt, da $\tau\sigma\tau \in A_n$ und $N\trianglelefteq A_n$. 
 	\newline
 	
 	Als zweites eine elegantere Version: \\
-	Wir haben $N \trianglelefteq H \trianglelefteq G$ mit $H = A_n$ und $G= S_n$. Für alle $\pi \in G$ erhalten wir einen Automorphismus $\varphi \in Aut(H)$ durch $\varphi(H) = \pi h\pi^{-1}$. Nun ist $\varphi(N) = \pi N\pi^{-1}$ ein Normalteiler in $H$, da $\varphi^{-1}(h) \in H$ ist. 
+	Wir haben $N \trianglelefteq H \trianglelefteq G$ mit $H = A_n$ und $G= S_n$. Für alle $\pi \in G$ erhalten wir einen Automorphismus $\varphi \in Aut(H)$ durch $\varphi(h) = \pi h\pi^{-1}$. Nun ist $\varphi(N) = \pi N\pi^{-1}$ ein Normalteiler von $H$. Für alle $h \in H$ ist $\varphi^{-1}(h) \in H$. 
 	Deshalb gilt: 
 	\begin{align*}
 		h\varphi(N)h^{-1} = \varphi(\varphi^{-1}(h)N\varphi^{-1}(h^{-1})) = \varphi(N)
 	\end{align*}
 	
-	Die allgemeine Aussage ist, dass $N \trianglelefteq H$ und $\varphi \in Aut(H)$ und somit $\varphi(N) \trianglelefteq H$ gilt. 
+	Die allgemeine Aussage ist, dass aus $N \trianglelefteq H$ und $\varphi \in Aut(H)$ folgt, dass $\varphi(N) \trianglelefteq H$ gilt. 
 	\bewiesen
 	
-	\subsubsection{Satz über die Einfachheit von alternierenden Gruppen}
+	\subsubsection{Satz: Einfachheit von alternierenden Gruppen}
 	Für $n \geq 5$ ist $A_n$ einfach. (C.Jordan, 1875).
 	
 	\subsubsection{Strategie zum Beweis des Satzes}
-	$\tau \in \mathcal T_n$ soll eine feste Transposition sein. Wir zeigen durch Widerspruch dass $A_n$ einfach ist. Dazu nehmen wir an, dass ein $N \trianglelefteq A_n$ existiert, sodass $\{1\} \triangleleft N \triangleleft A_n$ gilt.  \\
+	$\tau \in \mathcal T_n$ soll eine feste Transposition sein. Wir zeigen durch Widerspruch, dass $A_n$ einfach ist. Dazu nehmen wir an, dass ein $N \trianglelefteq A_n$ existiere, mit $\{1\} \triangleleft N \triangleleft A_n$.  \\
 	
-	Wir wissen, dass $S_n$ nur die Normalteiler $\{1\}, A_n$ und $S_n$ hat, und dadurch können wir schließen, dass $\tau N\tau \not = N$ ist, da sonst $N = \tau N \tau $ ein Normalteiler in $S_n$ wäre. Wir erinnern uns daran, dass $\tau N \tau \trianglelefteq A_n$ gilt. \\
+	Wir wissen, dass $S_n$ nur die Normalteiler $\{1\}, A_n$ und $S_n$ hat, und dadurch können wir schlie\ss en, dass $\tau N\tau \not = N$ ist, da sonst auch $N = \tau N \tau $ ein Normalteiler in $S_n$ wäre. Wir erinnern uns daran, dass $\tau N \tau \trianglelefteq A_n$ gilt. \\
 	Durch folgende Schritte können wir dann einen Widerspruch herleiten: 
 	
 	\begin{enumerate}[label=\arabic*.]
-		\item Der Schnitt ist trivial: $N \cap \tau N \tau = \{1\}$
-		\item Das Produkt $N(\tau N \tau)$ ist ein Normalteiler in $S_n$, da $N \subseteq N(\tau N \tau) \leq A_n$. \\ 
-		Dies implieziert $N(\tau N \tau) = A_n$.
-		\item Da $N\cap \tau N \tau =  \{1\}$ und $N(  \tau N \tau ) = A_n$ ist, schließen wir, dass $n! = 2 |N|^2$ ist. Sogar, dass $4 \mid n$ und somit das $|N|$ gerade sein muss. 
-		\item Der Widerspruch entsteht entweder dadurch dass wir zeigen dass $\frac{n!}{2}$ keine Quadratzahl ist, mit der Hilfe des Bertrandschen Postulates, oder durch den Satz von Cauchy
+		\item Der Schnitt von $N$ und $\tau N \tau$ ist trivial: $N \cap \tau N \tau = \{1\}$.
+		\item Das Produkt $N(\tau N \tau)$ ist ein Normalteiler in $S_n$. Da $N \subseteq N(\tau N \tau) \leq A_n$, impliziert dies $N(\tau N \tau) = A_n$.
+		\item Da $N\cap \tau N \tau =  \{1\}$ und $N(  \tau N \tau ) = A_n$ gilt, schlie\ss en wir, dass $n! = 2 |N|^2$ ist, und weiter, dass $4 \mid n$ gilt und $|N|$ somit gerade sein muss. 
+		\item Der Widerspruch entsteht dadurch, dass wir entweder mit Hilfe des Bertrandschen Postulates ($\forall m \in \R\, \exists p \in \mathbb{P}: \, m < p \leq 2m$, sofern $m \geq 1$) zeigen, dass $\frac{n!}{2}$ keine Quadratzahl ist, oder den Satz von Cauchy benutzen. 
 	\end{enumerate}
-	Die Punkte $1$ -$3$ werden durch die folgenden Lemma (\ref{lemma1}, \ref{lemma2}, und \ref{lemma3}) gezeigt. 
+	Die Punkte $1$ -$3$ werden durch die folgenden Lemmata (\ref{lemma1}, \ref{lemma2}, und \ref{lemma3}) gezeigt. 
 	
-	\subsubsection{Lemma \label{lemma1}}
-	$N \cap \tau N \tau = \{1\}$, also dass der Schnitt trivial ist.
+	\subsubsection{Lemma: Trivialer Schnitt \label{lemma1}}
+	$N \cap \tau N \tau = \{1\}$
 	\subsubsection{Beweis des Lemma \ref{lemma1}}
 	$N \cap \tau N \tau$ ist ein Normalteiler in $A_n$. Jedes $\pi \in S_n \setminus A_n$ kann auch als $\pi = \tau\sigma$ mit $\sigma \in A_n$ geschrieben werden.
-	Wir betrachten 
+	Es gilt
 	\begin{align*}
 		\pi N \pi^{-1} &= \tau \sigma N \sigma^{-1} \tau = \tau N \tau  \\ 
 		\pi \tau N \tau \pi^{-1} &= N
 	\end{align*} 
 	da $\pi\tau \in A_n$ ist. 
-	Deshalb ist $\pi(\tau N \tau \cap N) \pi^{-1} \subseteq N \cap \tau N \tau$ und $\tau N \tau \cap N$ ist Normalteiler in $S_n$. Da $S_n$ ganz in $A_n$ liegt, folgt daraus dass $\tau N \tau \cap N = \{1\}$. 
+	Deshalb ist $\pi(\tau N \tau \cap N) \pi^{-1} \subseteq N \cap \tau N \tau$ und $\tau N \tau \cap N$ ist ein Normalteiler von $S_n$. Da $N$ ganz in $A_n$ liegt, folgt daraus, dass $\tau N \tau \cap N = \{1\}$. 
 	\bewiesen
 	
-	\subsubsection{Lemma \label{lemma2}}
-	Das Produkt $N(\tau N \tau)$ ist ein Normalteiler in $S_n$, da $N \subseteq N(\tau N \tau) \leq A_n$. \\ 
-	Dies impliziert $N(\tau N \tau) = A_n$.
+	\subsubsection{Lemma: $N(\tau N\tau)$ ist Normalteiler \label{lemma2}}
+	Das Produkt $N(\tau N \tau)$ ist ein Normalteiler in $S_n$. Da $N \subseteq N(\tau N \tau) \leq A_n$, impliziert dies $N(\tau N \tau) = A_n$.
 	\subsubsection{Beweis des Lemma \ref{lemma2}}
-	Nach Blatt 1, Aufgabe 3 der Übungen ist $N(\tau N \tau) \trianglelefteq A_n$. Ferner ist für $\pi = \sigma\tau \in S_N \setminus A_n$ mit $\sigma \in A_n$ 
+	Nach Blatt 1, Aufgabe 3 der Übungen ist $N(\tau N \tau) \trianglelefteq A_n$. Ferner ist für $\pi = \sigma\tau \in S_N \setminus A_n$ mit $\sigma \in A_n$: 
 	\begin{align*}
 		\pi N(\tau N\tau) \pi^{-1} &= \sigma \tau N (\tau N \tau) \tau \sigma^{-1}  \\ 
+		&= \sigma\tau N \tau N  \sigma^{-1} \\
 		&= \sigma N \tau N \tau \sigma^{-1} \\
-		&= N(\tau N \tau)
+		&= N(\tau N \tau)\, .
 	\end{align*}
 	\bewiesen
 	
-	\subsubsection{Lemma \label{lemma3}}
-	Es gilt $N\cap \tau N \tau =  \{1\}$ und $N(  \tau N \tau ) = A_n$. Also muss $n! = 2 |N|^2$ ein. Sogar, $4 \mid n$ und somit $|N|$ gerade . 
+	\subsubsection{Lemma: Grö\ss e von $N$ \label{lemma3}}
+	Es gilt $n! = 2 |N|^2$. Weiter gilt $4 \mid n$ und somit folgt, dass $|N|$ gerade ist. 
 	\subsubsection{Beweis des Lemma \ref{lemma3}}
 	Sei $\sigma, \sigma' \in N$ und $\pi', \pi \in \tau N \tau$, sodass $\sigma\pi' = \sigma'\pi$ ist. Dann ist $\sigma^{-1}\sigma' = \pi'\pi^{-1} \in N \cap \tau N \tau = \{1\}$. Dadurch ist $\sigma = \sigma'$ und $\pi' = \pi$. Somit ergibt sich 
 	\begin{align*}
-		|A_n| = |N\tau N\tau| = |\tau N \tau| = |N|^2
+		|A_n| = |N\tau N\tau| = |N| \cdot |\tau N \tau| = |N|^2\, .
 	\end{align*}
-	Also ist $|A_n| = n!$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da $n!$ duch $4$ teilbar ist für $n \geq 4$. 
+	Also ist $|A_n| =\frac{n!}{2}$ eine Quadratzahl. Die Kardinalität von $N$ ist gerade da $n!$ duch $4$ teilbar ist für $n \geq 4$. 
 	\bewiesen
 	
-	\subsubsection{Beweis des Satzes mit Bertrandschem Postulat}
-	Das Bertrandsche postulat besagt dass für $1 \leq m \in \mathbb R$ eine Primzahl $p$ mit $m < p \leq 2m$ existiert. 
+	\subsubsection{Beweis des Satzes mit dem Bertrandschem Postulat}
+	Das Bertrandsche Postulat besagt, dass für $1 \leq m \in \mathbb R$ eine Primzahl $p$ mit $m < p \leq 2m$ existiert. 
 	\newline
-	Sei nun $m =\frac{n}{2}$, dann existiert eine Primzahl $p$ mit $\frac{n}{2} < p \leq n$. Da $n \geq 5$ ist, gilt $p > 2$. Somit gilt $p \mid \frac{n!}{2}$ aber $p^2 > 2p >  n$. Damit teil $p$ aber nicht $n!$. Ein Widerspruch!
+	Sei nun $m =\frac{n}{2}$, dann existiert eine Primzahl $p$ mit $\frac{n}{2} < p \leq n$. Da $n \geq 5$ ist, gilt $p > 2$. Somit gilt $p \mid \frac{n!}{2}$, aber $p^2 > 2p >  n$. Damit teilt $p$ aber nicht $n!$. Ein Widerspruch!
 	\bewiesen
 	
-	\subsubsection{Beweis des Satzes mit Satz von Cauchy}
-	Da $|N|$ eine nicht triviale Gruppe gerade rOrdnung ist, besagt der Satz von Cauchy, dass $N$ eine Element $\sigma$ mit $ord(\sigma) = 2$ existiert. 
-	Dann kann $\sigma$ als gerade Anzahl an Zyklen geschreieben werden mit der Ordnung $2$. 
+	\subsubsection{Beweis des Satzes mit dem Satz von Cauchy}
+	Da $|N|$ eine nicht triviale Gruppe gerader Ordnung ist, besagt der Satz von Cauchy, dass $N$ ein Element $\sigma$ mit $ord(\sigma) = 2$ enthält. 
+	Dann kann $\sigma$ als gerade Anzahl an 2-Zyklen geschrieben werden:
 	\begin{align*}
-		\sigma = c_0 \cdot \ldots \cdot c_k
+		\sigma = c_0 \cdot \ldots \cdot c_k\, ,
 	\end{align*} 
-	wobei $k\geq 1$ und $c_0, \ldots, c_k$ Zyklen der Ordnung $2$ und paarweise disjunkt sind. Damit gilt $c_ic_j = c_jc_i$ für alle $i,j$. 
-	Sei nun $\tau = c_0$, dann $N \cap \tau N \tau = \{1\}$, da dies für alle $\tau \in \mathcal T_n$ gilt. Somit erhalten wir durch $\sigma\tau = \tau \sigma$
+	wobei $k\geq 1$ gilt, $k$ gerade ist und $c_0, \ldots, c_k$ Zyklen der Ordnung $2$ mit paarweise disjunkten Trägern sind. Damit gilt $c_ic_j = c_jc_i$ für alle $i,j$. 
+	Sei nun $\tau = c_0$. Dann ist $N \cap \tau N \tau = \{1\}$, da dies für alle $\tau \in \mathcal T_n$ gilt. Durch $\sigma\tau = \tau \sigma$ erhalten wir
 	\begin{align*}
-		\sigma = \tau\sigma\tau \in N\cap \tau N \tau
+		\sigma = \tau\sigma\tau \in N\cap \tau N \tau\, .
 	\end{align*} 
 	Dies impliziert jedoch $\sigma = 1$. Ein Widerspruch! 
 	
