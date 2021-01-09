@@ -1100,6 +1100,7 @@
 		x(f+k(g+mh)) = xf+(xk)(g + mh) = xf + xkg + xkmh\, .
 	\end{align*}
 	\bewiesen
+	Es kann auch $X=N$ gesetzt werden.
 	
 	\subsubsection{Satz: Kranzprodukt bei Gruppen}
 	Wenn $M, N$ Gruppen sind, dann ist auch $M^X \rtimes N$ bzw. $M \wr N$ eine Gruppe. 
@@ -1111,39 +1112,44 @@
 	Wir wollen also, dass $\forall x \, : \,xf+xmg=0$ gilt. das ist gleichbedeutend mit $xf=-xmg$.
 	Dafür setzen wir $xg = -xm^{-1}f$. Dann ist $$xf-xmm^{-1}f = xf-xf = 0\, .$$	\bewiesen
 	
-	\subsubsection{Satz}
-	Wir betrachten erneut die Sequenz 
-	\begin{figure}[h!]
+	\subsubsection{Satz: Kranzprodukte durch exakte Sequenzen}
+	Wir betrachten erneut die exakte Sequenz 
+	\begin{figure}[H]
 		\centering
 		\begin{equation*}
 			\begin{tikzcd}[column sep=1.5pc]
 				1 \arrow{r}{} & H \arrow{r}{} & G \arrow{r}{\psi} & F \arrow{r}{} & 1
 			\end{tikzcd}
 		\end{equation*}
-	\end{figure} \\ 
-	Sei $\{[x] \in G \mid Hx, \, \, x \in F\}$ ein Repräsentantensystem von $F$ und $[1] = 1$. 
-	Dann ist $$\varphi: G \to H \wr F = H^F \rtimes F$$ eine Einbettung von Gruppen mit $\varphi(g) = (f_g, \psi(g))$ und $f_g(x) = [x]g[xg]^{-1}$ für $x \in F$. \\  Insbesondere ist $$G \leq H^F \rtimes F$$
+	\end{figure} 
+	von Gruppen.\\
+	Sei $\{[x] \in G \mid Hx, \, \, x \in F\}$ ein Repräsentantensystem von $F$ mit $[1] = 1$. 
+	Dann ist $$\varphi: G \to H \wr F = H^F \rtimes F$$ eine Einbettung von Gruppen mit $\varphi(g) = (f_g, \psi(g))$ und $f_g(x) = [x]g[xg]^{-1}$ für $x \in F$. \\  Insbesondere ist dann $$G \leq H^F \rtimes F\, .$$
 	
 	\subsubsection{Beweis}
 	Es gilt $\psi[xg] = H\psi(xg) = Hx\psi(g)$. Daher ist
 	\begin{align*}
-		\psi([x]g[xg]^{-1}) = Hx\psi(g)(x\psi(g)^{-1}) = H = 1 \in F
+		\psi([x]g[xg]^{-1}) = Hx\psi(g)(x\psi(g)^{-1}) = H
 	\end{align*}
-	Dann bleibt zu zeigen dass 
+	und $H$ ist das Einselement in F.\\
+	Dann bleibt zu zeigen, dass $\varphi$ ein Hom. ist, also, dass
 	\begin{align*}
-		\varphi((f_h, h)(f_g, g)) = \varphi(f_nhf_g, h_g) 
+		\varphi((f_h, h)(f_g, g)) = \varphi(f_nhf_g, hg) 
 	\end{align*}
-	mit 
+	gilt. Wenn man die erste Komponente betrachtet, gilt
 	\begin{align*}
-		x(f_n \cdot hf_g) = [x]h\underbrace{[xh]^{-1}[xh]}_{\substack{=1}}g[xhg] = [x]hg[xh_g] = xf_{h_g}
+		x(f_h \cdot hf_g) = [x]h\underbrace{[xh]^{-1}[xh]}_{\substack{=1}}g[xhg] = [x]hg[xhg] = xf_{hg}\, .
 	\end{align*}
-	Dies impliziert dann dass $\varphi((f_n, h)(f_g,g)) = (\varphi h_{n_g}, h_g)$ und somit $\varphi$ ein Hom. ist. 
-	Abschließend gilt 
+	Dies impliziert dann, dass $\varphi((f_h, h)(f_g,g)) = (\varphi f_{hg}, hg)$ und somit $\varphi$ ein Hom. ist. 
+	Abschlie\ss end ist nachzuweisen, dass die $1$ auf die $1$ abgebildet wird. Es gilt:
 	\begin{align*}
 		\varphi(f_g, g) = 1 \in H \wr F &\implies \psi(g) = H \\
-		&\implies g \in H \text{ und } xfg = 1 \, \, \forall x \\ 
-		&\implies 1f_g = [1]g[1g]^{-1} = g \cdot 1 = 1 \\
-		&\implies g = 1
+		&\implies g \in H
+	\end{align*}
+	und
+	\begin{align*}
+		xfg = 1 \, \, \forall x &\implies 1f_g = [1]g[1g]^{-1} = g \cdot 1 = 1 \\
+		&\implies g = 1\, .
 	\end{align*}
 	\bewiesen
 	
