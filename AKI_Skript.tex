@@ -1071,44 +1071,45 @@
 	\section{Gruppentheorie 5 - Vorlesung 6}
 	\subsection{Kranzprodukte}
 	\subsubsection{Vorraussetzungen}
-	Sei $M = (M, +, 0)$ nicht notwendig kommutativ und $N=(N, \cdot, 1)$ beides Monoide, sowie $X$ eine Menge. 
-	Dann operiert $N$ von rechts auf $M^x = \{ f: X \to M \mid \text{ f ist eine Abbilidung} \}$. Wir schreiben statt $f(x)$ nun $xf$. 
-	Somit operiert $N$ auf $M^X$ von links 
+	Seien $M = (M, +, 0)$ nicht notwendig kommutativ und $N=(N, \cdot, 1)$ beides Monoide, sowie $X$ eine Menge. 
+	Dann operiert $N$ von rechts auf $X$. Wir betrachten die Menge der Abbildungen von $X$ nach $M$: $M^x = \{ f: X \to M \mid \text{ f ist eine Abbildung} \}$. Wir schreiben statt $f(x)$ nun $xf$. 
+	Somit operiert $N$ auf $M^X$ von links durch
 	\begin{align*}
 		nf : X \to M \\ 
-		x(n\cdot f) := (xn)f = xnf 
+		x(n\cdot f) := (xn)f = xnf \, .
 	\end{align*}
-	\subsubsection{Definition konstante Funktion}
-	Wir definieren die konstante Funktion	$$\forall y:  c_y(x) = xc_y = y \, \, \, \forall x$$ 
+	\subsubsection{Definition Konstante Funktion}
+	Wir definieren für alle $y$ die konstante Funktion $c_y$ durch	$$c_y(x) = xc_y = y \, \, \, \forall x\, .$$ 
 	
 	\subsubsection{Definition Kranzprodukt}
-	Nun heißt $M \wr N$ Kranzprodukt, falls $M^X \rtimes N$ gilt, mit 
+	Nun hei\ss t $M \wr N$ Kranzprodukt, falls $M^X \rtimes N$ gilt. Dabei ist das Kranzprodukt für Monoide mit der Eigenschaft
 	\begin{align*}
-		(f,m)(g,n) = (f + mg, mn) \text{ mit } x(f+mg) = xf + mg \, \, \, \forall x
+		(f,m)(g,n) = (f + mg, mn) \text{ mit } x(f+mg) = xf + xmg \, \, \, \forall x
 	\end{align*}
-	Wir können also die Klammern ''vergessen''. Somit ist das Kranzprodukt wieder ein Monoid.
-	
-	
-	\subsubsection{Beweis}
-	Das neutrale Element $1_{M \wr N} = (c_0, 1)$.
-	Nun zeigen wir noch im Folgenden die Assoziativität
+	definiert.
+	Wir können also die Klammern ''vergessen''. Somit ist das Kranzprodukt wieder ein Monoid mit dem Neutralelement $1_{M \wr N}= (c_0,1)$.
+	\\
+	Im Folgenden zeigen wir noch die Assoziativität von $M \wr N$:
 	\begin{align*}
-		[(f,m)(g,m)](h,n) = (f +kg, km)(h,n) = (f +kg + kmh, kmn) \\
-		(f,m)[(g,m)(h,n)] = (f,k)(g +mn, mn) = (f + k ( g +mh)) 
+		[(f,k)(g,m)](h,n) = (f +kg, km)(h,n) = (f +kg + kmh, kmn) \\
+		(f,k)[(g,m)(h,n)] = (f,k)(g +mh, mn) = (f + k ( g +mh),kmn) 
 	\end{align*}
-	Nun bleibt zu zeigen dass $\forall x : x(f+kg + kmh) \overset{!}{=} x(f+k(g+mh))$. \\
-	Dies gilt, da 
+	Nun bleibt zu zeigen, dass $\forall x : x(f+kg + kmh) \overset{!}{=} x(f+k(g+mh))$ gilt. \\
+	Dies ist der Fall, wegen 
 	\begin{align*}
-		x(f+k(g+mh)) = xf+(xk)(g + mh) = xf + xkg + xkmh
+		x(f+k(g+mh)) = xf+(xk)(g + mh) = xf + xkg + xkmh\, .
 	\end{align*}
 	\bewiesen
 	
-	\subsubsection{Satz}
-	Seien $M, N$ Gruppen, dann ist $M^X \rtimes N$ eine Gruppe. Oder: Falls $M, N$ Gruppen sind, dann folgt dass  $M \wr N $ eine Gruppe ist.
+	\subsubsection{Satz: Kranzprodukt bei Gruppen}
+	Wenn $M, N$ Gruppen sind, dann ist auch $M^X \rtimes N$ bzw. $M \wr N$ eine Gruppe. 
 	
 	\subsubsection{Beweis}
-	Gesucht ist für alle $(f, m)$ ein $(g,n)$ mit $(f, m)(g,n) = (c_0, 1)$. Es bleibt zu zeigen dass für alle $(f,m)(g, m^{-1}) = f+mg$ mit $\forall x . xf + xmg = 0$ gilt. \\
-	Dafür setzen wir $xg = -xm^{-1}f$. Dann ist $$xf-xnm^{-1}f = xf-xf = 0$$	\bewiesen
+	Das Neutralelement $(c_0, 1)$ ist offensichtlich enthalten.\\
+	Gesucht ist nun für alle $(f, m) \in M \wr N$ ein $(g,n)$ mit $(f, m)(g,n) = (c_0, 1)$.
+	Damit ist in durch die zweite Komponente festgelegt, dass $n=m^{-1}$ ist und es bleibt zu zeigen, dass $(f,m)(g, m^{-1}) = (c_0,1)$  gilt. \\
+	Wir wollen also, dass $\forall x \, : \,xf+xmg=0$ gilt. das ist gleichbedeutend mit $xf=-xmg$.
+	Dafür setzen wir $xg = -xm^{-1}f$. Dann ist $$xf-xmm^{-1}f = xf-xf = 0\, .$$	\bewiesen
 	
 	\subsubsection{Satz}
 	Wir betrachten erneut die Sequenz 
