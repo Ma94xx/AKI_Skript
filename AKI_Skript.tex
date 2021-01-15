@@ -127,6 +127,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathbb{B}}
 \newcommand{\sigstern}{\Sigma^\ast}
 \newcommand{\inv}{^{-1}}
 \newcommand{\pom}{^{\omega}}
@@ -136,6 +137,7 @@
 \newcommand{\synt}{\mathsf{Synt}}
 \newcommand{\wop}{\mathsf{WP}}
 \newcommand{\equivWP}{\equiv_{\mathsf{WP}(G)}}
+
 
 \newcommand{\grel}{\sim_{\mathcal{L}}}
 \newcommand{\grer}{\sim_{\mathcal{R}}}
@@ -157,7 +159,6 @@
 \newcommand{\jcal}{\mathcal J}
 \newcommand{\dcal}{\mathcal D}
 
-
 \newcommand{\rgreleq}{\geqslant_{\mathcal{L}}}
 \newcommand{\rgrereq}{\geqslant_{\mathcal{R}}}
 \newcommand{\rgrejeq}{\geqslant_{\mathcal{J}}}
@@ -166,6 +167,14 @@
 \newcommand{\rgreyeq}{\geqslant_{\mathcal{Y}}}
 \newcommand{\aast}{A^{\ast}}
 \newcommand{\bast}{B^{\ast}}
+\newcommand{\east}{E^{\ast}}
+
+%MOS
+\newcommand{\fv}{\mathsf{FV}}
+\newcommand{\fo}{\mathsf{FO}}
+\newcommand{\so}{\mathsf{SO}}
+\newcommand{\mso}{\mathsf{MSO}}
+\newcommand{\reg}{\mathsf{REG}}
 
 
 %Erzeugt das "bewiesen" Kästen rechts unten
@@ -1537,7 +1546,7 @@
 	\end{figure} \\ 
 	
 	Im Allgemeinen gilt $\mathcal D \not = \mathcal J$, für endliche Halbgruppen jedoch $\mathcal D = \mathcal J$. Dies werden wir später noch zeigen. 
-	\newpage
+
 	\subsubsection{Definition K-Trivial}		
 	Sei $K \in \{\mathcal{H}, \mathcal{L},\mathcal{R}, \mathcal{D}, \mathcal{J}\}$, dann heißt $\sim$, also die Relation,  $K$-Trivial, falls $$x \sim_K y \implies x = y$$
 	
@@ -1892,7 +1901,7 @@
 		w \in \sigma\inv(t) \cap(c\bast)^\ast \iff w = cv \text{ mit } c \in \bast \text{ und } v \varphi(v)c = t
 	\end{align*} 
 	Durch den \textit{Bayb-Step} gilt $\{v \in B^t \mid c \varphi(v)c = t\} \in \starfree(B) \subseteq \starfree(A)$. \\
-	\newpage
+
 	
 	Weiter gilt $\sigma\inv(K_1 \cap K_2) = \sigma\inv(K_1) \cup \sigma\inv(K_2)$ sowie $\sigma\inv(T^\ast \setminus K_1) = (c\bast)^\ast \setminus K_1 \in \starfree$, denn $(c\bast)^\ast = c \aast$
 	\begin{figure}[h]
@@ -2159,7 +2168,124 @@
 	Ferner gilt $\rho_t(s) \grer s \implies st \in \lcal(s) \cap \rcal(t)$.
 	\bewiesen
 	
+\section{Monadic Second Order Logic (MSO) - Vorlesung 14}
+\subsection{Grundlagen}
+\subsubsection{Allgemeines}
+Wir bertachten hier nur $(V, E ,\lambda)$ als Modelle mit $E \subseteq V \times V$ und $\lambda : V \to \Sigma$ wobei $\Sigma$ ein endliches Alphabet ist.
+Zum Synatx: Es gibt Variablen für Elemente $x$ in Mengen $V$ und für Teilmengen $X$ von $V$ (Monadische Prädikate)
+
+\subsubsection{Freie Variablen}
+	Es gilt $\fv(x=y)=\{x,y\}$ und falls $x \in X$ ist $\fv(x \in X) = \{x, X\}$
+
+\subsubsection{Atomare Formeln}
+	Folgende Formeln sind alle atomar: $x=y$, $\lambda(x) = a$ mit $a \in \Sigma$ (oft auch: $P_a$), sowie $x$, $T= true$, $\fv(T) = \emptyset$, und $(x,y) \in E$
 	
+
+	
+\subsubsection{Definitonen der Makros}
+\begin{itemize}
+	\item $(x = y) \iff \forall x : x \in X \iff x \in Y$ und dann ist $\fv{(x = y ) = \{x,y\}}$
+	\item $(x \subseteq y) \iff \forall x : x \in X \implies x \in Y$
+	\item $\phi \land \psi := \neg (\neg \phi \lor \neg \psi)$ etc. und  $\forall z \phi := \neg (\exists z (\neg\phi))$
+\end{itemize}
+
+\subsubsection{Bemerkung}
+	Sei $z \in \{x, X\}$ und $\phi$ eine $\mso$-Formel, dann $\exists z\phi$ mit $\fv(\exists z \phi) = \fv(\phi) \setminus \{z\}$
+
+\subsubsection{Boolsche Formeln}
+	Seine $\phi, \psi$ Formeln, dann sind auch $(\phi \lor \psi)$ und $\neg \phi$ Formeln, 
+	mit $\fv(\phi \cup \psi) = \fv(\phi) \cup \fv(\psi)$ und $\fv(\neg \phi) = \fv(\phi)$
+
+\subsubsection{Semantik}
+	Sei $\phi$ eine Formel mit $\fv(x_1, x_2, X_1, X_2)$ und $I: \fv(\phi) \to V \cup 2^V$ wobei $I(x) \in V$ und $I(X_j) \subseteq V$. \\
+	
+	Dann heißt $\phi((V,E,\lambda), I)$ ein Wahrheitswert in $\B = \{\bot, \top\}$ mit $1 = \top$ und $0 = \bot$. 
+	\begin{itemize}
+		\item 	Falls $\phi((V,E,\lambda), I) = \top$, dann ist $(V,E,\lambda) \models_I \phi$ ein Modell für $\phi$ unter $I$. 
+		\item	Falls $\fv(\phi) = \emptyset$ und $(V,E,\lambda) \models_{\emptyset} \phi$, dann heißt $(V,E,\lambda)$ Modell von $\phi$ und $\phi \in \mso(V,E,\lambda)$
+	\end{itemize}
+
+\subsection{First Order Logic $\fo$}
+\subsubsection{Grundlagen}
+	$\fo$ ist ein Fragment von $\mso$ ohne die Menge $X$.
+	
+\subsubsection{Definitonen der Makros}
+	\begin{itemize}
+		\item  Für $(x,y) \in E$ definieren wir die Relation $(x,y) \in \east$  in $\mso$ als den reflexiven, transitiven Abschluss von $E$
+		\item $R(x,Y) = [x \in Y \land \forall z \forall z': z \in Y \land (z,z') \in E \implies z' \in Y]$
+		\item $\east(x,y) := [\forall Y (R(x,Y) \implies y \in Y)]$ sowie $\fv(\east) = \{x,y\}$
+	\end{itemize}
+
+\subsubsection{$\mso$-Theorie auf $\sigstern$}
+	Wir betrachten die Modelle $(V,E,\lambda)$ mit $V= \{1, \ldots, n\}$ und $E=\{(i, i+1) \mid 1 \leq i < n\}$ sowie $$\lambda: \{1, \ldots n\} \to \Sigma$$
+
+\subsubsection{Beispiel}
+	Wir betrachten $abcd = a \to b \to c \to d$ mit $\lambda(1) = a$, $\lambda(2) = b$, $\lambda(3) = c$,  und $\lambda(4) = d$. \\ 
+	Dann ist $\east = \leq$ auf $\{1, \ldots, n\}$ und $$\phi = \exists x,y: \lambda(x) = b, \lambda(y) = d \land x \leq y$$ und somit $abcd \models \phi$
+
+\subsubsection{Satz}
+	Sei $L \subseteq \sigstern$. Dann gilt 
+	\begin{align*}
+	L \in \reg(\sigma) &\iff \exists \phi \in \mso \text{ mit } \fv(\phi) = \emptyset \text{ und } L=L(\phi) = \{w \mid w \models \phi \}\\
+	&\iff \exists \psi \in \mso  \text{ mit } \fv(\psi) \subseteq \{X_1, \ldots, X_n\} 
+	\end{align*}
+ wobei $\psi$ quantorenfrei ist, und  $L= L(\exists X_1, \ldots, \exists X_n \psi) $
+mit 
+
+\subsection{Beweis des Satzes}
+\subsubsection{Erste Richtung}
+	Sei $L= L(A)$ für einen NFA $A= (Q, \Sigma, \delta, I, F)$. Wir konstruieren jetzt $\phi \in \mso$ mit $$w \in L(A) \iff w \models \phi$$
+	Sei dafür $|w| = n$, also $V = \{1, \ldots, n\}$ und $E=\{(i, i+1) \mid 1 \leq i <n\}$ sowie $\lambda(i) = a_i$ für $w = a_1 \ldots a_i \ldots a_n$ mit $a_i \in \Sigma$ und $Q = \{0, \ldots, m\}$. Dann existieren Mengenvariablen $X_0, \ldots, X_m$ und es gilt 
+	$$\exists X_q : (1 \in X_q \land q \in I) \land (\exists X_q : n \in X_q \land q \in f) \land  (\bigwedge_{p, q \in Q} (p \not = q \implies x_p \cap x_q = \emptyset))$$
+	Dann gilt $$ \forall x \forall y ( \bigwedge_{p, q, a} (x \in x_p, \lambda(x)= a, (x,y \in E),  \bigvee_{(p,q,a) \in \delta} y \in X_q) = \emptyset$$
+
+\subsubsection{Vorbereitungen für zweite Richtung}
+	\begin{enumerate}[label= \arabic*.)]
+		\item Sei $(x,y) \in E$ dann gilt das Makro $(x,y) \in \east$ genau dann wenn $y = x +1$, $x \leq y \iff (x, y) \in \east$ über $\sigstern$. Insbesondere gilt dann 
+				$$ y = x +1 \iff [x \leq y \land \forall z : (x \leq z \leq y \land x \not = z) \implies z = y]$$
+		\item Seien hier alle Elemente $\fo$-Variablen. Dann ist $$|x| = 1 \iff [x \not =\emptyset \land \forall y : y \subseteq X \cap Y \not = \emptyset \implies x = y]$$
+				Man beachte hierbei dass $\sigstern \not = \emptyset$  ist auch falls $ \Sigma = \emptyset$, da $\emptyset^\ast = \{\varepsilon\}$
+		\item Wir erhalten neue atomare Formeln (Achtung DAM Seite 223 Druckfehler): 
+			\begin{itemize}
+				\item $x < y \iff [\forall x \forall y : x \in X \land y \in Y \implies x < y]$
+				\item $a\in X \iff [\exists x \in X \land \lambda(x)=a] $
+			\end{itemize}
+		\item Boolsche Kombinationen von $\mso$-Formeln sind ''harmless'', da $\reg(\sigstern)$ eine boolsche Algebra ist.
+	\end{enumerate}
+
+\subsubsection{Zweite Richtung}
+	Man beachte dass ohne Einschränkung gilt: $\varphi : Q_1X_1\ldots Q_nX_n\psi$ und $\psi$ ist quantorenfrei 
+	mit $\fv(\varphi) \subseteq \{X_1, \ldots, X_n\}$ und $Q_i \in \{\forall, \exists\}$. 
+	\newline
+	
+	Also können wir davon ausgehen dass sich $\varphi$ in Pränexnormalform befindet und boolsche Kombinationen benutzt sowie atomare Formeln: 
+	$x_i \leq x_j$, $a \in x_i$, sowie $x_i < x_j$. 
+	Wir definieren nun für $n \geq 0$ ein $\Gamma_n = (\Sigma \times \{0,1\}^n)$. Somit hat $w' \in \Gamma_n$ dann $n+1$ Spuren mit $w_0 \in \Sigma$, 
+	mit $w_1', \ldots, w_n' \in \{0,1\}$ und $w \in \Gamma_n^l = (w_0, w_1, \ldots, w_n)$ mit $w_0 \in \Sigma^l$ und $w \in \B^l = \{0,1\}^l$. 
+	\newline
+	
+	Mit Induktion nach $n$ zeigen wir nun $\Gamma_0 = \Sigma$: \\
+	Es existiert ein NFA $A_N$ mit $L(A_n) = L(\psi) \subseteq \Gamma_n^\ast$. Hier interpretieren wir $X_i$ durch eine Teilmenge $I(X_i) \subseteq \Gamma^l$ für alle $l$.
+	Dann ist $I(X_i) = \{w \in \Gamma_n^l \mid w_i(x)= 1\}$ mit $$w_i(x) = 1 \iff \lambda_i(w_i) = 1$$ für eine Beschriftung $\lambda_i$ der $i$-ten Spur.
+	\newline
+	
+	Sei nun $n= 0$, dann gilt $\fv(\psi) = \emptyset$. Die erzeugte atomare Formel ist $\top = true$ also folgt $L(A_n) = \sigstern$.
+	Sei nun $n \geq 1$. Wir konstruieren die atomaren Formeln: $\top, x_i \leq x_j$, $a\in x_i$, und $x_i < x_j$. (Rest verleibt der Übung, siehe DAM).
+	\newline 
+	
+	Dann verbleibt nur noch zu zeigen: $\exists X_n  \psi (x_1, \ldots, x_n)$, denn $\forall X_n \psi = \neg (\exists X_n(\neg\psi))$, da $\reg(\sigstern)$ unter Komplement abgeschlossen ist.
+	\newline 
+		
+	Bis hier hin haben wir $A_n$ mit $L(A_n \subseteq \Gamma_n^\ast)$ und $L(A_n) = L(\psi)$ konstruiert. Sei nun $A_{n+1} = (Q, \Gamma_{n +1}, \delta', I, F)$. 
+	Es gilt $\delta \subseteq Q \times \Gamma_n \times Q$. Wir definieren nun $(p, w ', q) \in \delta' \iff \exists b \in \{0,1\}: (p, \binom{w'}{n}, q) \in \delta$.
+	Dann gilt $L(A_{n+1}) = L(\exists X_n \psi)$. Nach $n$ Iterationen erhalten wir nun einen NFA $A_0$ mit $L(A_0) \subseteq \Gamma_0^\ast = \sigstern$ und 
+	\begin{align*}
+		L(A_0) &= L(Q_1X_1\ldots Q_NX_n\psi) \\
+		&=L(\phi)
+	\end{align*}
+	\bewiesen
+
+
 \end{document}
 
 
