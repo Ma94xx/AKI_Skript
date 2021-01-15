@@ -1200,8 +1200,8 @@
 	
 	
 	\subsubsection{Definition erkennbare Sprachen ($\rec$)}
-	Wir definieren $\rec$ wie folgt  $$L \in \rec(M) \iff \exists \varphi : M \to N$$ ein Hom. von Monoiden mit $|N| \leq \infty$ und $\varphi\inv\varphi(L) = L$
-	Das heißt $\forall w \ in M$ gilt $w\in L \iff w \in \varphi(L) \subseteq N$.
+	Wir definieren $\rec$ wie folgt  $$L \in \rec(M) \iff \exists \varphi : M \to N$$ ein Hom. von Monoiden mit $|N| < \infty$ und $\varphi\inv\varphi(L) = L$.
+	Das heißt $\forall w \in M$ gilt $$w\in L \iff \varphi(w) \in \varphi(L) \subseteq N$$.
 	
 	\subsubsection{Definition aperiodisch}
 	$N$ ist aperiodisch genau dann wenn alle Unterguppen von $N$ trivial sind, bzw $N$ gruppenfrei ist.
