@@ -1162,84 +1162,88 @@
 	\end{align*}
 	\bewiesen
 	
-	\section{Erkennbare Mengen 1 - Vorlesung 7}
-	\subsection{Rationale Mengen und Sternfreie Sprachen}
+	\section{Erkennbare und Rationale Mengen 1 - Vorlesung 7}
+	\subsection{Erkennbare Mengen, Rationale Mengen und Sternfreie Sprachen}
 	\subsubsection{Definition Rationale Menge ($\rat$)}
-	Sei $M$ eine Monoid (z.B $M = \sigstern$) 
+	Sei $M$ eine Monoid (z.B $M = \sigstern$).
+	Dann ist $\rat(M)$ die Menge der rationalen Mengen von $M$ und die Elemente von $\rat(M)$ sind induktiv definiert durch:
 	\begin{enumerate}[label=\arabic*)]
-		\item $L \subseteq M $ und $ |L| \leq \infty$ dann $L \in \rat(M)$
-		\item $L_1, L_2 \in \rat(M) \implies L_1 \cup L_2 \in \rat(M), \, \, L_1 \cdot L_2 \in \rat(M)$ \\ 
-		wobei $ L_1 \cdot L_2 = \{w \in M \mid \exists u,v \in M : w = uv, \, \, u \in L_1 \, v \in L_2\}$
-		\item
-		\begin{align*}
-			L_1^\ast = \bigcup_{i \geq 0} L^i \in \rat(M) \text{ mit } L^0=\{1_m\} \text{ und } L^{i+1} = L^iL
-		\end{align*}
+		\item $L \subseteq M \wedge |L| \leq \infty \implies L \in \rat(M)$
+		\item $L_1, L_2 \in \rat(M) \implies L_1 \cup L_2 \in \rat(M) \, \wedge \, L_1 \cdot L_2 \in \rat(M)$, \\ 
+		wobei $ L_1 \cdot L_2 = \{w \in M \mid \exists u,v \in M : w = uv \, \wedge \, u \in L_1 \,\wedge\, v \in L_2\}$
+		\item $L \in \rat(M) \implies L^\ast = \bigcup_{i \geq 0} L^i \in \rat(M)\,,$\\
+		mit $L^0=\{1_m\}$ und $L^{i+1} = L^iL$.\\ \newline
 		Man beachte, dass $\bigcup_{i \geq 0} L^i $ hierbei das erzeugte Untermonoid von $L$ in $M$ ist.
 	\end{enumerate}
 	
 	
-	\subsubsection{Definition Sternfreie Sprachen ($\starfree$)}
+	\subsubsection{Definition Sternfreie Sprache ($\starfree$)}
+	Für ein Monoid $M$ enthält die Menge der sternfreien Sprachen $\starfree(M)$ folgende Mengen:
 	\begin{enumerate}[label=\arabic*)]
-		\item $L \subseteq M $ und $ |L| < \infty \implies L \in \starfree(M)$
-		\item $L_1, L_2 \in \starfree(M) \implies L_1 \cup L_2 \in \starfree(M), \, \, L_1 \cdot L_2 \in \starfree(M)$  und $M \setminus L = \overline{L} \in \starfree(M)$\\ 
+		\item $L \subseteq M \wedge |L| < \infty \implies L \in \starfree(M)$
+		\item $L_1, L_2 \in \starfree(M) \implies L_1 \cup L_2 \in \starfree(M) \, \wedge \, L_1 \cdot L_2 \in \starfree(M) \, \wedge \, M \setminus L = \overline{L} \in \starfree(M)$\\ 
 	\end{enumerate}
 	
 	\subsubsection{Beispiele für Sternfreie Sprachen}
-	Sei $\Sigma = \{a,b\}$, dann gilt $(aa)^\ast \not\in \starfree(\sigstern)$, aber $(ab)^\ast \in \starfree(\sigstern)$. Es gilt $\sigstern \in \starfree(\sigstern)$, da $\sigstern = \overline{\emptyset}$. 
-	\newline
-	
-	Sei $A\subseteq \Sigma$, dann ist $A^\ast \in \starfree(\sigstern)$, denn $A^\ast = \{ w \in \sigstern \mid \forall b \in \Sigma \setminus A : w \in \sigstern b\sigstern\}$. Es gilt also 
-	\begin{align*}
-		(ab)^\ast \in \starfree(\sigstern) \iff \overline{(ab)}^\ast\in \starfree(\sigstern)
-	\end{align*}
-	Dies ist zu erkennen, da  
-	\begin{align*}
-		\overline{(ab)}^\ast = \sigstern aa \sigstern \cup \sigstern bb \sigstern \cup b\sigstern \cup \sigstern a
-	\end{align*}
+	Mit $\Sigma = \{a,b\}$ gilt:
+	\begin{itemize}
+		\item $(aa)^\ast \not\in \starfree(\sigstern)$
+				\item $\sigstern \in \starfree(\sigstern)$, da $\sigstern = \overline{\emptyset}$
+		\item $(ab)^\ast \in \starfree(\sigstern)$, da $(ab)^\ast \in \starfree(\sigstern) \iff \overline{(ab)^\ast}\in \starfree(\sigstern)$ und $\overline{(ab)^\ast} = \sigstern aa \sigstern \cup \sigstern bb \sigstern \cup b\sigstern \cup \sigstern a$
+		\item $A^\ast \in \starfree(\sigstern)$ für $A\subseteq \Sigma$, da $A^\ast = \{ w \in \sigstern \mid \forall b \in \Sigma \setminus A : w \notin \sigstern b\sigstern\}$.
+	\end{itemize}
 	
 	
 	
 	\subsubsection{Definition erkennbare Sprachen ($\rec$)}
-	Wir definieren $\rec$ wie folgt  $$L \in \rec(M) \iff \exists \varphi : M \to N$$ ein Hom. von Monoiden mit $|N| < \infty$ und $\varphi\inv\varphi(L) = L$.
-	Das heißt $\forall w \in M$ gilt $$w\in L \iff \varphi(w) \in \varphi(L) \subseteq N$$.
+	\label{sec:rec}
+	Wir definieren die Menge $\rec(M)$ der erkennbaren Mengen eines Monoids $M$ wie folgt:  $$L \in \rec(M) \iff \exists \varphi : M \to N \text{ ein Hom. von Monoiden mit } |N| < \infty \text{ und } \varphi\inv\varphi(L) = L$$
+	Das heißt $\forall w \in M$ gilt $$w\in L \iff \varphi(w) \in \varphi(L) \subseteq N\, .$$
 	
 	\subsubsection{Definition aperiodisch}
-	$N$ ist aperiodisch genau dann wenn alle Unterguppen von $N$ trivial sind, bzw $N$ gruppenfrei ist.
-	Alternativ gilt: Ein Monoid $M$	ist aperidodisch, falls $$\exists t \in \N \text{ mit } x^{t+1} = x^t \forall x \in M$$
-	Falls $M$ endlich ist, gilt $$M \text{ ist aperiodisch} \iff \forall x \in M \exists t \in \N : x^{t+1} = x^t$$
+	Ein Monoid $N$ ist aperiodisch genau dann, wenn alle Unterhalbguppen von $N$, die Gruppen sind, sind trivial, bzw. $N$ gruppenfrei ist.\\
+	Alternativ gilt: Ein Monoid $M$	ist aperidodisch, falls $$\forall x \in M\,\,\exists t \in \N \, : \, x^{t+1} = x^t \, .$$
+	Falls $M$ endlich ist, gilt: $$M \text{ ist aperiodisch} \iff \exists t \in \N\, \forall x \in M \, : x^{t+1} = x^t$$
 	
 	
 	\subsubsection{Satz von Schützenberger}
-	Es gilt 
+	Es gilt: 
 	\begin{align*}
+		L &\in \starfree(\sigstern)\\
+		&\iff \\
 		\exists \varphi: \sigstern \to N \text{ ist ein Hom. mit } |N| \leq &\infty \text{ und } \varphi\inv\varphi(L) = L \text{ und $N$ ist aperiodisch} \\ 
 		&\iff \\
-		\synt(L) &\text{ ist aperiodisch}
+		\text{das syntaktische Monoid } &\synt(L) \text{ ist aperiodisch}
 	\end{align*}
 	
 	\subsubsection{Definition DFA über M}
-	Ein DFA über einem Monoid $M$ ist ein Tupel $(Q, \cdot, q_0, F)$. 
+	Ein DFA (Deterministic Finite Automaton) über einem Monoid $M$ ist ein Tupel $(Q, \cdot, q_0, F)$, wobei
 	\begin{enumerate}[label=\arabic*)]
 		\item $\cdot: Q \times M \to Q$ ist eine Operation von $M$ auf $Q$ von rechts. Das heißt also
 		\begin{align*}
-			(q \cdot u) \cdot v = q(uv) \text{ und } q1_m = q \text{ gilt } \forall q \in Q \text{ und } \forall u,v \in M
+			\forall q \in Q \text{ und } \forall u,v \in M \text{ gilt } (q \cdot u) \cdot v = q(uv) \text{ und } q1_M = q \, . 
 		\end{align*}
-		\item $|Q| < \infty$ ist eine endliche Menge von Zuständen $F\subseteq Q,  \, q_0 \in Q$. \\
-		Dies definiert dann $L(A) = \{w \in M \mid q_0w \in F\}$
+		\item $|Q| < \infty$ ist eine endliche Menge von Zuständen, $F\subseteq Q$ ist die Menge der Endzustände und $q_0 \in Q$ ist der Startzustand. \\
 	\end{enumerate}
+	gilt.\\
+	Dies definiert dann die Sprache $L(A) = \{w \in M \mid q_0\cdot w \in F\}$.
 	
 	\subsubsection{Beispiel für einen DFA über M}
-	Sei $L \in \rec(M)$ und vermöge $\varphi: M \to N$ ein Hom. \\ 
+	Sei $L \in \rec(M)$ mit $\varphi: M \to N$ wie in der Definition~\ref{sec:rec}. \\ 
 	Dann definiert dies einen DFA $A = (Q,\cdot, q_0, F)$ mit $L(A) = L$ und $N = Q$. 
-	Hierbei ist $q_0 = 1_M \in N$. 
+	Hierbei ist: 
 	\begin{itemize}
-		\item $\cdot : N \times M \to N$ mit $qu := q\varphi(u)$. Dann gilt
+		\item $q_0 = 1_M \in N$
+		\item $\cdot : N \times M \to N$ mit $q\cdot u := q\varphi(u)$. Dann gilt
 		\begin{align*}
 			(q \cdot u)\cdot v = (q\varphi(u))v = q \varphi(u)\varphi(v) = q(\varphi(uv)) = q(uv)
 		\end{align*}
-		\item $q = q \cdot 1_M = q \cdot \varphi(N) = q1_N = q$
+		\item $q = q \cdot 1_M = q \cdot \varphi(1_M) = q1_N = q$
 		\item $F = \{\varphi(u) \mid u \in L \}$
 	\end{itemize}
+
+	\subsubsection{Satz von Kleene}
+	Für ein endliches Alphabet $\Sigma$ gilt $$\rat(\Sigma^*)=\starfree(\Sigma^*)=\rec(\Sigma^*)\,.$$
 	
 	\section{Erkennbare Mengen 2 - Vorlesung 8}
 	\subsection{Abschlusseigenschaften von $\rat$ und $\rec$}
