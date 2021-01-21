@@ -101,6 +101,24 @@
 }
 
 
+%Für Klammern neben Align Zeilen
+\makeatletter
+
+\newcommand*{\rbracedalign}[5][c]{%
+	\sbox0{\m@th$\begin{aligned}[b]#3\end{aligned}$}%
+	\sbox1{\m@th$\vcenter{\hrule \@width\z@ \@height\ht0 \@depth\dp0}$}%
+	\sbox0{\raise\dimexpr\dp1-\dp0\relax\hbox{\m@th$\left. \box1 \right\rbrace #5$}}%
+	\dp0=\z@ \ht0=\z@
+	\begin{aligned}[#1]
+		\if\relax\detokenize{#2}\relax\expandafter\@gobble\else\expandafter\@firstofone\fi{#2&\\}
+		#3& \box0
+		\if\relax\detokenize{#4}\relax\expandafter\@gobble\else\expandafter\@firstofone\fi{\\#4&}
+	\end{aligned}
+}
+
+\makeatother
+
+
 
 %Global Align
 \newcommand*{\LongestName}{\ensuremath{h(x)+g(x)}}% function name
@@ -2314,7 +2332,7 @@ mit
 \subsubsection{Aussage des Lemmas}
 	Sei $L \in \starfree(\sigstern)$ und es seien $A, B \subseteq \Sigma$ mit $A \cap B = \emptyset$. Dann gilt für $K_i, L_i \in \starfree(\bast)$: $$L \cap \bast A \bast = \bigcup_{\text{endlich}} K_iAL_i$$
 	
-\subsubsection{Beweis Splitting Lemma}
+\subsubsection{Beweis Splitting Lemma - Teil 1\label{Beweis: 1}}
 	Ohne Einschränkung: $\bigcup_{\text{endlich}} K_iAL_i = \bigcup_{i = 0}^n K_iAL_i$ mit $K_0 = \sigstern$ und $n \geq 1$, denn $L_0 = \emptyset$ ist erlaubt. 
 	\newline
 	
@@ -2367,32 +2385,52 @@ mit
 	Wir nennen die folgende Menge ein Teilalphabet $$\Sigma_V^{x=b} = \{(a, \tau) \in \Sigma_V \mid \tau(x) = b\}$$ mit $b \in \{0,1\} = \B$
 
 \subsubsection{Semantiken}
+	\begin{gather*}
+			\rbracedalign
+			{}{
+				\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
+				\llbracket x = a \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid w = b_1, \ldots, b_l \in \sigstern \}  \\
+				\llbracket x < y\rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid \sigma(x) < \sigma(y) \}  \\
+				\llbracket \varphi \cup \psi \rrbracket_v &= \llbracket \varphi \rrbracket \cup \llbracket \psi \rrbracket 
+			}{ 
+				\llbracket \neg \varphi \rrbracket_v &= N_V \setminus \llbracket \varphi \rrbracket \\
+				\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  
+			}{\in \starfree(\sigstern_V)}
+	\end{gather*}
+	und es gilt $$\llbracket \exists x \varphi \rrbracket_v \in \{ \overline{(w, \sigma)} \in N_V \mid \exists 1 \leq p \leq |w| \text{ und } \overline{(w, \sigma[x_n \to p])} \in \llbracket \varphi \rrbracket_{V \cup [x]} \}$$
+	wobei wir $\sigma$ wie folgt definieren: 
+	$$\sigma[x_n \to p](y) = 
+	\begin{cases}
+	\sigma(y) & \text{ falls }  y \not = x_n\\
+	\sigma(x_n) = p
+	\end{cases}$$
 	
-
-
+\subsubsection{Beweis Fortsetzung (von \ref{Beweis: 1})}
+	Ohne Einschränkung können wir annehmen dass $\varphi = Q_1x_1\ldots Q_nx_n \psi$ gilt und $\psi$ ist quantorenfrei sowie $\fv(\psi) = \{x_1, \ldots, x_n\} = V'$ mit 
+	$Q_i \in \{\exists, \forall\}$ und $x_i \not = x_j$ für alle $i \not = j$. 
+	\newline
 	
-
-\begin{equation*}
-\begin{aligned}
-\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
-\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
-\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
-\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  
-\end{aligned}
-\begin{aligned}
-&\left.\vphantom{\begin{aligned}
-	\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
-	\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
-	\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
-	\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  
-	\end{aligned}}\right\rbrace\quad\text{three equations}\\
-&\left.\vphantom{\begin{aligned}
-	\implies m &= n \\
-	o &= p*q
-	\end{aligned}} \right.
-\end{aligned}
-\end{equation*}
-
+	Die Behauptung ist richtig falls $\fv(\varphi) = V'$, da dann $\llbracket \varphi \rrbracket_v \in \{\emptyset, \sigstern_V\}$. Es bleibt dann noch zu zeigen dass die Behauptung gilt für 
+	$\exists x_n\psi(x_1, \ldots, x_n)$, da $\starfree(\sigstern_V)$ eine boolsche Algebra ist. Weiter gilt:
+	\begin{align*}
+		&A = \Sigma_V^{x_n = 1} &&B= \Sigma_V^{x_n = 0} &&&N_V \subseteq \bast A \bast &&&&\fv(\exists x_n \psi) = \{x_1\ldots x_{n-1}\}
+	\end{align*}
+	Mit $A \cup B = \Sigma_V$ und $A \cap B \not = \emptyset$ können wir nun schließen dass 
+	\begin{align*}
+		\llbracket \exists x \psi \rrbracket_v &= \llbracket \exists x \psi \rrbracket_v \cap N_V \\ 
+		&= \bigcup_{\text{endlich}} K_iAL_i \text{ mit } K_i, L_i, \in \starfree(\bast)
+	\end{align*}
+	Wir erhalten zwei Restriktionen: 
+		\begin{align*}
+			\pi_0 : B &\iso \Sigma_V \text{ mit } \pi_0(a, \tau) = (a, \tau|_v) \\
+			\pi_1 : A &\iso \Sigma_V \text{ mit } \pi_1(a, \tau) = (a_i, \tau|_v) 
+		\end{align*}
+	Somit kommen wir zu $$\llbracket \exists x \psi \rrbracket = \bigcup_{\text{endlich}} \pi_0(K_i) \pi_1(A)\pi_0(L_i) \subseteq \sigstern_V$$ Denn $\pi_0, \pi_1$ sind nur Umbenennungen von Buchstaben. Wir können daraus schließen dass 
+		\begin{align*}
+			\pi_0(K_i), \; \pi_1(L_i), \; \pi_1(A) \in \starfree(\Sigma_V)
+		\end{align*} gilt. 
+		\bewiesen
+	
 
 
 
