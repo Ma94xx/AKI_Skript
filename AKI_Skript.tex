@@ -33,6 +33,10 @@
 \usepackage{tabularx}
 \usetikzlibrary{arrows}
 \usepackage{float}
+\usepackage{dsfont}
+\usepackage{relsize}
+\usepackage{ stmaryrd }
+\usepackage{multirow,bigdelim}
 
 
 \hypersetup{
@@ -152,6 +156,7 @@
 \newcommand{\lgreheq}{\leqslant_{\mathcal{H}}}
 \newcommand{\lgredeq}{\leqslant_{\mathcal{D}}}
 \newcommand{\lgreyeq}{\leqslant_{\mathcal{Y}}}
+\usepackage{blkarray}
 
 \newcommand{\lcal}{\mathcal L}
 \newcommand{\rcal}{\mathcal R}
@@ -175,6 +180,10 @@
 \newcommand{\so}{\mathsf{SO}}
 \newcommand{\mso}{\mathsf{MSO}}
 \newcommand{\reg}{\mathsf{REG}}
+\newcommand{\ap}{\mathsf{AP}}
+\newcommand{\ltl}{\mathsf{LTL}}
+\newcommand{\tl}{\mathsf{TL}}
+
 
 
 %Erzeugt das "bewiesen" Kästen rechts unten
@@ -2288,6 +2297,103 @@ mit
 		&=L(\phi)
 	\end{align*}
 	\bewiesen
+	
+\section{$\fo \implies \starfree $ und das Splitting Lemma - Vorlesung 15}
+\subsection{Das Splitting Lemma}
+\subsubsection{Allgemeines}
+	Für $\sigstern$ gilt: $$\ap = \starfree = \fo[\leq] = \fo^3[\leq] = \ltl = \tl[UX]$$ \\
+	
+	In dieser Vorlesung: Sei $L \subseteq \sigstern$ in $\fo[\leq]$ definierbar, dann folgt dass $L \in \sf(\sigstern)$. 
+	Modelle für $\fo[\leq]$ sind dann Wörter $w \in \sigstern$ mit $$w = (\{1, \ldots, |w|\}, \{(i,j) \mid 1 \leq i \leq j \leq |w|\}, \lambda)$$
+	Als atomare Formeln erhalten wir dann ''$x  \leq y$'', ''$\lambda(x) =a$'', und schreiben hierfür $w(x) = a$, sowie $T = true$.
+	Unsere Makros sind $y =x+1$, $w(x) \in A$ für $A\subseteq \Sigma$ etc.
+
+\subsubsection{Beispiel}
+	Sei $L = b\sigstern bb \sigstern a $ dann gilt $L = b \sigstern \cap \Sigma^+bb\Sigma^+ \cap \sigstern a$
+
+\subsubsection{Aussage des Lemmas}
+	Sei $L \in \starfree(\sigstern)$ und es seien $A, B \subseteq \Sigma$ mit $A \cap B = \emptyset$. Dann gilt für $K_i, L_i \in \starfree(\bast)$: $$L \cap \bast A \bast = \bigcup_{\text{endlich}} K_iAL_i$$
+	
+\subsubsection{Beweis Splitting Lemma}
+	Ohne Einschränkung: $\bigcup_{\text{endlich}} K_iAL_i = \bigcup_{i = 0}^n K_iAL_i$ mit $K_0 = \sigstern$ und $n \geq 1$, denn $L_0 = \emptyset$ ist erlaubt. 
+	\newline
+	
+	Unter Verwendung von $\ap = \starfree$ ist der Beweis einfach und bleibt zum Selbsttest. Wir geben hier deshalb den direkten Beweis mittels struktureller Induktion an. 
+	\newline
+	
+	Sei $L$ endlich, dann gilt $L \cap \bast A\bast$ ist sternfrei (trivial). Falls $L = L_1 \cup L_2$, $L_i \in \starfree(\Sigma)$, dann $$L_1 \cup L_2 = \bigcup_{j = 1,2} \bigcup K_{i,j}AL_{}i,j$$ Weiter ist $$L' \cdot L'' \cap \bast A \bast = \bigcup_{i \in I} K_i A L_i (L'' \cap \bast) \cup \bigcup_{j \in J}(L' \cap B) K_jAL_j$$ 
+	für $L' \cap \bast A \bast = \bigcup_{i \in I} K_iAL_j$ und $L'' \cap \bast A \bast = \bigcup_{j \in J} K_iAL_j$
+
+\subsubsection{Beobachtung}
+	Sei $L \cap \bast A \bast = \bigcup_{\text{endlich}} K_iAL_i$. Dann gilt ohne Einschränkung $$K_I \cap K_j = \emptyset$$ für alle $i \not = j$ und $$\bigcup_{i \in I} K_i = \sigstern$$
+\subsubsection{Beweis Splitting Lemma - Fortsetzung}
+	Ohne Einschränkung gilt $K_i \not = \emptyset$ für alle $i$. 
+	\newline
+	
+	Angenommen $\exists i,j$ mit $i \not = j$ und $K_i \setminus K_j \not = \emptyset \not = K_i \cap K_j$, dann lässt sicht $K_i A L_i$ durch $$(K_i \setminus K_j)AL_i \cup (K_i \cap K_j)AL_i$$ darstellen. Das folgende Bild veranschaulicht dies: 
+	
+	\begin{figure}[H]
+		\centering
+		$\sigstern = 
+		\begin{array}{c}
+				\begin{tikzpicture}[fill=gray]
+				\scope
+					\clip (2.7,-2.54) rectangle (-1.5,1.5)
+							(0,0) circle (1)
+							(1.2,0) circle (1);
+							(0.6,-1.04) circle (1);
+							(2,-2) circle (1);
+				\endscope
+				\draw (0,0) circle (1) (0,1)  node [text=black,below,shift={(-0.5,-0.5)}] {$K_1$}
+						(1.2,0) circle (1) (0,1)  node [text=black,below right,shift={(1.2, -0.5)}] {$K_2$}
+						(0.6,-1.04) circle (1) (1.1,-0.6) node [text=black, below right, shift={(-1,-0.5)}] {$K_3$}
+						(2,-1.9) circle (1) (1.1,-0.6) node [text=black, shift={(1,-1.1)}] {$K_4$}
+						(3.5,-3.5) rectangle (-2,2) node [text=black,shift={(0.5,-0.5)}] {$K_0$};
+				\end{tikzpicture}
+			\end{array}$
+		\end{figure}
+	Betrachte $(\sigstern \setminus L) \cap \bast A \bast$ wobei $$L \cap BA\bast = \bigcup_{i = 1}^n K_i A L_i$$ mit $K_i \cap K_j \not = \emptyset$ für alle $i \not = j$ und $\bigcup K_i = \sigstern$ sowie $K_i \not = \emptyset$. Dann ist $\{K_1, \ldots, K_n\}$ eine Partition von $\sigstern$. Somit gilt $$\sigstern \setminus L \cap \bast A \bast = \bigcup_{i = 1}^nK_iA(\bast \setminus L_i)$$ 
+	
+\subsubsection{Satz}
+	Sei $\varphi \in \fo[\leq] = \fo[<]$ und $\Sigma$ ein endliches Alphabet, dann gilt $L(\varphi) \in \starfree(\sigstern)$. Sei $\varphi \in \fo[\leq]$ mit $\fv(\varphi) = \{x_1, \ldots, x_n\} = V$ und $w \in \sigstern$ mit $w = \{1, \ldots, l\}$. Dann ist eine Interpretation der $x_i$ gegeben durch eine Abbildung $$\sigma: V \to \{1, \ldots,l\}$$ wobei $w, \sigma \models \varphi \in \{0,1\} = \B = \{\top, \bot\}$ wohldefiniert ist. 
+
+\subsubsection{Zentrale Idee}
+	Kodiere das Paar $(w, \sigma)$ durch Wörter über $\Sigma_V = \Sigma \times \{0,1\}^V$. Dabei haben Wörter über $\Sigma_V$ die Form $$(a_1, \tau_1) \cdots (a_l, \tau_l)$$ mit $a_i \in \Sigma$ und $\tau_i : V \to \{0,1\}$. Konkreter bedeutet das wir kodieren $(w, \sigma)$ durch $$\overline{(w, \sigma)} = (a_1, \tau_1) \cdots (a_{|w|}, \tau_{|w|})$$ wobei $\tau_p(x) =$ ''$\sigma(x) = p$'' $\in \B$ ist. 
+
+\subsubsection{Definition: Menge der Normalformen}
+	Es ist $$\overline{(w, \sigma)} = N_V = \bigcap_{x \in V} (\Sigma_V^{x=0})(\Sigma_V^{x=1})(\Sigma_V^{x=0}) \in \starfree(\sigstern)$$
+
+\subsubsection{Definition: Teilalphabet}
+	Wir nennen die folgende Menge ein Teilalphabet $$\Sigma_V^{x=b} = \{(a, \tau) \in \Sigma_V \mid \tau(x) = b\}$$ mit $b \in \{0,1\} = \B$
+
+\subsubsection{Semantiken}
+	
+
+
+	
+
+\begin{equation*}
+\begin{aligned}
+\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
+\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
+\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
+\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  
+\end{aligned}
+\begin{aligned}
+&\left.\vphantom{\begin{aligned}
+	\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
+	\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
+	\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
+	\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  
+	\end{aligned}}\right\rbrace\quad\text{three equations}\\
+&\left.\vphantom{\begin{aligned}
+	\implies m &= n \\
+	o &= p*q
+	\end{aligned}} \right.
+\end{aligned}
+\end{equation*}
+
+
 
 
 \end{document}
