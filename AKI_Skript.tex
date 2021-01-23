@@ -1274,57 +1274,69 @@
 	
 	\section{Erkennbare Mengen 2 - Vorlesung 8}
 	\subsection{Abschlusseigenschaften von $\rat$ und $\rec$}
-	\subsubsection{$\rat$ Abschluss unter Hom.}
-	Es gilt $h: M' \to M$ ist ein Hom. und es gilt $$L' \in \rat(M') \implies h(L) \in \rat(M)$$
+	\subsubsection{Abschluss von $\rat$ unter Hom.}
+	Wenn $h: M' \to M$ ein Monoid-Hom. ist, dann gilt $$L' \in \rat(M') \implies h(L') \in \rat(M)\, .$$
+	Das bedeutet, rationale Mengen sind unter Homomorphismen abgeschlossen.
 	
-	\subsubsection{$\rec$ Abschluss unter Hom.}
-	Es gilt $h: M' \to M$ ist ein Hom. und es gilt $$L' \in \rec(M') \implies h\inv(L) \in \rec(M)$$
+	\subsubsection{Abschluss von $\rec$ unter Hom.}
+	Wenn $h: M' \to M$ ein Monoid-Hom. ist, dann gilt $$L \in \rec(M) \implies h\inv(L) \in \rec(M')\, .$$
+	Das bedeutet, erkennbare Mengen sind unter Homomorphismen abgeschlossen.
 	
-	\subsection{DFA durch $A_L$}
-	\subsubsection{Definition}
-	Sei $Q_L = \{L(u) \mid u \in M\}$ mit der Leistung des Wortes $L(u) = \{ w \in M \mid uw \in L\}$. Weiter ist 
+	\subsection{Minimaler Erkennender DFA}
+	\subsubsection{Definitionen}
+	\label{sec:min_dfa}
+	Für eine Teilmenge $L \subseteq M$ eines Monoids $M$, soll ein DFA $A_L$ definiert werden.
+	Dazu sei $Q_L = \{L(u) \mid u \in M\}$ die Zustandsmenge, wobei $L(u) = \{ w \in M \mid uw \in L\}$ die Leistung eines Wortes ist. Weiter sei $q_{0,L}=L(1)=L$ der Startzustand und $F_L=\{L(u) \, | \, u \in L\}= \{L(u) \, | \, 1 \in L(u)\}$ die Menge der Endzustände.
+	Die Übergangsfunktion sei definiert durch:
 	\begin{align*}
-		\cdot: Q_L \times M  \to Q_L
+		\cdot: Q_L \times M  &\to Q_L\, ,\\
+		L(u)\cdot v &\mapsto L(uv)
 	\end{align*}
-	und $L(u)v = L(uv)$ wohldefiniert. Dann ist $L(A_L) = L$. 
-	Seien nun $A, A'$ deterministische endliche Automaten über $M$. Dann heißt 
+	Dann gilt $L(A_L) = L$, also erkennt dieser Automat $L$.\\
+	Nun wollen wir zeigen, dass $A_L$ minimal ist.
+	Seien $A, A'$ deterministische endliche Automaten über $M$. Dann heißt 
 	\begin{align*}
 		f: Q \to Q'
-	\end{align*} ein Morphismus, falls $f(q)u=f(qu)$ und $f(q_1) = q_0'$ mit $f(F) \subseteq F'$ gilt.
-	Wir folgern daraus, dass $L(A) \subseteq L(A')$ mit $L(A) = L(A') \iff f\inv(F') = F$ gilt. 
+	\end{align*} ein Morphismus, falls $f(q)u=f(qu)$, $f(q_0) = q_0'$ und $f(F) \subseteq F'$ gilt.
+	Wir folgern daraus, dass $L(A) \subseteq L(A')$ gilt und für Gleichheit $L(A) = L(A')$ genau dann zutrifft, wenn $f\inv(F') = F$ gilt. 
 	
-	\subsubsection{Lemma}
-	Sei $A = (Q, \cdot, q_0, F)$ ein deterministischer Automat mit $L = L(A)$ und $A_L = (Q_L, \cdot, q_L, F_L)$ der Automat $L$ mit $Q_L = \{L(u) \mid u \in M\}$.  \\
+	\subsubsection{Lemma: Minimalität des DFA}
+	Sei $A = (Q, \cdot, q_0, F)$ ein deterministischer Automat mit $L = L(A)$ und $A_L = (Q_L, \cdot, q_{0,L}, F_L)$ der in Abschnitt~\ref{sec:min_dfa} definierte Automat.  \\
 	
-	Wir setzen $A' = (\{q_u \mid u \in M\}, \cdot, q_0, \{q_0u \in F \mid u \in M\})$, dann definiert $$f: \{q_0u \mid u \in M\} \to Q_L$$ und $f(q_0u) = L(u)$ einen surjektiven Morphismus.
+	Wir setzen $A' = (\{q_0u \mid u \in M\}, \cdot, q_0, \{q_0u \in F \mid u \in M\})$, dann definiert $$f: \{q_0u \mid u \in M\} \to Q_L$$ durch $f(q_0u) = L(u)$ einen surjektiven Morphismus.\\
+	Daraus können wir schlie\ss en, dass $A$ nicht kleiner sein kann als $A_L$ und somit $A_L$ der minimale erkennende Automat für $L$ ist.
+	
 	
 	\subsubsection{Beweisskizze Lemma}
-	Definiere die Leistung $L(q)$ für $q \in Q$ mit $$L(q) = \{v \in M \mid qv \in F\}$$ Allgemein gilt dann $L(q_0U) = \{v \in M \mid q_0uv \in F\} = \{v \in M \mid uv \in F\} \implies \ldots$ triv. \\
-	Also ist $A_L$ der kleinste Automat der $L$ erkennt.
+	Um die Wohldefiniertheit von $f$ zu zeigen, definieren wir die Leistung $L(q)$ für $q \in Q$ durch $$L(q) = \{v \in M \mid qv \in F\}\, .$$ Also gilt dann $L(q_0u) = \{v \in M \mid q_0uv \in F\} = \{v \in M \mid uv \in F\}$.
+	Dadurch hängt die Leistung dann nur vom Zustand ab. 
+	Der Rest des Beweises ist trivial.
 	
 	\subsection{Syntaktische Kongruenz}
 	\subsubsection{Definition}
-	Sei $L \subseteq M$. Wir definieren dann $[u] = \{u \in M \mid u \equiv_L v\}$ mit $$ u \equiv_L v \iff \forall x,y \in M : (xuy \in L \iff xvy \in L)$$
+	Sei $L \subseteq M$ eine Teilmenge eines Monoids $M$. Wir definieren dann $[u] = \{v \in M \mid u \equiv_L v\}$ als die Kongruenzklasse von $u$.\\
+	Die Äquivalenzrelation $\equiv_L$ ist dabei definiert durch $$ u \equiv_L v \iff \forall x,y \in M : (xuy \in L \iff xvy \in L)\, .$$
+	\\
+	Die Menge der Kongruenzklassen nennt man Syntaktisches Monoid oder $Synt(L)$.
 	
-	\subsubsection{Lemma}
-	$\equiv_L$ ist eine Kongruenz, also gilt $[u][v]=[uv]$ 
+	\subsubsection{Lemma: $\equiv_L$ ist eine Kongruenz}
+	$\equiv_L$ ist eine Kongruenz. Also gilt laut der Definition von Kongruenzen: $$[u][v]=[uv]$$ 
 	
 	\subsubsection{Beweis des Lemmas}
-	Wir zeigen $u \equiv_L u'$ und $v \equiv_L v' \overset{!}{\implies} uv \equiv_L u'v'$. 
+	Seien $u \equiv_L u'$ und $v \equiv_L v'$. Nun ist zu zeigen, dass $uv \equiv_L u'v'$ gilt. 
 	
-	Betrachte $x,y \in M$ mit $$xuvy \in L \iff xu'vy \in L \iff xu'v'y \in L$$ Also ist $\pi: M \to \synt(L), \, u \mapsto [u]$ ein surjektiver Hom. 
+	Betrachte $x,y \in M$ mit $xuvy \in L$. 
+	Es folgt: $$xuvy \in L \iff xu'vy \in L \iff xu'v'y \in L$$ Damit ist auch $\pi: M \to \synt(L), \, u \mapsto [u]$ ein surjektiver Hom.. 
 	
-	\subsubsection{Satz}
-	Sei $h: M \to N$ ein Hom. mit $h\inv(h(L)) = L$. Dann definiert $f:h(m) \to \synt(L)$ durch $h(u) = [u]$ einen surjektiven Hom. 
+	\subsubsection{Satz: Minimalität von Synt(L)}
+	Sei $h: M \to N$ ein Monoid-Hom. mit $h\inv(h(L)) = L$. Dann definiert $f:h(M) \to \synt(L)$ durch $h(u) = [u]$ einen surjektiven Hom.. \\
+	Durch die Surjektivität folgt wieder, dass $\synt(L)$ nicht größer als $N$ sein kann und damit das kleinste Monoid ist, dass $L$ erkennt. 
 	
 	\subsubsection{Beweis des Satzes}	 
-	Zu zeigen ist (nur), dass $h(u) = h(v) \implies [u]=[v]$. triv.
-	
-	\subsubsection{Konsequenz des Satzes}	
-	$\synt(L)$ ist das kleinste Monoid dass $L$ erkennt. 
+	Zu zeigen ist (nur) die Wohldefiniertheit, also, dass $h(u) = h(v) \implies [u]=[v]$ gilt. Dies ist trivial.
 	
 	\subsubsection{Graphische Interpretation}	
-	
+	Abbildung~\ref{fig:synt} veranschaulicht den Beweis für $n = h(u) = h(v) \implies [u] = [v]$.
 	\begin{figure}[h!]
 		\centering
 		\begin{tikzpicture}[node distance=3cm, auto]
@@ -1333,14 +1345,16 @@
 			\node (C) [below of=A] {$\synt(L)$};
 			
 			\draw[-{Stealth}] (A) to node {} (B);
-			\draw[-{Stealth}, dashed] (B) to node [] {$\exists! f: f(n) = [u], \text{ falls } u = h(u)$} (C);
+			\draw[-{Stealth}, dashed] (B) to node [] {$\exists! f: f(n) = [u], \text{ falls } n = h(u)$} (C);
 			\draw[-{Stealth}] (A) to node [swap] {$\pi : u \mapsto [u]$} (C);
 		\end{tikzpicture}
-		\caption{Zu zeigen: $u = h(u) = h(v) \implies [u] = [v]$}
+		\caption{Graphische Interpretation des Beweises der Minimalität von $Synt(L)$.}
+		\label{fig:synt}
 	\end{figure}
 	
-	\subsubsection{Folgerung des Satzes}	
-	$L \in rec(M) \implies |\synt(L)| < \infty \implies A_L \text{ ist ein DFA, dh. } Q_L = \{L(u) \mid u \in M\} \text{ ist endlich}$
+	\subsubsection{Folgerung:Zusammenhang von Synt(L) und erkennenden Automaten}
+	Es gilt:\\	
+	$L \in rec(M) \iff |\synt(L)| < \infty \iff A_L \text{ ist ein DFA, dh. } Q_L = \{L(u) \mid u \in M\} \text{ ist endlich}$
 	
 	\subsubsection{Beweis}
 	Sei $L \subseteq M$ und sei $A = (Q, \cdot, q_0, F)$ ein deterministischer endlicher Automat mit $L = L(A)$. \\
