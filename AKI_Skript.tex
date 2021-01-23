@@ -1352,16 +1352,20 @@
 		\label{fig:synt}
 	\end{figure}
 	
-	\subsubsection{Folgerung:Zusammenhang von Synt(L) und erkennenden Automaten}
+	\subsubsection{Folgerung: Zusammenhang von Synt(L) und erkennenden Automaten}
+	\label{sec:equiv}
 	Es gilt:\\	
 	$L \in rec(M) \iff |\synt(L)| < \infty \iff A_L \text{ ist ein DFA, dh. } Q_L = \{L(u) \mid u \in M\} \text{ ist endlich}$
 	
-	\subsubsection{Beweis}
-	Sei $L \subseteq M$ und sei $A = (Q, \cdot, q_0, F)$ ein deterministischer endlicher Automat mit $L = L(A)$. \\
-	Dann ist $(Q^Q, \cdot, id_Q)$ ein Monoid mit  $Q^Q = \{ f : Q \to Q \mid f\text{ ist eine Abbildung}\}$ und $(f \circ g)(q) = g f(q)$, sowie $$ \varphi : M \to Q^Q, \, \, u \mapsto f_a$$  mit $f_u(q) = q_u$. \\
-	
-	Weiter ist $(f_u \circ f_v)(q) = quv$ und $T = \{f_u \mid u \in M\}$, und somit $\varphi: M \to T$. Für $Q=n$ gilt $|T| \leq n^n \in 2^{n \log n}$. 
-	\begin{figure}[h!]
+	\subsubsection{Beweis der Folgerung}
+	Sei $L \subseteq M$ und  $A = (Q, \cdot, q_0, F)$ ein deterministischer Automat mit $L = L(A)$. \\
+	Dann ist $(Q^Q, \circ, id_Q)$ ein Monoid mit  $Q^Q = \{ f : Q \to Q \mid f\text{ ist eine Abbildung}\}$ und $(f \circ g)(q) = g f(q)$.
+	Wir definieren einen Homomorphismus $$ \varphi : M \to Q^Q, \, \, u \mapsto f_u$$  mit $f_u(q) = q_u$. 
+	Dann ist $(f_u \circ f_v)(q) = quv$.\\
+	Weiter sei $T = \{f_u \mid u \in M\}$ das Transformationsmonoid.
+	Somit folgt $\varphi: M \to T$. Für $Q=n$ gilt $|T| \leq n^n \in 2^{n \log n}$. 
+	Graphisch kann man sich den Beweis nun analog zu Abbildung~\ref{fig:synt} vorstellen, durch
+	\begin{figure}[H]
 		\centering
 		\begin{tikzpicture}[node distance=3cm, auto]
 			\node (A) {$M$};
@@ -1374,66 +1378,76 @@
 		\end{tikzpicture}
 	\end{figure}
 	
-	Zu zeigen ist also $f_u = f_v \overset{!}{\implies} [u] = [v]$. 
+	mit $\psi(f_u)=[u]$, wobei $f_u = f_v \overset{!}{\implies} [u] = [v]$ zu zeigen ist. 
 	
-	Wir betrachten nun $x, y \in M$ mit $xuy \in L \implies q_0xu \in F$ und $q_0xu = f_a(q_0x) = f_v(q_0x)$. Dann folgt
+	Wir betrachten nun $x, y \in M$ mit $xuy \in L$.
+	Dann gilt:
 	\begin{align*}
-		q_0xvy \in F &\implies xvy \in L\\
+		xuy \in L &\implies q_0xuy \in F\\
+		&\implies q_0xu = f_u(q_0x) = f_v(q_0x)\\
+		&\implies q_0xvy \in F \\
+		&\implies xvy \in L\\
 		&\implies \psi \text{ ist wohldefiniert}
 	\end{align*}
+	Damit wissen wir, dass die Existenz eines endlichen erkennenden Automaten, die Endlichkeit des syntaktischen Monoids impliziert.\\
 	
-	Umgekehrt sei nun $Q = Q_L = \{L(x) \mid x \in M\} =$ Zustände des minimalen deterministischen Automaten. Dann gilt $[u]= [v] \implies f_u = f_v$. Dies ist begründet durch
+	Für die Umkehrung sei nun $Q = Q_L = \{L(x) \mid x \in M\}$ die Zustandsmenge des minimalen deterministischen Automaten. Dann gilt $[u]= [v] \implies f_u = f_v$. Dies ist begründet durch:
 	\begin{align*}
 		[u]= [ v ] \implies f_u(L(x)) &= L(x)u \\
 		&= L(xu) = \{y \mid xuy \in L\} \\ 
 		&= \{y \mid xvy \in L\} \\
-		&= L(x)v 
+		&= L(x)v = f_v(L(x))
 	\end{align*}
-	$\implies \forall x L(x)u = L(x)v \implies f_u = f_v$
+	Aus $\forall x\, :\, L(x)u = L(x)v$ folgt $f_u = f_v$.\\
+	Insgesamt gilt damit die Äquivalenz aus Abschnitt~\ref{sec:equiv}. 
 	\bewiesen
 	
-	\subsubsection{Konsequenz des Satzes}
-	$\synt(L) \cong T = \{f_U \mid u \in M\}$
+	\subsubsection{Konsequenz: Isomprphie von Synt(L) und T}
+	Für das syntaktische Monoid $Synt(L)$ und das Trasnformationsmonoid $T$ gilt:
+	$$\synt(L) \cong T = \{f_u \mid u \in M\}$$
+	Das bedeutet, man kann $Synt(L)$ aus dem minimalen DFA berechnen.
 	
 	\subsubsection{Satz von McKnight}
-	Es gilt 
+	Es gilt: 
 	\begin{align*}
 		\rec(M) \subseteq \rat(M) &\iff M \in \rat(M)\\ 
 		&\iff M \text{ ist endlich erzeugt} \\ 
-		&\iff \exists \Sigma \text{ endlich und } \pi : \sigstern \to M \text{ ist surjektiver Hom. }
+		&:\iff \exists \, \Sigma \text{ endlich und } \pi : \sigstern \to M \text{ ist surjektiver Hom. }
 	\end{align*}
 	
 	\subsubsection{Beweis des Satzes von McKnight}
-	Es gilt $\emptyset, M \in \rec(M)$. Vermöge $$h: M \to \{1\}$$ Wenn $M \in \rat(M)$ ist, dann folgt daraus $M=L$ für einen regulären Ausdruck für $M$. 
+	Es gilt $\emptyset, M \in \rec(M)$ durch das triviale Monoid, vermöge $$h: M \to \{1\}\, .$$ Wenn $M \in \rat(M)$ ist, dann folgt daraus, dass $M=L$ für einen rationalen Ausdruck für $M$. 
+	Da dieser nur eine endliche Teilmenge von $M$ benutzt, folgt die Hin-Richtung der Behauptung.
 	
-	Zu zeigen ist also nur die andere Richtung. 
+	Zu zeigen ist also nun noch die andere Richtung. 
 	\newline
 	
-	Sei $\pi : \sigstern \to M$ ein surjektiver Hom. und $|\Sigma| < \infty$, mit $L \in \rec(M) \implies L \in \rat(M)$. 
+	Sei $\pi : \sigstern \to M$ ein surjektiver Hom. und $|\Sigma| < \infty$. 
+	Wir wollen zeigen, dass dann $L \in \rec(M) \implies L \in \rat(M)$ gilt.\\
+	Wir haben also
 	
 	\begin{equation*}
 		\begin{tikzcd}[column sep=1.5pc]
 			\sigstern \arrow{r}{\pi} & M \arrow{r}{h} & N 
 		\end{tikzcd}
 	\end{equation*}
-	mit $|N| < \infty$ und $h\inv(h(L)) = L$. Dann folgt $\pi\inv(L) \in \rec(M) \implies \exists \text{ DFA } A \text{ und } \pi\inv(L) = L(A)$. Betrachte nun $\pi\pi\inv(L) = L \in \rat(M)$
+	mit $|N| < \infty$ und $h\inv(h(L)) = L$. Dann folgt $\pi\inv(L) \in \rec(M)$ wegen der Abgeschlossenheit unter Hom..
+	Weiter gilt dann $\exists \text{ DFA } A \text{ mit } \pi\inv(L) = L(A)$, woraus $\pi\inv(L) \in \rat(\Sigma^*)$ folgt.
+	Wegen der Surjektivität von $\pi$ gilt $\pi\pi\inv(L) = L \in \rat(M)$.
 	\bewiesen
 	
 	\subsubsection{Definition NFA über M}
-	Ein DFA über einem Monoid $M$ ist ein Tupel $(Q, \delta, I, F)$ mit $I, F \subseteq Q$ wobei $$\delta \subseteq Q \times M \times Q$$ und $|\delta| < \infty$. 
-	Duch $L(A) = \{w \in M \mid \exists w = u_1 \ldots u_n\}$ und der Pfad 
-	\begin{equation*}
-		\begin{tikzcd}[column sep=1.7pc]
-			q_0\arrow{r}{u_1} &  q_1 \arrow{r}{u_2} & \ldots \arrow{r}{u_n} & q_n
-		\end{tikzcd}
-	\end{equation*}
-	Dabei ist $q_i \overset{u_i}{\longrightarrow } q_{i+1} \in \delta \forall i, q_0 \in T, q_n \in F$.
+	Ein NFA $A$ über einem Monoid $M$ ist ein Tupel $(Q, \delta, I, F)$ mit $I, F \subseteq Q$, wobei $$\delta \subseteq Q \times M \times Q$$ und $|\delta| < \infty$ gilt. 
+	Dann ist die erkannte Sprache $L(A) = \{w \in M \mid \exists u_1, \ldots, u_n \in M : w = u_1 \ldots u_n \, \wedge \text{ es gibt Pfad } \begin{tikzcd}[column sep=1.7pc]
+		q_0\arrow{r}{u_1} &  q_1 \arrow{r}{u_2} & \ldots \arrow{r}{u_n} & q_n
+	\end{tikzcd} \text{ aus Übergängen in } \delta \text{ mit } q_0 \in I \wedge q_n \in F\}$. 
+
 	
-	\subsubsection{Satz}
-	Es gilt $$ L \in \rat(M) \iff \exists \text{ NFA mit } L(A) = L $$
+	\subsubsection{Satz: Zusammenhang von rationalen Mengen und NFAs}
+	Es gilt $$ L \in \rat(M) \iff \exists \text{ NFA mit } L(A) = L \, .$$
 	
 	\subsubsection{Beweis des Satz}
-	Wie in der Vorlesung Formale Sprachen und Automatentheorie
+	Wie in der Vorlesung Formale Sprachen und Automatentheorie.
 	
 	\section{Syntaktische Monoide- Vorlesung 9}
 	\subsection{Wortprobleme in Gruppen}
