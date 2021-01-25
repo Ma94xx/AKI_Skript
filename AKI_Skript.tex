@@ -192,7 +192,7 @@
 \newcommand{\bast}{B^{\ast}}
 \newcommand{\east}{E^{\ast}}
 
-%MOS
+%MSO
 \newcommand{\fv}{\mathsf{FV}}
 \newcommand{\fo}{\mathsf{FO}}
 \newcommand{\so}{\mathsf{SO}}
@@ -201,6 +201,16 @@
 \newcommand{\ap}{\mathsf{AP}}
 \newcommand{\ltl}{\mathsf{LTL}}
 \newcommand{\tl}{\mathsf{TL}}
+
+%LTL
+\newcommand{\sX}{\mathsf{X}}
+\newcommand{\sF}{\mathsf{F}}
+\newcommand{\sG}{\mathsf{G}}
+\newcommand{\sT}{\mathsf{T}}
+\newcommand{\sY}{\mathsf{Y}}
+\newcommand{\sS}{\mathsf{S}}
+\newcommand{\sU}{\mathsf{U}}
+
 
 
 
@@ -230,7 +240,7 @@
 	\section{Grundlagen - Vorlesung 1}
 	\subsection{Diedergruppen}
 	\subsubsection{Definition}
-	Die Diedergruppe $D_n$ ist die Bewegungsgruppe des regelmä\ss igen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
+	Die Diedergruppe $D_n$ ist die Bewegungsgruppe des regelmäßigen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
 	
 	Nun ist das $n$-Eck durch folgende Knoten und Kanten definiert: 
 	\begin{align*}
@@ -2458,6 +2468,78 @@ mit
 			\pi_0(K_i), \; \pi_1(L_i), \; \pi_1(A) \in \starfree(\Sigma_V)
 		\end{align*} gilt. 
 		\bewiesen
+	
+\section{Automatentheoretische Verifikation und Modell Checking- Vorlesung 16}
+\subsection{Allgemeines}
+\subsubsection{Einführung}
+	Wir betrachten diskrete Zeitabstände $0,1,2,3. \ldots$. Nun wollen wir durch Abstraktion eines realen Systems zu endlichen Translationssystemen (= NFA's ohne Endzustände) gelangen. 
+	Für ein $t \in \N$ sei $\sX = n\sX t(t) = t+1$ und $\sF t = \mathsf{Future}(t) = \{t' \mid t \leq t'\}$. Unsere Spezifikationssprache ist also ein Fragment von $\mso$ über $\Sigma = 2^P$, wobei $P$ die Menge von Eigenschaften die zur Zeit $t$ wahr sind beschreibt mit $|P| < \infty$
+\subsubsection{Anwendung}
+	\textbf{Gegeben} sei eine Spezifikation $\varphi$ mit $\varphi \subseteq \sigstern$. Für ein reales System $A$ ist unser Translationssystem dann $L(A) \subseteq \sigstern$.
+	\newline
+	
+		\textbf{Das Problem} ist nun zu entscheiden ob 
+	\begin{align*}
+	L(A) \subseteq L(\varphi) &\iff L(A) \cap \sigstern \setminus L(\varphi) = \emptyset \\
+	&\iff L(A) \cap L(\neg \varphi) = \emptyset
+	\end{align*} gilt.
+	\newline
+	
+		\textbf{Die Lösung} dazu bringt die Konstruktion eines NFA $B = (Q, \Sigma, \delta, I, F)$ mit $L(\varphi = L(B))$. Ist dies geschafft, dann ist der Test ob $L(A) \cap L(B) \neq \emptyset$ gilt einfach, und liefert sogar einen Zeugen für den Fehler. 
+
+\subsection{Einführung in $\ltl$}
+\subsubsection{Allgemein}
+	Es gilt 
+	\begin{align*}
+		\fo[\leq] \subseteq \starfree(\sigstern) &\implies (aa)^\ast \text{ kann nicht in } \fo[\leq] \text{ akzeptiert werden} \\
+		&\implies (ab)^\ast \text{ kann in } \fo[\leq] \text{ akzeptiert werden} 
+	\end{align*}
+	Beachte: $(ab)^\ast = 1.$ Position ist ein $a$, und die letzte Position ist ein $b$ und $$\mathsf{Globally}(\lambda(t) = a \iff \lambda(\sX t) = b) = \sG(a \iff \sX b)$$ wobei $\sG(\varphi) = \neg \sF \neg \varphi$
+
+\subsubsection{Syntax}
+	$\varphi \in \ltl$ ist $\fo[\leq]$-Formel mit genau einer freien Variable.
+		\begin{enumerate}[label=\arabic*.)]
+			\item Sei $a \in \Sigma$, dann ist $a = a(x) \in \ltl$
+			\item Sei $\varphi \in \ltl$, also $\varphi = \varphi(x)$. Dann ist $\sX \varphi(x) \in \ltl$
+			\item Seien $\varphi, \psi \in \ltl$, dann ist auch $\varphi \sU \psi \in \ltl$ bzw $\varphi(x), \psi(x) \in \ltl$ auch $(\varphi \sU \psi )(x)\in \ltl$
+			\item Seien $\varphi, \psi \in \ltl$, dann ist auch $\varphi \cup \psi \in \ltl$ und $\neg \psi\in \ltl$
+		\end{enumerate}
+	
+\subsubsection{Semantik}
+	Sei $\varphi \in \fo[\leq]$ mit $\fv(\varphi) = \{x\}$, dann ist ''$w,x \models \varphi$'' $\in \B$ definiert.
+	\begin{itemize}
+		\item ''$w,x \models a$'' $\iff$ ''$w(x) = a$'' das heißt $w = a_1 \ldots a_{|w|} \in \Sigma$ und $a_x = a$
+		\item ''$w,x \models \sX \varphi$'' $\iff$ ''$w\sX x \models \varphi$'' $\iff$ ''$w, x+1 \models \varphi$''
+		\item ''$w, x \models (\varphi \sU \psi)$'' $\iff$ $\exists z : x \leq z \land w, z \models \psi \land \forall y: [x \leq y < z \implies w, y \models \varphi]$
+		\item ''$w,x$'' $\models \varphi \#\psi \iff (w,x \models \varphi) \# (w,x \models \psi )$ für $\# \in \{\lor, \neg, \land, \implies, \iff, \ldots\}$
+	\end{itemize}
+
+\subsubsection{Beispiele}
+		\begin{enumerate}[label=\arabic*.)]
+			\item Starte bei einer Sprache $L \in \starfree(\sigstern)$
+			\item Konstruiere nun $\varphi \in \ltl$ mit $L(\varphi) = \{(w,1) \mid w \in \sigstern \text{ und } w,1 \models \varphi \text{ und } w \in L\}$
+		\end{enumerate}
+\subsubsection{Makros}
+		\begin{itemize}
+		\item $\sF \varphi = \sT \sU \varphi$ mit $\sT = true$
+		\item $\sG \varphi = \neg \sF \neg \varphi$
+		\item $\neg(\varphi \sU \psi) = \sG \neg \psi \cup (\neg \varphi \sU \neg \varphi)$
+	\end{itemize}
+Das unterste Makro ist möglich da $\varphi \sU \psi = (\varphi, \varphi, \ldots,\psi)$ und $$\neg (\varphi \sU \psi) = (\neg \psi, \neg \psi, \ldots, \neg\varphi) \lor (\neg \varphi, \neg \varphi, \ldots, \neg\psi)$$
+
+\subsubsection{Selbsttest und Übung}
+	Definiere folgendes: 
+		\begin{gather*}
+	\rbracedalign
+	{}{
+		\sY\varphi &= \mathsf{ Yesterday}(\varphi) \\
+		\varphi\sS\psi &= \varphi \mathsf{Since}(\varphi)
+	}{ 
+	}{\in \fo^3[\leq]}
+	\end{gather*}
+	Beachte das $\fo^k[\leq] \subseteq \fo[\leq]$ und $\varphi \in \fo^k[\leq]$ verwendet nur $k$ viele Namen für die Variablen.
+	Ganz allgemein gilt 
+	$$\fo^2[\leq] \subsetneqq \fo^3[\leq] = \fo[\leq]$$ und somit auch $$\ltl = \tl[\sX,\sU] = \tl[\sX, \sU, \sY, \sS] \subseteq \fo^3[\leq] \subseteq \fo[\leq] \subseteq \starfree(\sigstern) \subseteq \ap(\sigstern)$$denn es ist $\varphi(\sX\sU)\psi := \sX(\varphi\sU\psi)$ und $\sX\varphi = \bot \sX\sU\varphi$ sowie $\varphi\sU\psi = \psi \lor \varphi \land \varphi \sX \sU \psi$
 	
 
 
