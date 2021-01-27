@@ -2573,7 +2573,7 @@ Es gilt $\ltl_\Sigma[\sX \sU] = \ap(\Sigma)$
  	Dafür sei $L=\{a^k\}$ mit $k \geq 1$, dann ist $L = L(\underbrace{a \land \sX(a \land \sX(\ldots)}_{\substack{k\text{ -mal}}})\bot)$
  	
 \subsubsection{Lemma}
-	Sei $A\subseteq \Sigma$ und $L = L(\varphi)$ mit $\varphi \in \ltl_A[\sX\sU]$ und $L \subseteq \ast$. Dann gibt es ein $\varphi_A \in \ltl_\Sigma[\sX\sU]$ mit $L=L(\varphi_A)$
+	Sei $A\subseteq \Sigma$ und $L = L(\varphi)$ mit $\varphi \in \ltl_A[\sX\sU]$ und $L \subseteq \aast$. Dann gibt es ein $\varphi_A \in \ltl_\Sigma[\sX\sU]$ mit $L=L(\varphi_A)$
 
 \subsubsection{Beweis des Lemmas}
 	Wir zeigen durch strukturelle Induktion
@@ -2596,7 +2596,7 @@ Es gilt $\ltl_\Sigma[\sX \sU] = \ap(\Sigma)$
 	Also zeigen wir später nur $$h\inv(m) = \bigcup\{h\inv(m) \cap \sigstern c \sigstern \mid h(c) \neg = 1\} \in \ltl$$ Daher zeigen wir nur für ein festes $c \in \Sigma$, dass $h\inv(m) \cap \sigstern c \sigstern \in \ltl$
 
 \subsubsection{Dirthy Trick}
-	Sei $M |cap \sigstern = \{1, c\}$ als Menge definiert und $1 = \varepsilon$ sowie $c \in \Sigma$ und $h(c) = c \neg 1 \in M$. Also ist $M_c = \{cM\cap Mc, \circ, c\}$ ein lokaler Divisor mit $|M_c| < |M|$ und $xc \circ cy = xcy$. 
+	Sei $M \cap \sigstern = \{1, c\}$ als Menge definiert und $1 = \varepsilon$ sowie $c \in \Sigma$ und $h(c) = c \neg 1 \in M$. Also ist $M_c = \{cM\cap Mc, \circ, c\}$ ein lokaler Divisor mit $|M_c| < |M|$ und $xc \circ cy = xcy$. 
 	\newline
 	
 	Zeige nun $h\inv(m) \cap \aast c \aast \in \ltl$ mit $A = \Sigma \setminus \{c\}$, und insbesondere $|A| <| \Sigma|$. 
@@ -2617,6 +2617,97 @@ Es gilt $\ltl_\Sigma[\sX \sU] = \ap(\Sigma)$
 		w \in L(\neg \psi) &\iff w \in \aast \lor w = ucv \text{ mit } u \in \aast \text{ und } u \not \in L(\varphi) \\
 		&\iff w \in \aast \lor w \in L(\neg(\psi^c))
 	\end{align*}
+
+\section{$\ltl \implies \ap$ - Vorlesung 18}
+\subsection{Vorbereitungen zum Beweis des Satzes}
+\subsubsection{Bezeichnungen}
+	Es gilt 
+	\begin{itemize}
+		\item $\varphi \in \ltl_A[\sX\sU]$ dann ist $L_A(\varphi) = \{w \in A^+ \mid w,1 \models \varphi\}$
+		\item $L \in \ltl_A \iff L \setminus \{\varepsilon\} = L_A(\varphi)$ für ein $\varphi \in \ltl_A[\sX\sU]$
+		\item $\ltl = \ltl_\Sigma[\sX\sU]$
+	\end{itemize}
+
+\subsubsection{Makros}
+	\begin{itemize}
+		\item $A \in \ltl$ vermöge $A = \bigvee_{a \in A} a$
+		\item $A^+ \in \ltl$ vermöge $\neg F(\Sigma \setminus A)$ 
+		\item $A \subseteq \Sigma$ und $b \in \Sigma \setminus A$ etwa $b = c \land A = \Sigma \setminus \{c\}$
+	\end{itemize}
+
+\subsubsection{Lemma 1}
+	 $\forall \varphi \in \ltl_A[\sX\sU]$ existiert ein $\varphi_b \in \ltl$ für das gilt $L(\varphi_b) = \sigstern b L_A(\varphi)$.
+	 \newline
+
+	\textit{Hinweis: }Der Beweis dafür wurde bereits in VL17 geführt. Das Lemma wird hier nochmals ausführlicher beschrieben und ist aus Notations Gründen eingefügt. 
+
+\subsubsection{Lemma 2}
+	 $\forall \varphi \in \ltl_A[\sX\sU]$ existiert ein  $\varphi_b \in \ltl$ für das gilt $L_A(\varphi)b \sigstern$
+
+\subsubsection{Beweis Lemma 2}
+	Mit struktureller Induktion $\varphi = a \in A$. Dann gilt $\varphi_b = a_b = a \land A \sX \sU b$
+	\begin{itemize}
+		\item $(\varphi \sX \sU \psi)_b = A \land \varphi_b \sX\sU\psi_b \subseteq \{a_1\ldots a_kb\sigstern \mid a_i \in A, k \geq 2\}$
+		\item $(\varphi \lor \psi)_b = \varphi_b \lor \psi_b$ 
+		\item Weiter ist 
+		\begin{align*}
+			L((\neg \varphi)_b) &= (\aast \setminus L_A(\varphi))b\sigstern \\
+			&= A^+b\sigstern \setminus L_A(\varphi)b\sigstern \\
+			&=A^+b\sigstern \cap \sigstern \setminus L_A(\varphi)b\sigstern
+		\end{align*} und somit folgt $(\neg \varphi)_b = A \sX\sU B \land A \land \neg (\varphi_b) \in \ltl$
+	\end{itemize}
+\bewiesen
+
+\subsubsection{Lemma 3}
+	Sei $L = L(\varphi)$ mit $\varphi \in \ltl$. Dann existiert ein $\varphi_b \in \ltl$ mit $L(\varphi_b) = Lb\aast$
+
+\subsubsection{Beweis Lemma 3}
+	Bleibt der Übung überlassen. \textit{Tipp: } Strukturelle Induktion!
+
+\subsubsection{Satz}
+	Es gilt $h\inv h(L) = L \implies L \in \ltl$
+
+\subsubsection{Beweis des Satzes}
+	Zeige den folgenden Satz dafür: $\forall m \in M : h\inv (m) \in \ltl$. Für $m = 1$ gilt $h\inv(m) = \bast$ mit $B = \{b \in \Sigma \mid h(b) = a \}$.
+	Daher gilt ohne Einschränkung $m \not = 1$ und somit $$h\inv(m) = \bigcup_{c \not \in B } h\inv(m) \cap \sigstern c \sigstern$$ Zeige daher nur den Satz: 
+	$$h\inv(m) |çap \sigstern c \sigstern \in \ltl$$
+
+\subsubsection{Lemma}
+	Sei $L_A, L'_A \in \ltl_A[\sX\sU]$ dann gilt $L_A c L'_A \in \ltl$
+
+\subsubsection{Beweis des Lemmas}
+	Gilt nach Lemma 1 und Lemma 2 und $$L_A c L'_A = L_a c \sigstern \cap \sigstern c L'_A \cap \aast c \aast$$
+	\bewiesen
+
+\subsubsection{Lemma}
+	Es ist 
+	\begin{align*}
+	h\inv(m) \cap \sigstern c \sigstern c \sigstern &= h\inv(m) \cap \aast c \sigstern c \aast \in \ltl \\
+	&= \bigcup_{p\cdot n = m}(h\inv(p) \cap \aast)(h\inv(n) \cap c \sigstern c \aast)
+	\end{align*}
+
+\subsubsection{Beweis des Lemmas}
+	Es reicht das nächste Lemma zu zeigen.
+
+\subsubsection{Lemma}
+\begin{align*}
+	\forall p, n \in M: (h\inv(p) \cap \aast)(h\inv(n) \cap c \sigstern c \aast) &= \\
+	(h\inv(p) \cap \aast) c \sigstern \cap \aast(h\inv(n)\cap c \sigstern c \aast) \in \ltl 
+	\end{align*}
+\subsubsection{Beweis des Lemmas}
+Gilt durch Lemma 1, Lemma 2 und den folgenden Satz
+
+\subsubsection{Satz}
+	$\forall m \in M : h\inv (n) \cap c \sigstern c \aast \in \ltl$
+	
+\subsubsection{Beweis des Satzes}
+	Ohne Einschränkung gilt $n \not = 1$
+	Dann ist $$h\inv(n) \cap c\sigstern c \aast = \bigcup_{qcr = n} L_q c (h\inv(r) \cap \aast) $$ mit $L_q = \{cw \in c \sigstern \mid h(cw)c = qc\}$. Zeige also nur $\forall q : L_q \in \ltl$, dann folgt der Satz mit Lemma 3
+
+\subsubsection{Hauptlemma}
+	Sei $L_q \in \ltl$ und $h_A: \aast \to M$ eine Restriktion von $h$ auf $\aast$ und $L_q = \{cw \in c \sigstern \mid h(cw)c = qc\} \in \ltl$. 
+	Wir können dann den Beweis für $\ltl = \ap$ mit den lokalen Divisoren führen. 
+	
 \end{document}
 
 
