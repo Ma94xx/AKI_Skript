@@ -38,6 +38,14 @@
 \usepackage{ stmaryrd }
 \usepackage{multirow,bigdelim}
 \usepackage{stackengine}
+\usepackage{amsmath}
+
+\usepackage{array, makecell}
+
+\usepackage{pst-node}
+
+
+
 \stackMath
 
 
@@ -2792,10 +2800,17 @@ Gilt durch Lemma 1, Lemma 2 und den folgenden Satz
 	
 	Man kann sich das dann wie folgt vorstellen:
 	%Das wird noch angepasst
-	\begin{align*}
-		&cv_1 &&cv_2 &\ldots &&&cv_i &\ldots &&&&cv_j  &&\ldots &&&&&cv_k \\
-		&t_1  &&t_2 &\ldots &&&t_i &\ldots &&&&t_j  &&\ldots &&&&&t_k
-	\end{align*}
+		\[ \begin{array}{*{9}{r}}
+		cv_1 &cv_2 &\ldots &cv_i &\ldots &cv_j &\ldots &cv_k\\
+		t_1 & \rnode{T2}{t_2} &\ldots & \rnode{Ti}{t_i }&\ldots &\rnode{Tj}{t_j} &\ldots &t_k \\[0.5ex]
+		& & & & & & & & \makecell{\rnode{Aj}{\psi}\\
+			\rnode{Ai}{\varphi}\\
+			\rnode{A2}{\varphi}}
+		\end{array}
+		\psset{linewidth=0.6pt, linejoin=1, arrows=->, arrowinset=0.12, angleA=-90, angleB=180, nodesep=3pt}
+		\foreach \s in {2,i, j}{\ncangle{T\s}{A\s}}
+		\]
+		
 	und somit ist $$(\varphi\sX\sU \psi)_T = (x \land (\neg c \lor \varphi_T) \sX\sU(c \land \psi_T)$$
 	\bewiesen
 	
