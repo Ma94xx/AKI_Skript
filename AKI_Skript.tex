@@ -1549,25 +1549,32 @@
 			(ab)^n &\equiv 1 \text{ für } n = 0 \\
 			(ab)^n &\equiv ab \text{ für } n \geq 1 
 		\end{align*} Die idempotenten Elemente sind also: $1, ab ,ba, 0$.
-		\item Betrachte $M = \{1, a, b, 0\}$ mit den Rechenregeln 
+		\item Wir betrachten $\mathsf{Synt}(\Sigma^*a\Sigma^*b\Sigma^*)$ für $\Sigma= \{a,b\}$. Dieses syntaktische Monoid lässt sich darstellen als $M = \{1, a, b, ba, 0\}$ mit den folgenden Rechenregeln: 
 		\begin{align*}
-			ab &= 0    && a^2 = 0 &&&b^2 = b \\
+			ab &= 0    && a^2 = a &&&b^2 = b \\
 			b(ba) &= ba   &&(ba)a = ba &&& (ba)b = 0 \\
 			a(ba) &= 0  &&(ba)^2 = (ba)(ba) = 0
 		\end{align*}
-		Somit ist zu erkennen dass nur $ba$ nicht idempotent ist. 
+		Somit ist zu erkennen, dass $ba$ das einzige nicht idempotente Element ist. 
 		\item Kontextfreie Grammatiken erlauben Regeln der Form $$A \to \alpha \text{ mit } A \in V, \alpha \in (\Sigma \cup V)^\ast$$ oder $$\varepsilon \to \alpha, \text{ mit } \alpha \in (V \cup \Sigma)^\ast\, .$$ 
 		
-		Für $\Sigma = \{a, b\}$, betrachten wir nun die folgende Grammatik $\mathscr{G}$;
+		Für $\Sigma = \{a, b\}$, betrachten wir nun die folgende Grammatik $\mathscr{G}$:
 		\begin{align*}
 			S &\to \varepsilon \\ 
 			\varepsilon &\to a^2 \mid b^2 
 		\end{align*} 
-
-		
-		\textbf{Frage:} $(ab)^2(ba)^m \in L$? 
+		Sei $L=L(\mathscr{G})$.\\
+		\textbf{Frage:} $a^nb^2a^m \in L$? 
 		\newline
-		\textbf{Antwort:} Es gilt $a^nb^2a^n \in L \iff n+m \equiv 0 (2)$ und wir wissen dass $$(ab)^2(ba)^n \iff n = m$$ Somit folgt: $L$ ist nicht regulär.
+		\textbf{Antwort:} Ja, genau dann, wenn $n+m \equiv 0\, (2)$ gilt.\\
+		\newline
+		\textbf{Frage:} $(ab)^n(ba)^m \in L$? 
+		\newline
+		\textbf{Antwort:} Ja, genau dann, wenn $n=m$ gilt.\\
+		\newline
+		Somit folgt: $L$ ist nicht regulär.\\
+		Diese Sprache ist das Wortproblem einer Gruppe:\\
+		Es gilt $L(\mathscr{G})=\mathsf{WP}(G)$ für die Gruppe $G=\Z \rtimes \Z/2\Z$ mit $(m,i)(n,j) = (m+(-1)^in, i+j\, mod\, 2) $.
 	\end{itemize}
 	
 	\section{Halbgruppentheorie Teil 1 - Vorlesung 10}
