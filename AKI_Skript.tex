@@ -1314,7 +1314,7 @@
 	\end{align*}
 	Dann gilt $L(A_L) = L$, also erkennt dieser Automat $L$.\\
 	Nun wollen wir zeigen, dass $A_L$ minimal ist.
-	Seien $A, A'$ deterministische endliche Automaten über $M$. Dann heißt 
+	Seien $A, A'$ deterministische endliche Automaten über $M$. Dann hei\ss t 
 	\begin{align*}
 		f: Q \to Q'
 	\end{align*} ein Morphismus, falls $f(q)u=f(qu)$, $f(q_0) = q_0'$ und $f(F) \subseteq F'$ gilt.
@@ -1466,84 +1466,89 @@
 	\subsubsection{Satz: Zusammenhang von rationalen Mengen und NFAs}
 	Es gilt $$ L \in \rat(M) \iff \exists \text{ NFA mit } L(A) = L \, .$$
 	
-	\subsubsection{Beweis des Satz}
+	\subsubsection{Beweis des Satzes}
 	Wie in der Vorlesung Formale Sprachen und Automatentheorie.
 	
-	\section{Syntaktische Monoide- Vorlesung 9}
-	\subsection{Wortprobleme in Gruppen}
+	\section{Syntaktische Monoide - Vorlesung 9}
+	\subsection{Wortproblem in Gruppen}
 	\subsubsection{Definition}
-	Sei $\pi : \sigstern \to G$ eine Präsentation einer endlich erzeugten Gruppe. Dann definiert $$\wop(G) = \{ w \in \sigstern \mid \pi(w)=1 \in G\}$$
+	Sei $\pi : \sigstern \to G$ eine Präsentation einer endlich erzeugten Gruppe(Eine präsentation einer Gruppe ist eine Menge von Elementen, die die Gruppe erzeugen, und eine Menge von Relationen, die zwischen diesen Erzeugern bestehen.). Dann definiert $$\wop(G) = \{ w \in \sigstern \mid \pi(w)=1_G\}$$das Wortproblem in dieser Gruppe.
 	
-	\subsubsection{Lemma}
-	Es gilt $\synt(\wop(G))=G$ mit 
+	\subsubsection{Lemma: Syntaktisches Monoid des Wortproblems}
+	Es gilt $\synt(\wop(G))=G$.\\
+	Wiederholung: Das syntaktische Monoid wird gebildet durch: 
 	\begin{align*}
-		\pi : \sigstern &\to \synt(L) \\
+		\sigstern &\to \synt(L) \\
 		u &\mapsto [u]
 	\end{align*}
 	
 	\subsubsection{Beweis des Lemmas}
-	Für die Hin-Richtung gilt $\pi(u) = \pi(v)$. Daraus folgt dann
+	Für die Rück-Richtung sei $\pi(u) = \pi(v)$. Daraus folgt dann
 	\begin{align*}
-		xuy \in \wop(G) &\iff \pi(x)\pi(u)\pi(y) = 1 \in G \\
+		xuy \in \wop(G) &\iff \pi(x)\pi(u)\pi(y) = 1  \\
 		&\iff \pi(x)\pi(v)\pi(y) = 1 \\
 		&\iff xvy \in \wop(G)
 	\end{align*}
-	Daraus schließen wir $u \equivWP v$
+	Daraus schlie\ss en wir $u \equivWP v$.
 	\newline
 	
-	Für die Rück-Richtung sei jetzt $u \equivWP v$. Dann gilt 
+	Für die Hin-Richtung sei jetzt $u \equivWP v$. Dann gilt 
 	\begin{align*}
-		1\cdot u \cdot y \in \wop(G) &\iff  \pi(y) = \pi(u)\inv
+		\pi(y) = \pi(u)\inv &\iff  1\cdot u \cdot y \in \wop(G)\\
+		&\iff 1\cdot v \cdot y \in \wop(G)\\
+		&\iff \pi(y) = \pi(v)\inv
 	\end{align*}
-	Daraus folgt $1vy \in \wop(G)$, und somit ist $\pi(y) = \pi(v)\inv$. Also $\pi(u) = \pi(v)$
+	Also folgt $\pi(u) = \pi(v)$.
 	\bewiesen
 	
-	\subsubsection{Korrolar}
-	Wir können ohne Beweis also schließen $$|G| < \infty \iff \wop(G) \text{ ist reguläre Spräche}$$
+	\subsubsection{Korrolar: Regularität des Wortproblems}
+	Wir können ohne Beweis also schlie\ss en, dass $$|G| < \infty \iff \wop(G) \text{ ist reguläre Sprache}$$ gilt.
 	
-	\subsubsection{Satz}
-	Sei $L \in \rec(G)$, dann gibt es eine Untergruppe (sogar einen Normalteiler $H \trianglelefteq G$) von endlichem Index, und es existieren Elemente
+	\subsubsection{Satz: Untergruppen erkennbarer Sprachen}
+	Sei $L \in \rec(G)$. Dann gibt es eine Untergruppe (sogar einen Normalteiler $H \trianglelefteq G$) von endlichem Index und es existieren Elemente
 	$g_1, \ldots, g_n$ so, dass $L = g_1H \cup g_2H \cup \ldots \cup g_nH$.   
 	
 	\subsubsection{Beweis des Satzes}
-	Sei $L \in \rec(G) \implies h\inv(F)$ für einen Hom. $h:G \to N$, und $|N| < \infty$. \\
+	Sei $L \in \rec(G)$. Dann gilt $L= h\inv(F)$ für einen Hom. $h:G \to N$ mit $|N| < \infty$ und $F \subseteq N$. \\
 	
-	\OE $\, \, h$ ist surjektiv und $h:G \to N \implies N$  ist eine Gruppe. 
+	\OE $\, \,$gilt $h$ ist surjektiv und da $h:G \to N$ ein Hom. ist, folgt, dass $N$  eine Gruppe ist. 
 	
-	Sei nun $h(g) \in N$ und $H= ker(n) \trianglelefteq G$ von endlichem Index, dann folgt $h(gH) \in F$ somit $gH \subseteq L$
+	Sei nun $h(g) \in N$ und $H= ker(h) \trianglelefteq G$ ein Normalteiler von endlichem Index, dann folgt $h(gH) \in F$ und somit $gH \subseteq L$.
 	\bewiesen
 	
 	\subsubsection{Folgerung des Satzes}	
-	Ist $G$ eine unendliche Gruppe, $L \subseteq G$ endlich (zB. $L = \{1\}$), dann ist $L \in rat(G) \setminus \rec(G)$
+	Ist $G$ eine unendliche Gruppe und $L \subseteq G$ endlich (zB. $L = \{1\}$), dann ist $L \in rat(G) \setminus \rec(G)$
 	
-	\subsection{Syntaktische Kongruenzen}
-	\subsubsection{Definition Idempotenz}
-	Ein Element $e$ aus einem Monoid $M$ heißt idempotent, falls $$e^2 = e$$
-	Dann können wir die folgende Menge definieren $$E(M) = \{ eeM \mid e^2 = 2\}$$ mit $1\in E(M)$
+	\subsection{Idempotenz}
+	\subsubsection{Definition}
+	Ein Element $e$ aus einem Monoid $M$ hei\ss t idempotent, falls $$e^2 = e$$gilt.
+	Damit können wir die folgende Menge der Idempotente definieren: $$E(M) = \{ e \in M \mid e^2 = 2\}$$ Es gilt immer $1\in E(M)$.
 	
 	\subsubsection{Definition lokales Monoid}
-	Sei $S$ eine Halbgruppe mit $E(S) = \{e \in S \mid e^2 = e\}$  und $e \in E(S)$, dann gibt es eine Unterhalbgruppe $eSe \leq S$ und sogar ein Monoid, da 	$e(exe) = (exe)e$, wobei 
+	Sei $S$ eine Halbgruppe, $E(S) = \{e \in S \mid e^2 = e\}$ und $e \in E(S)$. Dann ist die Unterhalbgruppe $eS^1e \leq S$ sogar ein Monoid, da 	$e(exe) = exe = (exe)e$, wobei 
 	\begin{align*}
-		eS^1e &= eSe \cup \{ee\} \\
+		eS^1e &:= eSe \cup \{ee\} \\
 		&=eSe \cup \{e\}
 	\end{align*}
-	Das Monoid $eMe$ nennt man das lokale Monoid bei $eeE(M)$
+	gilt.\\
+	Für ein Monoid $M$, nennt man das Monoid $eMe$ das lokale Monoid bei $e \in E(M)$.
 	
 	\subsubsection{Definition Teilwort}
-	Ein Wort $w = a_1 \ldots a_n$ heißt Teilwort von $w$ falls $w \in \sigstern a_1 \sigstern a_2 \sigstern \ldots a_n\sigstern$ gilt
+	Ein Wort $a = a_1 \ldots a_n$ hei\ss t Teilwort von $w$ falls $w \in \sigstern a_1 \sigstern a_2 \sigstern \ldots a_n\sigstern$ gilt.
 	
 	\subsubsection{Beispiele} 
 	\begin{itemize}
-		\item Sei $\Sigma = \{a, b\}$ und $\synt((ab)^\ast) = \{1, a ,b , ab, ba, 0\} = B^1_2 =$ Brandt-Monoid mit $2$ Erzeugenden und den folgenden Rechenregeln für alle $x$: 
+		\item Sei $\Sigma = \{a, b\}$ und $\synt((ab)^\ast) = \{1, a ,b , ab, ba, 0\} = B^1_2$ das Brandt-Monoid mit $2$ Erzeugenden und den folgenden Rechenregeln für alle $x \in B^1_2$: 
 		\begin{align*}
 			1x &= x1 = x   &&aba = a  &&&a^2=b^2 = 0\\
 			0x &= x0 = 0   &&bab = b 
 		\end{align*}
-		Weiter ist $$\pi: \sigstern \to B^1_2$$ definiert durch $\pi(a) = a$ und $\pi(b) = b$. Dann gilt 
+		Weiter ist $$\pi: \sigstern \to B^1_2$$ definiert durch $\pi(a) = a$ und $\pi(b) = b$. \\
+		Es gilt:
 		\begin{align*}
 			(ab)^n &\equiv 1 \text{ für } n = 0 \\
 			(ab)^n &\equiv ab \text{ für } n \geq 1 
-		\end{align*} Die idempotenten Elemente sind: $1, ab ,ba, 0$
+		\end{align*} Die idempotenten Elemente sind also: $1, ab ,ba, 0$.
 		\item Betrachte $M = \{1, a, b, 0\}$ mit den Rechenregeln 
 		\begin{align*}
 			ab &= 0    && a^2 = 0 &&&b^2 = b \\
@@ -1551,15 +1556,14 @@
 			a(ba) &= 0  &&(ba)^2 = (ba)(ba) = 0
 		\end{align*}
 		Somit ist zu erkennen dass nur $ba$ nicht idempotent ist. 
-		\item Wir betrachten die kontextfreie Grammatik $\mathscr{G}$ gegeben durch die Regeln $$A \to \alpha \text{ mit } A \in V, \alpha \in (\Sigma \cup V)^\ast$$ oder $$\varepsilon \to \alpha \in (V \cup \Sigma)^\ast$$. 
+		\item Kontextfreie Grammatiken erlauben Regeln der Form $$A \to \alpha \text{ mit } A \in V, \alpha \in (\Sigma \cup V)^\ast$$ oder $$\varepsilon \to \alpha, \text{ mit } \alpha \in (V \cup \Sigma)^\ast\, .$$ 
 		
-		Dann sei $\mathscr{G}: \Sigma = \{a, b\}$ mit 
+		Für $\Sigma = \{a, b\}$, betrachten wir nun die folgende Grammatik $\mathscr{G}$;
 		\begin{align*}
 			S &\to \varepsilon \\ 
 			\varepsilon &\to a^2 \mid b^2 
 		\end{align*} 
-		Die von $\mathscr{G}$ erzeugte Sprache $L = L(\mathscr{G}) = a^nb^2a^m$. \\ 
-		\newline
+
 		
 		\textbf{Frage:} $(ab)^2(ba)^m \in L$? 
 		\newline
