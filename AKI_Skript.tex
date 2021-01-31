@@ -39,10 +39,32 @@
 \usepackage{multirow,bigdelim}
 \usepackage{stackengine}
 \usepackage{amsmath}
-
 \usepackage{array, makecell}
-
 \usepackage{pst-node}
+\usepackage{multicol}
+\usetikzlibrary{calc}
+
+%Half grey node
+\makeatletter
+\tikzset{
+	prefix after node/.style={
+		prefix after command={\pgfextra{#1}}
+	},
+	/semifill/ang/.store in=\semi@ang,
+	/semifill/ang=0,
+	semifill/.style={
+		circle, draw,
+		prefix after node={
+			\typeout{aaa \semi@ang}
+			\let\nodename\tikz@last@fig@name
+			\fill[/semifill/.cd, /semifill/.search also={/tikz}, #1]
+			let \p1 = (\nodename.north), \p2 = (\nodename.center) in
+			let \n1 = {\y1 - \y2} in
+			(\nodename.\semi@ang) arc [radius=\n1, start angle=\semi@ang, delta angle=180];
+		},
+	}
+}
+\makeatother
 
 
 
@@ -220,6 +242,9 @@
 \newcommand{\sY}{\mathsf{Y}}
 \newcommand{\sS}{\mathsf{S}}
 \newcommand{\sU}{\mathsf{U}}
+\newcommand{\sR}{\mathsf{R}}
+\newcommand{\sende}{\mathsf{END}}
+\newcommand{\tf}{\mathsf{TF}}
 
 
 
@@ -2810,7 +2835,7 @@ Gilt durch Lemma 1, Lemma 2 und den folgenden Satz
 	\newline
 	
 	Man kann sich das dann wie folgt vorstellen:
-	%Das wird noch angepasst
+
 		\[ \begin{array}{*{9}{r}}
 		cv_1 &cv_2 &\ldots &cv_i &\ldots &cv_j &\ldots &cv_k\\
 		t_1 & \rnode{T2}{t_2} &\ldots & \rnode{Ti}{t_i }&\ldots &\rnode{Tj}{t_j} &\ldots &t_k \\[0.5ex]
@@ -2824,7 +2849,125 @@ Gilt durch Lemma 1, Lemma 2 und den folgenden Satz
 		
 	und somit ist $$(\varphi\sX\sU \psi)_T = (x \land (\neg c \lor \varphi_T) \sX\sU(c \land \psi_T)$$
 	\bewiesen
+
+\section{Verifikation und Modell Checking - Vorlesung 19}
+\subsection{Modellchecking}
+	Sei ab hier $\ltl_\Sigma[\sX\sU] = \ltl$. Gegeben ist $\varphi \in \ltl$. Konstruiere dazu $A_\varphi$ mit $$L(A_\varphi) = L(\varphi) \subseteq \Sigma^+$$
+
+\subsubsection{1. Schritt}
+	Wir definieren nun $\ltl_+ = \ltl$ ohne Negation. Dafür brauchen wir neue Makros: 
+	\begin{multicols}{2}
+	\begin{itemize}
+		\item $\top = true$
+		\item $\bot = false$
+		\item $\sende = \neg \sX \top$
+		\item $v = a_1 \ldots a_n$ mit $a_i \in \Sigma$
+		\item $v, i \models \sende\iff i = |v|$
+		\item $v, i \models\sende \iff a \in \Sigma$
+	\end{itemize} 
+\end{multicols}
+Wir erhalten also 
+\[
+A_\sende= \left\{\begin{array}{c}
+	\begin{tikzpicture}[node distance=2cm, auto, baseline=-0.65ex,scale=0.5]
+	\node(a) [semifill={black,ang=90}] {};
+	\node(b) [semifill={black,ang=270}, right of = a] {};
+	\draw[->] (a) -- (b) node[ midway,sloped,above,rotate=0] { $a \in \Sigma$};
+	\end{tikzpicture} 
+\end{array} \right\}
+\]
+Weiter definieren wir neue Makros: $\varphi \; \mathsf{ Release } \;  \psi = $ ''  $\varphi \text{ entlässt } \psi$''$= \varphi \sR \psi$
+		
+\subsubsection{Idee}
+	Wir wollen 
+		\begin{align*}
+			\neg(\varphi \sU \psi) &= \neg \varphi \sR \neg \psi \\ 
+				&= \sG(\neg \psi) \lor \neg \psi \sU (\neg \varphi \land \neg \psi)
+		\end{align*}
+	Also graphisch
+		\[ \begin{array}{*{9}{c}}
+				\neg \psi &\neg \psi &\ldots &\neg \psi &\ldots &\neg\psi &\psi &\psi \\
+				\bullet & 	\bullet &\ldots  &\bullet &\ldots &\bullet  &\bullet &\bullet  \\
+				a_1 & a_2 &\ldots & a_i &\ldots &a_{k-1} &a_{k} &a_{k+1}
+	\end{array}
+		\]
+		mit $\varphi \sR \psi = \sG \psi \lor \psi \sU (\varphi \land \psi)$. Tatsächlich interessiert uns ein Operator $\varphi \sX \sR \psi$ mit Semantik $\neg(\neg \varphi \sX \sU \neg \psi)$
+		Weiter ist $\neg a = \bigvee_{a\not = b} b$ mit $\neg a = \bot $ falls $\Sigma =\{a\}$. 
+		\newline
+		
+		Wir definieren $\ltl_+ = \ltl_+[\sX \sU, \sX\sR]$ duch eine kontextfreie Grammatik: 
+			\begin{align*}
+				\varphi = \top \mid \bot \mid a \in \Sigma \mid \varphi \lor \varphi \mid \varphi \land \varphi \mid \varphi \sX \sU \varphi \mid \varphi \sX\sR\varphi
+			\end{align*}
+\subsubsection{Lemma}
+	Sei $\varphi \in \ltl[\sX\sU]$. Dann existiert ein $\psi \in \ltl_+$ mit den Eigenschaften $$L(\varphi) = L(\psi) \text{ und }|\psi| \leq |\Sigma| \cdot |\varphi|$$
+
+\subsubsection{Definiton Teilformel}
+	Definiere für ein $\varphi \in \ltl_+$ die Menge  $\tf(\varphi)$ der Teilformeln. Weiter ist
+	\begin{align*}
+		\tf(\varphi) &= \{\varphi\} \text{ für ein } \varphi \in \{\top, \bot, \sende, a \mid a \in \Sigma\} \\
+		\tf(\varphi_1 \lor \varphi_2) &= \tf(\varphi_1 \land \varphi_2) = \tf(\varphi_1) \cup \tf(\varphi_2)\\
+		 \tf(\varphi) &=\{\varphi\} \cup \tf(\varphi_1) \cup \tf(\varphi_2) \text{ für } \varphi \in \{\varphi_1 \sX\sU\varphi_2,  \varphi_1\sX\sR\varphi_2\}
+	\end{align*}
+	Es gilt: $$\tf(\varphi) \subseteq \{\top, \bot, \sende, a \mid a \in \Sigma\} \cup \{\varphi \sX\sU\psi, \varphi\sX\sR\psi \mid \varphi, \psi \in \ltl_+\}$$ und $|\tf(\varphi)| \leq |\varphi|$
+
+\subsubsection{2. Schritt}
+	Ziel: Wir wollen $ A_\varphi =(Q, \Sigma, \delta, I, F)$ mit $Q = \{\{\varphi_1, \ldots, \varphi_k \mid k \geq 1, \varphi_i \in \tf(\varphi)\}$	 definieren. 
+	Die Idee ist dass $\{\varphi_1, \ldots, \varphi_k\}$ die Konjunktion von $$\varphi_1 \land \ldots\land \varphi_k = \bigwedge_{i = 1}^k \varphi_i$$
+	Wir bezeichnen mit $\B_+(\tf(\varphi))$ die positiven boolschen Ausdrücke. Nun definieren wir eine Abbildung
+	\begin{align*}
+		\beta: \tf(\varphi) \times \Sigma \to \B(\tf(\varphi))
+	\end{align*} durch $\beta(\top, a) = \top$ und $\beta(\bot, a) = \beta(\sende, a) = \bot$ für alle $a \in \Sigma$ und 
+	\[\beta(b, a) =  
+		\begin{cases}
+			\top, & \text{ falls } a = b \\
+			\bot, & \text{ sonst}
+		\end{cases}	
+	\] sowie 
+	\begin{align*}
+		\beta(\varphi \sX\sU\psi, a) &= \beta(\sX(\varphi \sU \psi), a) \\
+		&= \sX \varphi \lor \sX(\varphi \land \varphi \sX\sU \psi)
+	\end{align*}
+und 
+	\begin{align*}
+		\varphi \sX\sR\psi &= \neg(\neg\varphi \sX\sU \neg \psi) \\
+		&= \neg(\sX(\neg\varphi \sU \neg \psi)) \\
+		&=\sende \lor \sX(\neg(\neg \varphi \sU \neg \psi)) \\
+		&= \sende \lor \sX(\neg\sG \psi \lor (\neg \varphi\land (\neg \sX\sU \neg \psi)) \\
+		&= \sende \lor (\sX(\psi \land (\varphi \lor \neg((\neg \varphi)\sX \sU (\neg \psi))) \\
+		&= \sende \lor(\varphi (\varphi \lor \varphi \sX\sR\psi)) \\
+		&=\sende \lor \sX(\varphi\land \psi) \cup (\psi \land (\varphi \sX\sR \psi))
+	\end{align*} Au\ss erdem ist 
+\begin{align*}
+	v, i &\models \varphi \sX\sR\psi \iff v, i+1 \models (\varphi \land \psi) \lor (\psi \land \varphi \sX\sR \varphi) \text{ falls } i < |v| \\
+	v, |v| &\models \varphi \sX \sR \psi \text{ für alle } \varphi, \psi
+\end{align*} und es ist $\beta(\varphi\sX\sR\varphi, a) = (\varphi \land \psi) \lor (\psi \land \varphi \varphi \sX\sR \psi)$. 
+\newline
+
+Sei jetzt $\phi = \{\varphi_1, \ldots, \varphi_k\} = \bigwedge_{i = 1}^k \varphi_i$ dann gilt 
+\begin{itemize}
+	\item$\beta(\phi, a) \in \B(\tf(\varphi))$
+	\item $\beta(\phi, a) = \bigvee_{j \in J} \bigwedge_{l \in K_j}\Psi_l$ ist in DNF
+\end{itemize} und 
+\begin{align*}
+	\delta(\phi, a) = \bigcup_{j \in J} \underbrace{\{\varphi_l \mid l \in K_j\} }_{\substack{\Psi_J}}= \bigcup_{j\in J} \Psi_j
+\end{align*}
+	Nun haben wir 
+	\begin{align*}
+		Q &= \{\phi \mid \phi \not = \emptyset \text{ und } \phi \subseteq \tf(\varphi)\} \\
+		I &= \{\varphi\} \\
+		\delta(\phi, a) &= \bigcup_{j \in J} \{\varphi_l \mid l \in K_j\} = \bigcup_{j\in J} \Psi_j \\
+		F &= \{\Phi \mid \Phi \not = \emptyset \land \Phi \subseteq \{\top, \sende, \} \cup \{\varphi\sX\psi \mid \varphi, \psi \in \ltl_+\}\}
+	\end{align*}
+	\newline
 	
+	Es gelten folgende Vereinfachungen
+	\begin{itemize}
+		\item $\bot \land \varphi = \bot$
+		\item $\sende \land a = (\sende \land \varphi\sX\sU\psi) = \bot$
+		\item $\varphi \land \top = \varphi$
+		\item $\sende \land \varphi \sX\sR\psi = \sende$
+	\end{itemize}
 	
 
 
