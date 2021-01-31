@@ -1270,7 +1270,7 @@
 	\subsubsection{Definition erkennbare Sprachen ($\rec$)}
 	\label{sec:rec}
 	Wir definieren die Menge $\rec(M)$ der erkennbaren Mengen eines Monoids $M$ wie folgt:  $$L \in \rec(M) \iff \exists \varphi : M \to N \text{ ein Hom. von Monoiden mit } |N| < \infty \text{ und } \varphi\inv\varphi(L) = L$$
-	Das heißt $\forall w \in M$ gilt $$w\in L \iff \varphi(w) \in \varphi(L) \subseteq N\, .$$
+	Das hei\ss t $\forall w \in M$ gilt $$w\in L \iff \varphi(w) \in \varphi(L) \subseteq N\, .$$
 	
 	\subsubsection{Definition aperiodisch}
 	Ein Monoid $N$ ist aperiodisch genau dann, wenn alle Unterhalbguppen von $N$, die Gruppen sind, sind trivial, bzw. $N$ gruppenfrei ist.\\
@@ -2566,12 +2566,15 @@ mit
 			\item Konstruiere nun $\varphi \in \ltl$ mit $L(\varphi) = \{(w,1) \mid w \in \sigstern \text{ und } w,1 \models \varphi \text{ und } w \in L\}$
 		\end{enumerate}
 \subsubsection{Makros}
+\begin{multicols}{2}
 		\begin{itemize}
 		\item $\sF \varphi = \sT \sU \varphi$ mit $\sT = true$
 		\item $\sG \varphi = \neg \sF \neg \varphi$
 		\item $\neg(\varphi \sU \psi) = \sG \neg \psi \cup (\neg \varphi \sU \neg \varphi)$
 		\item $\varphi \sU \psi \iff \psi \lor (\varphi \land \varphi\sX\sU\psi)$
 	\end{itemize}
+\end{multicols}
+	
 Das unterste Makro ist möglich da $\varphi \sU \psi = (\varphi, \varphi, \ldots,\psi)$ und $$\neg (\varphi \sU \psi) = (\neg \psi, \neg \psi, \ldots, \neg\varphi) \lor (\neg \varphi, \neg \varphi, \ldots, \neg\psi)$$
 
 \subsubsection{Selbsttest und Übung}
