@@ -1679,7 +1679,7 @@
 		\label{fig:greens}
 	\end{figure} \\ 
 	
-	Im Allgemeinen gilt $\mathcal D \not = \mathcal J$, für endliche Monoide gilt jedoch $\mathcal D = \mathcal J$, was wir später noch zeigen werden. 
+	Im Allgemeinen gilt $\mathcal D \not = \mathcal J$, für endliche Monoide gilt jedoch $\mathcal D = \mathcal J$, was wir in Abschnitt~\ref{sec:dgleichj} noch zeigen werden. 
 
 	\subsubsection{Definition K-Trivial}		
 	Sei $\mathcal{K} \in \{\mathcal{H}, \mathcal{L},\mathcal{R}, \mathcal{D}, \mathcal{J}\}$, dann hei\ss t $M$, das zugehörige Monoid, $\mathcal{K}$-Trivial, falls $$x \sim_K y \implies x = y$$gilt.
@@ -1689,12 +1689,14 @@
 	$$\mathcal{H=L=R=D=J}=G \times G\, ,$$
 	weshalb diese Relationen auf Gruppen uninteressant sind.
 	
-	\subsubsection{Lemma}
-	Sei $x \in M$ und $|M| < \infty$, dann existiert genau eine Potenz $x^n \in M$ mit $x^n = x^{2n}$. Also gilt $x^n \in E(M))$ und wird mit $x\pom = x^n$ bezeichnet. 		
+	\subsubsection{Lemma: idempotente Potenzen}
+	Sei $x \in M$ und $|M| < \infty$. Dann existiert genau eine $x$-Potenz $x^n \in M$ mit $x^n = x^{2n}$. 
+	Für diese Potenz gilt also $x^n \in E(M)$ und sie wird mit $x\pom$ bezeichnet. 		
 	
 	\subsubsection{Beweis des Lemmas}
-	Es gilt $\forall x \in M $ existiert ein $t \in \N$ (thershold)  und $p \in \N$ mit $p \geq 1$ und $x^{t+p} = x^t \in M$
-	\begin{figure}[h!]
+	Für alle $x \in M $ existiert ein threshold $t \in \N$ und eine Zahl $p \in \N$ mit $p \geq 1$, sodass $x^{t+p} = x^t \in M$ gilt.
+	Abbildung~\ref{fig:idempotenz} veranschaulicht die Idee.
+	\begin{figure}[H]
 		\centering
 		\begin{tikzpicture}[node distance=1.9cm, auto]
 			\node (1) {$1$};
@@ -1715,72 +1717,80 @@
 			\draw[->] (xt1) edge   [bend left](dotslow) node[midway,sloped,above,rotate=0] {};
 			\draw[->] (dotslow) edge   [bend left] (xtpm1) node[midway,sloped,above,rotate=0] {};
 			\draw[->] (xtpm1) edge   [bend left] (xt) node[midway,sloped,above,rotate=0] {};
-			
 		\end{tikzpicture}
+		\caption{Bei wiederholter Verknüpfung mit $x$ wird, wegen der endlichen Anzahl an verschiedenen Elementen, irgendwann ein Element erneut erreicht.}
+		\label{fig:idempotenz}
 	\end{figure} 
-	\newline
 	
-	Wir sehen dass in der Folge $( x^i \mid i \in \N)$ ein $i < j$ mit $x^i = x^j$ existiert. Wir wählen nun $i=t$ minimal, dann ist $t+p = j$ minimal. 
-	Es folgt 
+	Wir sehen, dass in der Folge $( x^i \mid i \in \N)$ mindestens ein paar $(i,j)$ mit $i < j$ und $x^i = x^j$ existieren muss. Wir wählen nun $t=i$ minimal, dann ist auch $t+p = j$ minimal. 
+	Für die Idempotenz von $x^t$ gilt nun:
 	\begin{align*}
-		x^i = x^{2i} \implies i \geq t &\iff x^{t+j} = x^{2t + 2j} = x^{i + t2j} \\
+		x^{t+j} = x^{2t + 2j} = x^{t + t + 2j} 
 		&\iff j \equiv t + 2j \mod p \\
 		&\iff t \equiv -j \mod p
 	\end{align*}
 	\bewiesen
 	
 	\subsubsection{Beobachtung}
-	Sei $x^{t+p} = x^t$, dann gilt 
+	Sei $x^{t+p} = x^t$. Dann gilt: 
 	\begin{align*}
 		x^t \geqslant_{\mathcal{L, R}} x^{t+1} \geqslant_{\mathcal{L, R}} \ldots \geqslant_{\mathcal{L, R}} x^{t+p-1} \geqslant_{\mathcal{L, R}} x^{t+p} = x^t
 	\end{align*}
+	Also müssen alle $\mathcal{L}$- und $\mathcal{R}$-Klassen gleich sein.\\
 	Weiter sehen wir
 	\begin{align*}
-		&\implies x^t \greh x^t \, \, \forall i \in \N \\
-		&\implies \forall x \text{ gilt } x^{t+i} \in \mathcal{H}(x\pom), \text{ wobei } x\pom \in E(M)
+		x^{t+i} \greh x^t \, \, \forall i \in \N 
+		\implies \forall x \text{ gilt } x^{t+i} \in \mathcal{H}(x\pom), \text{ wobei } x\pom \in E(M) \text{gilt.}
 	\end{align*}
 	
-	\subsubsection{Lemma}
-	Sei $G \leq M$ eine Unterhalbgruppe, die eine Gruppe ist, dann $x\pom = y\pom = 1_G$
-	Es gilt dann $\forall x,y \in G \implies \exists x\pom = e \in M, \, e = 1_G$ und $ G \leq \mathcal H(e)$
+	\subsubsection{Lemma: Idempotente in Gruppen}
+	Sei $G \leq M$ eine Unterhalbgruppe, die eine Gruppe ist. 
+	Dann gilt $\forall x,y \in G:\, x\pom = y\pom = 1_G$.
+	Daraus folgt weiter: $\exists x\pom = e \in M, \, e = 1_G$ und $ G \leq \mathcal H(e)$.
 	
 	
-	\subsubsection{Lemma 7.42 (DAM)}
-	Sei $s \grej t$ und $M$ endlich mit $s = ptu$. Dann ist $t=qsv$. Nun gilt folgendes 
+	\subsubsection{Lemma: Folgerungen aus beidseitigen Idealen}
+	\label{sec:jklassen}
+	Sei $M$ ein endliches Monoid und sei weiter $s \grej t$ mit $s = ptu$ und $t=qsv$. Nun gilt Folgendes: 
 	\begin{enumerate}[label = \alph*)]
-		\item $s \lgrereq t \implies s \grer t$ (analog dazu für $\grel$)
+		\item $s \lgrereq t \implies s \grer t$ (Analoges gilt für $\grel$)
 		\item $\mathcal{L}(s) \cap \mathcal{R}(t) \not = \emptyset$
 		\item $\mathcal{D} = \mathcal{J}$
 	\end{enumerate}
 	
-	\subsubsection{Beweis des Lemma 7.42 \label{dam}(DAM)}
-	Der Beweis dazu ist auch im Buch (englischer Version) unter dem Lemma 7.42 zu finden.
+
+	Dieses Lemma und der zugehörige folgende Beweis können auch unter Lemma 7.42 des Buchs ``Discrete Algebraic Methods'' nachgelesen werden.
+	
+	\subsubsection{Beweis des Lemmas}
+	\label{sec:dgleichj}
 	\begin{enumerate}[label = \alph*)]
-		\item Sei $s \lgrereq t \implies s = tu$. Dann gilt 
+		\item Sei $s \lgrereq t$. \OE\hspace{1pt} setzen wir $p=1$, wodurch $s = tu$ gilt. Weiter gilt dann: 
 		\begin{align*}
 			t=qsv = qtuv&= q(qtuv)uv \\
 			&= q\pom t(uv)\pom \\
-			&= q\pom t(uv)\pom(uv)\pom \\
-			&= t(uv)\pom \in tuM = sM
+			&= q\pom t(uv)\pom(uv)\pom \quad |\text{ aufgrund der Idempotenz-Eigenschaft}\\
+			&= t(uv)\pom  \quad |\text{ durch Einsetzten in die entgegengesetzte Richtung}
 		\end{align*}
-		Es folgt also $t \lgrereq s \implies t \grer S$
+	 	Das Element $t(uv)\pom$ ist aus $tuM = sM$.\\
+		Es folgt also $t \lgrereq s \implies t \grer s$.
 		\bewiesen
 		
-		\item Sei $s=ptu$ und $t=qsv$. Dann gilt 
+		\item Nach Voraussetzung gilt $s=ptu$ und $t=qsv$. Daraus folgt: 
 		\begin{align*}
-			s=ptu &= (pq)s(uv) \\
+			s=ptu &= (pq)s(vu) \\
 			&=(pq)\pom s(vu)\pom \\
-			&= (pq)\pom(pq)\pom s (uv)\pom \\
+			&= (pq)\pom(pq)\pom s (vu)\pom \\
 			&= (pq)\pom s
 		\end{align*}
 		
-		$\implies s \lgreleq qs \implies s \grel qs$. Es bleibt dann zu zeigen, dass $qs \grer t$. 
-		Dies folgt durch Symetrie: $s \lgrereq sv \lgrereq s \implies s \grer sv$. \\ 
-		Also gilt $qs \grer qsv = t \implies qs \in \mathcal{L}(s) \cap \mathcal{R}(t) \not = \emptyset$
+		Somit gilt $s \lgreleq qs$, woraus $s \grel qs$ folgt. Es bleibt nun zu zeigen, dass $qs \grer t$ gilt. 
+		Durch Symmetrische Vorgehensweise bekommt man: $s \lgrereq sv$ und damit
+		$s \grer sv$. \\ 
+		Insgesamt gilt also $qs \grer qsv = t$ und $qs \in \mathcal{L}(s) \cap \mathcal{R}(t)$, wodurch diese Menge nicht leer sein kann.
 		\bewiesen
 		
-		\item Da $\mathcal{D} \subseteq \mathcal{J}$ gilt, reicht es zu zeigen dass $(s,t) \in \mathcal{J}$ und $(s,t) \in \mathcal{L} \circ \mathcal{R}$ gilt. 
-		Nach b) gilt $\exists qs = z$ mit $s \grel z \grer t$. Dies zeigt die Behauptung.
+		\item Da $\mathcal{D} \subseteq \mathcal{J}$ immer gilt, reicht es, die Implikation $(s,t) \in \mathcal{J} \implies (s,t) \in \mathcal{L} \circ \mathcal{R}$ zu zeigen. 
+		Nach b) gilt $\exists z = qs$ mit $s \grel z \grer t$. Dies zeigt die Behauptung.
 		\bewiesen
 	\end{enumerate}
 	
@@ -2131,7 +2141,7 @@
 	\bewiesen
 	
 	\subsubsection{Beweis der Aussage \ref{Aussage4}}
-	Sei $x\grel s$ dann folgt daraus $ xv \grel sv \grel t \implies xv \grej t$. Und somit ist $xv \lgrereq x$, nach dem Lemma \ref{dam} (im Buch 7.42) gilt dann $xu \grer x$ 
+	Sei $x\grel s$ dann folgt daraus $ xv \grel sv \grel t \implies xv \grej t$. Und somit ist $xv \lgrereq x$, nach dem Lemma \ref{sec:jklassen} (im Buch 7.42) gilt dann $xu \grer x$ 
 	
 	%Sorry dass das hässlich is aber ich bekomme es nicht hin dass es zentriert in der Seite eingebettet ist :(
 	%Wegen mir können wir das auch raus lassen
