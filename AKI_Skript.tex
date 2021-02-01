@@ -1603,43 +1603,61 @@
 	\end{itemize}
 	
 	\section{Halbgruppentheorie Teil 1 - Vorlesung 10}
-	\subsection{Greens Relations}
+	\subsection{Green's Relations}
 	\subsubsection{Definition Ideal}
 	Bei Idealen eines Rings unterscheidet man in sogenannte Links-, Rechts- und Beidseitige Ideale. 
-	Sei $I \subseteq R$ für einen Ring $R$. Dann ist $I$ ein Linksideal, falls 
+	Sei $I \subseteq R$ für einen Ring $R=(R,+,\cdot)$. Dann ist $I$ ein Linksideal, falls 
 	\begin{enumerate}[label= \arabic*.)]
 		\item $(I, +)$ bildet eine Untergruppe von $R$ 
 		\item $\forall a \in I, r \in R : r \cdot a \in I  $
 	\end{enumerate}
-	\subsubsection{Definition Greensrelations}	
-	Die folgenden Relationen sind alles Äquivalenz Relationen. 
+	gilt und analog ein Rechstideal falls 1.) von oben und
+	\begin{enumerate}[label= \arabic*.)]
+		\setcounter{enumi}{2}
+		\item $\forall a \in I, r \in R : a \cdot r \in I  $
+	\end{enumerate}
+	gilt.
+	Falls $I$ alle drei Kriterien erfüllt, ist es ein beidseitiges Ideal.\\
+	Ein Hauptideal ist ein, von einem einzigen Element erzeugtes, Ideal.
+	\newline
+	
+	Das Konzept lässt sich auch auf Monoide anwenden, indem man auf Kriterium 1.) verzichtet.
+	\subsubsection{Definition Green's Relations}	
+	Green's Relations sind die, im Folgenden für ein Monoid $M$ definierten, Äquivalenzrelationen $\mathcal{L,R, J, H}$ und $\mathcal{D}$. 
 	\begin{align*}
 		\mathcal L \subseteq M \times M: x \grel y &\iff Mx = My \\ 
 		&\iff x,y \text{ erzeugen identische Linksideale} \\
 		\mathcal R \subseteq M \times M: x \grer y &\iff xM = yM  \\ 
 		&\iff x,y \text{ erzeugen identische Rechtsideale} \\
 		\mathcal J \subseteq M \times M: x \grej y &\iff MxM = MyM \\ 
-		\mathcal H = \mathcal L \cap \mathcal R: x \greh y &\iff x \grel y \text{ und } x \grer y
+		&\iff x,y \text{ erzeugen identische beidseitige Ideale} \\
+		\mathcal H = \mathcal L \cap \mathcal R: x \greh y &\iff x \grel y \wedge x \grer y
 	\end{align*}
+	\newline
 	
-	Sowie 
+	Neben der $\sim$-Relation ist auch jeweils eine $\leq$-Relation wie folgt definiert:
 	\begin{align*}
 		\mathcal L \subseteq M \times M: x \lgreleq y &\iff Mx \subseteq My \\
 		\mathcal R \subseteq M \times M: x \lgrereq y &\iff xM \subseteq yM \\
 		\mathcal J \subseteq M \times M: x \lgrejeq y &\iff MxM \subseteq MyM  \\
-		\mathcal H \subseteq M \times M: x \lgreheq y &\iff x \lgreleq y \land x \lgrereq y \\
-		(s,t) \in \mathcal{D} &\iff \exists z: (s,z) \in \mathcal L \land (z,t) \in \mathcal R \\ 
-		&\iff (s,t) \in \mathcal L \mathcal{R} =  \mathcal R \mathcal{L}
+		\mathcal H \subseteq M \times M: x \lgreheq y &\iff x \lgreleq y \land x \lgrereq y 
 	\end{align*}
-	
-	Im Allgemeinen gilt für $R \subseteq X \times Y$ und $S \subseteq Y \times Z$
-	\begin{align*}
-		R \circ S &= \{(x,y) \in X \times Z \mid \exists y \in Y: (x,y) \in R, (y, z) \in S\} 
-	\end{align*} 
-	Bezogen auf die Greensrelations bedeutet das $$\mathcal L \circ \mathcal R = \{ (x,y) \subseteq M \times M \mid \exists z \in M : x \grel z \grer y \}$$
 	\newline
 	
-	Somit entsteht dann entsteht folgendes Bild 
+	Mit der allgemeinen Definition der Verknüpfung $\circ \,$ für $R \subseteq X \times Y$ und $S \subseteq Y \times Z$:
+	\begin{align*}
+		R \circ S &= \{(x,z) \in X \times Z \mid \exists y \in Y: (x,y) \in R, (y, z) \in S\} 
+	\end{align*}
+	können wir nun noch die fünfte Relation $\mathcal{D}$ angeben.  
+	Es gilt dann: 
+	\begin{align*}
+		\mathcal{D}&=\mathcal L \circ \mathcal R = \{ (x,y) \subseteq M \times M \mid \exists z \in M : x \grel z \grer y \}\\
+		&=\mathcal R \circ \mathcal L
+	\end{align*}
+	Ein Beweis über die Gleichheit von $\mathcal L \circ \mathcal R$ und $\mathcal R \circ \mathcal L$ findet sich im Abschnitt 7.18 des Buchs ``Discrete Algebraic Methods''.
+	 
+	\subsubsection{Beziehungen der Green's Relations}
+	Abbildung~\ref{fig:greens} veranschaulicht, wie die Relationen zueinander in Beziehung stehen. 
 	\begin{figure}[h!]
 		\centering
 		\begin{tikzpicture}[node distance=3cm, auto]
@@ -1657,13 +1675,19 @@
 			\draw[-] (LUR) -- (LDR) node[midway,sloped,above,rotate=0] {$\subseteq$};
 			\draw[-] (LDR) -- (J) node[midway,sloped,above,rotate=0] {$\subseteq$};
 		\end{tikzpicture}
-		\caption{Die Verbindungen zwischen den einzelnen Greensrelations}
+		\caption{Die Verbindungen zwischen den einzelnen Green's Relations.}
+		\label{fig:greens}
 	\end{figure} \\ 
 	
-	Im Allgemeinen gilt $\mathcal D \not = \mathcal J$, für endliche Halbgruppen jedoch $\mathcal D = \mathcal J$. Dies werden wir später noch zeigen. 
+	Im Allgemeinen gilt $\mathcal D \not = \mathcal J$, für endliche Monoide gilt jedoch $\mathcal D = \mathcal J$, was wir später noch zeigen werden. 
 
 	\subsubsection{Definition K-Trivial}		
-	Sei $K \in \{\mathcal{H}, \mathcal{L},\mathcal{R}, \mathcal{D}, \mathcal{J}\}$, dann heißt $\sim$, also die Relation,  $K$-Trivial, falls $$x \sim_K y \implies x = y$$
+	Sei $\mathcal{K} \in \{\mathcal{H}, \mathcal{L},\mathcal{R}, \mathcal{D}, \mathcal{J}\}$, dann hei\ss t $M$, das zugehörige Monoid, $\mathcal{K}$-Trivial, falls $$x \sim_K y \implies x = y$$gilt.
+	
+	\subsubsection{Green's Relations in Gruppen}
+	Für eine Gruppe $G$ gilt:
+	$$\mathcal{H=L=R=D=J}=G \times G\, ,$$
+	weshalb diese Relationen auf Gruppen uninteressant sind.
 	
 	\subsubsection{Lemma}
 	Sei $x \in M$ und $|M| < \infty$, dann existiert genau eine Potenz $x^n \in M$ mit $x^n = x^{2n}$. Also gilt $x^n \in E(M))$ und wird mit $x\pom = x^n$ bezeichnet. 		
