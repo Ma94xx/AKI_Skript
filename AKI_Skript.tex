@@ -1274,8 +1274,8 @@
 	
 	\subsubsection{Definition aperiodisch}
 	Ein Monoid $N$ ist aperiodisch genau dann, wenn alle Unterhalbguppen von $N$, die Gruppen sind, sind trivial, bzw. $N$ gruppenfrei ist.\\
-	Alternativ gilt: Ein Monoid $M$	ist aperidodisch, falls $$\forall x \in M\,\,\exists t \in \N \, : \, x^{t+1} = x^t \, .$$
-	Falls $M$ endlich ist, gilt: $$M \text{ ist aperiodisch} \iff \exists t \in \N\, \forall x \in M \, : x^{t+1} = x^t$$
+	Alternativ gilt: Ein Monoid $M$	ist aperidodisch, falls $$\exists t \in \N \, \forall x \in M\, : \, x^{t+1} = x^t \, .$$
+	Falls $M$ endlich ist, gilt: $$M \text{ ist aperiodisch} \iff \forall x \in M \, \exists t \in \N \,  : x^{t+1} = x^t$$
 	
 	
 	\subsubsection{Satz von Schützenberger}
@@ -1893,23 +1893,42 @@
 	\end{align*}
 	\bewiesen
 	
-	\subsubsection{Beweis $M_c$ ist Divisor von M}
-	Betrachte $\{x \in M \mid xc \in cM\}$ und die Rechtsmultiplikation durch $\rho_c$. Sei $\{x \in M \mid xc \in cM\}$ das lokale Monoid, dann gilt $1 \in \{x \in M \mid xc \in cM\}$ und $xc \in cM$ sowie $yc \in cM$ und so folgt $x \cdot yc \in M$. Nun gilt $$\rho_c(xy) = xyc = xc \circ ye = \rho_c(x) \circ \rho_c(y)$$ und somit ist 
+	\subsubsection{Beweis der Divisor-Eigenschaft des lokalen Divisors}
+	Betrachte das Untermonoid $M' :=\{x \in M \mid xc \in cM\}$ von $M$ mit folgender Rechtsmultiplikation:
 	\begin{align*}
-		\rho_c : \{x \in M \mid xc \in cM\} &\to cM \cap Mc \\
+		\rho_c: M' &\to M_c\\
 		x &\mapsto xc
-	\end{align*} wobei $\rho_c$ ein surjektiver Hom. ist. \\
-	Mit $cx = yc \in M_c$ gilt dann $z = \rho_c(y)$ und $y \in \{x \in M \mid xc \in cM\}$
+	\end{align*}
+	
+	Es ist leicht, zu sehen, dass $M'$ tatsächlich ein Untermonoid ist:
+	\begin{align*}
+		1 \in M' \text{ gilt, wegen }& 1c=c\in cM\\
+		xy \in M' \text{ gilt für } x, y \in M'\text{, wegen }& xc \in cM \wedge yc \in cM \implies xyc \in cM
+	\end{align*}
+	
+	 Nun gilt $$\rho_c(xy) = xyc = xc \circ yc = \rho_c(x) \circ \rho_c(y)\, ,$$ was bedeutet, dass $\rho_c$ ein Hom. ist.\\
+
+	Sei $z = cx = yc \in M_c$. 
+	Dann gilt $z = \rho_c(y)$ und $y \in \{x \in M \mid xc \in cM\}$, was die Surjektivität von $\rho_c$ zeigt.\\
+	
+	Wie sehen also insgesamt, dass $M_c$ ein Divisor ist.
 	\bewiesen
 	
-	\subsubsection{Lemma}
-	Sei $c\in M$, dann gilt $$M_c = cM \cap Mc = M \iff c \in U(M) \iff 1 \in cM \cap Mc$$
-	Also $\exists d : cd = dc = 1$, und insbesondere $c \in U(M)$ und $|M| < \infty$. Somit gilt $|M_c| < |M|$
+	\subsubsection{Lemma: Zusammenhang lokale Divisoren und Einheiten}
+	Sei $c\in M$. Dann gilt $$M_c = cM \cap Mc = M \iff c \in U(M) \iff \exists d \in M : cd = dc = 1 \iff 1 \in M_c\, .$$
+	Dabei bildet $U(M)$ die Menge der Einheiten in $M$.\\
+	Beachte: $U(M) = M \iff M$ ist Gruppe. \\
+	
+	Insbesondere folgt damit die Implikation $c \notin U(M) \wedge |M| < \infty \implies |M_c| < |M|$.
 	
 	\subsubsection{Beweis des Lemmas}
-	Sei $c \in U(M)$ und $cd = dc = 1$, dann gilt $\{x \in M \mid xc \in cM\}  = M$ und $cM = Md = M$ und $\rho_c\rho_d = id_M = \rho_d\rho_c$. 
-	Beachte: $U(M) = M \iff M$ ist Gruppe! 
-	Sei jetzt $c \in U(M)$ und angenommen $cM \cap Mc = M \implies \exists d : cd = d$. Dann folgt dass jedes $c$ ein Rechtsinverses hat und somit dass $M$ eine Gruppe ist.
+	Sei $c \in U(M)$. Dann gilt $cd = dc = 1$ für ein $d$.
+	Damit gilt $\{x \in M \mid xc \in cM\}  = M$ und $cM = Md = M$, sowie $\rho_c\rho_d = id_M = \rho_d\rho_c$. 
+	Also ist $M_c=M$, womit die erste Richtung bewiesen ist.\\
+	
+	Sei jetzt $c \notin U(M)$.
+	Angenommen, es gelte $cM \cap Mc = M$. 
+	Das führt zu $\exists d : cd = 1 \, \wedge \, \exists d': d'c=1$. Dann folgt dass, jedes $c$ ein Rechtsinverses hat und somit, dass $M$ eine Gruppe ist, woraus $c \in U(M)$ folgen würde, was ein Widerspruch ist und damit die zweite Richtung beweist.
 	\bewiesen
 	
 	\subsection{Aperiodische Monoide}
@@ -1923,7 +1942,7 @@
 	
 	Falls $M$ ein Monoid ist und $e\not = 1$, dann gilt $eMe \subsetneq M$.
 	
-	\subsubsection{Satz}
+	\subsubsection{Satz: Zusammenhang von Divisoren und Aperiodizität}
 	Sei $N$ ein Divisor von $M$, dann gilt: $$M \text{ ist aperiodisch} \implies N \text{ ist aperiodisch}$$
 	
 	\section{Beweis Satz von Schützenberger - Vorlesung 12}
