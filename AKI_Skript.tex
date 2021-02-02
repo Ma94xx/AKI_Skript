@@ -1878,17 +1878,18 @@
 	wobei hier $\mathbb{F}_3 = \Z / 3\Z$ gesetzt wird.
 	
 	\subsubsection{Definition lokaler Divisor}
-	Sei $M$ eine Monoid und $c \in M$. Dann sei $M_c = cM \cap Mc \subseteq M$ und $\circ$ die Multiplikation mit $$xc \circ cy = xcy$$
-	Dann heißt $M_c = (\{cM \cap Mc\}, \circ, c)$ der lokale Divisor von $M$ bei $c$.
+	Sei $M$ eine Monoid und $c \in M$. Dann sei $M_c = cM \cap Mc$ eine Teilmenge von $M$ und $\circ$ die folgende Multiplikation: $$xc \circ cy = xcy$$
+	Dann hei\ss t $M_c = (\{cM \cap Mc\}, \circ, c)$ der lokale Divisor von $M$ bei $c$.
 	
-	\subsubsection{Wohldefiniertheit und Assoziativiät der Definition}
-	Für die Wohldefiniertheit sei $x'c \circ cy' = x'cy'$, und seien $x = x'c = x''c$ und $y = cy' = cy''$. Es ist zu zeigen dass $x'c \circ cy' = x''c \circ cy''$ gilt. Dies ist der Fall, da $$x'c \circ cy' = x'cy' = x''cy' = x''cy''$$ gilt. 
+	\subsubsection{Beweis der Wohldefiniertheit und Assoziativität der Definition}
+	Für die Wohldefiniertheit betrachten wir $x'c \circ cy' = x'cy'$.
+	Seien nun $x = x'c = x''c$ und $y = cy' = cy''$. Es ist zu zeigen, dass $x'c \circ cy' = x''c \circ cy''$ gilt. Dies ist der Fall, da $$x'c \circ cy' = x'cy' = (x'c)y' = x''cy' = x''(cy')= x''cy''$$ gilt. 
 	
-	Für die Assoziativität gilt 
+	Die Assoziativität sieht man folgenderma\ss en:
 	\begin{align*}
-		(x'c \circ y'c)z'c &= (x'y')z'c \\
+		(x'c \circ y'c)\circ z'c &= (x'y')z'c \\
 		&= x'(y'z')c \\
-		&= x'c \cdot (y'c \cdot z'c)
+		&= x'c \circ (y'c \circ z'c)
 	\end{align*}
 	\bewiesen
 	
@@ -1913,15 +1914,14 @@
 	
 	\subsection{Aperiodische Monoide}
 	\subsubsection{Definition lokales Untermonoid}
-	Sei $M$ eine Halbgruppe  und $E(M) = \{eeM \mid e^2 = e\}$. Dann ist das lokale Untermonoid bei $e$ definiert durch die Menge $eMe$ mit 
-	\[
-	\left. 
-	\begin{array}{lr}
-		exe = eye \in M\\
-		e(exe) = (exe)e = exe 
-	\end{array}\right\} \implies e \text{ ist neutral}
-	\]
-	Falls $M$ ein Monoid ist und $e\not = 1$, dann gilt $eMe \subsetneq M$ für $e^2 = e$
+	Sei $M$ eine Halbgruppe  und $E(M) = \{e \in M \mid e^2 = e\}$. Dann ist das lokale Untermonoid bei $e$ (für $e \in E(M)$) definiert durch die Menge $eMe$.
+	Die Abgeschlossenheit und die Existenz eines neutralen Elementes kann man folgenderma\ss en sehen:
+	\begin{align*}
+		exe \cdot eye = e \cdot (xeey) \cdot e \quad \implies exe \cdot eye \in M\\
+		e(exe) = (ee)\cdot(xe) = exe = (ex)\cdot (ee) = (exe)e\quad \implies e \text{ ist neutral}
+	\end{align*}
+	
+	Falls $M$ ein Monoid ist und $e\not = 1$, dann gilt $eMe \subsetneq M$.
 	
 	\subsubsection{Satz}
 	Sei $N$ ein Divisor von $M$, dann gilt: $$M \text{ ist aperiodisch} \implies N \text{ ist aperiodisch}$$
