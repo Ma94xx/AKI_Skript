@@ -1797,8 +1797,16 @@
 	\section{Divisoren, aperiodische Monoide - Vorlesung 11}
 	\subsection{Divisoren}
 	\subsubsection{Definition Subquotient}
-	Sei $L \subseteq M$ und $A$ ein DFA mit $L=L(A)$. \\ 
-	Dann existiert ein Subautomat $A'$ mit $Q_L = \{L(u) \mid u \in M\}$ und $L(u) = \{ v \in M \mid uv \in L\}$. 
+	\label{sec:subquotient}
+	Sei $M$ ein Monoid,  $L \subseteq M$ eine Sprache und $A$ ein DFA mit $L=L(A)$. \\ 
+	Dann existiert ein Subautomat $A'$ von $A$, der $L$ auch erkennt, mit der Zustandsmenge $Q_{A'} = \{q_0u \mid u \in M\}$, wobei $q_0$ der Startzustand ist.\\
+	Weiter wissen wir nach Abschnitt~\ref{sec:min_dfa}, dass es auch einen minimalen erkennenden Automaten $A_L$ gibt mit der Zustandsmenge
+	$Q_{A_L}=\{L(u) \mid u \in M\}$, wobei $L(u) = \{ v \in M \mid uv \in L\}$ gilt. \\
+	Nun lässt sich folgende surjektive Abbildung definieren, welche in Abbildung~\ref{fig:subquotient} visualisiert ist:
+	\begin{align*}
+		A' &\to A_L\\
+		q_0u &\mapsto L(u)
+	\end{align*}
 	Wir nennen dann $A_L$ den Subquotient von $A$.
 	
 	\begin{figure}[h!]
@@ -1811,10 +1819,16 @@
 			\draw[right hook->] (AS) -- (A) node[ midway,sloped,above,rotate=0] { };
 			\draw[ ->>] (AS) -- (AL) node[ midway,right,rotate=0] { $q = u \mapsto L(u)$};
 		\end{tikzpicture}
+		\caption{Beziehung der Automaten und Subquotienten.}
+		\label{fig:subquotient}
 	\end{figure} 
 	
-	\subsubsection{Definition Subquotient}
-	Wir betrachten nun $\varphi: M \to N$ mit $L = \varphi\inv \varphi(L)$ und $\varphi$ erkennt $L \subseteq M$.
+	\subsubsection{Subquotienten in syntaktischen Monoiden}
+	Analog zu Abschnitt~\ref{sec:subquotient}, kann man auch Subquotienten für syntaktische Monoide definieren.
+	Wir betrachten dafür den Monoidhomomorphismus $\varphi: M \to N$ mit $L = \varphi\inv \varphi(L)$. 
+	Das bedeutet, $\varphi$ erkennt $L \subseteq M$.
+	In Abbildung~\ref{fig:subquotient_monoid} ist nun zu sehen, dass wir wieder eine surjektive Abbildung haben ($\varphi$) und es dadurch auch einen eindeutig bestimmten Hom. von $\varPhi(M)$ nach $M_L$ gibt.
+	Hier ist nun $M_L$ der Subquotient von $N$.
 	\begin{figure}[h!]
 		\centering
 		\begin{tikzpicture}[node distance=2.9cm, auto]
@@ -1822,25 +1836,27 @@
 			\node (PM) [right of=AS] {$\varphi(M) \leq N$};
 			\node (ML) [below of=AS] {$M_L$};
 			
-			\draw[->] (M) -- (PM) node[ midway,sloped,above,rotate=0] { $\varphi$};
+			\draw[->>] (M) -- (PM) node[ midway,sloped,above,rotate=0] { $\varphi$};
 			\draw[ ->] (M) -- (ML) node[ midway,right,rotate=0] { $\varphi_L$};
 			\draw[ dotted, ->] (PM) -- (ML) node[ midway,right,rotate=0] {$\exists! \psi$};
 		\end{tikzpicture}
+		\caption{Beziehung der Monoide.}
+		\label{fig:subquotient_monoid}
 	\end{figure} 
 	
-	Wobei $M_L = \{[u] \mid u \in M\}$, $ \psi(\varphi(u))= [u]$, und $[u] =\{u \in M \mid u \equiv_L v\}$ gilt
+	Hierbei gilt $M_L = \synt(L) = \{[u] \mid u \in M\}$, $ \psi(\varphi(u))= [u]$, und $[u] =\{v \in M \mid u \equiv_L v\}$.
 	
 	\subsubsection{Definition Divisor}
-	$M$ ist ein Divisor von $N$, falls es ein Untermonoid $N'$ von $N$ gibt und ein surjektiverHom. $$\psi: N' \to M$$ existiert. Wir schreiben dann $M \prec N$
+	$M$ ist ein Divisor von $N$, falls es ein Untermonoid $N'$ von $N$ gibt und ein surjektiver Hom. $$\psi: N' \to M$$ existiert. Wir schreiben dann $M \prec N$.
 	
-	\subsubsection{Beispiel}
-	Sie $Q_8 = \pm \{1, i ,j, k\}$ mit $i^2 = j^2 = k^2 = -1$ und den folgenden Rechenregeln
+	\subsubsection{Beispiel für Divisoren in Gruppen}
+	Wir betrachten die Quaternionenruppe $Q_8 =  \{\pm1, \pm i ,\pm j, \pm k\}$ mit $i^2 = j^2 = k^2 = -1$ und den folgenden Verknüpfungsregeln:
 	\begin{align*}
 		ij &= k && jk = i  \\ 
 		ik&=-j 	&& ki = j \\
 		ji&= -k && kj = -i \\
 	\end{align*}
-	Wir betrachten also eine Art ''Stellwerk'''
+	Man kann sich die Verknüpfung also als eine Art ``Stellwerk'' vorstellen, wie in Abbildung~\ref{fig:quaternion} dargestellt.
 	\begin{figure}[h!]
 		\centering
 		$ \begin{array}{ccc}
@@ -1851,12 +1867,15 @@
 				} 
 			\end{tikzpicture}
 		\end{array}$
+		\caption{Verknüpfung in der Quaternionengruppe}
+		\label{fig:quaternion}
 	\end{figure}
 	
-	Dann gilt $Z(Q_8) = \{1, -1\}$ und $Q_8/Z(Q_8) = V = \Z/2\Z \times\Z/2\Z$.
-	Wir behaupten dann, dass $V$ der Divisor in $Q_8  \rtimes \Z / 3\Z$ (semidirektes Produkt), aber weder eine Untergruppe noch ein Quotient ist.
+	Dann ist das Zentrum $Z(Q_8) = \{1, -1\}$ und es gilt $Q_8/Z(Q_8) = V = \Z/2\Z \times\Z/2\Z$.\\
+	Wir behaupten dann, dass $V$ ein Divisor des semidirekten Produkts $Q_8  \rtimes \Z / 3\Z$ ist, aber weder eine Untergruppe noch ein Quotient davon ist.
 	
-	Zu Erklärung betrachte man: $Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)$ und $\mathbb{F}_3 = \Z / 3\Z$ ist ein Körper.
+	Wir verzichten auf einen Beweis, aber zur Erklärung betrachte man die Isomorphie zur speziellen linearen Gruppe von Grad 2 über einem Körper mit drei Elementen $$Q_8  \rtimes \Z / 3\Z = SL(2, \mathbb{F}_3)\, ,$$ 
+	wobei hier $\mathbb{F}_3 = \Z / 3\Z$ gesetzt wird.
 	
 	\subsubsection{Definition lokaler Divisor}
 	Sei $M$ eine Monoid und $c \in M$. Dann sei $M_c = cM \cap Mc \subseteq M$ und $\circ$ die Multiplikation mit $$xc \circ cy = xcy$$
