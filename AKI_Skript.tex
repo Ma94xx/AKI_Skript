@@ -1978,7 +1978,7 @@
 	
 	\subsection{Satz und Beweis}
 	\subsubsection{Satz von Schützenberger}
-	Es gilt: 
+	Für ein Alphabet $A$ gilt: 
 	\begin{align*}
 		L \in \starfree(A) &\iff L \text{ wird von einem endlichen aperiodischen Monoid erkannt } \\ 
 		&\iff \synt(L) \text{ ist aperiodisch }
@@ -2006,36 +2006,41 @@
 	
 	Damit ist die erste Richtung des Satzes für alle Fälle bewiesen. 
 	
-	\subsubsection{Beweis des Satzes (Schützenberger) - Lemma \label{Lemma:Schütz}}
-	Sei $M$ aperiodisch, und $\forall x \in M: x^{t+1} = x^t $, wobei $M \not = \{1\}$ und $M = \langle \Sigma \rangle$ gilt. 
-	Dann gibt es ein $c \in \Sigma$ mit $1 \not \in cM \cap Mc$
+	\subsubsection{Lemma: Erzeugende aperiodischer Monoide \label{Lemma:Schütz}}
+	Sei $M$ aperiodisch und gelte $M \not = \{1\}$, sowie $M = \langle \Sigma \rangle$ (Das bedeutet, $M$ wir von einer endlichen Teilmenge $\Sigma$ erzeugt.). 
+	Dann gibt es ein $c \in \Sigma$ mit $1 \not \in cM \cap Mc$.
 	
-	\subsubsection{Beweis des Satzes (Schützenberger) - Beweis des Lemmas}
-	Sei $w \in McM$ mit $w = 1$. Dann ist $w = ucv$. 
+	\subsubsection{Beweis des Lemmas}
+	Sei $w \in McM$ mit $w = 1$ für ein Element $c \in \Sigma$. Dann gilt $w = ucv$ für Elemente $u,v \in M$ und es folgt: 
 	\begin{align*}
-		&\implies uc(ucu)v = 1 \\
-		&\implies 1 = w = (uc)^t v^t \\
-		&\implies w = (uc)^t v^{t+1} \\
+		ucv = 1 &\implies uc(ucv)v = 1 \\
+		&\implies 1 = (uc)^t v^t \quad |\, t\text{ ist hier der threshold des Monoids}\\
+		&\implies 1 = (uc)^t v^{t+1} \\
 		&\implies v = 1
 	\end{align*}
-	Analog dazu gilt $ucv = 1 \implies u = 1$. Also gilt $w = 1 \implies c = 1$. 
-	Da nun $M \not \{1\}$ gilt, existiert ein $c = \Sigma$ mit $c \not = 1$. Sollte es eine $1 \in cM \cap Mc \subseteq McM$ geben, dann ist $c = 1$
+	Analog dazu gilt auch $ucv = 1 \implies u = 1$. Also folgt $w = 1 \implies c = 1$. 
+	Da nun $M \not= \{1\}$ gilt, existiert ein $c = \Sigma$ mit $c \not = 1$. Angenommen es gibt eine $1 \in cM \cap Mc \subseteq McM$, dann ist $c = 1$, was einen Widerspruch ergibt.
 	\bewiesen
 	
 	\subsubsection{Beweis des Satzes (Schützenberger) - Zweite Richtung}
-	Sei $\synt(L)$ aperiodisch und endlich, dann gilt $ L \in \synt(A)$. Weiter sei $\varphi: \aast \to \synt(L)$ ein surjektiver Hom. Beachte $A_1 = \{a \in A \mid \varphi(a) = 1\}$.
-	Dann folgt aus dem Lemma \ref{Lemma:Schütz} $$\varphi\inv(1) = \aast_1$$ sowie $\aast_1 \in \starfree(A)$.
+	Für die zweite Richtung ist $\synt(L)\text{ ist aperiodisch} \implies L \in \starfree(A)$ zu zeigen.\\
+	Sei also nun $\synt(L)$ aperiodisch und endlich. Weiter sei $\varphi: \aast \to \synt(L)$ ein surjektiver Hom.. 
+	Wir betrachten nun die Elemente, die auf 1 abgebildet werden $A_1 = \{a \in A \mid \varphi(a) = 1\}$.
+	Dann folgt aus dem Lemma \ref{Lemma:Schütz}, dass $$\varphi\inv(1) = \aast_1\, ,$$ sowie $\aast_1 \in \starfree(A)$ gilt.
 	\newline
 	
-	Wir nehmen nun one Einschränkung an, dass $A\setminus A_1 \not = \emptyset$ ist, da sonst $\synt(L) = \{1\}$ wäre. Also existiert ein $c \in A$ mit $\varphi(c) \not = 1$. Wir setzen nun $B = A \setminus \{c\}$ und es ist $|B| < |A|$ sowie $|\varphi(c)M \cap M\varphi(c)|< |M|$. 
-	Der Beweis wird nun durch Indusktion geführt nach $(|M|, |A|)$ mit lexikographischer Ordnung. 
+	Wir nehmen nun ohne Einschränkung an, dass $A\setminus A_1 \not = \emptyset$ ist, da sonst $\synt(L) = \{1\}$ wäre. Also existiert ein $c \in A$ mit $\varphi(c) \not = 1$. Wir setzen nun $B = A \setminus \{c\}$ und damit ist $|B| < |A|$, sowie $|\varphi(c)M \cap M\varphi(c)|< |M|$. \\
+	Der Beweis wird nun durch Induktion nach $(|M|, |A|)$ mit lexikographischer Ordnung geführt. 
 	\newline
 	
-	Man betrachte nun den \textit{Gigant-Step}: Es gilt
+	Die lexikographische Ordnung funktioniert folgenderma\ss en. Es gilt
 	\begin{align*}
-		(|M'|, |A'|) \leq (|M|, |A|) \iff |M'| < |M|
+		(|M'|, |A'|) \leq (|M|, |A|) \iff |M'| < |M|\quad \text{(\textit{Giant-Step})}
 	\end{align*}
-	Oder  den \textit{Baby-Step}: Es ist $|M'| = |M|$ und $|A'| \leq |A|$ falls $|A'| < |A|$. 
+	und  
+	\begin{align*}
+		(|M'|, |A'|) \leq (|M|, |A|) \iff |M'| = |M| \wedge |A'| \leq |A|  \quad \text{(\textit{Baby-Step})}.
+	\end{align*}
 	\newline
 	
 	Sei nun $\varphi\inv\varphi(L) = \bigcup \{\varphi\inv(P) \mid p \in \varphi(L)\}$. Wir zeigen dann $ \varphi\inv(P) \in \starfree(A)$. \\ 
