@@ -2052,46 +2052,51 @@
 	Da wir oben schon gesehen haben, dass $\aast_1 \in \starfree(A)$ gilt, zeigen wir nur noch $\varphi\inv(p) \in \starfree(A)$ für $p \not = 1$.  \\
 	
 	Es gilt $$\varphi\inv(p) = \bigcup \{\varphi\inv (s) c \varphi\inv(r) \mid s\varphi(c)r = p, \, \varphi(c) \not = 1, \, c \in A\}\, .$$
-	Sei nun $c\in A$ fest gewählt mit $\varphi(c) \not = 1$. Dann müssen wir nunn zeigen, dass $\varphi\inv(s)c\varphi\inv(r) \in \starfree(A)$ gilt. 
+	Sei nun $c\in A$ fest gewählt mit $\varphi(c) \not = 1$. Dann müssen wir nun zeigen, dass $\varphi\inv(s)c\varphi\inv(r) \in \starfree(A)$ gilt. 
 	\newline
 	
 	Wir nehmen hier nun ohne Einschränkung an, dass $\aast \cap M = \{1, c\}$ und $\varphi(c)=c$ gilt, was durch mengentheoretisches Umbenennen erreicht werden kann. \\
-	Nun sei $\aast = \bast \cup \bast (c \bast) c \bast$ für $B = A \setminus \{c\}$. Zeige nun $\varphi\inv(p) \cap \bast(c\bast)^\ast c\bast \in \starfree(A)$: 
+	Nun sei $\aast = \bast \cup \bast (c \bast) c \bast$ für $B = A \setminus \{c\}$.
+	Dann zeigen wir $\varphi\inv(p) \cap \bast(c\bast)^\ast c\bast \in \starfree(A)$. 
+	Es gilt:
 	\begin{align*}
 		\varphi\inv(p) \cap \bast(c\bast)^\ast c\bast = \bigcup \{(\varphi\inv(q) \cap \bast)(\varphi\inv(r)\cap(c\bast)^\ast c) (\varphi\inv(s) \cap \bast) \mid p = qrs\}
 	\end{align*} 
-	Also gilt $\varphi\inv(q) \cap \bast \in \starfree(B) \subseteq \starfree(A)$ nach dem \textit{Baby-Step} ($|B| < |A|$). 
+	Es folgt $\varphi\inv(q) \cap \bast \in \starfree(B) \subseteq \starfree(A)$ nach \textit{Baby-Step-Induktion}, da $|B| < |A|$ gilt. 
+	Gleiches gilt für $\varphi\inv(q) \cap \bast$.
 	\newline
 	
-	Es reicht also wenn wir zeigen dass $\varphi\inv(p) \cap (c\bast)c \in \starfree(A)$ für alle $p \in M$ gilt. 
+	Es reicht also, wenn wir uns auf den mittleren Teil, $(\varphi\inv(r)\cap(c\bast)^\ast c)$, konzentrieren und zeigen, dass $\varphi\inv(p) \cap (c\bast)^*c \in \starfree(A)$ für alle $p \in M$ gilt. \\
 	
-	\begin{figure}[h!]
+	Man kann sich den Zusammenhang der benutzten Monoide an der folgenden Abbildung verdeutlichen, wobei 
+	 $$T = \{[v] \mid  [v] = \varphi(v), \, v \in \bast\} \subseteq M$$ ein endliches Alphabet ist, $\psi$ durch $$\psi[v] = c\varphi(v)c \in cM \cap Mc$$ definiert ist und $\sigma$ durch
+	$$\sigma(cv_1 \cdots cv_k) = [v_1] \cdots [v_k] \in T^k \subseteq T^\ast\, .$$
+	
+	\begin{figure}[H]
 		\centering
 		\begin{tikzpicture}[node distance=5.5cm, auto]
 			\node (cb) {$(c\bast)^\ast$};
 			\node (t) [right of=cb] {$T^\ast$};
 			\node (xm) [below of=cb] {$\{x \in M \mid xc \in cM\}$};
-			\node (mc) [right of=xm] {$M_c = (\{cM\cap Mc, \cdot, c\})$};
+			\node (mc) [right of=xm] {$M_c = (cM\cap Mc, \circ, c)$};
 			
 			\draw[->] (cb) -- (t) node[ midway,sloped,above,rotate=0] { $\sigma$};
 			\draw[ ->] (cb) -- (xm) node[ midway,right,rotate=0] { $\varphi$};
 			\draw[ ->] (xm) -- (mc) node[ midway,above,rotate=0] { $\rho_c$};
 			\draw[ ->] (t) -- (mc) node[ midway,right,rotate=0] { $\psi$};
 		\end{tikzpicture}
-	\end{figure} wobei  $\rho_c(x) = xc$ gilt. Wir stellen nun folgende Dinge fest: 
-	\begin{itemize}
-		\item $T = \{[v] \mid  [v] = \varphi(v), \, v \in \bast\} \subseteq M$ zu dem wird $T$ ein endliches Alphabet.
-		\item $\psi[v] = c\varphi(v)c \in cM \cap Mc$
-		\item $\sigma(cv_1 \cdots cv_k) = [v_1] \cdots [v_k] \in T^k \in T^\ast$
-	\end{itemize}
-	Es gilt $$\varphi\ast(p) \cap (c\bast)^\ast c = \bigcup \{\varphi\inv(q) \cap (c\bast)^\ast\mid qc = p\}c$$ Wähle nun $q \in \varphi(c\bast)^\ast$ fest und zeige $\varphi\inv(q) \cap (c\bast)^\ast \in \starfree(A)$. \\ 
-	Es gilt 
+	\end{figure}
+	
+	Um nun $\varphi\inv(p) \cap (c\bast)^*c \in \starfree(A)$ zu zeigen, betrachten wir $$\varphi\ast(p) \cap (c\bast)^\ast c = \bigcup \{\varphi\inv(q) \cap (c\bast)^\ast\mid qc = p\}c\, .$$
+	Dann wählen wir ein festes $q \in \varphi(c\bast)^\ast$ und zeigen $(\varphi\inv(q) \cap (c\bast)^\ast)c \in \starfree(A)$. \\ 
+	Es gilt: 
 	\begin{align*}
 		w \in \varphi\inv(q) \cap (c\bast)^\ast c \iff w = vc \text{ für ein } v \text{ mit } \varphi(v) = q
 	\end{align*} 
-	Also ist $\rho_c\varphi(v) = q \cdot c$ und $v =cv_1 \cdots cv_k$ mit $k \geq 0$ für alle $i \in \bast$ eindeutig. Man sieht dann $\sigma(v) = [v_1] \cdot [v_k] \in T^k \subseteq T^\ast$ mit 
+	Also ist $\rho_c\varphi(v) = q \cdot c$ und $v =cv_1 \cdots cv_k$ mit $k \geq 0$, wobei die $i \in \bast$ eindeutig sind. 
+	Weiter gilt dann $\sigma(v) = [v_1] \cdots [v_k] \in T^k \subseteq T^\ast$ mit 
 	\begin{align*}
-		\psi(v) &= [cv_1c] \circ \ldots \circ [cv_kc] \\
+		\psi\sigma(v) &= [cv_1c] \circ \ldots \circ [cv_kc] \\
 		&= cv_1 \cdots cv_kc \\
 		&= \varphi(v) \cdot c \\ 
 		&=\rho_c \varphi(v) \\
@@ -2099,8 +2104,11 @@
 	\end{align*}
 	\newline
 	
-	Nun \textit{ Gigant-Step- Induktion}: Es gilt $\psi(qc) \in \starfree(T)$, da $|M_c| < |M|$. Beachte $|T| \leq |M|$. Es bleibt jetzt nur noch zu zeigen dass 
-	$$ K \in \starfree(T) \implies \sigma\inv(K) \in \starfree(A)$$ Wir zeigen $K = \{1\} \implies \sigma\inv(1) \cap (c\bast)^\ast = \{1\} \in \bast$ und $\{1\} \in \starfree(A)$.
+	Nach einem Schritt der \textit{Gigant-Step- Induktion} gilt $\psi\inv(qc) \in \starfree(T)$, da $|M_c| < |M|$. Beachte: es gilt $|T| \leq |M|$.\\
+	Es bleibt jetzt nur noch zu zeigen, dass 
+	$$ K \in \starfree(T) \implies \sigma\inv(K) \in \starfree(A)$$
+	gilt.
+	Wir zeigen $K = \{1\} \implies \sigma\inv(1) \cap (c\bast)^\ast = \{1\} \in \bast$ und $\{1\} \in \starfree(A)$.
 	\newline
 	
 	Dafür sei $t \in T$, dann ist $\sigma\inv(t) \in \starfree(K)$, denn 
