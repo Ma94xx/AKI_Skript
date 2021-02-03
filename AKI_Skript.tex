@@ -2024,15 +2024,18 @@
 	
 	\subsubsection{Beweis des Satzes (Schützenberger) - Zweite Richtung}
 	Für die zweite Richtung ist $\synt(L)\text{ ist aperiodisch} \implies L \in \starfree(A)$ zu zeigen.\\
-	Sei also nun $\synt(L)$ aperiodisch und endlich. Weiter sei $\varphi: \aast \to \synt(L)$ ein surjektiver Hom.. 
+	Sei also nun $M$ aperiodisch und endlich. Weiter sei $\varphi: \aast \to M$ ein surjektiver Hom.. 
 	Wir betrachten nun die Elemente, die auf 1 abgebildet werden $A_1 = \{a \in A \mid \varphi(a) = 1\}$.
-	Dann folgt aus dem Lemma \ref{Lemma:Schütz}, dass $$\varphi\inv(1) = \aast_1\, ,$$ sowie $\aast_1 \in \starfree(A)$ gilt.
+	Dann folgt aus dem Lemma \ref{Lemma:Schütz}, dass $$\varphi\inv(1) = \aast_1\, ,$$ sowie $\aast_1 \in \starfree(A)$, wegen
+	\begin{align*}
+		\aast_1 = A \setminus \bigcup \{\aast a \aast \mid  a \in A \setminus A_1\} \in \starfree(A)
+	\end{align*}
+	und $\aast = \aast \setminus \emptyset$ und $\emptyset \in \starfree(A)$ gilt.
 	\newline
 	
 	Wir nehmen nun ohne Einschränkung an, dass $A\setminus A_1 \not = \emptyset$ ist, da sonst $\synt(L) = \{1\}$ wäre. Also existiert ein $c \in A$ mit $\varphi(c) \not = 1$. Wir setzen nun $B = A \setminus \{c\}$ und damit ist $|B| < |A|$, sowie $|\varphi(c)M \cap M\varphi(c)|< |M|$. \\
-	Der Beweis wird nun durch Induktion nach $(|M|, |A|)$ mit lexikographischer Ordnung geführt. 
-	\newline
 	
+	Der Beweis wird nun durch Induktion nach $(|M|, |A|)$ mit lexikographischer Ordnung geführt. \\
 	Die lexikographische Ordnung funktioniert folgenderma\ss en. Es gilt
 	\begin{align*}
 		(|M'|, |A'|) \leq (|M|, |A|) \iff |M'| < |M|\quad \text{(\textit{Giant-Step})}
@@ -2043,20 +2046,17 @@
 	\end{align*}
 	\newline
 	
-	Sei nun $\varphi\inv\varphi(L) = \bigcup \{\varphi\inv(P) \mid p \in \varphi(L)\}$. Wir zeigen dann $ \varphi\inv(P) \in \starfree(A)$. \\ 
-	Es ist $\varphi\inv(1) = \aast_1$ mit $A_1 = \{a \in A \mid \varphi(a) = 1\}$ und 
-	\begin{align*}
-		\aast_1 = A \setminus \bigcup \{\aast a \aast \mid  a \in A \setminus A_1\} \in \starfree(A)
-	\end{align*}
+	Es gilt $\varphi\inv\varphi(L) = \bigcup \{\varphi\inv(p) \mid p \in \varphi(L)\}$. Daher reicht es, $ \varphi\inv(p) \in \starfree(A)$ für $p \in \varphi(L)$ zu zeigen, um $L \in \starfree(A)$ zu beweisen. \\ 
+
 	
-	da $\aast = \aast \setminus \emptyset$ und $\emptyset \in \starfree(A)$. Wir zeigen daher nur $\varphi\inv(p) \in \starfree(A)$ für $P \not = 1$.  \\
+	Da wir oben schon gesehen haben, dass $\aast_1 \in \starfree(A)$ gilt, zeigen wir nur noch $\varphi\inv(p) \in \starfree(A)$ für $p \not = 1$.  \\
 	
-	Es gilt $$\varphi\inv(p) = \bigcup \{\varphi\inv (s) c \varphi\inv(r) \mid s\varphi(c)r = p, \, \varphi(c) \not = 1, \, c \in A\}$$
-	Sei nun $c\in A$ fest gewählt mit $\varphi(c) \not = 1$. Es wird gezeigt dass $\varphi\inv(s)c\varphi\inv(r) \in \starfree(A)$ gilt: 
+	Es gilt $$\varphi\inv(p) = \bigcup \{\varphi\inv (s) c \varphi\inv(r) \mid s\varphi(c)r = p, \, \varphi(c) \not = 1, \, c \in A\}\, .$$
+	Sei nun $c\in A$ fest gewählt mit $\varphi(c) \not = 1$. Dann müssen wir nunn zeigen, dass $\varphi\inv(s)c\varphi\inv(r) \in \starfree(A)$ gilt. 
 	\newline
 	
-	Wir nehmen hier nun ohne Einschränkung an dass $\aast \cap M = \{1, c\}$ duch Mengenschreibweise umbenannt werden kann. 
-	Man schreibt dann $\aast = \bast \cup \bast (c \bast) c \bast$ für $B = A \setminus \{c\}$. Zeige nun $\varphi\inv(p) \cap \bast(c\bast)^\ast c\bast \in \starfree(A)$: 
+	Wir nehmen hier nun ohne Einschränkung an, dass $\aast \cap M = \{1, c\}$ und $\varphi(c)=c$ gilt, was durch mengentheoretisches Umbenennen erreicht werden kann. \\
+	Nun sei $\aast = \bast \cup \bast (c \bast) c \bast$ für $B = A \setminus \{c\}$. Zeige nun $\varphi\inv(p) \cap \bast(c\bast)^\ast c\bast \in \starfree(A)$: 
 	\begin{align*}
 		\varphi\inv(p) \cap \bast(c\bast)^\ast c\bast = \bigcup \{(\varphi\inv(q) \cap \bast)(\varphi\inv(r)\cap(c\bast)^\ast c) (\varphi\inv(s) \cap \bast) \mid p = qrs\}
 	\end{align*} 
