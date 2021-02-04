@@ -2141,7 +2141,7 @@
 		\item  \label{Aussage1}$(\hcal(c), \circ, c) = U(M_c, \circ, c)$. Man nennt das das Schützenberger Produkt auf $\hcal(c)$.
 		\item  \label{Aussage2} Sei $s \grer t$ mit $s = tu \land t = sv$. Dann gilt $\rho_v: M_s \to M_t, \, x \mapsto xv$ ist ein Isomorphismus von $(sM \cap Ms, \circ, s)$ auf $(tM \cap Mt, \circ, t)$.
 		\item  \label{Aussage3} Sei $s = tu$, $t = sv$ und $s \grej t$, sowie $s \grer t$. Dann ist $\rho_v: \lcal(s) \iso \lcal(t)$ eine Bijektion. 
-		\item  \label{Aussage4} $\rho_c$ ist respektiv die $\hcal$-Klasse mit $\hcal(x)v = \hcal(xv)$
+		\item  \label{Aussage4} Sei $s \grer t$ mit $s = tu \land t = sv$. Dann gilt $\rho_c$ respektiert die $\hcal$-Klassen. Das bedeutet, es gilt $\hcal(x)v = \hcal(xv)$.
 	\end{enumerate}
 	
 	\subsubsection{Beweis der Aussage \ref{Aussage1}}
@@ -2193,10 +2193,13 @@
 	\bewiesen
 	
 	\subsubsection{Beweis der Aussage \ref{Aussage4}}
-	Sei $x\grel s$ dann folgt daraus $ xv \grel sv \grel t \implies xv \grej t$. Und somit ist $xv \lgrereq x$, nach dem Lemma \ref{sec:jklassen} (im Buch 7.42) gilt dann $xu \grer x$ 
+	Sei $x\grel s$. Dann folgt  $ xv \grel sv \grel t$ und damit gilt $xv \grej t$. In Kombination mit $xv \lgrereq x$ und dem Lemma aus Abschnitt~\ref{sec:jklassen} (im Buch 7.42) folgt dann $xv \grer x$. \\
 	
+	 Für den weiteren Beweis, veranschaulichen wir die verschiedenen Klassen in einem sogenannten Eggbox Diagramm in Abbildung~\ref{fig:eggbox}. Die ``Zeilen'' entsprechen dabei verschiedenen $\rcal$-Klassen, die ``Spalten'' den $\lcal$-Klassen und die einzelnen ``Zellen'' den $\hcal$-Klassen.
 	%Sorry dass das hässlich is aber ich bekomme es nicht hin dass es zentriert in der Seite eingebettet ist :(
 	%Wegen mir können wir das auch raus lassen
+	
+	%No, ist mir egal, ob die Graphik zentriert ist, solange sie die Information überbringt, die sie soll.
 	
 	\begin{figure}[H]
 		\centering
@@ -2241,38 +2244,45 @@
 		\end{tikzpicture} 
 		
 		\caption{Eggbox Diagram}
+		\label{fig:eggbox}
 	\end{figure}
-	Die Aussage folgt wenn man $x \grer y \implies xv \grer x \sim y \grer yv$ und \\ 
-	$x \grel y \implies xv \grel t \sim y \grer yv$ betrachtet. 
+
+	Nun folgt $ xv \grer x \sim y \grer yv$ aus $x \grer y$ und 
+	$xv \grel t \grer yv$ aus $x \grel y$ und damit folgt die Behauptung. 
 	\bewiesen
 	
-	\subsubsection{Korrolar}
-	Seien $s\grej t \in M$ und $M$ endlich, also $\exists z: s \grer z \grel t$ ($\dcal = \jcal$). 
-	Dann ist $s = zv$ und $t =uz$, und somit ist: 
+	\subsubsection{Korrolar: Isomorphismen für $\hcal$-Klassen}
+	Seien $s\grej t \in M$ und $M$ endlich. Dann gilt $\dcal = \jcal$ und $\exists z: s \grer z \grel t$ und damit $s = zv$ und $t =uz$. \\
+	Dann gibt es Isomorphismen $\lambda_u, \rho_v$ mit $\lambda_u\inv \rho_v:\, (\hcal(s), \circ, s) \to (\hcal(t), \circ, t)$.
 	
-	\begin{figure}[h]
+	\subsubsection{Beweis des Korrolars}	
+	Aus den Isomorphismen zwischen $\hcal(s)$ und $\hcal(z)$, sowie $\hcal(t)$ und $\hcal(z)$, die in Abbildung~\ref{fig:isos} abgebildet sind, folgt direkt die gewünschte Eigenschaft des Isomorphismus zwischen $\hcal(s)$ und $\hcal(t)$.
+	\begin{figure}[H]
 		\centering
 		\begin{tikzpicture}[node distance=3.5cm, auto]
-			\node (lam) {$\lambda_u\rho_v: (\hcal(s), \circ, s)$};
+			\node (lam) {$(\hcal(s), \circ, s)$};
 			\node (ht) [right of=lam] {$(\hcal(t), \circ, t)$};
 			\node (hz) [below of=lam] {$(\hcal(z), \circ, z)$};
 			
 			\draw[->] (lam) -- (ht) node[ midway,sloped,above,rotate=0] { $\sim$};
+			\draw[] (lam) -- (ht) node[ midway,sloped,below,rotate=0] { $\lambda_u\inv\rho_v$};
 			\draw[  ] (lam) -- (hz) node[midway,sloped, above, rotate=0] { $\sim$};
 			\draw[ ->] (lam) -- (hz) node[ midway,left=.2,rotate=0] { $\rho_v$};
 			\draw[ ->] (ht) -- (hz) node[ midway,right=.2cm,rotate=0] { $\lambda_u$};
 			\draw[  ] (ht) -- (hz) node[midway,sloped, above, rotate=0] { $\sim$};
 		\end{tikzpicture}
+		\caption{Isomorphismen zwischen $\hcal$-Klassen}
+		\label{fig:isos}
 	\end{figure} 
 	
 	\subsubsection{Definition Regulär}	
-	Ein $s \in M$ heißt regulär, falls $\exists r: srs = s$ gilt. 
+	Ein Element aus einem Monoid $s \in M$ hei\ss t regulär, falls $\exists r \in M: srs = s$ gilt. 
 	
-	\subsubsection{Lemma}
-	Es gilt $srs=s \implies s \grer sr$ und $(sr)^2 = sr \in E(M)$	
+	\subsubsection{Lemma: Zusammenhang zwischen Idempotenz und Regularität}
+	Für ein Element $s \in M$ gelte $srs=s$. Dann gilt $s\grer sr$ und $(sr)^2 = sr \in E(M)$.	
 	
 	\subsubsection{Beweis des Lemmas}
-	Sei $s\lgrereq s$ und $sr \lgrereq srs = s$. Dann folgt daraus $s \grer sr$. Außerdem ist $(sr)(sr) = (srs) \land sr \in E(M)$
+	Sei $srs=s$. Dann folgt $sr \lgrereq s$ und $sr \lgrereq srs = s$. Das bedeutet, es gilt $s \grer sr$. Damit folgt $(sr)(sr) = (srs)r = sr \in E(M)$.
 	\bewiesen
 	
 	\subsubsection{Satz}
