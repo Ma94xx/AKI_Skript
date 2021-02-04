@@ -2279,42 +2279,44 @@
 	Ein Element aus einem Monoid $s \in M$ hei\ss t regulär, falls $\exists r \in M: srs = s$ gilt. 
 	
 	\subsubsection{Lemma: Zusammenhang zwischen Idempotenz und Regularität}
+	\label{sec:idempotent_und_regulär}
 	Für ein Element $s \in M$ gelte $srs=s$. Dann gilt $s\grer sr$ und $(sr)^2 = sr \in E(M)$.	
 	
 	\subsubsection{Beweis des Lemmas}
 	Sei $srs=s$. Dann folgt $sr \lgrereq s$ und $sr \lgrereq srs = s$. Das bedeutet, es gilt $s \grer sr$. Damit folgt $(sr)(sr) = (srs)r = sr \in E(M)$.
 	\bewiesen
 	
-	\subsubsection{Satz}
-	Für ein endliches $M$ sind die folgenden Aussagen äuquivalent für eine $\dcal$-Klasse D: 
+	\subsubsection{Satz: Aussagen über $\dcal$-Klassen}
+	Für ein endliches Monoid $M$ sind die folgenden Aussagen äquivalent für eine $\dcal$-Klasse D: 
 	\begin{enumerate}[label=\arabic*.)]
-		\item $D$ ist regulär $\iff \exists s \in D$ und $v \in M$ mit $srs = s$ (d.h $\exists s \in D$ und $s$ regulär)
+		\item $D$ ist regulär $:\iff \exists s \in D$  $\exists r \in M$ : $srs = s$ (d.h $\exists s \in D$ und $s$ regulär)
 		\item $\exists e \in E(M)$ und $e \in D$
 		\item $\forall s \in D: s$ ist regulär
-		\item Jede $\lcal$-Klasse in $D$ und jede $\rcal$-Klasse von $D$ enthält eine Idempotenz
+		\item Jede $\lcal$-Klasse von $D$ und jede $\rcal$-Klasse von $D$ enthält ein Idempotent
 	\end{enumerate}
 	
 	\subsubsection{Beweis des Satzes}
-	Sei $srs = s$ regulär und $s \in D \implies sr \grer s$ sowie $sr = e \in E(M)$. Dann folgt 
+	Sei 1.) wahr. Es gibt also $srs = s$ mit $s \in D$. Dann gilt $s \grer sr$ und $sr=e \in E(M)$ nach Abschnitt~\ref{sec:idempotent_und_regulär}. Daraus folgt: 
 	\begin{align*}
-		&\implies \exists e \in M: e \grer s \text{ und } e^2 = e \\
+		 \exists e \in M: e \grer s \wedge e^2 = e 
 		&\implies s \in eM \\
-		&\implies es = s \text{ da } s=es' \implies es = es' = s
+		&\implies es = s \quad | \text{ da } s=es' \text{ und } es = ees' = es' = s
 	\end{align*}
-	Somit folgt 2.)
+	Somit gilt also 2.).
 	\newline
 	
-	Wir zeigen jetzt $e^2 = e \grer s$. Betrachte dazu $e=sr \implies s = es = srs$. Daraus folgt $s$ ist regulär und somit dass alle $\rcal$-Klassen zu $e$ reguläre sein müssen.
-	Analog gilt die für die $\lcal$-Klassen. \\
-	Somit folgt 3.)
+	Wir zeigen jetzt $e^2 = e \grer s$. Betrachte dazu $e=sr$. Dann gilt $ s = es = srs$. Daraus folgt, dass $s$ regulär ist und somit, dass alle Elemente, die $\rcal$-äquivalent zu $e$ sind, regulär sind.
+	Analog kann man das Gleiche für $\lcal$ zeigen. \\
+	Insgesamt gilt das also auch für $\dcal$ und damit gilt 3.).
 	\newline
 	
-	Also existiert $s \in D$ regulär und somit folgt $\rcal(s)$ und $\lcal(s)$ enthalten eine Idempotenz. \\
-	Somit folgt 4.)
+	Nun existiert $s \in D$ regulär und somit folgt, dass $\rcal(s)$ und $\lcal(s)$ eine Idempotenz enthalten. \\
+	Damit gilt 4.).
 	
-	\subsubsection{Satz}
-	Seien $s,t \in D$ für eine $\dcal$-Klasse $D$ und sei $M$ endlich. Sei weiter $st \in D$, dann ist $D$ regulär und $st \in \rcal(s) \cap \lcal(t)$. 
-	Ferner gilt $\exists e \in \lcal(s) \cap \rcal(t)$, und somit $$\exists e \in \rcal(t) \cap \lcal(s) \text{ mit } e=e^2 \implies st \in \rcal(s) \cap \lcal(t)$$
+	\subsubsection{Satz: Reguläre $\dcal$-Klassen}
+	Seien $s,t \in D$ für eine $\dcal$-Klasse $D$ und sei $M$ endlich. Sei weiter $st \in D$. Dann ist $D$ regulär und es gilt $st \in \rcal(s) \cap \lcal(t)$. 
+	Ferner gilt $\exists e \in \lcal(s) \cap \rcal(t):\, e^2=e$ und somit $ st \in \rcal(s) \cap \lcal(t)$.
+	Abbildung~\ref{fig:d_klassen} veranschaulicht dies, wobei Idempotente in Eggbox Diagrammen mit * gekennzeichnet werden.
 	\begin{figure}[H]
 		\centering
 		\begin{tikzpicture}[every fit/.style={inner sep=0pt, outer sep=0pt, draw}]
@@ -2328,7 +2330,7 @@
 			\end{scope}
 			
 			\begin{scope}[yshift=0.5cm,y=1cm]
-				\node [fit={(0,0) (1,1)}, label=below:{}] {$e$};
+				\node [fit={(0,0) (1,1)}, label=below:{}] {$e^ast$};
 			\end{scope}
 			
 			\begin{scope}[yshift=3.5cm,y=1cm]
@@ -2356,27 +2358,29 @@
 			\end{scope}
 			
 		\end{tikzpicture} 
+		\caption{Position der Elemente in den Klassen}
+		\label{fig:d_klassen}
 	\end{figure}
 	
 	\subsubsection{Beweis des Satzes}
-	Seien $s,t \in D$ mit $st \in D$. Dann ist $s \grej t \grej st$ sowie $st \lgrereq s$ und $st \lgreleq t \implies st \in \rcal(s) \cap \lcal(t)$
+	Seien $s,t \in D$ mit $st \in D$. Dann gilt $s \grej t \grej st$, sowie $st \lgrereq s$ und $st \lgreleq t $ und damit $ st \in \rcal(s) \cap \lcal(t)$.
 	Betrachte nun 
 	\begin{align*}
 		\rho_t : \lcal(s) &\to \lcal(st) = \lcal(t) \\
 		x &\mapsto xt
 	\end{align*}
-	Dann folgt dass $\exists! e \in \lcal(s): et = t$. Ferner gilt $e \in R(t)$, da $\rho_t$ die $\rcal$-Klasse  enthält und somit folgt 
+	Da $\rho_t $ eine Bijektion ist, folgt, dass $\exists! e \in \lcal(s): et = t$. Ferner gilt $e \in R(t)$, da $\rho_t$ die $\rcal$-Klassen erhält. Somit gilt für ein $y$: 
 	\begin{align*}
-		e = ty \implies e^2 &= (et)y \\
-		&=ty = e
+		e = ty \implies e^2 &= e(ty)  \\
+		&= (et)y =ty = e
 	\end{align*}
-	$\implies e \in E(M)$ mit $e \in \lcal(s) \cap \rcal(t)$. 
+	Es folgt $ e \in E(M)$ mit $e \in \lcal(s) \cap \rcal(t)$. 
 	\newline
 	
-	Umgekehrt sei $e^2 = e \in \lcal(s) \cap \rcal(t)$. Zu zeigen ist $st \in \lcal(s) \cap \rcal(t)$. \\
+	Umgekehrt sei $e^2 = e \in \lcal(s) \cap \rcal(t)$. Zu zeigen ist $st \in \rcal(s) \cap \lcal(t)$. \\
 	Wegen $ t \in eM$ und $e^2 = e$ gilt $et =t$.
-	Nun folgt durch $e \in \lcal(s)$, dass $\rho_t = st \in \lcal(s)$ ist. \\ 
-	Ferner gilt $\rho_t(s) \grer s \implies st \in \lcal(s) \cap \rcal(t)$.
+	Nun folgt wegen $e \in \lcal(s)$, dass $\rho_t = st \in \lcal(t)$ gilt. \\ 
+	Ferner gilt $\rho_t(s) \grer s$, woraus $st \in \rcal(s) \cap \lcal(t)$ folgt.
 	\bewiesen
 	
 \section{Monadic Second Order Logic (MSO) - Vorlesung 14}
