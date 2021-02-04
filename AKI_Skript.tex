@@ -2139,8 +2139,8 @@
 	Für ein endliches Monoid $M$ gelten die  folgenden Sätze:
 	\begin{enumerate}[label = \alph*)]
 		\item  \label{Aussage1}$(\hcal(c), \circ, c) = U(M_c, \circ, c)$. Man nennt das das Schützenberger Produkt auf $\hcal(c)$.
-		\item  \label{Aussage2} Seien $s \grer t$ mit $s = tu \land t = sv$. Dann gilt $\rho_v: M_s \to M_t$ ist ein Isomorphismus von $(sM \cap Ms, \circ, s)$ auf $(tM \cap Mt, \cdot, t)$ und vermöge $x \mapsto xv$
-		\item  \label{Aussage3} Sei $s = tu$, $t = sv$ und $s \grej t$ sowie $s \grer t$, dann gilt $\rho_v: \lcal(s) \iso \lcal(t)$ ist bijektiv. 
+		\item  \label{Aussage2} Sei $s \grer t$ mit $s = tu \land t = sv$. Dann gilt $\rho_v: M_s \to M_t, \, x \mapsto xv$ ist ein Isomorphismus von $(sM \cap Ms, \circ, s)$ auf $(tM \cap Mt, \circ, t)$.
+		\item  \label{Aussage3} Sei $s = tu$, $t = sv$ und $s \grej t$, sowie $s \grer t$. Dann ist $\rho_v: \lcal(s) \iso \lcal(t)$ eine Bijektion. 
 		\item  \label{Aussage4} $\rho_c$ ist respektiv die $\hcal$-Klasse mit $\hcal(x)v = \hcal(xv)$
 	\end{enumerate}
 	
@@ -2160,20 +2160,24 @@
 	\bewiesen
 	
 	\subsubsection{Beweis der Aussage \ref{Aussage2}}
-	Seien $x = x's = sx''$ und $\rho_c(x) = xv$, dann gilt $xv = x'sv \in Mt$. Ferner ist $xv = sx''v = tux''v \in tM$. 
-	Es folgt dann $\rho_s(M_s) \subseteq Mt$ und $\rho_v$ ist ein Hom. Dies gilt da:  
+	\label{sec:beweis_aussage_b}
+	Sei $x = x's = sx''$ und $\rho_v(x) = xv$.
+	Dann gilt $xv = x'sv \in Mt$. Ferner gilt $xv = sx''v = tux''v \in tM$. 
+	Es folgt dann $\rho_s(M_s) \subseteq Mt$. 
+	Nun ist $\rho_v$ ein Hom., wegen der Gleichheit von  
 	\begin{align*}
-		\rho_v(x's)\circ \rho_v(y's) &= x'sv \circ y'sv \\ 
+		\rho_v(x's)\circ \rho_v(y's) &= x'sv \circ y'sv \\
+		&= x't \circ y'sv\\ 
 		&= x'y'sv \\
 		&= x'y't
 	\end{align*}
-	Somit ist dann 
+	und 
 	\begin{align*}
 		\rho_v(x's \circ y's) &= \rho_v(x'y's) \\
 		&= x'y'sv \\
-		&= x'y't
+		&= x'y't\, .
 	\end{align*}
-	Weiter gilt dass $\rho_v: Ms \to Mt$ ein Isomorphismus für $s \grer t$ ist. Um dies zu sehen, betrachten wir $x = x's \in Ms$. Dann gilt 
+	Um nun noch zu zeigen, dass $\rho_v$ ein Isomorphismus ist, betrachten wir $x = x's \in M_s$. Dann gilt: 
 	\begin{align*}
 		\rho_u\rho_v(x) &= \rho_u(x'sv) \\
 		&= x'svu \\
@@ -2181,11 +2185,11 @@
 		&=x's \\
 		&\implies \rho_v \text{ ist injektiv}
 	\end{align*}
-	Analog dazu für $\rho_u: Mt \to Ms$ ist injektiv. Also folgt $\rho_u\rho_v = \rho_v\rho_u = id$
+	Analog dazu kann man zeigen, dass auch $\rho_u: Mt \to Ms$ injektiv ist. Also folgt $\rho_u\rho_v = \rho_v\rho_u = id$, was bedeutet, dass $\rho_v$ bijektiv und damit ein Isomorphismus ist.
 	\bewiesen
 	
 	\subsubsection{Beweis der Aussage \ref{Aussage3}}
-	Sei $x \grel s$, aber $Mx = Ms$, dann folgt $Mxv = Msu = Mt$ und ist somit bijektiv, da $\rho_u\rho_v = id$
+	Sei $x \grel s$ und damit $Mx = Ms$. Dann folgt $Mxv = Msv = Mt$. Nun ist $\rho_v$ bijektiv, da $\rho_u\rho_v = id$ gilt (vgl. Abschnitt~\ref{sec:beweis_aussage_b}).
 	\bewiesen
 	
 	\subsubsection{Beweis der Aussage \ref{Aussage4}}
