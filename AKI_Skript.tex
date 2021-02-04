@@ -2123,40 +2123,40 @@
 	Es folgt $\sigma\inv(K_1K_2) \in \starfree(A)$, da $\sigma\inv(K_1K_2) = \sigma\inv(K_1) \sigma\inv(K_2) \in \starfree(A)$. 
 	\bewiesen
 	
-	\section{Halbgruppentheorie Teil 2- Vorlesung 13}
-	\subsection{Greens Relations Teil 2}
-	\subsubsection{Lemma}
-	Sei $s \lgreleq t$ und $s \grej t$, dann gilt $s \grel t$ (Analog für $\grer$)
+	\section{Halbgruppentheorie Teil 2 - Vorlesung 13}
+	\subsection{Green's Relations Teil 2}
 	
-	\subsubsection{Lemma}
-	Es gilt $\hcal(c) \subseteq M_c = cM \cap Mc$, denn 
-	\begin{align*}
-		x \in \hcal(c) &\implies x \grer c \land x \grel c \\ 
-		&\implies x \lgreheq c \\ 
-		&\implies x \in cM \cap Mc
-	\end{align*}
+	\subsubsection{Beziehungen von lokalen Divisoren und Green's Relations}
+	Für ein endliches Monoid $M$ gelten die  folgenden Zusammenhänge:
+	\begin{enumerate}
+		\item $x \in cM \cap Mc \iff x \lgreheq c$
+		\item $c \notin U(M) = \{x \in M \mid \exists y:\, xy=1\} \iff |M_c| < |M|$
+		\item  $M_c \text{ ist Divisor, vermöge } \rho_c: \{x \in M \mid xc \in cM\} \to  M_c,\, \rho_c(x) \mapsto xc$.
+	\end{enumerate}
+		
 	
-	\subsubsection{Strukturelle Aussagen}
-	Wir wollen die folgenden Sätze zeigen:
+	\subsubsection{Strukturelle Aussagen über Green's Relations}
+	Für ein endliches Monoid $M$ gelten die  folgenden Sätze:
 	\begin{enumerate}[label = \alph*)]
-		\item  \label{Aussage1}$(\hcal(c), \circ, c) = U(M_c, \circ, c)$ ist das Schützenberger Produkt auf $\hcal(c)$
+		\item  \label{Aussage1}$(\hcal(c), \circ, c) = U(M_c, \circ, c)$. Man nennt das das Schützenberger Produkt auf $\hcal(c)$.
 		\item  \label{Aussage2} Seien $s \grer t$ mit $s = tu \land t = sv$. Dann gilt $\rho_v: M_s \to M_t$ ist ein Isomorphismus von $(sM \cap Ms, \circ, s)$ auf $(tM \cap Mt, \cdot, t)$ und vermöge $x \mapsto xv$
 		\item  \label{Aussage3} Sei $s = tu$, $t = sv$ und $s \grej t$ sowie $s \grer t$, dann gilt $\rho_v: \lcal(s) \iso \lcal(t)$ ist bijektiv. 
 		\item  \label{Aussage4} $\rho_c$ ist respektiv die $\hcal$-Klasse mit $\hcal(x)v = \hcal(xv)$
 	\end{enumerate}
 	
 	\subsubsection{Beweis der Aussage \ref{Aussage1}}
-	Für $x \greh c $ folgt $c = yx$ und $yc \in Mc$, da $cM = xM$
+	Für die erste Richtung sei $x \in \hcal c $, also $x \greh c $. Es folgt $c = yx$ und $yc \in Mc$.
+	Wegen $cM = xM$ folgt weiter:
 	\begin{align*}
-		&\implies yc \circ x = yc = c \\
-		&\implies x \in U(M_c, \circ, c)
+		 yc \circ x = yc = c 
+		\implies x \in U(M_c, \circ, c)
 	\end{align*}
-	Für die andere Richtung sei $x = x'c = cx'' \in U(M_c)$, dann gilt: 
+	Für die andere Richtung sei $x = x'c = cx'' \in U(M_c)$. Dann gilt: 
 	\begin{align*}
-		&\implies \exists y'c = c y'' \text{ mit } (x'c)y'' = y'(cx'') =c \\
-		&\implies c \lgreheq x \quad\text{ Hier gilt auch } x \in M_c
+		 \exists y'c = c y'' :\, (x'c)y'' = y'(cx'') =c 
+		&\implies c \lgreheq x \\
+		&\implies x \greh c \quad| \text{ wegen } x \in M_c \text{ und damit } x \lgreheq c
 	\end{align*}
-	Somit $x \lgreheq c \implies x \greh c$
 	\bewiesen
 	
 	\subsubsection{Beweis der Aussage \ref{Aussage2}}
