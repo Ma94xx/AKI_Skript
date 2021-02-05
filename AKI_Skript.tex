@@ -2386,7 +2386,7 @@
 \section{Monadic Second Order Logic ($\mso$) - Vorlesung 14}
 \subsection{Grundlagen}
 \subsubsection{Allgemeines}
-Wir betrachten $\mso$ hier für gerichtete Graphen mit Knotenbeschriftungen, also für Modelle $(V, E ,\lambda)$ mit einer Knotenmenge $V$, einer Kantenmenge $E \subseteq V \times V$ und einer Beschriftung $\lambda : V \to \Sigma$, wobei $\Sigma$ ein endliches Alphabet ist.
+Wir betrachten $\mso$ hier für gerichtete Graphen mit Knotenbeschriftungen, also für Modelle $G=(V, E ,\lambda)$ mit einer Knotenmenge $V$, einer Kantenmenge $E \subseteq V \times V$ und einer Beschriftung $\lambda : V \to \Sigma$, wobei $\Sigma$ ein endliches Alphabet ist.
 Das bedeutet, jeder Knoten ist mit einem Buchstaben beschriftet.\\
 Zur Synatx: Wir benutzen Variablen $x$ für Elemente aus $V$ und $X$ für Teilmengen von $V$ (Monadische Prädikate).
 
@@ -2434,38 +2434,44 @@ Wir definieren die folgenden Makros:
 	\end{itemize}
 
 \subsection{First Order Logic ($\fo$)}
-\subsubsection{Grundlagen}
-	$\fo$ ist ein Fragment von $\mso$ ohne die Menge $X$.
+\subsubsection{Definition}
+	$\fo$ ist für einen Graphen $G=(V,E,\lambda)$ ist das Fragment von $\mso$ ohne die Mengenvariablen $X$.
 	
-\subsubsection{Definitonen der Makros}
+\subsubsection{Makros}
+	Wir definieren die folgenden Makros:
 	\begin{itemize}
-		\item  Für $(x,y) \in E$ definieren wir die Relation $(x,y) \in \east$  in $\mso$ als den reflexiven, transitiven Abschluss von $E$
-		\item $R(x,Y) = [x \in Y \land \forall z \forall z': z \in Y \land (z,z') \in E \implies z' \in Y]$
-		\item $\east(x,y) := [\forall Y (R(x,Y) \implies y \in Y)]$ sowie $\fv(\east) = \{x,y\}$
+		\item  Für $(x,y) \in \east$ :$\iff$ $(x,y)$ ist ein Element des reflexiven, transitiven Abschlusses von $E$. (Das bedeutet, die gerichtete Kantenmenge $E$ entspricht der Nachfolger-Relation und $\east$ der $\leq$-Relation.)
+		\item $R(x,Y) := [x \in Y \land \forall z \forall z': (z \in Y \land (z,z') \in E \implies z' \in Y)]$
+		\item $\east(x,y) := [\forall Y (R(x,Y) \implies y \in Y)]$ 
 	\end{itemize}
 
-\subsubsection{$\mso$-Theorie auf $\sigstern$}
-	Wir betrachten die Modelle $(V,E,\lambda)$ mit $V= \{1, \ldots, n\}$ und $E=\{(i, i+1) \mid 1 \leq i < n\}$ sowie $$\lambda: \{1, \ldots n\} \to \Sigma$$
+\subsection{$\mso$-Theorie auf $\sigstern$}
 
-\subsubsection{Beispiel}
-	Wir betrachten $abcd = a \to b \to c \to d$ mit $\lambda(1) = a$, $\lambda(2) = b$, $\lambda(3) = c$,  und $\lambda(4) = d$. \\ 
-	Dann ist $\east = \leq$ auf $\{1, \ldots, n\}$ und $$\phi = \exists x,y: \lambda(x) = b, \lambda(y) = d \land x \leq y$$ und somit $abcd \models \phi$
+\subsubsection{Grundlagen und Beispiel}
+	Wir betrachten Modelle $(V,E,\lambda)$ mit $V= \{1, \ldots, n\}$ und $E=\{(i, i+1) \mid 1 \leq i < n\}$, sowie $\lambda: \{1, \ldots n\} \to \Sigma$.\\
 
-\subsubsection{Satz}
+
+	Dann entsprechen Wörter jeweils Graphen.
+	Zum Beispiel wäre das Wort $abcd$ ein Graph $ 1 \to 2 \to 3 \to 4$ mit $\lambda(1) = a$, $\lambda(2) = b$, $\lambda(3) = c$  und $\lambda(4) = d$. \\ 
+	Dann ist $\east$ die $\leq$-Relation auf $\{1, \ldots, n\}$.\\
+	Für die Beispielformel $$\phi = \exists x,y: \lambda(x) = b \land \lambda(y) = d \land x \leq y$$ und das Wort $abcd$ gilt $abcd \models \phi$, also $abcd$ ist ein Modell für $\phi$.
+
+\subsubsection{Satz: Zusammenhang von $\mso$ und regulären Sprachen}
 	Sei $L \subseteq \sigstern$. Dann gilt 
 	\begin{align*}
-	L \in \reg(\sigma) &\iff \exists \phi \in \mso \text{ mit } \fv(\phi) = \emptyset \text{ und } L=L(\phi) = \{w \mid w \models \phi \}\\
+	L \in \reg(\Sigma) &\iff \exists \phi \in \mso(\Sigma^\ast) \text{ mit } \fv(\phi) = \emptyset \text{ und } L=L(\phi) = \{w \mid w \models \phi \}\\
 	&\iff \exists \psi \in \mso  \text{ mit } \fv(\psi) \subseteq \{X_1, \ldots, X_n\} 
 	\end{align*}
  wobei $\psi$ quantorenfrei ist, und  $L= L(\exists X_1, \ldots, \exists X_n \psi) $
 mit 
 
-\subsection{Beweis des Satzes}
-\subsubsection{Erste Richtung}
-	Sei $L= L(A)$ für einen NFA $A= (Q, \Sigma, \delta, I, F)$. Wir konstruieren jetzt $\phi \in \mso$ mit $$w \in L(A) \iff w \models \phi$$
-	Sei dafür $|w| = n$, also $V = \{1, \ldots, n\}$ und $E=\{(i, i+1) \mid 1 \leq i <n\}$ sowie $\lambda(i) = a_i$ für $w = a_1 \ldots a_i \ldots a_n$ mit $a_i \in \Sigma$ und $Q = \{0, \ldots, m\}$. Dann existieren Mengenvariablen $X_0, \ldots, X_m$ und es gilt 
-	$$\exists X_q : (1 \in X_q \land q \in I) \land (\exists X_q : n \in X_q \land q \in f) \land  (\bigwedge_{p, q \in Q} (p \not = q \implies x_p \cap x_q = \emptyset))$$
-	Dann gilt $$ \forall x \forall y ( \bigwedge_{p, q, a} (x \in x_p, \lambda(x)= a, (x,y \in E),  \bigvee_{(p,q,a) \in \delta} y \in X_q) = \emptyset$$
+\subsubsection{Beweis des Satzes - Erste Richtung}
+	Sei $L= L(A)$ für einen NFA $A= (Q, \Sigma, \delta, I, F)$. Wir konstruieren jetzt $\phi \in \mso$ mit: $$w \in L(A) \iff w \models \phi$$
+	Sei dafür $w = a_1 \ldots a_n$ mit $a_i \in \Sigma$ für $1\leq i \leq n$. Dann ist also $V = \{1, \ldots, n\}$ und $E=\{(i, i+1) \mid 1 \leq i <n\}$, sowie $\lambda(i) = a_i$.\\
+	Es gelte $Q = \{0, \ldots, m\}$. Dann existieren Mengenvariablen $X_0, \ldots, X_m$, sodass wir $\phi$ folgenderma\ss en setzen können:
+	$$\phi = \Bigl\lbrack(\exists X_q : 1 \in X_q \land q \in I) \land (\exists X_q : n \in X_q \land q \in F) \land  (\bigwedge_{p, q \in Q} (p \not = q \implies X_p \cap X_q = \emptyset))$$
+	$$ \forall x \forall y ( \bigwedge_{p, q, a} (x \in X_p \land \lambda(x)= a \land (x,y \in E)) \implies  \bigvee_{(p,q,a) \in \delta} y \in X_q)\Bigr\rbrack$$
+	\bewiesen
 
 \subsubsection{Vorbereitungen für zweite Richtung}
 	\begin{enumerate}[label= \arabic*.)]
