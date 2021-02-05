@@ -2383,44 +2383,57 @@
 	Ferner gilt $\rho_t(s) \grer s$, woraus $st \in \rcal(s) \cap \lcal(t)$ folgt.
 	\bewiesen
 	
-\section{Monadic Second Order Logic (MSO) - Vorlesung 14}
+\section{Monadic Second Order Logic ($\mso$) - Vorlesung 14}
 \subsection{Grundlagen}
 \subsubsection{Allgemeines}
-Wir bertachten hier nur $(V, E ,\lambda)$ als Modelle mit $E \subseteq V \times V$ und $\lambda : V \to \Sigma$ wobei $\Sigma$ ein endliches Alphabet ist.
-Zum Synatx: Es gibt Variablen für Elemente $x$ in Mengen $V$ und für Teilmengen $X$ von $V$ (Monadische Prädikate)
+Wir betrachten $\mso$ hier für gerichtete Graphen mit Knotenbeschriftungen, also für Modelle $(V, E ,\lambda)$ mit einer Knotenmenge $V$, einer Kantenmenge $E \subseteq V \times V$ und einer Beschriftung $\lambda : V \to \Sigma$, wobei $\Sigma$ ein endliches Alphabet ist.
+Das bedeutet, jeder Knoten ist mit einem Buchstaben beschriftet.\\
+Zur Synatx: Wir benutzen Variablen $x$ für Elemente aus $V$ und $X$ für Teilmengen von $V$ (Monadische Prädikate).
 
 \subsubsection{Freie Variablen}
-	Es gilt $\fv(x=y)=\{x,y\}$ und falls $x \in X$ ist $\fv(x \in X) = \{x, X\}$
+	Die freien Variablen einer prädikatenlogischen Formel sind diejenigen, die nicht an einen Quantor gebunden sind. 
+	Die Menge der freien Variablen einer Formel $\phi$ wird mit $\mathsf{FV}(\phi)$ bezeichnet.
 
 \subsubsection{Atomare Formeln}
-	Folgende Formeln sind alle atomar: $x=y$, $\lambda(x) = a$ mit $a \in \Sigma$ (oft auch: $P_a$), sowie $x$, $T= true$, $\fv(T) = \emptyset$, und $(x,y) \in E$
+	Folgende Formeln sind alle atomar. In Klammern sind jeweils die freien Variablen der Formel angegeben.
+	\begin{itemize}
+		\item $x=y$\quad ($\mathsf{FV}(x=y)=\{x,y\}$)
+		\item $\lambda(x) = a$ mit $a \in \Sigma$, alternativ auch als Prädikat $P_a(x)$ geschrieben\quad ($\fv(\lambda(x))=\{x\}$)
+		\item $x$\quad ($\fv(\lambda(x)=\{x\}$)
+		\item $T= true$ \quad ($\fv(T)=\emptyset$)
+		\item $x \in X$\quad ($\fv(x \in  X)=\{x,X\})$
+		\item $(x,y) \in E$\quad ($\fv((x,y) \in  E)=\{x,y\})$
+	\end{itemize}
 	
 
 	
-\subsubsection{Definitonen der Makros}
+\subsubsection{Makros}
+Wir definieren die folgenden Makros:
 \begin{itemize}
-	\item $(x = y) \iff \forall x : x \in X \iff x \in Y$ und dann ist $\fv{(x = y ) = \{x,y\}}$
-	\item $(x \subseteq y) \iff \forall x : x \in X \implies x \in Y$
-	\item $\phi \land \psi := \neg (\neg \phi \lor \neg \psi)$ etc. und  $\forall z \phi := \neg (\exists z (\neg\phi))$
+	\item $(X = Y) :\iff \forall x :( x \in X \iff x \in Y)$ \quad ($\fv{(X = Y ) = \{X,Y\}}$)
+	\item $(X \subseteq Y) :\iff \forall x : (x \in X \implies x \in Y)$
+	\item $\phi \land \psi := \neg (\neg \phi \lor \neg \psi)$ etc. 
+	\item $\forall z \phi := \neg (\exists z (\neg\phi))$
 \end{itemize}
 
-\subsubsection{Bemerkung}
-	Sei $z \in \{x, X\}$ und $\phi$ eine $\mso$-Formel, dann $\exists z\phi$ mit $\fv(\exists z \phi) = \fv(\phi) \setminus \{z\}$
-
-\subsubsection{Boolsche Formeln}
-	Seine $\phi, \psi$ Formeln, dann sind auch $(\phi \lor \psi)$ und $\neg \phi$ Formeln, 
-	mit $\fv(\phi \cup \psi) = \fv(\phi) \cup \fv(\psi)$ und $\fv(\neg \phi) = \fv(\phi)$
+\subsubsection{Weitere $\mso$ Formeln}
+	Sei $z \in \{x, X\}$ und $\phi$ eine $\mso$-Formel, dann gibt es auch die $\mso$-Formel $\exists z\phi$ mit $\fv(\exists z \phi) = \fv(\phi) \setminus \{z\}$.\\
+	
+	Au\ss erdem gibt es boolesche Formeln. Seien hierfür $\phi$ und $\psi$ $\mso$-Formeln. Dann sind auch $(\phi \lor \psi)$ und $\neg \phi$ $\mso$-Formeln, 
+	mit $\fv(\phi \lor \psi) = \fv(\phi) \cup \fv(\psi)$ und $\fv(\neg \phi) = \fv(\phi)$.
 
 \subsubsection{Semantik}
-	Sei $\phi$ eine Formel mit $\fv(x_1, x_2, X_1, X_2)$ und $I: \fv(\phi) \to V \cup 2^V$ wobei $I(x) \in V$ und $I(X_j) \subseteq V$. \\
+	Die Semantik der atomaren Formeln ist klar.\\
+	Sei $\phi$ eine Formel mit $\fv(\phi)=\{x_1,\ldots, x_k, X_1,\ldots, X_l\}$. Dann ist $I: \fv(\phi) \to V \cup 2^V$ eine Interpretation, wobei $I(x_i) \in V$ und $I(X_j) \subseteq V$ für $1\leq i\leq k, 1\leq j\leq l$ gilt. \\
 	
-	Dann heißt $\phi((V,E,\lambda), I)$ ein Wahrheitswert in $\B = \{\bot, \top\}$ mit $1 = \top$ und $0 = \bot$. 
+	Dann liefert die Anwendung von $\phi$ auf einen Graphen und eine Interpretation $\phi((V,E,\lambda), I)$ einen Wahrheitswert aus $\B = \{\bot, \top\}$ mit $1 = \top$ und $0 = \bot$. \\
+	Für die Gültigkeit gilt dann:
 	\begin{itemize}
-		\item 	Falls $\phi((V,E,\lambda), I) = \top$, dann ist $(V,E,\lambda) \models_I \phi$ ein Modell für $\phi$ unter $I$. 
-		\item	Falls $\fv(\phi) = \emptyset$ und $(V,E,\lambda) \models_{\emptyset} \phi$, dann heißt $(V,E,\lambda)$ Modell von $\phi$ und $\phi \in \mso(V,E,\lambda)$
+		\item 	Falls $\phi((V,E,\lambda), I) = \top$ gilt, dann ist $(V,E,\lambda) \models_I \phi$ ein Modell für $\phi$ unter $I$. 
+		\item	Falls $\fv(\phi) = \emptyset$ und $(V,E,\lambda) \models_{\emptyset} \phi$, dann hei\ss t $(V,E,\lambda)$ Modell von $\phi$ und $\phi \in \mso(V,E,\lambda)$ ist ein Satz.
 	\end{itemize}
 
-\subsection{First Order Logic $\fo$}
+\subsection{First Order Logic ($\fo$)}
 \subsubsection{Grundlagen}
 	$\fo$ ist ein Fragment von $\mso$ ohne die Menge $X$.
 	
