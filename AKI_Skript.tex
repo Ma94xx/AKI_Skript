@@ -2459,11 +2459,10 @@ Wir definieren die folgenden Makros:
 \subsubsection{Satz: Zusammenhang von $\mso$ und regulären Sprachen}
 	Sei $L \subseteq \sigstern$. Dann gilt 
 	\begin{align*}
-	L \in \reg(\Sigma) &\iff \exists \phi \in \mso(\Sigma^\ast) \text{ mit } \fv(\phi) = \emptyset \text{ und } L=L(\phi) = \{w \mid w \models \phi \}\\
-	&\iff \exists \psi \in \mso  \text{ mit } \fv(\psi) \subseteq \{X_1, \ldots, X_n\} 
+	L \in \reg(\Sigma) \iff& \exists \phi \in \mso(\Sigma^\ast) \text{ mit } \fv(\phi) = \emptyset \text{ und } L=L(\phi) = \{w \mid w \models \phi \}\\
+	\iff& \exists \psi(\Sigma^\ast) \in \mso  \text{ mit } \fv(\psi) \subseteq \{X_1, \ldots, X_n\}, \psi \text{ ist quantorenfrei und }\\ &L=L(\exists X_1 \ldots \exists X_n : \psi) 
 	\end{align*}
- wobei $\psi$ quantorenfrei ist, und  $L= L(\exists X_1, \ldots, \exists X_n \psi) $
-mit 
+
 
 \subsubsection{Beweis des Satzes - Erste Richtung}
 	Sei $L= L(A)$ für einen NFA $A= (Q, \Sigma, \delta, I, F)$. Wir konstruieren jetzt $\phi \in \mso$ mit: $$w \in L(A) \iff w \models \phi$$
@@ -2471,51 +2470,55 @@ mit
 	Es gelte $Q = \{0, \ldots, m\}$. Dann existieren Mengenvariablen $X_0, \ldots, X_m$, sodass wir $\phi$ folgenderma\ss en setzen können:
 	$$\phi = \Bigl\lbrack(\exists X_q : 1 \in X_q \land q \in I) \land (\exists X_q : n \in X_q \land q \in F) \land  (\bigwedge_{p, q \in Q} (p \not = q \implies X_p \cap X_q = \emptyset))$$
 	$$ \forall x \forall y ( \bigwedge_{p, q, a} (x \in X_p \land \lambda(x)= a \land (x,y \in E)) \implies  \bigvee_{(p,q,a) \in \delta} y \in X_q)\Bigr\rbrack$$
-	\bewiesen
+	Damit ist die erste Richtung bewiesen.
 
-\subsubsection{Vorbereitungen für zweite Richtung}
+\subsubsection{Vorbereitungen für zweite Richtung des Beweises}
+Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen:
 	\begin{enumerate}[label= \arabic*.)]
-		\item Sei $(x,y) \in E$ dann gilt das Makro $(x,y) \in \east$ genau dann wenn $y = x +1$, $x \leq y \iff (x, y) \in \east$ über $\sigstern$. Insbesondere gilt dann 
-				$$ y = x +1 \iff [x \leq y \land \forall z : (x \leq z \leq y \land x \not = z) \implies z = y]$$
-		\item Seien hier alle Elemente $\fo$-Variablen. Dann ist $$|x| = 1 \iff [x \not =\emptyset \land \forall y : y \subseteq X \cap Y \not = \emptyset \implies x = y]$$
-				Man beachte hierbei dass $\sigstern \not = \emptyset$  ist auch falls $ \Sigma = \emptyset$, da $\emptyset^\ast = \{\varepsilon\}$
-		\item Wir erhalten neue atomare Formeln (Achtung DAM Seite 223 Druckfehler): 
+		\item Das Makro $y = x +1$ gilt dann, wenn $(x,y) \in E$ gilt und das Makro $x \leq y$ dann, wenn $(x,y) \in \east$ gilt. 
+		Dabei kann man das erste Makro in $\fo[\leq]$ definieren über: 
+				$$ y = x +1 \iff [x \leq y \land \forall z : (x \leq z \leq y \land x \not = z \implies z = y \land x \not= y)]$$
+		\item Durch diesem und den nächsten Schritt sollen alle $\fo$-Variablen eliminiert werden. Dafür definieren wir das Makro: $$|X| = 1 \iff [X \not =\emptyset \land \forall Y : (Y \subseteq X \land Y \not= \emptyset \implies X = Y) ]$$
+		Man beachte hierbei dass $\sigstern \not = \emptyset$  gilt, auch für $ \Sigma = \emptyset$, wegen $\emptyset^\ast = \{\varepsilon\}$.\\
+		Weiter definieren wir das Makro:
+		$$X=\emptyset :\iff (\forall Y: X \subseteq Y)$$
+		\item Wir führen neue atomare Formeln ein(Achtung DAM Seite 223 Druckfehler): 
 			\begin{itemize}
-				\item $x < y \iff [\forall x \forall y : x \in X \land y \in Y \implies x < y]$
-				\item $a\in X \iff [\exists x \in X \land \lambda(x)=a] $
+				\item $X < Y :\iff [\forall x \forall y : x \in X \land y \in Y \implies x < y]$
+				\item $a\in X :\iff [\exists x \in X \land \lambda(x)=a] $
 			\end{itemize}
 		\item Boolsche Kombinationen von $\mso$-Formeln sind ''harmless'', da $\reg(\sigstern)$ eine boolsche Algebra ist.
 	\end{enumerate}
 
-\subsubsection{Zweite Richtung}
-	Man beachte dass ohne Einschränkung gilt: $\varphi : Q_1X_1\ldots Q_nX_n\psi$ und $\psi$ ist quantorenfrei 
-	mit $\fv(\varphi) \subseteq \{X_1, \ldots, X_n\}$ und $Q_i \in \{\forall, \exists\}$. 
+\subsubsection{Beweis des Satzes - Zweite Richtung}
+	Für diese Richtung ist zu zeigen, dass $L \in \reg(\Sigma)$ gilt für $L=\varphi(L)$ für eine $\mso$-Formel $\varphi$. 
+	Man beachte, dass ohne Einschränkung folgende Form für $\varphi$ angenommen werden kann: $\varphi = Q_1X_1\ldots Q_nX_n\psi$ mit $\psi$ ist quantorenfrei, 
+	$\fv(\psi) \subseteq \{X_1, \ldots, X_n\}$ und $Q_i \in \{\forall, \exists\}$.
+	Also können wir davon ausgehen, dass sich $\varphi$ in Pränexnormalform befindet. $\psi$ benutzt nur boolesche Kombinationen, sowie die atomaren Formeln
+	$X_i \subseteq X_j$, $a \in X_i$ und $X_i < X_j$. \\
+	
+	Wir definieren nun für $n \geq 0$ ein neues Alphabet $\Gamma_n = (\Sigma \times \{0,1\}^n)$. Somit hat $w' \in \Gamma_n$ dann $n+1$ Spuren mit $w_0' \in \Sigma$ und $w_1', \ldots, w_n' \in \{0,1\}$. Dann gilt für Worte aus $\Gamma_n^l$ Folgendes:  $w \in \Gamma_n^l = (w_0, w_1, \ldots, w_n)$ mit $w_0 \in \Sigma^l$ und $w_i \in \B^l = \{0,1\}^l$. 
 	\newline
 	
-	Also können wir davon ausgehen dass sich $\varphi$ in Pränexnormalform befindet und boolsche Kombinationen benutzt sowie atomare Formeln: 
-	$x_i \leq x_j$, $a \in x_i$, sowie $x_i < x_j$. 
-	Wir definieren nun für $n \geq 0$ ein $\Gamma_n = (\Sigma \times \{0,1\}^n)$. Somit hat $w' \in \Gamma_n$ dann $n+1$ Spuren mit $w_0 \in \Sigma$, 
-	mit $w_1', \ldots, w_n' \in \{0,1\}$ und $w \in \Gamma_n^l = (w_0, w_1, \ldots, w_n)$ mit $w_0 \in \Sigma^l$ und $w \in \B^l = \{0,1\}^l$. 
+	Es gilt $\Gamma_0 = \Sigma$. 
+	Mit Induktion nach $n$ zeigen wir nun : \\
+	Es existiert ein NFA $A_n$ mit $L(A_n) = L(\psi) \subseteq \Gamma_n^\ast$. Hierfür interpretieren wir die Mengenvariablen $X_i$ durch Teilmengen $I(X_i) \subseteq \Gamma^l$ für alle $l$.
+	Dann ist $I(X_i) = \{w \in \Gamma_n^l \mid w_i(X)= 1\}$, wobei $$w_i(X) = 1 \iff \lambda_i(w_i) = 1$$ mit $\lambda_i$ als Beschriftung der $i$-ten Spur gilt.
 	\newline
 	
-	Mit Induktion nach $n$ zeigen wir nun $\Gamma_0 = \Sigma$: \\
-	Es existiert ein NFA $A_N$ mit $L(A_n) = L(\psi) \subseteq \Gamma_n^\ast$. Hier interpretieren wir $X_i$ durch eine Teilmenge $I(X_i) \subseteq \Gamma^l$ für alle $l$.
-	Dann ist $I(X_i) = \{w \in \Gamma_n^l \mid w_i(x)= 1\}$ mit $$w_i(x) = 1 \iff \lambda_i(w_i) = 1$$ für eine Beschriftung $\lambda_i$ der $i$-ten Spur.
-	\newline
+	Wir beginnen die Induktion mit $n= 0$. Dann gilt $\fv(\psi) = \emptyset$. Die einzige atomare Formel ist dann $\top = true$, also folgt $L(A_n) = \sigstern$.\\
 	
-	Sei nun $n= 0$, dann gilt $\fv(\psi) = \emptyset$. Die erzeugte atomare Formel ist $\top = true$ also folgt $L(A_n) = \sigstern$.
-	Sei nun $n \geq 1$. Wir konstruieren die atomaren Formeln: $\top, x_i \leq x_j$, $a\in x_i$, und $x_i < x_j$. (Rest verleibt der Übung, siehe DAM).
-	\newline 
-	
-	Dann verbleibt nur noch zu zeigen: $\exists X_n  \psi (x_1, \ldots, x_n)$, denn $\forall X_n \psi = \neg (\exists X_n(\neg\psi))$, da $\reg(\sigstern)$ unter Komplement abgeschlossen ist.
+	Sei nun $n \geq 1$. Es müssen dann Automaten für die folgenden atomaren Formeln konstruiert werden: $\top, X_i \subseteq X_j$, $a\in X_i$ und $X_i < X_j$. Diese Automatenkonstruktion ist in DAM nachzulesen.
+	Dann verbleibt nur noch, einen Automaten für $\exists X_n  \psi (X_1, \ldots, X_n)$ zu finden.
+	Den Allquantor muss man nicht weiter betrachten, da $\forall X_n \psi = \neg (\exists X_n(\neg\psi))$ gilt und $\reg(\sigstern)$ unter Komplement abgeschlossen ist.
 	\newline 
 		
-	Bis hier hin haben wir $A_n$ mit $L(A_n \subseteq \Gamma_n^\ast)$ und $L(A_n) = L(\psi)$ konstruiert. Sei nun $A_{n+1} = (Q, \Gamma_{n +1}, \delta', I, F)$. 
-	Es gilt $\delta \subseteq Q \times \Gamma_n \times Q$. Wir definieren nun $(p, w ', q) \in \delta' \iff \exists b \in \{0,1\}: (p, \binom{w'}{n}, q) \in \delta$.
-	Dann gilt $L(A_{n+1}) = L(\exists X_n \psi)$. Nach $n$ Iterationen erhalten wir nun einen NFA $A_0$ mit $L(A_0) \subseteq \Gamma_0^\ast = \sigstern$ und 
+	Es wurde ein Automat $A_n$ mit $L(A_n) \subseteq \Gamma_n^\ast$ und $L(A_n) = L(\psi)$ konstruiert. Sei $A_n=(Q,\Gamma_n, \delta, I, F)$. Wir konstruieren $A_{n-1} = (Q, \Gamma_{n-1}, \delta', I, F)$. 
+	Es gilt $\delta \subseteq Q \times \Gamma_n \times Q$. Wir definieren nun $$(p, w ', q) \in \delta' :\iff \exists b \in \{0,1\}: (p, \binom{w'}{b}, q) \in \delta\, .$$
+	Dann gilt $L(A_{n+1}) = L(\exists X_n \psi)$. Nach $n$ Iterationen erhalten wir einen NFA $A_0$ mit $L(A_0) \subseteq \Gamma_0^\ast = \sigstern$ und 
 	\begin{align*}
-		L(A_0) &= L(Q_1X_1\ldots Q_nX_n\psi) \\
-		&=L(\phi)
+		L(A_0) &= L(Q_1X_1\ldots Q_nX_n : \psi) \\
+		&=L(\varphi)
 	\end{align*}
 	\bewiesen
 	
