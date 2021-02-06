@@ -2602,62 +2602,77 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 	
 \subsection{$\fo \implies \starfree$}
 \subsubsection{Satz: $\fo$-Sprachen sind sternfrei}
-	Sei $\varphi \in \fo[\leq] = \fo[<]$ und $\Sigma$ ein endliches Alphabet, dann gilt $L(\varphi) \in \starfree(\sigstern)$. Sei $\varphi \in \fo[\leq]$ mit $\fv(\varphi) = \{x_1, \ldots, x_n\} = V$ und $w \in \sigstern$ mit $w = \{1, \ldots, l\}$. Dann ist eine Interpretation der $x_i$ gegeben durch eine Abbildung $$\sigma: V \to \{1, \ldots,l\}$$ wobei $w, \sigma \models \varphi \in \{0,1\} = \B = \{\top, \bot\}$ wohldefiniert ist. 
+	Sei $\varphi \in \fo[\leq] = \fo[<]$ und $\Sigma$ ein endliches Alphabet. Dann gilt $L(\varphi) \in \starfree(\sigstern)$. 
 
-\subsubsection{Zentrale Idee}
-	Kodiere das Paar $(w, \sigma)$ durch Wörter über $\Sigma_V = \Sigma \times \{0,1\}^V$. Dabei haben Wörter über $\Sigma_V$ die Form $$(a_1, \tau_1) \cdots (a_l, \tau_l)$$ mit $a_i \in \Sigma$ und $\tau_i : V \to \{0,1\}$. Konkreter bedeutet das wir kodieren $(w, \sigma)$ durch $$\overline{(w, \sigma)} = (a_1, \tau_1) \cdots (a_{|w|}, \tau_{|w|})$$ wobei $\tau_p(x) =$ ''$\sigma(x) = p$'' $\in \B$ ist. 
+\subsubsection{Beweis des Satzes - Teil 1}
+	Sei $\varphi \in \fo[\leq]$ mit $\fv(\varphi) = \{x_1, \ldots, x_n\} = V$ und $w \in \sigstern$ mit $w = \{1, \ldots, l\}$. Dann ist eine Interpretation der freien Variablen $x_i$ gegeben durch eine Abbildung $$\sigma: V \to \{1, \ldots,l\}\, .$$ 
+	Dann gilt $w, \sigma \models \varphi \in \{0,1\} = \B = \{\top, \bot\}$ ist wohldefiniert. \newline
+	
+	Die zentrale Idee des Beweises ist nun folgende: Kodiere das Paar $(w, \sigma)$ durch Wörter über $\Sigma_V = \Sigma \times \{0,1\}^V$. Dabei haben Wörter über $\Sigma_V$ die Form $$(a_1, \tau_1) \cdots (a_l, \tau_l)$$ mit $a_i \in \Sigma$ und $\tau_i : V \to \{0,1\}$. Konkreter bedeutet das, wir kodieren $(w, \sigma)$ durch $$\overline{(w, \sigma)} = (a_1, \tau_1) \cdots (a_{|w|}, \tau_{|w|})\, ,$$ wobei $\tau_p(x) =$ ''$\sigma(x) = p$'' $\in \B$ ist.\newline
+	
+	Für den weiteren Beweis sind nun noch einige Definitionen notwendig. 
 
-\subsubsection{Definition: Menge der Normalformen}
-	Es ist $$\overline{(w, \sigma)} = N_V = \bigcap_{x \in V} (\Sigma_V^{x=0})(\Sigma_V^{x=1})(\Sigma_V^{x=0}) \in \starfree(\sigstern)$$
+\subsubsection{Definition: Normalform}
+	Die Normalformen entsprechen den Kodierungen $\overline{(w, \sigma)}$.
+	Die Menge dieser ist definiert als: $$N_V = \bigcap_{x \in V} (\Sigma_V^{x=0})^\ast(\Sigma_V^{x=1})(\Sigma_V^{x=0})^\ast \in \starfree(\sigstern)$$
 
 \subsubsection{Definition: Teilalphabet}
-	Wir nennen die folgende Menge ein Teilalphabet $$\Sigma_V^{x=b} = \{(a, \tau) \in \Sigma_V \mid \tau(x) = b\}$$ mit $b \in \{0,1\} = \B$
+	Wir nennen die folgende Menge ein Teilalphabet von $\Sigma_V$: $$\Sigma_V^{x=b} = \{(a, \tau) \in \Sigma_V \mid \tau(x) = b\}\, ,$$ mit $b \in \{0,1\} = \B$.
 
-\subsubsection{Semantiken}
+\subsubsection{Semantik}
+	Wir bezeichnen die Semantik von einem Ausdruck $x$ mit dem Symbol $\llbracket x\rrbracket$.
+	Im Folgenden definieren wir die Semantik einiger Ausdrücke in der Menge der Code-Wörter.
 	\begin{gather*}
 			\rbracedalign
 			{}{
-				\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
-				\llbracket x = a \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid w = b_1, \ldots, b_l \in \sigstern \}  \\
-				\llbracket x < y\rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid \sigma(x) < \sigma(y) \}  \\
-				\llbracket \varphi \cup \psi \rrbracket_v &= \llbracket \varphi \rrbracket \cup \llbracket \psi \rrbracket 
+				\llbracket \varphi \rrbracket_V &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
+				\llbracket x = a \rrbracket_V &= \{\overline{(w, \sigma)} \in N_V \mid w = b_1, \ldots, b_l \in \sigstern \land b_{\sigma(x)}=a\}  \\
+				\llbracket x < y\rrbracket_V &= \{\overline{(w, \sigma)} \in N_V \mid \sigma(x) < \sigma(y) \}  \\
+				\llbracket \varphi \lor \psi \rrbracket_V &= \llbracket \varphi \rrbracket_V \cup \llbracket \psi \rrbracket_V 
 			}{ 
-				\llbracket \neg \varphi \rrbracket_v &= N_V \setminus \llbracket \varphi \rrbracket \\
-				\llbracket \varphi \rrbracket_v &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  
+				\llbracket \neg \varphi \rrbracket_V &= N_V \setminus \llbracket \varphi \rrbracket_V  
 			}{\in \starfree(\sigstern_V)}
 	\end{gather*}
-	und es gilt $$\llbracket \exists x \varphi \rrbracket_v \in \{ \overline{(w, \sigma)} \in N_V \mid \exists 1 \leq p \leq |w| \text{ und } \overline{(w, \sigma[x_n \to p])} \in \llbracket \varphi \rrbracket_{V \cup [x]} \}$$
-	wobei wir $\sigma$ wie folgt definieren: 
+	$$\llbracket \exists x : \varphi \rrbracket_V \in \{ \overline{(w, \sigma)} \in N_V \mid \exists p : 1 \leq p \leq |w| \land \overline{(w, \sigma[x_n \to p])} \in \llbracket \varphi \rrbracket_{V \cup [x_n]} \}$$
+	Wobei wir $\sigma$ wie folgt definieren: 
 	$$\sigma[x_n \to p](y) = 
 	\begin{cases}
 	\sigma(y) & \text{ falls }  y \not = x_n\\
-	\sigma(x_n) = p
+	\sigma(x_n) = p & \text{ sonst}
 	\end{cases}$$
+
+	Hierbei wurde \oei angenommen, dass $\varphi = Q_1x_1\ldots Q_nx_n \psi$ gilt, wobei $\psi$ quantorenfrei ist, $\fv(\psi) = \{x_1, \ldots, x_n\} = V$ gilt und
+	$Q_i \in \{\exists, \forall\}$ ist. 
+
 	
-\subsubsection{Beweis Fortsetzung (von \ref{Beweis: 1})}
-	Ohne Einschränkung können wir annehmen dass $\varphi = Q_1x_1\ldots Q_nx_n \psi$ gilt und $\psi$ ist quantorenfrei sowie $\fv(\psi) = \{x_1, \ldots, x_n\} = V'$ mit 
-	$Q_i \in \{\exists, \forall\}$ und $x_i \not = x_j$ für alle $i \not = j$. 
-	\newline
-	
-	Die Behauptung ist richtig falls $\fv(\varphi) = V'$, da dann $\llbracket \varphi \rrbracket_v \in \{\emptyset, \sigstern_V\}$. Es bleibt dann noch zu zeigen dass die Behauptung gilt für 
-	$\exists x_n\psi(x_1, \ldots, x_n)$, da $\starfree(\sigstern_V)$ eine boolsche Algebra ist. Weiter gilt:
+\subsubsection{Beweis des Satzes - Teil 2}
+	\oei gilt $\varphi = Q_1x_1\ldots Q_nx_n \psi$, wobei $\psi$ quantorenfrei ist, $\fv(\psi) = \{x_1, \ldots, x_n\} = V'$ gilt,
+	$Q_i \in \{\exists, \forall\}$ ist und $x_i \not= x_j$ für alle $i \not=j$. 
+	Die zu beweisende Behauptung ist richtig, falls $\fv(\varphi) = V'$ gilt, da dann $\llbracket \varphi \rrbracket_{V'} \in \{\emptyset, \sigstern_{V'}\}$ gilt. Deshalb bleibt die Behauptung dann noch für den Fall, dass nicht alle Variablen frei sind, zu zeigen, also ist zu zeigen, dass die Behauptung für 
+	$\exists x\psi$ gilt, da $\starfree(\sigstern_{V'})$ eine boolesche Algebra ist. Wir betrachten nun die Teilalphabete:
 	\begin{align*}
-		&A = \Sigma_V^{x_n = 1} &&B= \Sigma_V^{x_n = 0} &&&N_V \subseteq \bast A \bast &&&&\fv(\exists x_n \psi) = \{x_1\ldots x_{n-1}\}
+		A = \Sigma_{V'}^{x_n = 1}  \quad\text{ und }\quad B= \Sigma_{V'}^{x_n = 0} 
 	\end{align*}
-	Mit $A \cup B = \Sigma_V$ und $A \cap B \not = \emptyset$ können wir nun schließen dass 
+	Dann gilt:
 	\begin{align*}
-		\llbracket \exists x \psi \rrbracket_v &= \llbracket \exists x \psi \rrbracket_v \cap N_V \\ 
-		&= \bigcup_{\text{endlich}} K_iAL_i \text{ mit } K_i, L_i, \in \starfree(\bast)
+	N_{V'} \subseteq \bast A \bast \quad\text{ und }\quad\fv(\exists x \psi) = \fv(\psi) \cup \{x\}
 	\end{align*}
-	Wir erhalten zwei Restriktionen: 
+	Mit $A \cup B = \Sigma_{V'}$ und $A \cap B  = \emptyset$ können wir nun schlie\ss en, dass 
+	\begin{align*}
+		\llbracket \exists x \psi \rrbracket_{V'} &= \llbracket \exists x \psi \rrbracket_{V'} \cap N_{V'} \\ 
+		&= \bigcup_{\text{endlich}} K_iAL_i 
+	\end{align*}
+	mit $K_i, L_i, \in \starfree(\bast)$ gilt.
+	Wir erhalten zwei bijektive Restriktionen: 
 		\begin{align*}
-			\pi_0 : B &\iso \Sigma_V \text{ mit } \pi_0(a, \tau) = (a, \tau|_v) \\
-			\pi_1 : A &\iso \Sigma_V \text{ mit } \pi_1(a, \tau) = (a_i, \tau|_v) 
+			\pi_0 : B &\iso \Sigma_V \text{ mit } \pi_0(a, \tau) = (a, \tau|_V) \\
+			\pi_1 : A &\iso \Sigma_V \text{ mit } \pi_1(a, \tau) = (a_i, \tau|_V) 
 		\end{align*}
-	Somit kommen wir zu $$\llbracket \exists x \psi \rrbracket = \bigcup_{\text{endlich}} \pi_0(K_i) \pi_1(A)\pi_0(L_i) \subseteq \sigstern_V$$ Denn $\pi_0, \pi_1$ sind nur Umbenennungen von Buchstaben. Wir können daraus schließen dass 
+	Somit sehen wir: $$\llbracket \exists x \psi \rrbracket_V = \bigcup_{\text{endlich}} \pi_0(K_i) \pi_1(A)\pi_0(L_i) \subseteq \sigstern_V$$ 
+	Da $\pi_0, \pi_1$ nur Umbenennungen von Buchstaben sind, folgt 
 		\begin{align*}
-			\pi_0(K_i), \; \pi_1(L_i), \; \pi_1(A) \in \starfree(\Sigma_V)
-		\end{align*} gilt. 
+			\pi_0(K_i), \; \pi_0(L_i), \; \pi_1(A) \in \starfree(\Sigma_V)\,.
+		\end{align*}  
 		\bewiesen
 	
 \section{Automatentheoretische Verifikation und Modell Checking- Vorlesung 16}
