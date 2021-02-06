@@ -223,6 +223,7 @@
 \newcommand{\aast}{A^{\ast}}
 \newcommand{\bast}{B^{\ast}}
 \newcommand{\east}{E^{\ast}}
+\newcommand{\sast}{\Sigma^{\ast}}
 
 %MSO
 \newcommand{\fv}{\mathsf{FV}}
@@ -246,6 +247,8 @@
 \newcommand{\sende}{\mathsf{END}}
 \newcommand{\tf}{\mathsf{TF}}
 
+%ohne einschränkung
+\newcommand{\oei}{\OE\hspace{2pt}}
 
 
 
@@ -2562,12 +2565,11 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 
 \subsubsection{Beobachtung}
 	Sei $L \cap \bast A \bast = \bigcup_{\text{endlich}} K_iAL_i$. Dann gilt ohne Einschränkung $$K_I \cap K_j = \emptyset$$ für alle $i \not = j$ und $$\bigcup_{i \in I} K_i = \sigstern\, .$$
-\subsubsection{Beweis des Lemmas - Fortsetzung}
-\label{sec:splitting_bew2}
-	Ohne Einschränkung gilt $K_i \not = \emptyset$ für alle $i$. 
-	\newline
+
+	Das kann man folgenderma\ss en beweisen. \oei gilt $K_i \not = \emptyset$ für alle $i$.
 	
-	Angenommen $\exists i,j$ mit $i \not = j$ und $K_i \setminus K_j \not = \emptyset \not = K_i \cap K_j$, dann lässt sicht $K_i A L_i$ durch $$(K_i \setminus K_j)AL_i \cup (K_i \cap K_j)AL_i$$ darstellen. Das folgende Bild veranschaulicht dies: 
+	Angenommen $\exists i,j$ mit $i \not = j$ und $K_i \setminus K_j \not = \emptyset \not = K_i \cap K_j$.
+	Dann lässt sich $K_i A L_i$ durch $$(K_i \setminus K_j)AL_i \cup (K_i \cap K_j)AL_i$$ darstellen. Abbildung~\ref{fig:teilmengen} veranschaulicht dies. 
 	
 	\begin{figure}[H]
 		\centering
@@ -2588,10 +2590,18 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 						(3.5,-3.5) rectangle (-2,2) node [text=black,shift={(0.5,-0.5)}] {$K_0$};
 				\end{tikzpicture}
 			\end{array}$
+		\caption{Aufteilung von $\sast$ in Teilmengen.}
+		\label{fig:teilmengen}
 		\end{figure}
-	Betrachte $(\sigstern \setminus L) \cap \bast A \bast$ wobei $$L \cap BA\bast = \bigcup_{i = 1}^n K_i A L_i$$ mit $K_i \cap K_j \not = \emptyset$ für alle $i \not = j$ und $\bigcup K_i = \sigstern$ sowie $K_i \not = \emptyset$. Dann ist $\{K_1, \ldots, K_n\}$ eine Partition von $\sigstern$. Somit gilt $$\sigstern \setminus L \cap \bast A \bast = \bigcup_{i = 1}^nK_iA(\bast \setminus L_i)$$ 
 	
-\subsubsection{Satz}
+\subsubsection{Beweis des Lemmas - Fortsetzung}
+	\label{sec:splitting_bew2}
+	Nun können wir den Beweis mit der Betrachtung des Komplements $\sast\setminus L$ vervollständigen.
+	Betrachte also $(\sigstern \setminus L) \cap \bast A \bast$, wobei $$L \cap BA\bast = \bigcup_{i = 1}^n K_i A L_i$$ gilt mit $K_i \cap K_j \not = \emptyset$ für alle $i \not = j$ und $\bigcup_i K_i = \sigstern$, sowie $K_i \not = \emptyset$. Dann ist $\{K_1, \ldots, K_n\}$ eine Partition von $\sigstern$. Somit gilt: $$(\sigstern \setminus L) \cap (\bast A \bast) = \bigcup_{i = 1}^nK_iA(\bast \setminus L_i)$$ 
+	\bewiesen
+	
+\subsection{$\fo \implies \starfree$}
+\subsubsection{Satz: $\fo$-Sprachen sind sternfrei}
 	Sei $\varphi \in \fo[\leq] = \fo[<]$ und $\Sigma$ ein endliches Alphabet, dann gilt $L(\varphi) \in \starfree(\sigstern)$. Sei $\varphi \in \fo[\leq]$ mit $\fv(\varphi) = \{x_1, \ldots, x_n\} = V$ und $w \in \sigstern$ mit $w = \{1, \ldots, l\}$. Dann ist eine Interpretation der $x_i$ gegeben durch eine Abbildung $$\sigma: V \to \{1, \ldots,l\}$$ wobei $w, \sigma \models \varphi \in \{0,1\} = \B = \{\top, \bot\}$ wohldefiniert ist. 
 
 \subsubsection{Zentrale Idee}
