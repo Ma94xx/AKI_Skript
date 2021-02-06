@@ -2384,6 +2384,7 @@
 	\bewiesen
 	
 \section{Monadic Second Order Logic ($\mso$) - Vorlesung 14}
+\label{sec:vl14}
 \subsection{Grundlagen}
 \subsubsection{Allgemeines}
 Wir betrachten $\mso$ hier für gerichtete Graphen mit Knotenbeschriftungen, also für Modelle $G=(V, E ,\lambda)$ mit einer Knotenmenge $V$, einer Kantenmenge $E \subseteq V \times V$ und einer Beschriftung $\lambda : V \to \Sigma$, wobei $\Sigma$ ein endliches Alphabet ist.
@@ -2523,34 +2524,46 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 	\bewiesen
 	
 \section{$\fo \implies \starfree $ und das Splitting Lemma - Vorlesung 15}
-\subsection{Das Splitting Lemma}
-\subsubsection{Allgemeines}
+
+\subsection{Allgemeines}
 	Für $\sigstern$ gilt: $$\ap = \starfree = \fo[\leq] = \fo^3[\leq] = \ltl = \tl[UX]$$ \\
+	Hierbei steht $\ltl$ für Lineare Temporale Logik, $\tl[UX]$ ist die Temporale Logik mit $XU$ (next until) als einzigem Operator und $\fo^3[\leq]$ ist das Fragment der First-Order Logik, das nur drei Variablenbezeichnungen benutzt.\\
 	
-	In dieser Vorlesung: Sei $L \subseteq \sigstern$ in $\fo[\leq]$ definierbar, dann folgt dass $L \in \sf(\sigstern)$. 
+	In diese Kapitel soll der Teil $\fo[\leq] \implies \starfree$ gezeigt werden. Für eine Sprache $L \subseteq \sigstern$, die in $\fo[\leq]$ definierbar ist, folgt $L \in \sf(\sigstern)$. 
 	Modelle für $\fo[\leq]$ sind dann Wörter $w \in \sigstern$ mit $$w = (\{1, \ldots, |w|\}, \{(i,j) \mid 1 \leq i \leq j \leq |w|\}, \lambda)$$
-	Als atomare Formeln erhalten wir dann ''$x  \leq y$'', ''$\lambda(x) =a$'', und schreiben hierfür $w(x) = a$, sowie $T = true$.
-	Unsere Makros sind $y =x+1$, $w(x) \in A$ für $A\subseteq \Sigma$ etc.
+	Für die atomare Formel ``$\lambda(x) =a$'' schreiben wir $w(x) = a$.
+	Die übrigen atomaren Formeln und Makros aus Kapitel~\ref{sec:vl14} gelten weiterhin.
 
 \subsubsection{Beispiel}
-	Sei $L = b\sigstern bb \sigstern a $ dann gilt $L = b \sigstern \cap \Sigma^+bb\Sigma^+ \cap \sigstern a$
+	Gegeben sei die $\fo[\leq]$-Sprache $L = b\sigstern bb \sigstern a $. 
+	Diese kann man als $\starfree$-Sprache schreiben, durch $L = b \sigstern \cap \Sigma^+bb\Sigma^+ \cap \sigstern a$.
 
-\subsubsection{Aussage des Lemmas}
-	Sei $L \in \starfree(\sigstern)$ und es seien $A, B \subseteq \Sigma$ mit $A \cap B = \emptyset$. Dann gilt für $K_i, L_i \in \starfree(\bast)$: $$L \cap \bast A \bast = \bigcup_{\text{endlich}} K_iAL_i$$
+\subsection{Das Splitting Lemma}
+\subsubsection{Aussage des Splitting Lemma}
+	Sei $L \in \starfree(\sigstern)$ und seien $A, B \subseteq \Sigma$ mit $A \cap B = \emptyset$. Dann gilt für $K_i, L_i \in \starfree(\bast)$: $$L \cap \bast A \bast= \bigcup_{\text{endlich}} K_iAL_i$$
+	Auch die Umkehrung des Lemmas ist wahr, hier ist jedoch nur die gegebene Richtung relevant.
 	
-\subsubsection{Beweis Splitting Lemma - Teil 1\label{Beweis: 1}}
-	Ohne Einschränkung: $\bigcup_{\text{endlich}} K_iAL_i = \bigcup_{i = 0}^n K_iAL_i$ mit $K_0 = \sigstern$ und $n \geq 1$, denn $L_0 = \emptyset$ ist erlaubt. 
+\subsubsection{Beweis des Lemmas - Teil 1\label{Beweis: 1}}
+	\OE\hspace{1pt} gilt $\bigcup_{\text{endlich}} K_iAL_i = \bigcup_{i = 0}^n K_iAL_i$ mit $K_0 = \sigstern$ und $n \geq 1$. Die ist möglich, da $L_0 = \emptyset$ erlaubt ist und somit auch der Fall des leeren Wortes abgedeckt ist. \newline
+	
+	Der Beweis ist einfach, unter Verwendung von $\ap = \starfree$, was als Selbsttest geprüft werden kann.
+	Wir geben hier deshalb den direkten Beweis mittels struktureller Induktion an.
 	\newline
 	
-	Unter Verwendung von $\ap = \starfree$ ist der Beweis einfach und bleibt zum Selbsttest. Wir geben hier deshalb den direkten Beweis mittels struktureller Induktion an. 
-	\newline
+	Wir unterscheiden nach verschiedenen Formen, die $L$ annehmen kann.
+	Zuerst sei $L$ endlich. Dann gilt $L \cap \bast A\bast$ ist sternfrei (trivial).\newline
 	
-	Sei $L$ endlich, dann gilt $L \cap \bast A\bast$ ist sternfrei (trivial). Falls $L = L_1 \cup L_2$, $L_i \in \starfree(\Sigma)$, dann $$L_1 \cup L_2 = \bigcup_{j = 1,2} \bigcup K_{i,j}AL_{}i,j$$ Weiter ist $$L' \cdot L'' \cap \bast A \bast = \bigcup_{i \in I} K_i A L_i (L'' \cap \bast) \cup \bigcup_{j \in J}(L' \cap B) K_jAL_j$$ 
-	für $L' \cap \bast A \bast = \bigcup_{i \in I} K_iAL_j$ und $L'' \cap \bast A \bast = \bigcup_{j \in J} K_iAL_j$
+	Nun sei $L = L' \cup L''$ mit $L', L'' \in \starfree(\Sigma)$. Dann gilt: $$L' \cup L'' \cap \bast A \bast = \bigcup_{j = 1,2} \bigcup K_{i,j}AL_{i,j}$$ \newline
+	
+	Nun sei $L=L' \cdot L''$. Dann gilt: $$L' \cdot L'' \cap \bast A \bast = \bigcup_{i \in I} K_i A L_i (L'' \cap \bast) \cup \bigcup_{j \in J}(L' \cap B) K_jAL_j$$ 
+	für $L' \cap \bast A \bast = \bigcup_{i \in I} K_iAL_i$ und $L'' \cap \bast A \bast = \bigcup_{j \in J} K_iAL_j$.\newline
+	
+	Es fehlt jetzt noch die Betrachtung des Komplements, welche in Abschnitt~\ref{sec:splitting_bew2} folgen wird.
 
 \subsubsection{Beobachtung}
-	Sei $L \cap \bast A \bast = \bigcup_{\text{endlich}} K_iAL_i$. Dann gilt ohne Einschränkung $$K_I \cap K_j = \emptyset$$ für alle $i \not = j$ und $$\bigcup_{i \in I} K_i = \sigstern$$
-\subsubsection{Beweis Splitting Lemma - Fortsetzung}
+	Sei $L \cap \bast A \bast = \bigcup_{\text{endlich}} K_iAL_i$. Dann gilt ohne Einschränkung $$K_I \cap K_j = \emptyset$$ für alle $i \not = j$ und $$\bigcup_{i \in I} K_i = \sigstern\, .$$
+\subsubsection{Beweis des Lemmas - Fortsetzung}
+\label{sec:splitting_bew2}
 	Ohne Einschränkung gilt $K_i \not = \emptyset$ für alle $i$. 
 	\newline
 	
