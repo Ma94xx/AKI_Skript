@@ -39,10 +39,14 @@
 \usepackage{multirow,bigdelim}
 \usepackage{stackengine}
 \usepackage{amsmath}
+\usetikzlibrary{backgrounds}
 \usepackage{array, makecell}
 \usepackage{pst-node}
 \usepackage{multicol}
 \usetikzlibrary{calc}
+\usetikzlibrary{automata, positioning}
+\usetikzlibrary{fit}
+\usetikzlibrary{positioning,arrows}
 
 %Half grey node
 \makeatletter
@@ -1602,7 +1606,7 @@
 		\newline
 		Somit folgt: $L$ ist nicht regulär.\\
 		Diese Sprache ist das Wortproblem einer Gruppe:\\
-		Es gilt $L(\mathscr{G})=\mathsf{WP}(G)$ für die Gruppe $G=\Z \rtimes \Z/2\Z$ mit $(m,i)(n,j) = (m+(-1)^in, i+j\, mod\, 2) $.
+		Es gilt $L(\mathscr{G})=\mathsf{WP}(G)$ für die Gruppe $G=\Z \rtimes \Z/2\Z$ mit $$(m,i)(n,j) = (m+(-1)^in, i+j\, \mod 2) $$.
 	\end{itemize}
 	
 	\section{Halbgruppentheorie Teil 1 - Vorlesung 10}
@@ -3132,6 +3136,75 @@ Sei jetzt $\phi = \{\varphi_1, \ldots, \varphi_k\} = \bigwedge_{i = 1}^k \varphi
 		\item $\sende \land \varphi \sX\sR\psi = \sende$
 	\end{itemize}
 	
+\section{Büchi Automaten - Vorlesung 20}
+\subsection{Grundlagen}
+ Es ist $\Sigma\pom = \{a_1a_2\ldots \mid \forall i \in \N: a_i \in \Sigma \}$ und $\alpha \in \Sigma\pom$. Weiter ist $$L(A) \subseteq L(\varphi) \iff L(A) \cap L(\neg \varphi)$$
+ Die Abläufe von $A$ sollen nicht enden, da das System Modell kein Ende haben sollen (Schleusen, Betriebssystem usw)
+
+\subsection{Definition: Büchi Automat}
+	Ein Büchi Automat ist ein NFA $A = (Q, \Sigma, \delta, I, F)$ mit $L(A) \subseteq \Sigma\pom$. Wir definieren nun $\alpha = a_1a_2\ldots \in L(A)$ falls:
+	\begin{enumerate}[label = \arabic*.)]
+		\item es einen Pfad $p_0 \overset{a_1}{\longrightarrow}p_1 \overset{a_2}{\longrightarrow} p_2 \longrightarrow \ldots$ gibt so, dass für alle $i\in \N$ gilt: $p_i \overset{a_{i+1}}{\longrightarrow} p_{i+1} \in \delta$ gilt. (Hier gilt ohne Einschränkung $\delta \subseteq Q \times \Sigma \times Q$) und
+		\item $p_0 \in I$  und
+		\item $\exists p \in F |\{i \in \N \mid p_i = p\}| = \infty \iff |\{i \in \N \mid p_i \in F\}| = \infty$
+	\end{enumerate}
+
+\subsection{Definition: $\omega$-regulär}
+	$L \subseteq \Sigma\pom$ hei\ss t $\omega$-regulär, falls $\exists n \in \N : \forall 1 \leq i \leq n$ und $\exists U_i \subseteq \sigstern$ sowie $\exists V_i \subseteq \sigstern$ und $U_i, V_i$ sind regulär und es gilt $$L = \bigcup_{i = 1}^n U_i V_i\pom$$
+	
+\subsection{Lemma}
+	Sei $L = \bigcup_{i = 1}^n U_i V_i\pom$, dann existiert ein Büchi Automat $A$ mit $L=L(A)$.
+
+\subsection{Beweis des Lemmas}
+	Es gilt ohne Einschränkung: 
+	\begin{itemize}
+		\item $L = UV\pom$ mit $U = L(A_u) \subseteq \sigstern$ und $V = L(A_v) \subseteq \sigstern$
+		\item $A_u, A_v$ haben nur einen Endzustand
+		\item $\delta_u \delta_v \subseteq Q_u \times \Sigma \times Q_v$
+	\end{itemize}
+	Wir betrachten den Automat für $L = UV\pom$
+	\begin{figure}[h!]
+		\centering
+	
+		\begin{tikzpicture}[node distance=2.5cm, auto]
+		\node[state](a) [semifill={black,ang=90}] {};
+		\node(geist1) [fill=white, above right of = a] {$\cdots$};
+		\node(geist2) [fill=white, below right of=a] {$\cdots$};
+		\node[state](b) [semifill={black,ang=270}, below right of = geist1] {};
+		\node[state] (f)  [right of = b] {$f$};
+		
+		\node[state] (1)  [semifill={black,ang=90}, right of = f] {};
+		\node(spooky1)  [above right of = 1] {$\cdots$};
+		\node(spooky2)  [below right of = 1] {$\cdots$};
+		\node[state](2)  [semifill={black,ang=270}, above right of = spooky2] {};
+		
+		
+		\draw[->] (a) -- (geist1) node[ midway,sloped,above,rotate=0] {};
+		\draw[->] (a) -- (geist2) node[ midway,sloped,above,rotate=0] {};
+		\draw[->] (geist1) -- (b) node[ midway,sloped,above,rotate=0] {};
+		\draw[->] (geist2) -- (b) node[ midway,sloped,above,rotate=0] {};
+		
+		\draw[->] (1) -- (spooky1) node[ midway,sloped,above,rotate=0] {};
+		\draw[->] (1) -- (spooky2) node[ midway,sloped,above,rotate=0] {};
+		\draw[->] (spooky1) -- (2) node[ midway,sloped,above,rotate=0] {};
+		\draw[->] (spooky2) -- (2) node[ midway,sloped,above,rotate=0] {};
+		
+		\draw[->] (b) -- (f) node[ midway,sloped,above,rotate=0] {$\varepsilon$};
+		\draw[->] (f) -- (1) node[ midway,sloped,above,rotate=0] {$\varepsilon$};
+		\draw[->, bend left,  out=20,in=90] (2) to node[ midway,above,rotate=0] {$\varepsilon$} (f) ;
+		
+		\node[draw,fit=(a) (b) (geist1) (geist2)] {};
+		\node[draw,fit=(1) (2) (spooky1) (spooky2)] {};
+		\end{tikzpicture} 
+	\end{figure}
+
+	Mit $I=\{q_0\}$ und $F= \{f\}$. Entferne nun die $\varepsilon$-Übergänge und wir sind fertig.
+	\bewiesen
+	
+\subsubsection{Zur Notation im folgenden Kapitel}
+	Es ist $A = (Q, \Sigma, \delta, I,F)$ ein Büchi Automat mit $\delta \subseteq Q \times\Sigma \times Q$ und $L \subseteq \Sigma\pom$ sowie $$h:\Sigma^+ \to H$$ ein Hom. von Halbgruppen mit $h(\sigstern) = H$ (surjektiv) und $|H| < \infty$. 
+
+
 
 
 
