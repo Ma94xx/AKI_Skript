@@ -47,6 +47,19 @@
 \usetikzlibrary{automata, positioning}
 \usetikzlibrary{fit}
 \usetikzlibrary{positioning,arrows}
+\usepackage{xfrac}    
+\usepackage[amsmath,thmmarks,standard]{ntheorem}
+\usepackage{faktor}
+
+%andere pfeile nach rechts für stern plazierung
+%Pfeil mit Stern und argument für overset
+\def\ttostar#1{\overset{#1}{\longrightarrow}\negthickspace^*}
+
+%Pfeilohne stern und argument für overset
+\def\tto#1{\overset{#1}{\longrightarrow}}
+
+%Pfeil ohne stern und argument für overset und underset
+\def\ttou#1#2{ \overset{#1}{\underset{#2}{\longrightarrow}}}
 
 %Half grey node
 \makeatletter
@@ -253,6 +266,8 @@
 
 %ohne einschränkung
 \newcommand{\oei}{\OE\hspace{2pt}}
+
+
 
 
 
@@ -3203,11 +3218,101 @@ Sei jetzt $\phi = \{\varphi_1, \ldots, \varphi_k\} = \bigwedge_{i = 1}^k \varphi
 	
 \subsubsection{Zur Notation im folgenden Kapitel}
 	Es ist $A = (Q, \Sigma, \delta, I,F)$ ein Büchi Automat mit $\delta \subseteq Q \times\Sigma \times Q$ und $L \subseteq \Sigma\pom$ sowie $$h:\Sigma^+ \to H$$ ein Hom. von Halbgruppen mit $h(\sigstern) = H$ (surjektiv) und $|H| < \infty$. 
+	
+\subsubsection{Definiton: Starke Erkennung}
+	Wir sagen $h$ erkennt $L$ stark falls 
+	\begin{enumerate}[label=\arabic*)]
+	\item $\forall x = u_1u_2\ldots \in \Sigma\pom$ mit $u_i \in \Sigma^+$
+	\item und für alle $\beta = v_1v_2 \ldots \in \Sigma\pom$ mit $v_1 \in \Sigma^+$ 
+	\end{enumerate}
+	für jeweils alle $i \in \N$ gilt: $$\forall i \in \N: h(u_i) = h(v_i) \implies (\alpha \in L \iff \beta \in L)$$
 
+\subsubsection{Lemma}
+	Sei $L=L(A)$, dann gibt es ein $\mu : \sigstern \to H$ und $\mu$ erkennt $L$ stark mit $|H| \leq 3^n$ für $|Q| = n$
 
+\subsubsection{Beweis des Lemmas}
+	Bezeichnungen: Seien $u \in \Sigma^+$ und $p, q \in Q$
+	 \begin{itemize}
+		\item  Schreibe $p \tto{u} q$ falls ein Pfad existiert mit $p \ttostar{u} q$
+		\item Schreibe $p \ttou{u}{F} q$ falls ein Pfad existiert mit $p \ttostar{u} q$ der einen Endzustand besucht.
+	\end{itemize}
+	Definiere nun $$u \equiv_A v :\iff \forall p, q \in Q : (p \tto{u} q \iff p \tto{v} q)$$ und 
+	$$(p\ttou{u}{F} q \iff p \ttou{v}{F} q)$$
+	\newline
+	
+	Beachte nun dass $\equiv_A$ eine Kongruenz ist denn $[u][v] = [uv]$ mit $[w] = \{w' \in \Sigma^+ \mid w \equiv_A w'\}$ und au\ss erdem dass $$\mu: \sigstern \to \sfrac{\Sigma^+}{\equiv_A}  = H\mu(u) = [u]$$ Weiter definieren wir nun 
+	\begin{align*}
+	\delta_u(p,q) = 
+		\begin{cases}
+		1, &\text{ falls } p \ttou{u}{F} q \\
+		2, &\text{ falls } p \longrightarrow q \text{ und nicht } p \ttou{u}{F} q \\
+		3, &\text{ sonst}
+		\end{cases}
+	\end{align*}
+	Es gilt also $\delta_u(p, q) = \delta_v(p, q)$ für alle $p, q$ und somit folgt $u \equiv_A v$
+	Daraus schlie\ss en wir $$|H| - |\sfrac{\sigstern}{\equiv_A}| \leq 3^{n^2}$$ 
+	\bewiesen
+	
+\subsubsection{Definition: Linked Pair}
+	Ein Tupel $(s, e) \in H \times H$ hei\ss t linked pair, falls $se = s$ und $e^2 = e$ gilt.
 
+\subsubsection{Lemma \label{lemmaa}}
+	Es gilt: 
+	\begin{align*}
+		h \text{ erkennt } l &\implies \forall (s,e) \text{ linked pairs}: L \cap [s][e]\pom \not = \emptyset \\
+		&\implies [s][e]\pom \subseteq L
+	\end{align*}
 
+\subsubsection{Definition:  Schwache Erkennung}
+	Wir sagen $h$ erkennt $L$ schwach, falls
+	\begin{align*}
+		L = \bigcup \{[s][e]\pom \mid se = s, e^2 = e, [s][e]\pom \subseteq L\}
+	\end{align*}
 
+\subsubsection{Beweis des Lemma \ref{lemmaa}}
+	Es gilt: 
+	\begin{align*}
+		h \text{ erkennt } L \text{ stark } &\implies h \text{ erkennt } L \text{ schwach } \\
+		&\implies L \text{ ist $\omega$-regulär } \\
+		&\implies L = L(A) \text{ für einen Büchi Automaten} \\
+		&\implies \exists \mu: \sigstern \to H \text{ mit } |H| \leq 3^{n^2} \text{ und } \mu \text{ erkennt } L \text{ stark}
+	\end{align*}
+	\bewiesen
+	
+\subsubsection{Satz (Büchi)}
+	Sei $L$ $\omega$-regulär dann folgt $\sfrac{\sigstern}{L}$ ist $\omega$-regulär. 
+	
+\subsubsection{Beweis des Satzes (Büchi)}
+	Sei $h:\sigstern \to H$ mit $|H| < \infty$ und $\forall(s,e)$ mit $se=s, e^2 = e$ gilt $$[s][e]\pom \subseteq L \iff [s][e]\pom \cap L \not = \emptyset$$
+	Sei nun $\alpha \not \in L$, also $\alpha \in \overline{L} = \sigstern \setminus L$. Wir konstruieren dann einen ungerichtet vollständigen Graphen $(V, \binom{V}{2}, \chi)$ mit Kantenfärbung $$\chi : \binom{V}{2} \to H$$ Setze nun $V = \N$ und $\chi(\{i, j\}) = \chi(i, j)$ für $i <j$ und damit $$\chi(i, j) = (a_i, \ldots, a_{j-1})$$ für ein $\alpha = a_1a_2\ldots \in \Sigma^+$ mit $a_i \in \Sigma$.
+	\newline
+	
+	Nach der  Ramsey-Theorie  existiert nun ein monochromer ungerichteter Graph. Es gibt also $I \leq \N$ und $|I| = \infty$ und es existiert $e \in H$ für alle $i,j \in I$ mit $i < j$ gilt $\chi(i, j) = e$. 
+	Dann gilt $e^2 = e$, denn sei $i, j, k \in I$ mit $i < j < k$ dann 
+	\begin{align*}
+		e = \chi(i, k) &= h(a_i, \ldots, a_{k-1}) \\
+		&=h(a_i, \ldots, a_{j-1})h(a_j,\ldots,a_{k-1}) \\
+		&=e^2
+	\end{align*}
+	
+	Zum $s$ mit $s = se$. Wähle $i, j \in I$ mit $i < j$ und setze $$s = h(a_1 \ldots a_{j-1}) = h(a_1 \ldots a_{i-1}) \cdot h(a_i \ldots a_{j-1}) = s'e$$ für 
+	$s' = h(a_1\ldots a_{i-1})$. Dann gilt $se = (s'e)e = s'e^2 = s'e = s$. 
+	
+	Wir haben nun gezeigt: $\forall \beta \in \Sigma\pom \exists(s,e) \text{ linked pair mit } \beta[s][e]\pom$. Das hei\ss t also es gilt 
+	\begin{align*}
+		\sigma\pom = \bigcup \{[s][e]\pom \mid se = s, e^2 = e \}
+	\end{align*}
+	Schreibe nun der Einfachkeit halber $$P = \{ (s,e) \in H \times H \mid se = s, e^2 = e\}$$
+	Nun ist $$L = \bigcup\{[s][e]\pom \mid (s,e)\in P : [s][e]\pom \cap L \not = \emptyset\}$$ und es gilt $$\forall (s,e) \in P: [s][e\pom] \cap L \not = \emptyset \implies [s][e]\pom \subseteq L$$
+	\newline
+	
+	Sei nun $\alpha \in \overline{L}$, dann folgt $\exists (s,e) \in P : \alpha \in [s][e]\pom$ und somit 
+	\begin{align*}
+		&\implies \exists (s,e) \in P: \alpha \in [s][e]\pom \text{ und } [s][e]\pom \cap L = \emptyset \\
+		&\implies \overline{ L } = \bigcup \{[s][e]\pom \mid (s,e )\in P \text{ und } [s][e]\pom \cap L = \emptyset\} \\
+		&\implies L \text{ ist $\omega$-regulär}
+	\end{align*}
+	\bewiesen
 \end{document}
 
 
