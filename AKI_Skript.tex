@@ -2695,7 +2695,7 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 		\bewiesen
 	
 \section{Automatentheoretische Verifikation und $\ltl$ - Vorlesung 16}
-\subsection{Allgemeines}
+\subsection{Automatentheoretische Verifikation}
 \subsubsection{Einführung}
 	Um eine automatentheoretische  Verifikation durchführen zu können, ist es notwendig, das zu verifizierende reale System durch Abstraktion auf ein endliches Transitionssystem (= NFA ohne Endzustände) abzubilden. 
 	Dabei muss auch die Zeit diskretisiert werden.
@@ -2716,33 +2716,41 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 	\newline
 	
 	\textbf{Die Lösung} dazu bringt die Konstruktion eines NFA $B = (Q, \Sigma, \delta, I, F)$ mit $L(\neg\varphi) = L(B)$. 
-	Mit $B$ kann man nun einfach die Gültigkeit von $L(A) \cap L(B) \neq \emptyset$ testen. Diese Test liefert dann sogar einen Zeugen für den eventuellen Fehler. 
+	Mit $B$ kann man nun einfach die Gültigkeit von $L(A) \cap L(B) \neq \emptyset$ testen. Dieser Test liefert dann sogar einen Zeugen für den eventuellen Fehler. 
 
 \subsection{Einführung in $\ltl$}
-\subsubsection{Allgemein}
-	Es gilt 
-	\begin{align*}
-		\fo[\leq] \subseteq \starfree(\sigstern) &\implies (aa)^\ast \text{ kann nicht in } \fo[\leq] \text{ akzeptiert werden} \\
-		&\implies (ab)^\ast \text{ kann in } \fo[\leq] \text{ akzeptiert werden} 
-	\end{align*}
-	Beachte: $(ab)^\ast = 1.$ Position ist ein $a$, und die letzte Position ist ein $b$ und $$\mathsf{Globally}(\lambda(t) = a \iff \lambda(\sX t) = b) = \sG(a \iff \sX b)$$ wobei $\sG(\varphi) = \neg \sF \neg \varphi$
+\subsubsection{Allgemeines}
+	$\ltl$ ist gleichmächtig wie $\fo$.
+	Es gilt: 
+	\begin{itemize}
+		\item $\fo[\leq] \subseteq \starfree(\sigstern) $
+		 \item $(aa)^\ast \text{ kann nicht in } \fo[\leq] \text{ spezifiziert werden} $
+		\item $(ab)^\ast \text{ kann in } \fo[\leq] \text{ spezifiziert werden} $
+	\end{itemize}
+
+	
+	Beachte: Man kann $(ab)^\ast$ in $\fo[\leq]$ spezifizieren als: die 1. Position ist ein $a$ und die letzte Position ist ein $b$ und $$\mathsf{Globally}(\lambda(t) = a \iff \lambda(\sX t) = b)\, .$$
+	Mit $\ltl$ kann man den letzten Teil dieser Spezifikation verkürzt ausdrücken durch $$\sG(a \iff \sX b)\, ,$$ wobei $\sG$ durch $\sG(\varphi) = \neg \sF \neg \varphi$ definiert ist.
 
 \subsubsection{Syntax}
 	$\varphi \in \ltl$ ist $\fo[\leq]$-Formel mit genau einer freien Variable.
+	Folgende Möglichkeiten gibt es bei der Syntax von $\ltl$-Formeln:
 		\begin{enumerate}[label=\arabic*.)]
-			\item Sei $a \in \Sigma$, dann ist $a = a(x) \in \ltl$
-			\item Sei $\varphi \in \ltl$, also $\varphi = \varphi(x)$. Dann ist $\sX \varphi(x) \in \ltl$
-			\item Seien $\varphi, \psi \in \ltl$, dann ist auch $\varphi \sU \psi \in \ltl$ bzw $\varphi(x), \psi(x) \in \ltl$ auch $(\varphi \sU \psi )(x)\in \ltl$
-			\item Seien $\varphi, \psi \in \ltl$, dann ist auch $\varphi \cup \psi \in \ltl$ und $\neg \psi\in \ltl$
+			\item Sei $a \in \Sigma$. Dann gilt $a = a(x) \in \ltl$.
+			\item Sei $\varphi \in \ltl$, also $\varphi = \varphi(x)$. Dann gilt $\sX \varphi(x) \in \ltl$.
+			\item Seien $\varphi, \psi \in \ltl$. Dann gilt auch $\varphi \sU \psi \in \ltl$. Beziehungsweise $\varphi(x), \psi(x) \in \ltl \implies (\varphi \sU \psi )(x)\in \ltl$.
+			\item Seien $\varphi, \psi \in \ltl$. Dann gilt auch $\varphi \lor \psi \in \ltl$ und $\neg \varphi \in \ltl$.
 		\end{enumerate}
 	
 \subsubsection{Semantik}
-	Sei $\varphi \in \fo[\leq]$ mit $\fv(\varphi) = \{x\}$, dann ist ''$w,x \models \varphi$'' $\in \B$ definiert.
+	Sei $w \in \sast$ ein Wort und $x \in\{1, \ldots, |w|\}$ eine Position in $w$.
+	Für $\varphi \in \fo[\leq]$ mit $\fv(\varphi) = \{x\}$ ist dann der Wahrheitswert ``$w,x \models \varphi$'' $\in \B$ definiert.
+	Für die Semantik dieses Wahrheitswert gelten die folgenden Regeln:
 	\begin{itemize}
-		\item ''$w,x \models a$'' $\iff$ ''$w(x) = a$'' das heißt $w = a_1 \ldots a_{|w|} \in \Sigma$ und $a_x = a$
-		\item ''$w,x \models \sX \varphi$'' $\iff$ ''$w\sX x \models \varphi$'' $\iff$ ''$w, x+1 \models \varphi$''
-		\item ''$w, x \models (\varphi \sU \psi)$'' $\iff$ $\exists z : x \leq z \land w, z \models \psi \land \forall y: [x \leq y < z \implies w, y \models \varphi]$
-		\item ''$w,x$'' $\models \varphi \#\psi \iff (w,x \models \varphi) \# (w,x \models \psi )$ für $\# \in \{\lor, \neg, \land, \implies, \iff, \ldots\}$
+		\item ``$w,x \models a$'' $\iff$ ``$w(x) = a$''. Das hei\ss t, für $w$ gilt $w = a_1 \ldots a_{|w|}$ mit $a_i\in \Sigma$ und $a_x = a$.
+		\item ``$w,x \models \sX \varphi$'' $\iff$ ``$w\sX x \models \varphi$'' $\iff$ ``$w, x+1 \models \varphi$''.
+		\item ``$w, x \models (\varphi \sU \psi)$'' $\iff$ $\exists z : x \leq z \land w, z \models \psi \land \forall y: [x \leq y < z \implies w, y \models \varphi]$.
+		\item ``$w,x$ $\models \varphi \#\psi'' \iff (w,x \models \varphi) \# (w,x \models \psi )$, für $\# \in \{\lor, \neg, \land, \implies, \iff, \ldots\}$.
 	\end{itemize}
 
 \subsubsection{Beispiele}
