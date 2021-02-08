@@ -2694,23 +2694,29 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 		\end{align*}  
 		\bewiesen
 	
-\section{Automatentheoretische Verifikation und Modell Checking- Vorlesung 16}
+\section{Automatentheoretische Verifikation und $\ltl$ - Vorlesung 16}
 \subsection{Allgemeines}
 \subsubsection{Einführung}
-	Wir betrachten diskrete Zeitabstände $0,1,2,3. \ldots$. Nun wollen wir durch Abstraktion eines realen Systems zu endlichen Translationssystemen (= NFA's ohne Endzustände) gelangen. 
-	Für ein $t \in \N$ sei $\sX = n\sX t(t) = t+1$ und $\sF t = \mathsf{Future}(t) = \{t' \mid t \leq t'\}$. Unsere Spezifikationssprache ist also ein Fragment von $\mso$ über $\Sigma = 2^P$, wobei $P$ die Menge von Eigenschaften die zur Zeit $t$ wahr sind beschreibt mit $|P| < \infty$
+	Um eine automatentheoretische  Verifikation durchführen zu können, ist es notwendig, das zu verifizierende reale System durch Abstraktion auf ein endliches Transitionssystem (= NFA ohne Endzustände) abzubilden. 
+	Dabei muss auch die Zeit diskretisiert werden.
+	Wir betrachten also diskrete Zeitpunkte $0,1,2,3. \ldots$, wobei $0$ der Startzeitpunkt ist.
+	Für einen Zeitpunkt $t \in \N$ sei $\sX t = ne\sX t(t) = t+1$ der direkt nachfolgende Zeitpunkt und $\sF t = \mathsf{F}uture(t) = \{t' \mid t \leq t'\}$ die Menge aller irgendwann folgenden Zeitpunkte. Als Spezifikationssprache wählen wir ein Fragment von $\mso$ über $\Sigma = 2^P$, wobei $P$ eine Menge von Eigenschaften ist, die zur Zeit $t$ wahr sind mit $|P| < \infty$.\newline
+	
+	Automatentheoretische Verifikation wird auch Model-Checking genannt.
+	
 \subsubsection{Anwendung}
-	\textbf{Gegeben} sei eine Spezifikation $\varphi$ mit $\varphi \subseteq \sigstern$. Für ein reales System $A$ ist unser Translationssystem dann $L(A) \subseteq \sigstern$.
+	\textbf{Gegeben} sei eine Spezifikation $\varphi$ mit $L(\varphi) \subseteq \sigstern$ und ein reales System $A$ als Transitionssystem mit der Sprache $L(A) \subseteq \sigstern$.
 	\newline
 	
-		\textbf{Das Problem} ist nun zu entscheiden ob 
+	\textbf{Die Problemstellung} ist nun, zu entscheiden, ob $L(A)$ eine Teilmenge von $L(\varphi)$ ist, also, ob einer der Ausdrücke
 	\begin{align*}
-	L(A) \subseteq L(\varphi) &\iff L(A) \cap \sigstern \setminus L(\varphi) = \emptyset \\
+	L(A) \subseteq L(\varphi) &\iff L(A) \cap (\sigstern \setminus L(\varphi)) = \emptyset \\
 	&\iff L(A) \cap L(\neg \varphi) = \emptyset
-	\end{align*} gilt.
+	\end{align*} wahr ist.
 	\newline
 	
-		\textbf{Die Lösung} dazu bringt die Konstruktion eines NFA $B = (Q, \Sigma, \delta, I, F)$ mit $L(\varphi = L(B))$. Ist dies geschafft, dann ist der Test ob $L(A) \cap L(B) \neq \emptyset$ gilt einfach, und liefert sogar einen Zeugen für den Fehler. 
+	\textbf{Die Lösung} dazu bringt die Konstruktion eines NFA $B = (Q, \Sigma, \delta, I, F)$ mit $L(\neg\varphi) = L(B)$. 
+	Mit $B$ kann man nun einfach die Gültigkeit von $L(A) \cap L(B) \neq \emptyset$ testen. Diese Test liefert dann sogar einen Zeugen für den eventuellen Fehler. 
 
 \subsection{Einführung in $\ltl$}
 \subsubsection{Allgemein}
