@@ -2788,30 +2788,49 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 	Die Definition dieser verbleibt zum Selbsttest.
 	
 \subsubsection{$\fo$-Fragmente} 
+	\label{sec:fo_fragmente}
 	Beachte das $\fo^k[\leq] \subseteq \fo[\leq]$ gilt und Formeln $\varphi \in \fo^k[\leq]$ nur $k$ viele Namen für Variablen verwenden.
 	Es ist bekannt, dass folgende Beziehungen gelten: 
 	$$\fo^2[\leq] \subsetneqq \fo^3[\leq] = \fo[\leq]$$
 	Insgesamt wissen wir nun, dass $$\ltl = \tl[\sX\sU] = \tl[\sX, \sU, \sY, \sS] \subseteq \fo^3[\leq] \subseteq \fo[\leq] \subseteq \starfree(\sigstern) \subseteq \ap(\sigstern)$$
 	gilt. 
-	Hierbei ist der $\sX\sU$-Operator definiert durch  $\varphi(\sX\sU)\psi := \sX(\varphi\sU\psi)$ und es gilt $\sX\varphi = \bot \sX\sU\varphi$, sowie $\varphi\sU\psi = \psi \lor \varphi \land \varphi \sX \sU \psi$. 
+	
+\subsubsection{Der Next-Until-Operator}
+	In Abschnitt~\ref{sec:fo_fragmente} wurde der Operator $\sX\sU$ verwendet.
+	Dieser ist definiert durch  $\varphi(\sX\sU)\psi := \sX(\varphi\sU\psi)$.
+	Damit kann man die anderen Operatoren simulieren durch:
+	\begin{itemize}
+		\item $\sX\varphi = \bot \sX\sU\varphi$
+		\item $\varphi\sU\psi = \psi \lor \varphi \land \varphi \sX \sU \psi$
+		\item $\sF \varphi = \varphi \lor \top (\sX\sU) \varphi$
+	\end{itemize} 
+	Für ein Wort $w$ und eine Position $i$ gilt dann: 
+	$$w,i \models \varphi\sX\sU\psi \iff [\exists k: i \leq k < n \, \forall j: i \leq j <k \implies w,j \models \varphi \land w,k \models \psi]$$
 
 \section{$\ltl = \ap$ - Vorlesung 17}
+
+\subsection{Satz: Gleichheit von $\ltl$ und $\ap$}
+Für ein Alphabet $\Sigma$ gilt $\ltl_\Sigma[\sX \sU] = \ap(\sast)$.
+
+
+
 \subsection{Vorbereitungen zum Beweis des Satzes}
-\subsubsection{Satz}
-Es gilt $\ltl_\Sigma[\sX \sU] = \ap(\Sigma)$
-
-\subsubsection{Allgemeines}
-	Wir wissen dass $$L \in \ap(\Sigma) \iff \exists h : \sigstern \to M$$ mit $h\inv h (L) = L$, $M$ ist endlich und aperiodisch. 
-	Dann folgt direkt dass $U(M) = \{1\}$ und $h\inv(1) = \bast$ für $B=\{b \in \Sigma \mid  h(b) = 1\}$. Dann ist 
+\subsubsection{Wiederholung relevanter Definitionen}
+	Wir wissen, dass $$L \in \ap(\Sigma) \iff \exists h : \sigstern \to M$$ mit $h\inv h (L) = L$ und $M$ ist endlich und aperiodisch. 
+	Wenn ein Monoid $M$ aperiodisch ist, folgt, dass $U(M) = \{1\}$ und $h\inv(1) = \bast$ für $B=\{b \in \Sigma \mid  h(b) = 1\}$ gilt. \newline
+	
+	Au\ss erdem gilt für ein Teilalphabet $A$:
 	\begin{align*}
-	L \in \ltl_A[\sX\sU] &\iff L \setminus \{\varepsilon\} \in \ltl_A[\sX\sU] \\
-		&\iff  L \setminus \{\varepsilon\} = \{w \in A^+ \mid  w = a_1\ldots a_n \text{ mit } a_i \in A \text{ und } w,1 \models \varphi\}
-	\end{align*} wobei $\varphi \in  \ltl_A[\sX\sU]$ ist.
+	L \in \ltl_A[\sX\sU] :&\iff L \setminus \{\varepsilon\} \in \ltl_A[\sX\sU] \\
+		&\iff  L \setminus \{\varepsilon\} = \{w \in A^+ \mid  w = a_1\ldots a_n \text{ mit } a_i \in A \text{ und } w,1 \models \varphi, \\
+		&\hspace{92pt}\text{ wobei } \varphi \in  \ltl_A[\sX\sU] \text{ ist}\}
+	\end{align*} 
 
 
-\subsubsection{Strategie}
- Wir zeigen nur $\ap(\Sigma) \subseteq \ltl_\Sigma[\sX\sU]$, da wir wissen dass $$\ltl_\Sigma[\sX\sU] \subseteq \fo_\Sigma^3[\leq] \subseteq \fo_\Sigma[\leq] \subseteq \starfree(\Sigma) \subseteq \ap(\Sigma)\subseteq \ltl[\sX \sU] $$
-
+\subsubsection{Beweisstrategie}
+ Wir zeigen nur $\ap(\Sigma) \subseteq \ltl_\Sigma[\sX\sU]$, da wir wissen, dass $$\ltl_\Sigma[\sX\sU] \subseteq \fo_\Sigma^3[\leq] \subseteq \fo_\Sigma[\leq] \subseteq \starfree(\Sigma) \subseteq \ap(\Sigma) $$
+ gilt.
+ Dabei werden wir $\ap(\Sigma) \subseteq \ltl_\Sigma[\sX\sU]$ durch eine Sequenz von Reduktionen beweisen.
  Demnach führen wir eine Induktion nach $(|M||\Sigma|)$ durch, denn 
  \begin{align*}
 	 (|M'||\Sigma'|) \leq (|M||\Sigma|) \iff  |M'|<|M| \text{ oder } |M'|=|M \text{ und } |\Sigma|\leq |\Sigma|
