@@ -2810,6 +2810,7 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 \section{$\ltl = \ap$ - Vorlesung 17}
 
 \subsection{Satz: Gleichheit von $\ltl$ und $\ap$}
+\label{sec:ltl_is_ap}
 Für ein Alphabet $\Sigma$ gilt $\ltl_\Sigma[\sX \sU] = \ap(\sast)$.
 
 
@@ -2830,40 +2831,52 @@ Für ein Alphabet $\Sigma$ gilt $\ltl_\Sigma[\sX \sU] = \ap(\sast)$.
 \subsubsection{Beweisstrategie}
  Wir zeigen nur $\ap(\Sigma) \subseteq \ltl_\Sigma[\sX\sU]$, da wir wissen, dass $$\ltl_\Sigma[\sX\sU] \subseteq \fo_\Sigma^3[\leq] \subseteq \fo_\Sigma[\leq] \subseteq \starfree(\Sigma) \subseteq \ap(\Sigma) $$
  gilt.
- Dabei werden wir $\ap(\Sigma) \subseteq \ltl_\Sigma[\sX\sU]$ durch eine Sequenz von Reduktionen beweisen.
- Demnach führen wir eine Induktion nach $(|M||\Sigma|)$ durch, denn 
+ Dabei werden wir $\ap(\Sigma) \subseteq \ltl_\Sigma[\sX\sU]$ durch eine Sequenz von Reduktionen beweisen.\newline
+ 
+ Hierfür führen wir eine Induktion nach $(|M|,|\Sigma|)$ durch.
+ Beachte, dass dabei 
  \begin{align*}
-	 (|M'||\Sigma'|) \leq (|M||\Sigma|) \iff  |M'|<|M| \text{ oder } |M'|=|M \text{ und } |\Sigma|\leq |\Sigma|
+	 (|M'|,|\Sigma'|) \leq (|M|,|\Sigma|) \iff  |M'|<|M| \lor (|M'|=|M| \land |\Sigma'|\leq |\Sigma|)
  \end{align*}
- Weiter gilt ohne Einschränkung: $h:\sigstern \to M$ ist surjektiv. 
- Wir wissen nun dass $\ltl_\Sigma[\sX\sU] \subseteq \ap(\Sigma)$ gilt, falls $M=\{1\}$ oder $\Sigma = \emptyset$ oder $\Sigma = \{a\}$ also $|\Sigma| = 1$: 
+ gilt. Weiter gilt ohne Einschränkung: $h:\sigstern \to M$ ist surjektiv. \newline
+ 
+ $\ap(\Sigma) \subseteq \ltl_\Sigma[\sX\sU] $ gilt, falls $M=\{1\}$ oder $\Sigma = \emptyset$ oder $\Sigma = \{a\}$ (also $|\Sigma| = 1$).
+ Des Weiteren gilt: 
  	\begin{align*}
- 		L \subseteq A^+ \text{ ist aperiodisch } \iff \exists t \in \N: L \subseteq \{a, a^2, \ldots, a^t\} \cup \{a^m \mid  m \geq t\}
+ 		L \subseteq a^+ \text{ ist aperiodisch } \iff \exists t \in \N: L \subseteq \{a, a^2, \ldots, a^t\} \cup \{a^m \mid  m \geq t\}
  	\end{align*}
- 	Dafür sei $L=\{a^k\}$ mit $k \geq 1$, dann ist $L = L(\underbrace{a \land \sX(a \land \sX(\ldots)}_{\substack{k\text{ -mal}}})\bot)$
+ Dann folgt, dass man Sprachen der Form $L=\{a^k\}$ mit $k \geq 1$ in $\ltl$ ausdrücken kann durch $L = L(\underbrace{a \land \sX(a \land \sX(\ldots)}_{\substack{k\text{ -mal}}})\bot)$ und Sprachen der Form $L=\{a^m \mid m \geq t\}$ durch $L = L(\underbrace{a \land \sX(a \land \sX(\ldots)}_{\substack{m\text{ -mal}}})\sU(\sG a))$ .
  	
-\subsubsection{Lemma}
-	Sei $A\subseteq \Sigma$ und $L = L(\varphi)$ mit $\varphi \in \ltl_A[\sX\sU]$ und $L \subseteq \aast$. Dann gibt es ein $\varphi_A \in \ltl_\Sigma[\sX\sU]$ mit $L=L(\varphi_A)$
+\subsubsection{Lemma: $\ltl$-Formeln in Teilalphabeten}
+ \label{sec:teilalphabet_ltl}
+	Sei $A\subseteq \Sigma$ und $L = L(\varphi)$ mit $\varphi \in \ltl_A[\sX\sU]$ und $L \subseteq \aast$. Dann gibt es ein $\varphi_A \in \ltl_\Sigma[\sX\sU]$ mit $L=L(\varphi_A)$.
 
 \subsubsection{Beweis des Lemmas}
-	Wir zeigen durch strukturelle Induktion
+	Wir führen den Beweis durch strukturelle Induktion.
+	Wir setzen:
 	\begin{align*}
 		\varphi = a &\implies\varphi_A \text{ für ein } a \in A \\
-		\varphi = \varphi_{1} \lor \varphi_{2} &\implies \varphi_{A} = \varphi_{1A} \lor \varphi_{2A} \\
-		(\neg \varphi)_A &= \neg (\varphi_{A}) \land \sG(\bigvee_{a \in A}a)
-	\end{align*} Also $L((\neg\varphi)_A) = \ast \setminus L(\varphi_{A})$. Beachte $$(\varphi \sX \sU \psi)_A = (\varphi_{A} \sX \sU \psi_A) \land (\bigvee_{a \in A} a)$$
+		\varphi = \varphi_{1} \lor \varphi_{2} &\implies \varphi_{A} = \varphi_{1_A} \lor \varphi_{2_A} \\
+	\end{align*} 
+	Des Weiteren gilt $(\neg \varphi)_A = \neg (\varphi_{A}) \land \sG(\bigvee_{a \in A}a)$, also $L((\neg\varphi)_A) = \aast \setminus L(\varphi_{A})$.\newline
+	
+	Zuletzt gilt noch $(\varphi \sX \sU \psi)_A = (\varphi_{A} \sX \sU \psi_A) \land (\bigvee_{a \in A} a)$.
 	\bewiesen
 	
-\subsubsection{Lemma}
-	Es gilt $h\inv h(L) = L$ dann ist $$L = \bigcup_{m \in M}\{h\inv(m) \mid m \in h(L) \}$$
-	Somit reicht es also später zu zeigen dass $h^{-1} (m) \in  \ltl_\Sigma[\sX\sU]$. 
-	Weiter gilt ab jetzt $\ltl :=  \ltl_\Sigma[\sX\sU]$
+\subsubsection{Lemma: Aufbau aperiodischer Sprachen}
+	Es gelte $h\inv h(L) = L$. Dann ist $$L = \bigcup_{m \in M}\{h\inv(m) \mid m \in h(L) \}\, .$$
+	Dieses Lemma reduziert unseren Beweis für Satz~\ref{sec:ltl_is_ap} darauf, zu zeigen, dass $h^{-1} (m) \in  \ltl_\Sigma[\sX\sU]$ für alle $m \in M$ gilt. 
+	Weiter setzen wir ab jetzt $\ltl :=  \ltl_\Sigma[\sX\sU]$.
 
-\subsubsection{Lemma}
-	Es ist $h\inv(1) \in \ltl$
+\subsubsection{Lemma: $h\inv(1)$ ist in $\ltl$}
+	Es gilt $h\inv(1) \in \ltl$.\newline
+	
+	Dieses Lemma reduziert unseren Beweis für Satz~\ref{sec:ltl_is_ap} darauf, zu zeigen, dass $$h\inv(m) = \bigcup\{h\inv(m) \cap \sigstern c \sigstern \mid h(c) \neq 1\} \in \ltl$$
+	für $m \neq 1$ gilt.
+	Daher werden wir nur für ein festes $c \in \Sigma$ zeigen, dass $h\inv(m) \cap \sigstern c \sigstern \in \ltl$ gilt.
 \subsubsection{Beweis des Lemmas}
-	Sei $h\inv(1) = \bast$ für $B = \{b \in \Sigma \mid h(b) = 1\}$ und $\bast = L(T)$ in $ \ltl_B[\sX\sU]$. Dann existiert $\varphi_B \in \ltl$ mit $\bast = L(\varphi_B)$.
-	Also zeigen wir später nur $$h\inv(m) = \bigcup\{h\inv(m) \cap \sigstern c \sigstern \mid h(c) \neg = 1\} \in \ltl$$ Daher zeigen wir nur für ein festes $c \in \Sigma$, dass $h\inv(m) \cap \sigstern c \sigstern \in \ltl$
+	Es gilt $h\inv(1) = \bast$ für $B = \{b \in \Sigma \mid h(b) = 1\}$ und $\bast = L(\top)$ in $ \ltl_B[\sX\sU]$. Nach Lemma~\ref{sec:teilalphabet_ltl} existiert dann $\varphi_B \in \ltl$ mit $\bast = L(\varphi_B)$.
+	\bewiesen
 
 \subsubsection{Dirthy Trick}
 	Sei $M \cap \sigstern = \{1, c\}$ als Menge definiert und $1 = \varepsilon$ sowie $c \in \Sigma$ und $h(c) = c \neg 1 \in M$. Also ist $M_c = \{cM\cap Mc, \circ, c\}$ ein lokaler Divisor mit $|M_c| < |M|$ und $xc \circ cy = xcy$. 
