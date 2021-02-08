@@ -1743,6 +1743,7 @@
 		\caption{Bei wiederholter Verknüpfung mit $x$ wird, wegen der endlichen Anzahl an verschiedenen Elementen, irgendwann ein Element erneut erreicht.}
 		\label{fig:idempotenz}
 	\end{figure} 
+	% Wieso wird die caption bei der Abbildung nicht eingerückt, wie bei allen anderen?
 	
 	Wir sehen, dass in der Folge $( x^i \mid i \in \N)$ mindestens ein paar $(i,j)$ mit $i < j$ und $x^i = x^j$ existieren muss. Wir wählen nun $t=i$ minimal, dann ist auch $t+p = j$ minimal. 
 	Für die Idempotenz von $x^t$ gilt nun:
@@ -2352,7 +2353,7 @@
 			\end{scope}
 			
 			\begin{scope}[yshift=0.5cm,y=1cm]
-				\node [fit={(0,0) (1,1)}, label=below:{}] {$e^ast$};
+				\node [fit={(0,0) (1,1)}, label=below:{}] {$e^\ast$};
 			\end{scope}
 			
 			\begin{scope}[yshift=3.5cm,y=1cm]
@@ -2754,35 +2755,45 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 	\end{itemize}
 
 \subsubsection{Beispiele}
+	Viele Beispiele für $\ltl$-Sprachen lassen sich mit folgender Konstruktion finden:
 		\begin{enumerate}[label=\arabic*.)]
-			\item Starte bei einer Sprache $L \in \starfree(\sigstern)$
-			\item Konstruiere nun $\varphi \in \ltl$ mit $L(\varphi) = \{(w,1) \mid w \in \sigstern \text{ und } w,1 \models \varphi \text{ und } w \in L\}$
+			\item Starte mit einer Sprache $L \in \starfree(\sigstern)$.
+			\item Konstruiere nun $\varphi \in \ltl$ mit $L(\varphi) = \{(w,1) \mid w \in \sigstern \land w,1 \models \varphi \land w \in L\}$.
 		\end{enumerate}
 \subsubsection{Makros}
+	Zur Vereinfachung definieren wir folgende Makros:
 \begin{multicols}{2}
 		\begin{itemize}
-		\item $\sF \varphi = \sT \sU \varphi$ mit $\sT = true$
+		\item $\sF \varphi = \top \sU \varphi$ mit $\top = true$
 		\item $\sG \varphi = \neg \sF \neg \varphi$
-		\item $\neg(\varphi \sU \psi) = \sG \neg \psi \cup (\neg \varphi \sU \neg \varphi)$
-		\item $\varphi \sU \psi \iff \psi \lor (\varphi \land \varphi\sX\sU\psi)$
+		\item $\neg(\varphi \sU \psi) = \sG \neg \psi \lor (\neg \psi \sU \neg \varphi)$
+		\item $\psi \sR \varphi = \sG \varphi \lor \varphi \sU \psi$
 	\end{itemize}
 \end{multicols}
 	
-Das unterste Makro ist möglich da $\varphi \sU \psi = (\varphi, \varphi, \ldots,\psi)$ und $$\neg (\varphi \sU \psi) = (\neg \psi, \neg \psi, \ldots, \neg\varphi) \lor (\neg \varphi, \neg \varphi, \ldots, \neg\psi)$$
+	Die Negation des Until-Operators funktioniert so, da $\varphi \sU \psi = (\varphi, \varphi, \ldots,\psi)$ und $$\neg (\varphi \sU \psi) = (\neg \psi, \neg \psi, \ldots, \neg\psi) \lor (\neg \psi, \ldots \neg \varphi, \ldots, \psi)$$ gilt.\newline
+	
+	Das weitere Ziel der Vorlesung ist es, alle Inklusionen in dieser Reihe durch Gleichheiten zu ersetzen.
 
-\subsubsection{Selbsttest und Übung}
-	Definiere folgendes: 
+\subsubsection{Vergangenheits-Operatoren}
+	Es gibt die folgenden Vergangenheits-Operatoren: 
 		\begin{gather*}
 	\rbracedalign
 	{}{
-		\sY\varphi &= \mathsf{ Yesterday}(\varphi) \\
-		\varphi\sS\psi &= \varphi \mathsf{Since}(\varphi)
+		\sY\varphi &= \mathsf{ Y}esterday(\varphi) \\
+		\varphi\sS\psi &= \varphi \mathsf{S}ince(\varphi)
 	}{ 
 	}{\in \fo^3[\leq]}
 	\end{gather*}
-	Beachte das $\fo^k[\leq] \subseteq \fo[\leq]$ und $\varphi \in \fo^k[\leq]$ verwendet nur $k$ viele Namen für die Variablen.
-	Ganz allgemein gilt 
-	$$\fo^2[\leq] \subsetneqq \fo^3[\leq] = \fo[\leq]$$ und somit auch $$\ltl = \tl[\sX,\sU] = \tl[\sX, \sU, \sY, \sS] \subseteq \fo^3[\leq] \subseteq \fo[\leq] \subseteq \starfree(\sigstern) \subseteq \ap(\sigstern)$$denn es ist $\varphi(\sX\sU)\psi := \sX(\varphi\sU\psi)$ und $\sX\varphi = \bot \sX\sU\varphi$ sowie $\varphi\sU\psi = \psi \lor \varphi \land \varphi \sX \sU \psi$. 
+	Die Definition dieser verbleibt zum Selbsttest.
+	
+\subsubsection{$\fo$-Fragmente} 
+	Beachte das $\fo^k[\leq] \subseteq \fo[\leq]$ gilt und Formeln $\varphi \in \fo^k[\leq]$ nur $k$ viele Namen für Variablen verwenden.
+	Es ist bekannt, dass folgende Beziehungen gelten: 
+	$$\fo^2[\leq] \subsetneqq \fo^3[\leq] = \fo[\leq]$$
+	Insgesamt wissen wir nun, dass $$\ltl = \tl[\sX\sU] = \tl[\sX, \sU, \sY, \sS] \subseteq \fo^3[\leq] \subseteq \fo[\leq] \subseteq \starfree(\sigstern) \subseteq \ap(\sigstern)$$
+	gilt. 
+	Hierbei ist der $\sX\sU$-Operator definiert durch  $\varphi(\sX\sU)\psi := \sX(\varphi\sU\psi)$ und es gilt $\sX\varphi = \bot \sX\sU\varphi$, sowie $\varphi\sU\psi = \psi \lor \varphi \land \varphi \sX \sU \psi$. 
 
 \section{$\ltl = \ap$ - Vorlesung 17}
 \subsection{Vorbereitungen zum Beweis des Satzes}
