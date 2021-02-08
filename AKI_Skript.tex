@@ -2831,7 +2831,7 @@ Für ein Alphabet $\Sigma$ gilt $\ltl_\Sigma[\sX \sU] = \ap(\sast)$.
 \subsubsection{Beweisstrategie}
  Wir zeigen nur $\ap(\Sigma) \subseteq \ltl_\Sigma[\sX\sU]$, da wir wissen, dass $$\ltl_\Sigma[\sX\sU] \subseteq \fo_\Sigma^3[\leq] \subseteq \fo_\Sigma[\leq] \subseteq \starfree(\Sigma) \subseteq \ap(\Sigma) $$
  gilt.
- Dabei werden wir $\ap(\Sigma) \subseteq \ltl_\Sigma[\sX\sU]$ durch eine Sequenz von Reduktionen beweisen.\newline
+ Dabei werden wir $\ap(\Sigma) \subseteq \ltl_\Sigma[\sX\sU]$ durch eine Sequenz von Reduktionen in den nachfolgenden Lemmata beweisen.\newline
  
  Hierfür führen wir eine Induktion nach $(|M|,|\Sigma|)$ durch.
  Beachte, dass dabei 
@@ -2878,24 +2878,25 @@ Für ein Alphabet $\Sigma$ gilt $\ltl_\Sigma[\sX \sU] = \ap(\sast)$.
 	Es gilt $h\inv(1) = \bast$ für $B = \{b \in \Sigma \mid h(b) = 1\}$ und $\bast = L(\top)$ in $ \ltl_B[\sX\sU]$. Nach Lemma~\ref{sec:teilalphabet_ltl} existiert dann $\varphi_B \in \ltl$ mit $\bast = L(\varphi_B)$.
 	\bewiesen
 
-\subsubsection{Dirthy Trick}
-	Sei $M \cap \sigstern = \{1, c\}$ als Menge definiert und $1 = \varepsilon$ sowie $c \in \Sigma$ und $h(c) = c \neg 1 \in M$. Also ist $M_c = \{cM\cap Mc, \circ, c\}$ ein lokaler Divisor mit $|M_c| < |M|$ und $xc \circ cy = xcy$. 
+\subsubsection{Dirty Trick}
+	Sei $M \cap \sigstern = \{1, c\}$ als Menge definiert mit $1 = \varepsilon$ und $c \in \Sigma$ , sowie $h(c) = c \neq 1 \in M$. Also ist $M_c = \{cM\cap Mc, \circ, c\}$ ein lokaler Divisor mit $|M_c| < |M|$ und $xc \circ cy = xcy$. 
 	\newline
 	
-	Zeige nun $h\inv(m) \cap \aast c \aast \in \ltl$ mit $A = \Sigma \setminus \{c\}$, und insbesondere $|A| <| \Sigma|$. 
-	Es gilt also $$h\inv(m) \cap \aast c \aast  = \bigcup\{(h\inv(p) \cap \aast)c(h\inv(q)\cap \aast) \mid pcq = m\}$$
-	Beachte dass $h\inv(p) \cap \aast) \in \ltl_A[\sX\sU] \subseteq \ltl$ und $(h\inv(q)\cap \aast) \in  \ltl_A[\sX\sU]$. Wir zeigen daher nur für $\varphi, \psi \in \ltl$, dass 
+	Was wir dann zeigen wollen, ist $h\inv(m) \cap \aast c \aast \in \ltl$ mit $A = \Sigma \setminus \{c\}$ (insbesondere gilt dann $|A| <| \Sigma|$). 
+	Es gilt: $$h\inv(m) \cap \aast c \aast  = \bigcup\{(h\inv(p) \cap \aast)c(h\inv(q)\cap \aast) \mid pcq = m\}$$
+	Beachte, dass mit Induktion $()h\inv(p) \cap \aast) \in \ltl_A[\sX\sU] \subseteq \ltl$ und $(h\inv(q)\cap \aast) \in  \ltl_A[\sX\sU]\subseteq \ltl$ gilt.
+	Dies reduziert unseren Beweis für Satz~\ref{sec:ltl_is_ap} darauf, zu zeigen, dass
 	$$(L(\varphi) \cap \aast) c (L(\psi) \cap \aast) \in \ltl$$
+	für $\varphi, \psi \in \ltl$ gilt.
 	
-\subsubsection{Lemma}
-	Sei $\varphi \in \ltl$. Dann gilt $\sigstern c (L(\varphi) \cap \aast) \in \ltl$ und $(L(\varphi) \cap \aast)c \sigstern \in \ltl$
+\subsubsection{Lemma: $\ltl$-Formel mit Buchstabenbeschränkungen}
+	Sei $\varphi \in \ltl$. Dann gilt $\sigstern c (L(\varphi) \cap \aast) \in \ltl$ und $(L(\varphi) \cap \aast)c \sigstern \in \ltl$.
 	
 \subsubsection{Beweis des Lemmas}
-	Sei $L(\varphi) \cap \aast = L(\psi)$ für ein $\psi \in \ltl$. Dann gilt $\sigstern c L(\varphi) = L(\sF(c \land \psi))$. 
-	Betrachte nun $L(\psi) c \sigstern$. Wir führen eine strukturelle Induktion durch: 
-	\newline
+	Es gilt $L(\varphi) \cap \aast = L(\psi)$ für ein $\psi \in \ltl$. Dann gilt $\sigstern c L(\psi) = L(\sF(c \land \psi))$. \newline
 	
-	Zeige dazu $\forall \psi \in \ltl$ mit $L(\psi) \subseteq \aast$ existiert $\psi^c \in \ltl$, so dass $L(\psi^c) = L(\psi) c \sigstern$. Beachte dass $(\neg \psi )^c = \neg (\psi^c) \land \sF c$, und dann gilt 
+	Betrachte nun  $L(\psi) c \sigstern$ für den zweiten Teil des Beweises. Wir führen dafür eine strukturelle Induktion durch. 
+	Dazu zeigen wir, dass $\forall \psi \in \ltl$ mit $L(\psi) \subseteq \aast$ existiert $\psi^c \in \ltl$ so, dass $L(\psi^c) = L(\psi) c \sigstern$ gilt. Es gilt $(\neg \psi )^c = \neg (\psi^c) \land \sF c$ und weiter: 
 	\begin{align*}
 		w \in L(\neg \psi) &\iff w \in \aast \lor w = ucv \text{ mit } u \in \aast \text{ und } u \not \in L(\varphi) \\
 		&\iff w \in \aast \lor w \in L(\neg(\psi^c))
