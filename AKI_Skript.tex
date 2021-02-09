@@ -2968,7 +2968,7 @@ Für ein Alphabet $\Sigma$ gilt $\ltl_\Sigma[\sX \sU] = \ap(\sast)$.
 	Sei $L_A, L'_A \in \ltl_A[\sX\sU]$. Dann gilt $L_A c L'_A \in \ltl$.
 
 \subsubsection{Beweis des Lemmas}
-	Dieses Lemma gilt nach Lemma 1 und Lemma 2, wegen: $$L_A c L'_A = L_a c \sigstern \cap \sigstern c L'_A \cap \aast c \aast$$
+	Dieses Lemma gilt nach Lemma I und Lemma II, wegen: $$L_A c L'_A = L_a c \sigstern \cap \sigstern c L'_A \cap \aast c \aast$$
 	\bewiesen
 
 \subsubsection{Lemma: $\ltl$-Formeln mit zwei $c$}
@@ -2989,7 +2989,7 @@ Für ein Alphabet $\Sigma$ gilt $\ltl_\Sigma[\sX \sU] = \ap(\sast)$.
 	(h\inv(p) \cap \aast) c \sigstern \cap \aast(h\inv(n)\cap c \sigstern c \aast) \in \ltl 
 	\end{align*}
 \subsubsection{Beweis des Lemmas}
-Gilt durch Lemma 1, Lemma 2 und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gezeigt wird.
+Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gezeigt wird.
 
 \subsubsection{Satz: Schnitt von $h\inv (n)$ und $c \sigstern c \aast$}
 \label{sec:ltl_hn}
@@ -2997,7 +2997,7 @@ Gilt durch Lemma 1, Lemma 2 und Satz~\ref{sec:ltl_hn}, welcher im Folgenden geze
 	
 \subsubsection{Beweis des Satzes}
 	Ohne Einschränkung gilt $n \not = 1$.
-	Es gilt $$h\inv(n) \cap c\sigstern c \aast = \bigcup_{q\cdot c\cdot r = n} L_q c (h\inv(r) \cap \aast) $$ mit $L_q = \{cw \in c \sigstern \mid h(cw)c = qc\}$. Zeige also nur $\forall q : L_q \in \ltl$, dann folgt der Satz mit Lemma 3.
+	Es gilt $$h\inv(n) \cap c\sigstern c \aast = \bigcup_{q\cdot c\cdot r = n} L_q c (h\inv(r) \cap \aast) $$ mit $L_q = \{cw \in c \sigstern \mid h(cw)c = qc\}$. Zeige also nur $\forall q : L_q \in \ltl$, dann folgt der Satz mit Lemma III.
 
 \subsubsection{Hauptlemma}
 	Es gilt $L_q=\{cw \in c \sigstern \mid h(cw)c = qc\} \in \ltl$. \newline
@@ -3005,88 +3005,97 @@ Gilt durch Lemma 1, Lemma 2 und Satz~\ref{sec:ltl_hn}, welcher im Folgenden geze
 	Wir können dann den Beweis für $\ltl = \ap$ mit der Technik der lokalen Divisoren führen. 
 
 
-\subsubsection{Ideen}
+\subsubsection{Beobachtungen}
 \begin{itemize}
-	\item Wir wissen das $c\aast$ ein Code ist. Das heißt das $(c\aast)^+$ eine eindeutige Zerlegung in Codewörter hat und $(c\aast)^+ = c\sigstern$ ist, da $A = \Sigma \setminus \{c\}$ gilt. 
+	\item Wir wissen, dass $c\aast$ ein Code ist. Das hei\ss t, dass jedes Wort in $(c\aast)^+$ eine eindeutige Zerlegung in Codewörter hat und $(c\aast)^+ = c\sigstern$ gilt, wegen $A = \Sigma \setminus \{c\}$. 
 	
-	\item Falls $h(c\sigstern) \subseteq cM$ ist, dann folgt 
+	\item Es gilt $h(c\sigstern) \subseteq cM$. Daraus folgt: 
 	\begin{align*}
-		\rho c h(cw) &= h(cw)c \\ 
+		\rho_c h(cw) &= h(cw)c \\ 
 		&= ch(w)c \in cMc \subseteq cM \cap Mc
 	\end{align*}
-	Für $1 \not \in (cM \cap Mc)$ folgt $M_c = (cM \cap Mc, \circ, c)$ ist kleiner als $M$. 
-	\item Unseren \textit{Giant-Step} erhalten wir durch $|M_c|<|M|$ und $T= h(\aast) \subseteq M$. Wir interpretieren dabei $T$ als endliches Alphabet, also gilt 
+	Mit $1 \not \in (cM \cap Mc)$ folgt dann weiter $M_c = (cM \cap Mc, \circ, c)$ ist kleiner als $M$. (Damit kann man also einen \textit{Giant-Step} durchführen)
+	\item Wir interpretieren $T= h(\aast) \subseteq M$ als endliches Alphabet.  
+	Damit gilt: 
 	$$(M_c, T) <(M, \Sigma)$$
 \end{itemize}
 
-
-\subsubsection{Beweis}
-	Wir definieren $g(t) = ctc \in (M_c, \circ, c)$ für $t \in T$. Dann gilt 
+	Für den letzten Punkt können wir also eine surjektive Abbildung von $\Sigma$ nach $T$ finden.
+	Wir definieren $g(t) = ctc \in (M_c, \circ, c)$ für $t \in T$. Dann gilt: 
 	\begin{align*}
-		g(t_1\cdots t_k) &= (ct_1c) \circ \ldots \circ (ct_k) \\
+		g(t_1\cdots t_k) &= (ct_1c) \circ \ldots \circ (ct_kc) \\
 		&= ct_1 \ldots ct_kc \in cM \cap Mc \text{ mit } t_i \in T
 	\end{align*}
 	
-	Dann entsteht folgendes Bild:
-		\begin{figure}[h]
+	Dann entsteht das folgende Bild in Abbildung~\ref{fig:ltl_ap} aus unseren Beobachtungen:
+		\begin{figure}[H]
 		\centering
-		\begin{tikzpicture}[node distance=6.5cm, auto]
+		\begin{tikzpicture}[node distance=8.5cm, auto]
 		\node (cs) {$c\sigstern = (c\aast)^+$};
 		\node (t) [right of=cs] {$T^+$};
-		\node (cm) [below of=cs] {$cM\subseteq \{x \in M \mid xc \in M\}$};
+		\node (cm) [below of=cs] {$cM\leq \{x \in M \mid xc \in cM\}$};
 		\node (mc) [below of=t] {$M_c =\{cM\cap Mc, \circ, c\}$};
 		
 		
-		\draw[->] (cs) -- (t) node[ midway,sloped,above,rotate=0] { $\sigma$};
+		\draw[->] (cs) -- (t) node[ midway,sloped,above,rotate=0] { $\sigma(cv_1 \ldots cv_k) = h(v_1) \ldots h(v_k)$};
+		\draw[] (cs) -- (t) node[ midway,sloped,below,rotate=0] { mit $v_i \in \aast$};
 		\draw[ ->] (cs) -- (cm) node[ midway,left=.2,rotate=0] { $h$};
-		\draw[ ->] (cm) -- (mc) node[ midway,sloped,below,rotate=0] {$\rho_c = xc$ };
-		\draw[ ->] (t) -- (mc) node[midway, right, rotate=0] { $g$};
+		\draw[ ->] (cm) -- (mc) node[ midway,sloped,below,rotate=0] {$\rho_c(x) = xc$ };
+		\draw[ ->] (t) -- (mc) node[midway, right, rotate=0] { $g(t)=ctc$};
 		\end{tikzpicture}
+	\caption{Abbildungen von Codewörtern in den lokalen Divisor.}
+	\label{fig:ltl_ap}
 	\end{figure} 
 	
 	Es gilt also 
 		\begin{align*}
 			g\sigma(cw) &= g(t_1\cdots t_k) \\ 
-			&= (ct_1)\circ\ldots \circ (ct_kc) \\
+			&= (ct_1c)\circ\ldots \circ (ct_kc) \\
+			&= ct_1 \ldots ct_kc\\
 			&= h(cw)c \\ 
 			&= \rho_ch(cw)
 		\end{align*}
-		falls $cw = cv_1 \ldots cv_k$ und $t_i = h_A(v_i)$. Also gilt 
+		für $cw = cv_1 \ldots cv_k$ und $t_i = h_A(v_i)$. 
+		Das bedeutet, das Diagramm in Abbildung~\ref{fig:ltl_ap} ist kommutativ und dadurch folgt für $L_q$:
 		\begin{align*}
 				L_q &= \{cw \in c\sigstern \mid \rho_c h(cw) = qc\}\\ 
 				&=\{cw \in c\sigstern \mid cw \in h\inv \rho_c\inv(qc)\} \\
 				&= \{cw \in c\sigstern \mid cw \in \sigma\inv g\inv(qc)\}
 		\end{align*}
-		Wir können Induktion verwenden da $(|M_c|,|T|) < (|M|, |\Sigma|)$ und $g\inv(qc) \in \ltl_T[\sX\sU]$. 
-		Dann bleibt nun noch das folgende Lemma zu zeigen: 
+		Wir können Induktion verwenden da $(|M_c|,|T|) < (|M|, |\Sigma|)$ gilt  und damit $g\inv(qc) \in \ltl_T[\sX\sU]$ zeigen. 
+		Für den Abschluss des Beweises muss nun nur noch ein weiteres Lemma gezeigt werden, das nun folgt.
 
-\subsubsection{Lemma}
-	Sei $k \in L_T(\varphi) \subseteq T^+$ mit $\varphi \in \ltl_T[\sX\sU]$, dann folgt $\sigma\inv(k) \in \ltl$		
+\subsubsection{Lemma:  $\sigma\inv \in \ltl$}
+	Sei $K \in L_T(\varphi) \subseteq T^+$ mit $\varphi \in \ltl_T[\sX\sU]$.
+	Dann folgt $\sigma\inv(K) \in \ltl$.		
 
 \subsubsection{Beweis des Lemmas}
-	Mittels struktureller Induktion: \\
-	Sei $\sigma\inv(t)$ für $t \in T$ dann $\sigma\inv(t) = ch_A\inv(t)$. Nach dem \textit{Baby-Step} gilt: 
-	\begin{align*}
-		h_A\inv(t) \in \ltl_A[\sX\sU]
-	\end{align*}
-	somit folgt die Behauptung, denn 
+	Wir führen den Beweis mit struktureller Induktion. \\
+	Beachte die Definition von $\sigma$:
 	\begin{align*}
 		\sigma(cv_1\cdots cv_k) = h_A(v_1)\ldots h_A(v_k) \in T^+
 	\end{align*}
-
-\subsubsection{Beweis Fortsetzung}
-	Dann ist $(|M|, |A|) < (|M|,|\Sigma|)$. Genauer gilt: $$\forall \varphi \in \ltl_T[\sX\sU] \exists \varphi_T \in \ltl$$ mit $\sigma\inv(L_t(\varphi)) = L(\varphi_T)$. 
-	Es folgt: 
+	Für $t \in T$ ist $\sigma\inv(t) = ch_A\inv(t)$. Nach \textit{Baby-Step-Induktion} (möglich wegen $(|M|,|A|) < (|M|,|\Sigma|)$) gilt: 
 	\begin{align*}
-		\varphi &= t \implies \varphi_T = c \land \sX\psi \text{ mit } L(\varphi) = h_A\inv(t) \setminus \{c\}  \\
-	\end{align*} bzw. 
+		h_A\inv(t) \in \ltl_A[\sX\sU]
+	\end{align*}
+	Daraus folgt die Behauptung für $\sigma\inv(t)$.\newline
+	
+	
+	Weiter müssen wir zeigen, dass: $$\forall \varphi \in \ltl_T[\sX\sU]\, \exists \varphi_T \in \ltl : \sigma\inv(L_T(\varphi)) = L(\varphi_T)$$ gilt. 
+	Es gilt, $\varphi = t$ führt zu 
 	\begin{align*}
-		\varphi_T &= (c \land \neg \sX T) \lor (c \land \sX\psi_T) \text{ falls } h_A(\varepsilon) = t = 1
+		\varphi_T = c \land \sX\psi \text{ mit } L_A(\psi) = h_A\inv(t) \setminus \{\epsilon\}  
+	\end{align*} bzw. zu 
+	\begin{align*}
+		\varphi_T &= (c \land \neg \sX \top) \lor (c \land \sX\psi_T) \text{ , falls } h_A(\varepsilon) = t = 1\,.
 	\end{align*} 
-	Somit ist $(\varphi \lor \psi)_T = \varphi_T \lor \psi_T$ sowie $(\neg \varphi)_T = c \land \neg(\varphi_T)$, denn $$\sigma\inv(T\setminus K) = c \sigstern \setminus \sigma\inv(K)$$ wobei das $\sigma$ surjektiv ist. 
+	Weiter gilt für die Disjunktion: $$(\varphi \lor \psi)_T = \varphi_T \lor \psi_T\, ,$$ sowie für die Negation$$(\neg \varphi)_T = c \land \neg(\varphi_T)\text{, denn } \sigma\inv(T^+\setminus K) = c \sigstern \setminus \sigma\inv(K) \text{ und } \sigma \text{ ist surjektiv.} $$
 	\newline
 	
-	Man kann sich das dann wie folgt vorstellen:
+	Zuletzt gilt für den Next-Until-Operator: $$(\varphi\sX\sU \psi)_T = (c \land (\neg c \lor \varphi_T) \sX\sU(c \land \psi_T))$$
+	
+	Diese letzte Gleichheit kann man sich wie folgt vorstellen:
 
 		\[ \begin{array}{*{9}{r}}
 		cv_1 &cv_2 &\ldots &cv_i &\ldots &cv_j &\ldots &cv_k\\
@@ -3099,7 +3108,9 @@ Gilt durch Lemma 1, Lemma 2 und Satz~\ref{sec:ltl_hn}, welcher im Folgenden geze
 		\foreach \s in {2,i, j}{\ncangle{T\s}{A\s}}
 		\]
 		
-	und somit ist $$(\varphi\sX\sU \psi)_T = (x \land (\neg c \lor \varphi_T) \sX\sU(c \land \psi_T)$$
+
+	Damit ist das Lemma und somit nun auch Satz~\ref{sec:ltl_is_ap} bewiesen.
+	
 	\bewiesen
 
 \section{Verifikation und Modell Checking - Vorlesung 19}
