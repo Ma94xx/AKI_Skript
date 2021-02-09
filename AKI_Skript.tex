@@ -2808,6 +2808,7 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 	$$w,i \models \varphi\sX\sU\psi \iff [\exists k: i \leq k < n \, \forall j: i \leq j <k \implies w,j \models \varphi \land w,k \models \psi]$$
 
 \section{$\ltl = \ap$ - Vorlesung 17}
+\label{sec:vl17}
 
 \subsection{Satz: Gleichheit von $\ltl$ und $\ap$}
 \label{sec:ltl_is_ap}
@@ -2824,8 +2825,10 @@ Für ein Alphabet $\Sigma$ gilt $\ltl_\Sigma[\sX \sU] = \ap(\sast)$.
 	\begin{align*}
 	L \in \ltl_A[\sX\sU] :&\iff L \setminus \{\varepsilon\} \in \ltl_A[\sX\sU] \\
 		&\iff  L \setminus \{\varepsilon\} = \{w \in A^+ \mid  w = a_1\ldots a_n \text{ mit } a_i \in A \text{ und } w,1 \models \varphi, \\
-		&\hspace{92pt}\text{ wobei } \varphi \in  \ltl_A[\sX\sU] \text{ ist}\}
+		&\hspace{92pt}\text{ wobei } \varphi \in  \ltl_A[\sX\sU] \text{ ist}\}\\
 	\end{align*} 
+
+	Weiter setzen wir ab jetzt $\ltl :=  \ltl_\Sigma[\sX\sU]$.
 
 
 \subsubsection{Beweisstrategie}
@@ -2866,7 +2869,7 @@ Für ein Alphabet $\Sigma$ gilt $\ltl_\Sigma[\sX \sU] = \ap(\sast)$.
 \subsubsection{Lemma: Aufbau aperiodischer Sprachen}
 	Es gelte $h\inv h(L) = L$. Dann ist $$L = \bigcup_{m \in M}\{h\inv(m) \mid m \in h(L) \}\, .$$
 	Dieses Lemma reduziert unseren Beweis für Satz~\ref{sec:ltl_is_ap} darauf, zu zeigen, dass $h^{-1} (m) \in  \ltl_\Sigma[\sX\sU]$ für alle $m \in M$ gilt. 
-	Weiter setzen wir ab jetzt $\ltl :=  \ltl_\Sigma[\sX\sU]$.
+
 
 \subsubsection{Lemma: $h\inv(1)$ ist in $\ltl$}
 	Es gilt $h\inv(1) \in \ltl$.\newline
@@ -2884,12 +2887,13 @@ Für ein Alphabet $\Sigma$ gilt $\ltl_\Sigma[\sX \sU] = \ap(\sast)$.
 	
 	Was wir dann zeigen wollen, ist $h\inv(m) \cap \aast c \aast \in \ltl$ mit $A = \Sigma \setminus \{c\}$ (insbesondere gilt dann $|A| <| \Sigma|$). 
 	Es gilt: $$h\inv(m) \cap \aast c \aast  = \bigcup\{(h\inv(p) \cap \aast)c(h\inv(q)\cap \aast) \mid pcq = m\}$$
-	Beachte, dass mit Induktion $()h\inv(p) \cap \aast) \in \ltl_A[\sX\sU] \subseteq \ltl$ und $(h\inv(q)\cap \aast) \in  \ltl_A[\sX\sU]\subseteq \ltl$ gilt.
-	Dies reduziert unseren Beweis für Satz~\ref{sec:ltl_is_ap} darauf, zu zeigen, dass
+	Beachte, dass mit Induktion $(h\inv(p) \cap \aast) \in \ltl_A[\sX\sU] \subseteq \ltl$ und $(h\inv(q)\cap \aast) \in  \ltl_A[\sX\sU]\subseteq \ltl$ gilt.
+	Deshalb muss nur gezeigt werden, dass
 	$$(L(\varphi) \cap \aast) c (L(\psi) \cap \aast) \in \ltl$$
 	für $\varphi, \psi \in \ltl$ gilt.
 	
 \subsubsection{Lemma: $\ltl$-Formel mit Buchstabenbeschränkungen}
+	\label{sec:ltl_buchstaben}
 	Sei $\varphi \in \ltl$. Dann gilt $\sigstern c (L(\varphi) \cap \aast) \in \ltl$ und $(L(\varphi) \cap \aast)c \sigstern \in \ltl$.
 	
 \subsubsection{Beweis des Lemmas}
@@ -2903,94 +2907,102 @@ Für ein Alphabet $\Sigma$ gilt $\ltl_\Sigma[\sX \sU] = \ap(\sast)$.
 	\end{align*}
 
 \section{$\ltl \implies \ap$ - Vorlesung 18}
-\subsection{Vorbereitungen zum Beweis des Satzes}
+\subsection{Weitere Vorbereitungen zum Beweis des Satzes}
 \subsubsection{Bezeichnungen}
-	Es gilt 
+	Es gilt: 
 	\begin{itemize}
-		\item $\varphi \in \ltl_A[\sX\sU]$ dann ist $L_A(\varphi) = \{w \in A^+ \mid w,1 \models \varphi\}$
+		\item Sei $\varphi \in \ltl_A[\sX\sU]$, dann ist $L_A(\varphi) = \{w \in A^+ \mid w,1 \models \varphi\}$.
 		\item $L \in \ltl_A \iff L \setminus \{\varepsilon\} = L_A(\varphi)$ für ein $\varphi \in \ltl_A[\sX\sU]$
 		\item $\ltl = \ltl_\Sigma[\sX\sU]$
+		\item $A \subseteq \Sigma$ und $b \in \Sigma \setminus A$ (z.B. $b = c \land A = \Sigma \setminus \{c\}$)
 	\end{itemize}
 
 \subsubsection{Makros}
 	\begin{itemize}
 		\item $A \in \ltl$ vermöge $A = \bigvee_{a \in A} a$
 		\item $A^+ \in \ltl$ vermöge $\neg F(\Sigma \setminus A)$ 
-		\item $A \subseteq \Sigma$ und $b \in \Sigma \setminus A$ etwa $b = c \land A = \Sigma \setminus \{c\}$
 	\end{itemize}
 
-\subsubsection{Lemma 1}
-	 $\forall \varphi \in \ltl_A[\sX\sU]$ existiert ein $\varphi_b \in \ltl$ für das gilt $L(\varphi_b) = \sigstern b L_A(\varphi)$.
+\subsubsection{Lemma I}
+	 Es gilt $\forall \varphi \in \ltl_A[\sX\sU]$  $\exists \varphi_b \in \ltl$ : $L(\varphi_b) = \sigstern b L_A(\varphi)$.
 	 \newline
 
-	\textit{Hinweis: }Der Beweis dafür wurde bereits in VL17 geführt. Das Lemma wird hier nochmals ausführlicher beschrieben und ist aus Notations Gründen eingefügt. 
+	\textit{Hinweis: } Dieses Lemma ist identisch zu Lemma~\ref{sec:teilalphabet_ltl} und wird hier aus Notations-Gründen nochmals aufgeführt. 
 
-\subsubsection{Lemma 2}
-	 $\forall \varphi \in \ltl_A[\sX\sU]$ existiert ein  $\varphi_b \in \ltl$ für das gilt $L_A(\varphi)b \sigstern$
-
-\subsubsection{Beweis Lemma 2}
-	Mit struktureller Induktion $\varphi = a \in A$. Dann gilt $\varphi_b = a_b = a \land A \sX \sU b$
+\subsubsection{Lemma II}
+	 Es gilt $\forall \varphi \in \ltl_A[\sX\sU]$  $\exists \varphi_b \in \ltl$ : $L_A(\varphi)b \sigstern$.\newline
+	
+	\textit{Hinweis: } Dieses Lemma ist identisch zu Lemma~\ref{sec:ltl_buchstaben} und wird hier aus Notations-Gründen und mit einem neuen Beweis nochmals aufgeführt. 
+	
+\subsubsection{Beweis des Lemmas II}
+	Wir führen den Beweis mit struktureller Induktion. 
 	\begin{itemize}
+		\item Sei $\varphi = a \in A$. Dann ist $\varphi_b = a_b := a \land A \sX \sU b$.
 		\item $(\varphi \sX \sU \psi)_b = A \land \varphi_b \sX\sU\psi_b \subseteq \{a_1\ldots a_kb\sigstern \mid a_i \in A, k \geq 2\}$
 		\item $(\varphi \lor \psi)_b = \varphi_b \lor \psi_b$ 
-		\item Weiter ist 
-		\begin{align*}
-			L((\neg \varphi)_b) &= (\aast \setminus L_A(\varphi))b\sigstern \\
-			&= A^+b\sigstern \setminus L_A(\varphi)b\sigstern \\
-			&=A^+b\sigstern \cap \sigstern \setminus L_A(\varphi)b\sigstern
-		\end{align*} und somit folgt $(\neg \varphi)_b = A \sX\sU B \land A \land \neg (\varphi_b) \in \ltl$
+		\item  $(\neg \varphi)_b = A \land A \sX\sU B  \land \neg (\varphi_b)$
 	\end{itemize}
+	Die Formulierung der Negation im letzten Punkt ist gültig, wegen
+		\begin{align*}
+			L((\neg \varphi)_b) &= (A^+ \setminus L_A(\varphi))b\sigstern \\
+			&= A^+b\sigstern \setminus L_A(\varphi)b\sigstern \\
+			&=A^+b\sigstern \cap \sigstern \setminus  L_A(\varphi)b\sigstern\, .
+		\end{align*} 
+
 \bewiesen
 
-\subsubsection{Lemma 3}
-	Sei $L = L(\varphi)$ mit $\varphi \in \ltl$. Dann existiert ein $\varphi_b \in \ltl$ mit $L(\varphi_b) = Lb\aast$
+\subsubsection{Lemma III}
+	Sei $L = L(\varphi)$ mit $\varphi \in \ltl$. Dann existiert eine Formel $\varphi_b \in \ltl$ mit $L(\varphi_b) = Lb\aast$.\newline
 
-\subsubsection{Beweis Lemma 3}
-	Bleibt der Übung überlassen. \textit{Tipp: } Strukturelle Induktion!
+	Der Beweis verbleibt als Übung überlassen. \textit{Tipp: } Strukturelle Induktion!
 
-\subsubsection{Satz}
-	Es gilt $h\inv h(L) = L \implies L \in \ltl$
+\subsection{Beweis des Satzes}
+\subsubsection{Wiederholung}
+	Wir wollten die Gültigkeit von Satz~\ref{sec:ltl_is_ap} zeigen, das bedeutet, es ist $$h\inv h(L) = L \implies L \in \ltl$$ zu beweisen. 
+	In Abschnitt~\ref{sec:vl17} hatten wir es bereits soweit reduziert, dass nur noch  $$h\inv(m) \cap \sigstern c \sigstern \in \ltl$$ für $m \neq 1$ zu beweisen ist.\newline
+	
+	Dafür gilt jetzt $A = \Sigma \setminus \{c\}$ und $h(c) \neq 1 \in M$, sowie \oei $M \cap \sast = \{c\}$ und $h(c)=c$.
 
-\subsubsection{Beweis des Satzes}
-	Zeige den folgenden Satz dafür: $\forall m \in M : h\inv (m) \in \ltl$. Für $m = 1$ gilt $h\inv(m) = \bast$ mit $B = \{b \in \Sigma \mid h(b) = a \}$.
-	Daher gilt ohne Einschränkung $m \not = 1$ und somit $$h\inv(m) = \bigcup_{c \not \in B } h\inv(m) \cap \sigstern c \sigstern$$ Zeige daher nur den Satz: 
-	$$h\inv(m) |çap \sigstern c \sigstern \in \ltl$$
 
-\subsubsection{Lemma}
-	Sei $L_A, L'_A \in \ltl_A[\sX\sU]$ dann gilt $L_A c L'_A \in \ltl$
+\subsubsection{Lemma: $\ltl$-Formeln mit einem $c$}
+	Sei $L_A, L'_A \in \ltl_A[\sX\sU]$. Dann gilt $L_A c L'_A \in \ltl$.
 
 \subsubsection{Beweis des Lemmas}
-	Gilt nach Lemma 1 und Lemma 2 und $$L_A c L'_A = L_a c \sigstern \cap \sigstern c L'_A \cap \aast c \aast$$
+	Dieses Lemma gilt nach Lemma 1 und Lemma 2, wegen: $$L_A c L'_A = L_a c \sigstern \cap \sigstern c L'_A \cap \aast c \aast$$
 	\bewiesen
 
-\subsubsection{Lemma}
-	Es ist 
+\subsubsection{Lemma: $\ltl$-Formeln mit zwei $c$}
+	Es gilt: 
 	\begin{align*}
 	h\inv(m) \cap \sigstern c \sigstern c \sigstern &= h\inv(m) \cap \aast c \sigstern c \aast \in \ltl \\
 	&= \bigcup_{p\cdot n = m}(h\inv(p) \cap \aast)(h\inv(n) \cap c \sigstern c \aast)
 	\end{align*}
 
 \subsubsection{Beweis des Lemmas}
-	Es reicht das nächste Lemma zu zeigen.
+	Die Gültigkeit dieses Lemmas folgt direkt aus Lemma~\ref{sec:ltl_pn}, das im Folgenden gezeigt wird.
 
-\subsubsection{Lemma}
+\subsubsection{Lemma: Umstrukturierung einer $\ltl$-Formel}
+	\label{sec:ltl_pn}
+	Es gilt:
 \begin{align*}
 	\forall p, n \in M: (h\inv(p) \cap \aast)(h\inv(n) \cap c \sigstern c \aast) &= \\
 	(h\inv(p) \cap \aast) c \sigstern \cap \aast(h\inv(n)\cap c \sigstern c \aast) \in \ltl 
 	\end{align*}
 \subsubsection{Beweis des Lemmas}
-Gilt durch Lemma 1, Lemma 2 und den folgenden Satz
+Gilt durch Lemma 1, Lemma 2 und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gezeigt wird.
 
-\subsubsection{Satz}
-	$\forall m \in M : h\inv (n) \cap c \sigstern c \aast \in \ltl$
+\subsubsection{Satz: Schnitt von $h\inv (n)$ und $c \sigstern c \aast$}
+\label{sec:ltl_hn}
+	Es gilt $\forall n \in M : h\inv (n) \cap c \sigstern c \aast \in \ltl$.
 	
 \subsubsection{Beweis des Satzes}
-	Ohne Einschränkung gilt $n \not = 1$
-	Dann ist $$h\inv(n) \cap c\sigstern c \aast = \bigcup_{qcr = n} L_q c (h\inv(r) \cap \aast) $$ mit $L_q = \{cw \in c \sigstern \mid h(cw)c = qc\}$. Zeige also nur $\forall q : L_q \in \ltl$, dann folgt der Satz mit Lemma 3
+	Ohne Einschränkung gilt $n \not = 1$.
+	Es gilt $$h\inv(n) \cap c\sigstern c \aast = \bigcup_{q\cdot c\cdot r = n} L_q c (h\inv(r) \cap \aast) $$ mit $L_q = \{cw \in c \sigstern \mid h(cw)c = qc\}$. Zeige also nur $\forall q : L_q \in \ltl$, dann folgt der Satz mit Lemma 3.
 
 \subsubsection{Hauptlemma}
-	Sei $L_q \in \ltl$ und $h_A: \aast \to M$ eine Restriktion von $h$ auf $\aast$ und $L_q = \{cw \in c \sigstern \mid h(cw)c = qc\} \in \ltl$. 
-	Wir können dann den Beweis für $\ltl = \ap$ mit den lokalen Divisoren führen. 
+	Es gilt $L_q=\{cw \in c \sigstern \mid h(cw)c = qc\} \in \ltl$. \newline
+	
+	Wir können dann den Beweis für $\ltl = \ap$ mit der Technik der lokalen Divisoren führen. 
 
 
 \subsubsection{Ideen}
@@ -3007,7 +3019,7 @@ Gilt durch Lemma 1, Lemma 2 und den folgenden Satz
 	$$(M_c, T) <(M, \Sigma)$$
 \end{itemize}
 
-\subsection{Beweis des Satzes}
+
 \subsubsection{Beweis}
 	Wir definieren $g(t) = ctc \in (M_c, \circ, c)$ für $t \in T$. Dann gilt 
 	\begin{align*}
