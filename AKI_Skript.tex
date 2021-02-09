@@ -3116,68 +3116,78 @@ Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gez
 	
 	\bewiesen
 
-\section{Verifikation und Modell Checking - Vorlesung 19}
-\subsection{Modellchecking}
-	Sei ab hier $\ltl_\Sigma[\sX\sU] = \ltl$. Gegeben ist $\varphi \in \ltl$. Konstruiere dazu $A_\varphi$ mit $$L(A_\varphi) = L(\varphi) \subseteq \Sigma^+$$
+\section{Verifikation und Model Checking - Vorlesung 19}
+\subsection{Model Checking}
 
-\subsubsection{1. Schritt}
-	Wir definieren nun $\ltl_+ = \ltl$ ohne Negation. Dafür brauchen wir neue Makros: 
+\subsubsection{Aufgabe}
+	Es gelte weiterhin $\ltl_\Sigma[\sX\sU] = \ltl$. 
+	Es ist $\varphi \in \ltl$ gegeben. 
+	Die Aufgabe des Model Checking besteht dann darin, dazu einen Automaten $A_\varphi$ mit $$L(A_\varphi) = L(\varphi) \subseteq \Sigma^+$$ zu konstruieren.
+	Dies wird in zwei Schritten durchgeführt, welche nachfolgend erklärt werden.
+
+\subsubsection{1. Schritt der Konstruktion}
+	Wir definieren $\ltl_+$ als $\ltl$ ohne Negation. Nun brauchen wir folgende, teilweise neue Makros: 
 	\begin{multicols}{2}
-	\begin{itemize}
-		\item $\top = true$
-		\item $\bot = false$
-		\item $\sende = \neg \sX \top$
-		\item $v = a_1 \ldots a_n$ mit $a_i \in \Sigma$
-		\item $v, i \models \sende\iff i = |v|$
-		\item $v, i \models\sende \iff a \in \Sigma$
-	\end{itemize} 
-\end{multicols}
-Wir erhalten also 
-\[
-A_\sende= \left\{\begin{array}{c}
-	\begin{tikzpicture}[node distance=2cm, auto, baseline=-0.65ex,scale=0.5]
-	\node(a) [semifill={black,ang=90}] {};
-	\node(b) [semifill={black,ang=270}, right of = a] {};
-	\draw[->] (a) -- (b) node[ midway,sloped,above,rotate=0] { $a \in \Sigma$};
-	\end{tikzpicture} 
-\end{array} \right\}
-\]
-Weiter definieren wir neue Makros: $\varphi \; \mathsf{ Release } \;  \psi = $ ''  $\varphi \text{ entlässt } \psi$''$= \varphi \sR \psi$
-		
-\subsubsection{Idee}
-	Wir wollen 
-		\begin{align*}
-			\neg(\varphi \sU \psi) &= \neg \varphi \sR \neg \psi \\ 
-				&= \sG(\neg \psi) \lor \neg \psi \sU (\neg \varphi \land \neg \psi)
-		\end{align*}
-	Also graphisch
-		\[ \begin{array}{*{9}{c}}
-				\neg \psi &\neg \psi &\ldots &\neg \psi &\ldots &\neg\psi &\psi &\psi \\
-				\bullet & 	\bullet &\ldots  &\bullet &\ldots &\bullet  &\bullet &\bullet  \\
-				a_1 & a_2 &\ldots & a_i &\ldots &a_{k-1} &a_{k} &a_{k+1}
+			\begin{itemize}
+			\item $\top = true$
+			\item $\bot = false$
+			\item $\sende = \neg \sX \top$
+			\item $= \varphi \sR \psi = \varphi \; \mathsf{ R}\text{elease }\psi = \sG \psi \lor \psi \sU (\varphi \land \psi)$
+			\item $\varphi \sX \sR \psi = \neg(\neg \varphi \sX \sU \neg \psi)$
+			\item $\neg a = \bigvee_{b\not = a} b$ (mit $\neg a = \bot $ falls $\Sigma =\{a\}$)
+		\end{itemize} 
+	\end{multicols}
+
+	Das Makro $\sende$ lässt sich folgenderma\ss en erklären: 
+	Sei $v = a_1 \ldots a_n$ mit $a_i \in \Sigma$, dann gilt $$v, i \models \sende\iff i = |v|$$ und $$v, 1 \models\sende \iff v \in \Sigma\, .$$
+	
+	Wir erhalten also für die Formel $\sende$ den folgenden Automaten:
+	\[
+	A_\sende= \left\{\begin{array}{c}
+		\begin{tikzpicture}[node distance=2cm, auto, baseline=-0.65ex,scale=0.5]
+		\node(a) [semifill={black,ang=90}] {};
+		\node(b) [semifill={black,ang=270}, right of = a] {};
+		\draw[->] (a) -- (b) node[ midway,sloped,above,rotate=0] { $a \in \Sigma$};
+		\end{tikzpicture} 
+	\end{array} \right\}
+	\]
+	Dabei symbolisiert ein, auf der linken Hälfte ausgefüllter, Kreis einen Startzustand und ein, auf der rechten Hälfte ausgefüllter, Kreis einen Endzustand.\newline
+	
+	Das Makro $\sR$ soll so funktionieren, dass 	
+	\begin{align*}
+		\neg(\varphi \sU \psi) &= \neg \varphi \sR \neg \psi \\ 
+		&= \sG(\neg \psi) \lor \neg \psi \sU (\neg \varphi \land \neg \psi)
+	\end{align*}
+	gilt.
+	Graphisch kann man sich das folgenderma\ss en vorstellen:
+	\[ \begin{array}{*{9}{c}}
+		\neg \psi &\neg \psi &\ldots &\neg \psi &\ldots &\neg\psi &\psi & \\
+		\bullet & 	\bullet &\ldots  &\bullet &\ldots &\bullet  &\bullet &\bullet  \\
+		a_1 & a_2 &\ldots & a_i &\ldots &a_{k-1} &a_{k} &a_{k+1}\\
+		&&& \neg \varphi &&&&\\
 	\end{array}
-		\]
-		mit $\varphi \sR \psi = \sG \psi \lor \psi \sU (\varphi \land \psi)$. Tatsächlich interessiert uns ein Operator $\varphi \sX \sR \psi$ mit Semantik $\neg(\neg \varphi \sX \sU \neg \psi)$
-		Weiter ist $\neg a = \bigvee_{a\not = b} b$ mit $\neg a = \bot $ falls $\Sigma =\{a\}$. 
-		\newline
-		
-		Wir definieren $\ltl_+ = \ltl_+[\sX \sU, \sX\sR]$ duch eine kontextfreie Grammatik: 
-			\begin{align*}
-				\varphi = \top \mid \bot \mid a \in \Sigma \mid \varphi \lor \varphi \mid \varphi \land \varphi \mid \varphi \sX \sU \varphi \mid \varphi \sX\sR\varphi
-			\end{align*}
-\subsubsection{Lemma}
-	Sei $\varphi \in \ltl[\sX\sU]$. Dann existiert ein $\psi \in \ltl_+$ mit den Eigenschaften $$L(\varphi) = L(\psi) \text{ und }|\psi| \leq |\Sigma| \cdot |\varphi|$$
+	\]
+
+	
+	
+	Wir können das Fragment der positiven Formeln $\ltl_+ = \ltl_+[\sX \sU, \sX\sR]$ nun  durch eine kontextfreie Grammatik definieren: 
+	\begin{align*}
+		\varphi = \top \mid \bot \mid a \in \Sigma \mid \varphi \lor \varphi \mid \varphi \land \varphi \mid \varphi \sX \sU \varphi \mid \varphi \sX\sR\varphi
+	\end{align*}
+
+\subsubsection{Lemma: $\ltl$-Formel-Verkleinerung}
+	Sei $\varphi \in \ltl[\sX\sU]$. Dann existiert eine Formel $\psi \in \ltl_+$ mit den Eigenschaften $$L(\varphi) = L(\psi) \text{ und }|\psi| \leq |\Sigma| \cdot |\varphi|\, .$$
 
 \subsubsection{Definiton Teilformel}
-	Definiere für ein $\varphi \in \ltl_+$ die Menge  $\tf(\varphi)$ der Teilformeln. Weiter ist
+	Definiere für ein $\varphi \in \ltl_+$ die Menge  $\tf(\varphi)$ der Teilformeln. Dabei gilt:
 	\begin{align*}
-		\tf(\varphi) &= \{\varphi\} \text{ für ein } \varphi \in \{\top, \bot, \sende, a \mid a \in \Sigma\} \\
+		\tf(\varphi) &= \{\varphi\} \text{ für } \varphi \in \{\top, \bot, \sende, a \mid a \in \Sigma\} \\
 		\tf(\varphi_1 \lor \varphi_2) &= \tf(\varphi_1 \land \varphi_2) = \tf(\varphi_1) \cup \tf(\varphi_2)\\
 		 \tf(\varphi) &=\{\varphi\} \cup \tf(\varphi_1) \cup \tf(\varphi_2) \text{ für } \varphi \in \{\varphi_1 \sX\sU\varphi_2,  \varphi_1\sX\sR\varphi_2\}
 	\end{align*}
-	Es gilt: $$\tf(\varphi) \subseteq \{\top, \bot, \sende, a \mid a \in \Sigma\} \cup \{\varphi \sX\sU\psi, \varphi\sX\sR\psi \mid \varphi, \psi \in \ltl_+\}$$ und $|\tf(\varphi)| \leq |\varphi|$
+	Weiter gilt dann $$\tf(\varphi) \subseteq \{\top, \bot, \sende, a \mid a \in \Sigma\} \cup \{\varphi \sX\sU\psi, \varphi\sX\sR\psi \mid \varphi, \psi \in \ltl_+\}$$ und $|\tf(\varphi)| \leq |\varphi|$.
 
-\subsubsection{2. Schritt}
+\subsubsection{2. Schritt der Konstruktion}
 	Ziel: Wir wollen $ A_\varphi =(Q, \Sigma, \delta, I, F)$ mit $Q = \{\{\varphi_1, \ldots, \varphi_k \mid k \geq 1, \varphi_i \in \tf(\varphi)\}$	 definieren. 
 	Die Idee ist dass $\{\varphi_1, \ldots, \varphi_k\}$ die Konjunktion von $$\varphi_1 \land \ldots\land \varphi_k = \bigwedge_{i = 1}^k \varphi_i$$
 	Wir bezeichnen mit $\B_+(\tf(\varphi))$ die positiven boolschen Ausdrücke. Nun definieren wir eine Abbildung
