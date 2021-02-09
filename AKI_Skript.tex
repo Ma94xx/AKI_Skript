@@ -294,10 +294,9 @@
 	\tableofcontents
 	\newpage
 	
-	\section{Grundlagen - Vorlesung 1}
-	\subsection{Diedergruppen}
-	\subsubsection{Definition}
-	Die Diedergruppe $D_n$ ist die Bewegungsgruppe des regelmäßigen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
+	\section{Diedergruppen - Vorlesung 1}
+	\subsection{Definition Diedergruppe}
+	Die Diedergruppe $D_n$ ist die Bewegungsgruppe des regelmä\ss igen $n$-Ecks mit $n \geq 3$. Dabei ist die Gruppenverknüpfung die Drehung oder Spiegelung des $n$-Ecks. \\ 
 	
 	Nun ist das $n$-Eck durch folgende Knoten und Kanten definiert: 
 	\begin{align*}
@@ -319,7 +318,7 @@
 	Folglich lassen sich Diedergruppen so definieren, dass sie aus der Menge $\{\Sigma_{i=1}^{k}\alpha_i \, | \, \alpha_i \in \{\sigma, \delta\}, k \in \N\}$ besteht und als Verknüpfung die Konkatenation hat, also die Hintereinanderausführung der Abbildungssequenzen.
 	
 	
-	\subsubsection{Eigenschaften von Diedergruppen}
+	\subsection{Eigenschaften von Diedergruppen}
 	\label{sec:diederEigenschaften}
 	Wir bezeichnen die Spiegelung mit $\sigma$ und die Drehung im Uhrzeiger mit $\delta$. Dann gilt Folgendes:
 	
@@ -342,7 +341,7 @@
 	\bewiesen
 	Dieser Satz gibt uns also die Möglichkeit das $\sigma$ nach rechts oder links zu schieben und wir können die Gleichheit $\sigma\delta\sigma = \delta^{-1}$ folgern.
 	
-	\subsubsection{Fixpunkte in Diedergruppen}
+	\subsection{Fixpunkte in Diedergruppen}
 	Ein Fixpunkt $x$ einer Abbildung $f$ ist ein Punkt, für den $f(x) = x$ gilt. Da die Elemente der Diedergruppe durch $\sigma\delta^i(j)$ dargestellt werden können, fragen wir uns, wann folgende Gleichheit gilt:
 	\begin{align*}
 		\sigma\delta^i(j) = j
@@ -386,7 +385,7 @@
 		\label{tab:diederFixpunkte}
 	\end{table*}
 	
-	\subsubsection{Erweiterung auf unendliche Gruppen}
+	\subsection{Erweiterung auf unendliche Gruppen}
 	
 	Im Fall $n=0$ ist das $n$-Eck die unendliche gerade $\Z/0\Z = \Z$.
 	
@@ -922,11 +921,12 @@
 	Es gilt $A_n \trianglelefteq S_n$ und $|A_n| = \binom{n!}{2}$ für $n \geq 2$. 
 	
 	\section{Gruppentheorie 3 - Vorlesung 4}
-	\subsection{Semidirekte Produkte}
-	\subsubsection{Direktes Produkt}
+	\subsection{Direkte Produkte}
+	\subsubsection{Definition}
 	Für zwei Gruppen $H$ und $F$ ist das Gruppe $H \times F$ mit  der komponentenweisen Verknüfung $$(h,f)(h', f') = (hh', ff')$$ definiert als das direkte Produkt.
 	
-	\subsubsection{Semidirektes Produkt}
+	\subsection{Semidirekte Produkte}
+	\subsubsection{Definition}
 	Das semidirekte Produkt ist ein Spezialfall des direkten Produkts.
 	$G = H \rtimes F$ ist ein semidirektes Produkt, falls $H \trianglelefteq G$, $F \leq G$,  $G = H\cdot F$ und $H \cap F = \{1\}$ gilt. 
 	Die Gruppenoperation ist dabei 
@@ -1172,7 +1172,7 @@
 	Dies impliziert jedoch $\sigma = 1$. Ein Widerspruch! 
 	
 	\section{Gruppentheorie 5 - Vorlesung 6}
-	\subsection{Kranzprodukte}
+	\subsection{Kranzprodukte Grundlagen}
 	\subsubsection{Vorraussetzungen}
 	Seien $M = (M, +, 0)$ nicht notwendig kommutativ und $N=(N, \cdot, 1)$ beides Monoide, sowie $X$ eine Menge. 
 	Dann operiert $N$ von rechts auf $X$. Wir betrachten die Menge der Abbildungen von $X$ nach $M$: $M^x = \{ f: X \to M \mid \text{ f ist eine Abbildung} \}$. Wir schreiben statt $f(x)$ nun $xf$. 
@@ -1205,6 +1205,7 @@
 	\bewiesen
 	Es kann auch $X=N$ gesetzt werden.
 	
+	\subsection{Kranzprodukt Folgerungen}
 	\subsubsection{Satz: Kranzprodukt bei Gruppen}
 	Wenn $M, N$ Gruppen sind, dann ist auch $M^X \rtimes N$ bzw. $M \wr N$ eine Gruppe. 
 	
@@ -1257,8 +1258,7 @@
 	\bewiesen
 	
 	\section{Erkennbare und Rationale Mengen 1 - Vorlesung 7}
-	\subsection{Erkennbare Mengen, Rationale Mengen und Sternfreie Sprachen}
-	\subsubsection{Definition Rationale Menge ($\rat$)}
+	\subsection{Definition Rationale Menge ($\rat$)}
 	Sei $M$ eine Monoid (z.B $M = \sigstern$).
 	Dann ist $\rat(M)$ die Menge der rationalen Mengen von $M$ und die Elemente von $\rat(M)$ sind induktiv definiert durch:
 	\begin{enumerate}[label=\arabic*)]
@@ -1271,14 +1271,14 @@
 	\end{enumerate}
 	
 	
-	\subsubsection{Definition Sternfreie Sprache ($\starfree$)}
+	\subsection{Definition Sternfreie Sprache ($\starfree$)}
 	Für ein Monoid $M$ enthält die Menge der sternfreien Sprachen $\starfree(M)$ folgende Mengen:
 	\begin{enumerate}[label=\arabic*)]
 		\item $L \subseteq M \wedge |L| < \infty \implies L \in \starfree(M)$
 		\item $L_1, L_2 \in \starfree(M) \implies L_1 \cup L_2 \in \starfree(M) \, \wedge \, L_1 \cdot L_2 \in \starfree(M) \, \wedge \, M \setminus L = \overline{L} \in \starfree(M)$\\ 
 	\end{enumerate}
 	
-	\subsubsection{Beispiele für Sternfreie Sprachen}
+	\subsection{Beispiele für Sternfreie Sprachen}
 	Mit $\Sigma = \{a,b\}$ gilt:
 	\begin{itemize}
 		\item $(aa)^\ast \not\in \starfree(\sigstern)$
@@ -1289,18 +1289,18 @@
 	
 	
 	
-	\subsubsection{Definition erkennbare Sprachen ($\rec$)}
+	\subsection{Definition erkennbare Sprachen ($\rec$)}
 	\label{sec:rec}
 	Wir definieren die Menge $\rec(M)$ der erkennbaren Mengen eines Monoids $M$ wie folgt:  $$L \in \rec(M) \iff \exists \varphi : M \to N \text{ ein Hom. von Monoiden mit } |N| < \infty \text{ und } \varphi\inv\varphi(L) = L$$
 	Das hei\ss t $\forall w \in M$ gilt $$w\in L \iff \varphi(w) \in \varphi(L) \subseteq N\, .$$
 	
-	\subsubsection{Definition aperiodisch}
+	\subsection{Definition aperiodisch}
 	Ein Monoid $N$ ist aperiodisch genau dann, wenn alle Unterhalbguppen von $N$, die Gruppen sind, sind trivial, bzw. $N$ gruppenfrei ist.\\
 	Alternativ gilt: Ein Monoid $M$	ist aperidodisch, falls $$\exists t \in \N \, \forall x \in M\, : \, x^{t+1} = x^t \, .$$
 	Falls $M$ endlich ist, gilt: $$M \text{ ist aperiodisch} \iff \forall x \in M \, \exists t \in \N \,  : x^{t+1} = x^t$$
 	
 	
-	\subsubsection{Satz von Schützenberger}
+	\subsection{Satz von Schützenberger}
 	Es gilt: 
 	\begin{align*}
 		L &\in \starfree(\sigstern)\\
@@ -1310,7 +1310,7 @@
 		\text{das syntaktische Monoid } &\synt(L) \text{ ist aperiodisch}
 	\end{align*}
 	
-	\subsubsection{Definition DFA über M}
+	\subsection{Definition DFA über M}
 	Ein DFA (Deterministic Finite Automaton) über einem Monoid $M$ ist ein Tupel $(Q, \cdot, q_0, F)$, wobei
 	\begin{enumerate}[label=\arabic*)]
 		\item $\cdot: Q \times M \to Q$ ist eine Operation von $M$ auf $Q$ von rechts. Das heißt also
@@ -1322,7 +1322,7 @@
 	gilt.\\
 	Dies definiert dann die Sprache $L(A) = \{w \in M \mid q_0\cdot w \in F\}$.
 	
-	\subsubsection{Beispiel für einen DFA über M}
+	\subsection{Beispiel für einen DFA über M}
 	Sei $L \in \rec(M)$ mit $\varphi: M \to N$ wie in der Definition~\ref{sec:rec}. \\ 
 	Dann definiert dies einen DFA $A = (Q,\cdot, q_0, F)$ mit $L(A) = L$ und $N = Q$. 
 	Hierbei ist: 
@@ -1336,10 +1336,10 @@
 		\item $F = \{\varphi(u) \mid u \in L \}$
 	\end{itemize}
 
-	\subsubsection{Satz von Kleene}
+	\subsection{Satz von Kleene}
 	Für ein endliches Alphabet $\Sigma$ gilt $$\rat(\Sigma^*)=\starfree(\Sigma^*)=\rec(\Sigma^*)\,.$$
 	
-	\section{Erkennbare Mengen 2 - Vorlesung 8}
+	\section{Erkennbare und Rationale Mengen 2 - Vorlesung 8}
 	\subsection{Abschlusseigenschaften von $\rat$ und $\rec$}
 	\subsubsection{Abschluss von $\rat$ unter Hom.}
 	Wenn $h: M' \to M$ ein Monoid-Hom. ist, dann gilt $$L' \in \rat(M') \implies h(L') \in \rat(M)\, .$$
@@ -1624,8 +1624,8 @@
 		Es gilt $L(\mathscr{G})=\mathsf{WP}(G)$ für die Gruppe $G=\Z \rtimes \Z/2\Z$ mit $$(m,i)(n,j) = (m+(-1)^in, i+j\, \mod 2) $$.
 	\end{itemize}
 	
-	\section{Halbgruppentheorie Teil 1 - Vorlesung 10}
-	\subsection{Green's Relations}
+	\section{Halbgruppentheorie 1 - Vorlesung 10}
+	\subsection{Green's Relations Grundlagen}
 	\subsubsection{Definition Ideal}
 	Bei Idealen eines Rings unterscheidet man in sogenannte Links-, Rechts- und Beidseitige Ideale. 
 	Sei $I \subseteq R$ für einen Ring $R=(R,+,\cdot)$. Dann ist $I$ ein Linksideal, falls 
@@ -1706,6 +1706,8 @@
 	\subsubsection{Definition K-Trivial}		
 	Sei $\mathcal{K} \in \{\mathcal{H}, \mathcal{L},\mathcal{R}, \mathcal{D}, \mathcal{J}\}$, dann hei\ss t $M$, das zugehörige Monoid, $\mathcal{K}$-Trivial, falls $$x \sim_K y \implies x = y$$gilt.
 	
+		
+	\subsection{Green's Relations Folgerungen}
 	\subsubsection{Green's Relations in Gruppen}
 	Für eine Gruppe $G$ gilt:
 	$$\mathcal{H=L=R=D=J}=G \times G\, ,$$
@@ -1817,7 +1819,7 @@
 		\bewiesen
 	\end{enumerate}
 	
-	\section{Divisoren, aperiodische Monoide - Vorlesung 11}
+	\section{Divisoren und aperiodische Monoide - Vorlesung 11}
 	\subsection{Divisoren}
 	\subsubsection{Definition Subquotient}
 	\label{sec:subquotient}
@@ -2146,8 +2148,8 @@
 	Es folgt $\sigma\inv(K_1K_2) \in \starfree(A)$, da $\sigma\inv(K_1K_2) = \sigma\inv(K_1) \sigma\inv(K_2) \in \starfree(A)$. 
 	\bewiesen
 	
-	\section{Halbgruppentheorie Teil 2 - Vorlesung 13}
-	\subsection{Green's Relations Teil 2}
+	\section{Halbgruppentheorie 2 - Vorlesung 13}
+	\subsection{Weitere Erkenntnisse zu Green's Relations}
 	
 	\subsubsection{Beziehungen von lokalen Divisoren und Green's Relations}
 	Für ein endliches Monoid $M$ gelten die  folgenden Zusammenhänge:
@@ -2309,6 +2311,7 @@
 	Sei $srs=s$. Dann folgt $sr \lgrereq s$ und $sr \lgrereq srs = s$. Das bedeutet, es gilt $s \grer sr$. Damit folgt $(sr)(sr) = (srs)r = sr \in E(M)$.
 	\bewiesen
 	
+	\subsection{Spezielle Erkenntnisse zu $\dcal$-Klassen}
 	\subsubsection{Satz: Aussagen über $\dcal$-Klassen}
 	Für ein endliches Monoid $M$ sind die folgenden Aussagen äquivalent für eine $\dcal$-Klasse D: 
 	\begin{enumerate}[label=\arabic*.)]
