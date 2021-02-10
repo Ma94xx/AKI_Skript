@@ -3267,11 +3267,12 @@ Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gez
 	
 \section{Büchi Automaten - Vorlesung 20}
 \subsection{Grundlagen}
+\subsubsection{Voraussetzungen}
  Für $\omega$-reguläre Sprachen ist $\Sigma\pom = \{a_1a_2\ldots \mid \forall i \in \N: a_i \in \Sigma \}$ und $\alpha \in \Sigma\pom$. 
  Beim Model-Checking wird geprüft, ob eine der folgenden äquivalenten Aussagen zutrifft: $$L(A) \subseteq L(\varphi) \iff L(A) \cap L(\neg \varphi) = \emptyset$$
  Dabei sollen die Abläufe von $A$ nie enden, da Systeme modelliert werden, die kein Ende haben (z.B. Schleusen, Betriebssystem, usw.).
 
-\subsection{Definition Büchi Automat}
+\subsubsection{Definition Büchi-Automat}
 	Ein Büchi Automat ist ein NFA $A = (Q, \Sigma, \delta, I, F)$ mit der Semantik $L(A) \subseteq \Sigma\pom$.
 	\oei gilt $\delta \subseteq Q \times \Sigma \times Q$.
 	Wir definieren dafür $\alpha = a_1a_2\ldots \in L(A)$, falls
@@ -3281,14 +3282,15 @@ Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gez
 		\item $\exists p \in F : |\{i \in \N \mid p_i = p\}| = \infty \iff |\{i \in \N \mid p_i \in F\}| = \infty$.
 	\end{enumerate}
 
-\subsection{Definition $\omega$-regulär}
+\subsubsection{Definition $\omega$-regulär}
 	Eine Sprache $L \subseteq \Sigma\pom$ hei\ss t $\omega$-regulär, falls $$\exists n \in \N \, \forall 1 \leq i \leq n \, \exists U_i \subseteq \sigstern\, \exists V_i \subseteq \splu \, : \, U_i, V_i \text{ sind regulär }\land L = \bigcup_{i = 1}^n U_i V_i\pom$$
 	gilt.
 	
-\subsection{Lemma: Büchi Automaten für $\omega$-reguläre Sprachen}
+\subsection{Folgerungen}
+\subsubsection{Lemma: Büchi Automaten für $\omega$-reguläre Sprachen}
 	Sei $L = \bigcup_{i = 1}^n U_i V_i\pom$. Dann existiert ein Büchi Automat $A$ mit $L=L(A)$.
 
-\subsection{Beweis des Lemmas}
+\subsubsection{Beweis des Lemmas}
 	Es gilt ohne Einschränkung: 
 	\begin{itemize}
 		\item $L = UV\pom$ mit $U = L(A_u) \subseteq \sigstern$ und $V = L(A_v) \subseteq \splu$
@@ -3386,64 +3388,65 @@ Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gez
 	Da die $\delta(p,q)$ genau $3$ Werte annehmen können, schlie\ss en wir daraus $$|H| = |\sfrac{\sigstern}{\equiv_A}| \leq 3^{n^2}\, .$$ 
 	\bewiesen
 	
-\subsubsection{Definition: Linked Pair}
-	Ein Tupel $(s, e) \in H \times H$ hei\ss t linked pair, falls $se = s$ und $e^2 = e$ gilt.
+\subsubsection{Definition Linked Pair}
+	Für die endliche Halbgruppe $H$ hei\ss t ein Tupel $(s, e) \in H \times H$ linked pair, falls $se = s$ und $e^2 = e$ gilt.
 
-\subsubsection{Lemma \label{lemmaa}}
+\subsubsection{Lemma: Linked Pairs in $L$ \label{lemmaa}}
 	Es gilt: 
 	\begin{align*}
 		h \text{ erkennt } l &\implies \forall (s,e) \text{ linked pairs}: L \cap [s][e]\pom \not = \emptyset \\
 		&\implies [s][e]\pom \subseteq L
 	\end{align*}
 
-\subsubsection{Definition:  Schwache Erkennung}
+\subsubsection{Definition  Schwache Erkennung}
 	Wir sagen $h$ erkennt $L$ schwach, falls
 	\begin{align*}
-		L = \bigcup \{[s][e]\pom \mid se = s, e^2 = e, [s][e]\pom \subseteq L\}
+		L = \bigcup \{[s][e]\pom \mid se = s \land e^2 = e \land [s][e]\pom \subseteq L\}
 	\end{align*}
+	gilt.
 
-\subsubsection{Beweis des Lemma \ref{lemmaa}}
+\subsubsection{Zusammenhang von Erkennung, Büchi-Automaten und $\omega$-Regularität}
 	Es gilt: 
 	\begin{align*}
 		h \text{ erkennt } L \text{ stark } &\implies h \text{ erkennt } L \text{ schwach } \\
 		&\implies L \text{ ist $\omega$-regulär } \\
 		&\implies L = L(A) \text{ für einen Büchi Automaten} \\
-		&\implies \exists \mu: \sigstern \to H \text{ mit } |H| \leq 3^{n^2} \text{ und } \mu \text{ erkennt } L \text{ stark}
+		&\implies \exists \mu: \splu \to H \text{ mit } |H| \leq 3^{n^2} \text{ und } \mu \text{ erkennt } L \text{ stark}
 	\end{align*}
-	\bewiesen
-	
-\subsubsection{Satz (Büchi)}
-	Sei $L$ $\omega$-regulär dann folgt $\sfrac{\sigstern}{L}$ ist $\omega$-regulär. 
+
+\subsubsection{Satz von Büchi}
+	Sei $L$ $\omega$-regulär. Dann folgt $\splu \setminus L$ ist $\omega$-regulär. 
 	
 \subsubsection{Beweis des Satzes (Büchi)}
-	Sei $h:\sigstern \to H$ mit $|H| < \infty$ und $\forall(s,e)$ mit $se=s, e^2 = e$ gilt $$[s][e]\pom \subseteq L \iff [s][e]\pom \cap L \not = \emptyset$$
-	Sei nun $\alpha \not \in L$, also $\alpha \in \overline{L} = \sigstern \setminus L$. Wir konstruieren dann einen ungerichtet vollständigen Graphen $(V, \binom{V}{2}, \chi)$ mit Kantenfärbung $$\chi : \binom{V}{2} \to H$$ Setze nun $V = \N$ und $\chi(\{i, j\}) = \chi(i, j)$ für $i <j$ und damit $$\chi(i, j) = (a_i, \ldots, a_{j-1})$$ für ein $\alpha = a_1a_2\ldots \in \Sigma^+$ mit $a_i \in \Sigma$.
+	Sei $h:\splu \to H$ mit $|H| < \infty$ und für alle linked pairs $(s,e)$ gilt: $$[s][e]\pom \subseteq L \iff [s][e]\pom \cap L \not = \emptyset$$
+	Sei weiter $\alpha \not \in L$, also $\alpha \in \overline{L} = \splu \setminus L$. Wir konstruieren dann einen ungerichteten vollständigen Graphen $G = (V, \binom{V}{2}, \chi)$ mit Kantenfärbung $$\chi : \binom{V}{2} \to H$$ 
+	Dafür setzen wir $V = \N$ und $\chi(\{i, j\}) =: \chi(i, j)$ für $i <j$ und dann $$\chi(i, j) = h(a_i, \ldots, a_{j-1})$$ für $\alpha = a_1a_2\ldots \in \Sigma^+$ mit $a_i \in \Sigma$.
 	\newline
 	
-	Nach der  Ramsey-Theorie  existiert nun ein monochromer ungerichteter Graph. Es gibt also $I \leq \N$ und $|I| = \infty$ und es existiert $e \in H$ für alle $i,j \in I$ mit $i < j$ gilt $\chi(i, j) = e$. 
-	Dann gilt $e^2 = e$, denn sei $i, j, k \in I$ mit $i < j < k$ dann 
+	Nach der  Ramsey-Theorie  existiert nun ein monochromatischer ungerichteter Untergraph von $G$. Es gibt also eine Indexmenge $I \subseteq \N$ mit $|I| = \infty$ und es existiert eine Farbe $e \in H$, sodass für alle $i,j \in I$ mit $i < j$ gilt $\chi(i, j) = e$. 
+	Dann gilt $e^2 = e$, denn seien $i, j, k \in I$ mit $i < j < k$, dann folgt:
 	\begin{align*}
 		e = \chi(i, k) &= h(a_i, \ldots, a_{k-1}) \\
 		&=h(a_i, \ldots, a_{j-1})h(a_j,\ldots,a_{k-1}) \\
 		&=e^2
 	\end{align*}
 	
-	Zum $s$ mit $s = se$. Wähle $i, j \in I$ mit $i < j$ und setze $$s = h(a_1 \ldots a_{j-1}) = h(a_1 \ldots a_{i-1}) \cdot h(a_i \ldots a_{j-1}) = s'e$$ für 
+	Nach Voraussetzung muss $s = se$ für ein $s$ gelten. Wir wählen $i, j \in I$ mit $i < j$ und setzen $$s = h(a_1 \ldots a_{j-1}) = h(a_1 \ldots a_{i-1}) \cdot h(a_i \ldots a_{j-1}) = s'e$$ für 
 	$s' = h(a_1\ldots a_{i-1})$. Dann gilt $se = (s'e)e = s'e^2 = s'e = s$. 
 	
-	Wir haben nun gezeigt: $\forall \beta \in \Sigma\pom \exists(s,e) \text{ linked pair mit } \beta[s][e]\pom$. Das hei\ss t also es gilt 
+	Wir haben nun gezeigt: $\forall \beta \in \Sigma\pom \,\exists(s,e) \text{ linked pair: } \beta\in [s][e]\pom$. Das hei\ss t also, es gilt: 
 	\begin{align*}
-		\sigma\pom = \bigcup \{[s][e]\pom \mid se = s, e^2 = e \}
+		\Sigma\pom = \bigcup \{[s][e]\pom \mid se = s, e^2 = e \}
 	\end{align*}
-	Schreibe nun der Einfachkeit halber $$P = \{ (s,e) \in H \times H \mid se = s, e^2 = e\}$$
-	Nun ist $$L = \bigcup\{[s][e]\pom \mid (s,e)\in P : [s][e]\pom \cap L \not = \emptyset\}$$ und es gilt $$\forall (s,e) \in P: [s][e\pom] \cap L \not = \emptyset \implies [s][e]\pom \subseteq L$$
+	Wir setzten nun der Einfachheit halber: $$P = \{ (s,e) \in H \times H \mid se = s, e^2 = e\}$$
+	Nun ist $$L = \bigcup\{[s][e]\pom \mid (s,e)\in P : [s][e]\pom \cap L \not = \emptyset\}$$ und es gilt: $$\forall (s,e) \in P: [s][e\pom] \cap L \not = \emptyset \implies [s][e]\pom \subseteq L$$
 	\newline
 	
-	Sei nun $\alpha \in \overline{L}$, dann folgt $\exists (s,e) \in P : \alpha \in [s][e]\pom$ und somit 
+	Betrachte nun wieder $\alpha \in \overline{L}$. Dann gilt $\exists (s,e) \in P : \alpha \in [s][e]\pom$ und somit folgt:
 	\begin{align*}
-		&\implies \exists (s,e) \in P: \alpha \in [s][e]\pom \text{ und } [s][e]\pom \cap L = \emptyset \\
-		&\implies \overline{ L } = \bigcup \{[s][e]\pom \mid (s,e )\in P \text{ und } [s][e]\pom \cap L = \emptyset\} \\
-		&\implies L \text{ ist $\omega$-regulär}
+		\exists (s,e) \in P: \alpha \in [s][e]\pom \land [s][e]\pom \cap L = \emptyset 
+		&\implies \overline{ L } = \bigcup \{[s][e]\pom \mid (s,e )\in P \land [s][e]\pom \cap L = \emptyset\} \\
+		&\implies \overline{ L } \text{ ist $\omega$-regulär}
 	\end{align*}
 	\bewiesen
 \end{document}
