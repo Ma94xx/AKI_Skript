@@ -1,2 +1,4 @@
 # AKI_Skirpt
-Zum besseren Verständnis und lernen auf Algebra und Kombinatorik
+Zum besseren Verständnis und Lernen auf Algebra und Kombinatorik.
+
+Kompilieren mit XeLaTeX.
