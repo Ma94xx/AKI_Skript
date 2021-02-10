@@ -3117,15 +3117,14 @@ Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gez
 	\bewiesen
 
 \section{Verifikation und Model Checking - Vorlesung 19}
-\subsection{Model Checking}
 
-\subsubsection{Aufgabe}
+\subsection{Aufgabe}
 	Es gelte weiterhin $\ltl_\Sigma[\sX\sU] = \ltl$. 
 	Es ist $\varphi \in \ltl$ gegeben. 
 	Die Aufgabe des Model Checking besteht dann darin, dazu einen Automaten $A_\varphi$ mit $$L(A_\varphi) = L(\varphi) \subseteq \Sigma^+$$ zu konstruieren.
 	Dies wird in zwei Schritten durchgeführt, welche nachfolgend erklärt werden.
 
-\subsubsection{1. Schritt der Konstruktion}
+\subsection{1. Schritt der Konstruktion}
 	Wir definieren $\ltl_+$ als $\ltl$ ohne Negation. Nun brauchen wir folgende, teilweise neue Makros: 
 	\begin{multicols}{2}
 			\begin{itemize}
@@ -3175,10 +3174,10 @@ Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gez
 		\varphi = \top \mid \bot \mid a \in \Sigma \mid \varphi \lor \varphi \mid \varphi \land \varphi \mid \varphi \sX \sU \varphi \mid \varphi \sX\sR\varphi
 	\end{align*}
 
-\subsubsection{Lemma: $\ltl$-Formel-Verkleinerung}
+\subsection{Lemma: $\ltl$-Formel-Verkleinerung}
 	Sei $\varphi \in \ltl[\sX\sU]$. Dann existiert eine Formel $\psi \in \ltl_+$ mit den Eigenschaften $$L(\varphi) = L(\psi) \text{ und }|\psi| \leq |\Sigma| \cdot |\varphi|\, .$$
 
-\subsubsection{Definiton Teilformel}
+\subsection{Definiton Teilformel}
 	Definiere für ein $\varphi \in \ltl_+$ die Menge  $\tf(\varphi)$ der Teilformeln. Dabei gilt:
 	\begin{align*}
 		\tf(\varphi) &= \{\varphi\} \text{ für } \varphi \in \{\top, \bot, \sende, a \mid a \in \Sigma\} \\
@@ -3187,63 +3186,81 @@ Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gez
 	\end{align*}
 	Weiter gilt dann $$\tf(\varphi) \subseteq \{\top, \bot, \sende, a \mid a \in \Sigma\} \cup \{\varphi \sX\sU\psi, \varphi\sX\sR\psi \mid \varphi, \psi \in \ltl_+\}$$ und $|\tf(\varphi)| \leq |\varphi|$.
 
-\subsubsection{2. Schritt der Konstruktion}
-	Ziel: Wir wollen $ A_\varphi =(Q, \Sigma, \delta, I, F)$ mit $Q = \{\{\varphi_1, \ldots, \varphi_k \mid k \geq 1, \varphi_i \in \tf(\varphi)\}$	 definieren. 
-	Die Idee ist dass $\{\varphi_1, \ldots, \varphi_k\}$ die Konjunktion von $$\varphi_1 \land \ldots\land \varphi_k = \bigwedge_{i = 1}^k \varphi_i$$
-	Wir bezeichnen mit $\B_+(\tf(\varphi))$ die positiven boolschen Ausdrücke. Nun definieren wir eine Abbildung
+\subsection{2. Schritt der Konstruktion}
+	Der Automat $ A_\varphi =(Q, \Sigma, \delta, I, F)$, den wir konstruieren wollen soll die Zustandsmenge $Q = \{\{\varphi_1, \ldots, \varphi_k\} \mid k \geq 1, \varphi_i \in \tf(\varphi)\}$	 haben. 
+	Die Idee dabei ist, dass $\{\varphi_1, \ldots, \varphi_k\}$ die folgende Konjunktion repräsentiert: $$\varphi_1 \land \ldots\land \varphi_k = \bigwedge_{i = 1}^k \varphi_i$$
+	Weiter bezeichnen wir mit $\B_+(\tf(\varphi))$ die positiven booleschen Ausdrücke. Nun definieren wir eine Abbildung
 	\begin{align*}
-		\beta: \tf(\varphi) \times \Sigma \to \B(\tf(\varphi))
-	\end{align*} durch $\beta(\top, a) = \top$ und $\beta(\bot, a) = \beta(\sende, a) = \bot$ für alle $a \in \Sigma$ und 
+		\beta: \tf(\varphi) \times \Sigma \to \B_+(\tf(\varphi))
+	\end{align*} durch
+	
+	\begin{align*}
+		 \beta(\top, a) &= \top\\
+		 \beta(\bot, a) &= \beta(\sende, a) = \bot
+	\end{align*}
+
 	\[\beta(b, a) =  
 		\begin{cases}
 			\top, & \text{ falls } a = b \\
 			\bot, & \text{ sonst}
 		\end{cases}	
-	\] sowie 
+		\]
+		
 	\begin{align*}
 		\beta(\varphi \sX\sU\psi, a) &= \beta(\sX(\varphi \sU \psi), a) \\
-		&= \sX \varphi \lor \sX(\varphi \land \varphi \sX\sU \psi)
+		&= \sX \psi \lor \sX(\varphi \land \varphi \sX\sU \psi)\\
+		\beta(\varphi\sX\sR\psi, a) &= (\varphi \land \psi) \lor (\psi \land \varphi \sX\sR \psi)
 	\end{align*}
-und 
+
+	für alle $a \in \Sigma$ und $b, \varphi, \psi \in \tf(\varphi)$. 
+	Der Next-Release-Operator funktioniert folgenderma\ss en:
+
 	\begin{align*}
 		\varphi \sX\sR\psi &= \neg(\neg\varphi \sX\sU \neg \psi) \\
 		&= \neg(\sX(\neg\varphi \sU \neg \psi)) \\
 		&=\sende \lor \sX(\neg(\neg \varphi \sU \neg \psi)) \\
-		&= \sende \lor \sX(\neg\sG \psi \lor (\neg \varphi\land (\neg \sX\sU \neg \psi)) \\
-		&= \sende \lor (\sX(\psi \land (\varphi \lor \neg((\neg \varphi)\sX \sU (\neg \psi))) \\
-		&= \sende \lor(\varphi (\varphi \lor \varphi \sX\sR\psi)) \\
-		&=\sende \lor \sX(\varphi\land \psi) \cup (\psi \land (\varphi \sX\sR \psi))
-	\end{align*} Au\ss erdem ist 
-\begin{align*}
-	v, i &\models \varphi \sX\sR\psi \iff v, i+1 \models (\varphi \land \psi) \lor (\psi \land \varphi \sX\sR \varphi) \text{ falls } i < |v| \\
-	v, |v| &\models \varphi \sX \sR \psi \text{ für alle } \varphi, \psi
-\end{align*} und es ist $\beta(\varphi\sX\sR\varphi, a) = (\varphi \land \psi) \lor (\psi \land \varphi \varphi \sX\sR \psi)$. 
-\newline
+		&= \sende \lor \sX(\neg( \neg \psi \lor (\neg \varphi\land (\neg \varphi \sX\sU \neg \psi))) \\
+		&= \sende \lor (\sX(\psi \land (\varphi \lor \neg((\neg \varphi)\sX \sU (\neg \psi)))) \\
+		&= \sende \lor \sX(\psi \land (\varphi \lor \varphi \sX\sR\psi)) \\
+		&=\sende \lor \sX(\varphi\land \psi) \lor (\psi \land (\varphi \sX\sR \psi))
+	\end{align*}
 
-Sei jetzt $\phi = \{\varphi_1, \ldots, \varphi_k\} = \bigwedge_{i = 1}^k \varphi_i$ dann gilt 
-\begin{itemize}
-	\item$\beta(\phi, a) \in \B(\tf(\varphi))$
-	\item $\beta(\phi, a) = \bigvee_{j \in J} \bigwedge_{l \in K_j}\Psi_l$ ist in DNF
-\end{itemize} und 
-\begin{align*}
-	\delta(\phi, a) = \bigcup_{j \in J} \underbrace{\{\varphi_l \mid l \in K_j\} }_{\substack{\Psi_J}}= \bigcup_{j\in J} \Psi_j
-\end{align*}
-	Nun haben wir 
+	 Das bedeutet, es gilt
 	\begin{align*}
-		Q &= \{\phi \mid \phi \not = \emptyset \text{ und } \phi \subseteq \tf(\varphi)\} \\
+		v, i &\models \varphi \sX\sR\psi \iff v, i+1 \models (\varphi \land \psi) \lor (\psi \land \varphi \sX\sR \varphi) \text{, falls } i < |v| \\
+		v, |v| &\models \varphi \sX \sR \psi \text{ für alle } \varphi, \psi\, .
+	\end{align*} 
+	\newline
+
+	Sei jetzt $\phi = \{\varphi_1, \ldots, \varphi_k\} = \bigwedge_{i = 1}^k \varphi_i$.
+	Dann gilt 
+	\begin{itemize}
+		\item$\beta(\phi, a) \in \B_+(\tf(\varphi))$
+		\item $\beta(\phi, a) = \bigvee_{j \in J} \bigwedge_{l \in K_j}\psi_l$ ist in DNF.
+	\end{itemize}
+	
+	Nun setzten wir
+	\begin{align*}
+		\delta(\phi, a) = \bigcup_{j \in J} \underbrace{\{\psi_l \mid l \in K_j\} }_{\substack{\Psi_J \in Q}}= \bigcup_{j\in J} \Psi_j\, .
+	\end{align*}
+	Zusammenfassen haben wir nun folgenden Automaten:
+	\begin{align*}
+		Q &= \{\phi \mid \phi \not = \emptyset \land \phi \subseteq \tf(\varphi)\} \\
 		I &= \{\varphi\} \\
-		\delta(\phi, a) &= \bigcup_{j \in J} \{\varphi_l \mid l \in K_j\} = \bigcup_{j\in J} \Psi_j \\
-		F &= \{\Phi \mid \Phi \not = \emptyset \land \Phi \subseteq \{\top, \sende, \} \cup \{\varphi\sX\psi \mid \varphi, \psi \in \ltl_+\}\}
+		\delta(\phi, a) &= \bigcup_{j \in J} \{\psi_l \mid l \in K_j\} = \bigcup_{j\in J} \Psi_j \\
+		F &= \{\Phi \mid \Phi \not = \emptyset \land \Phi \subseteq \{\top, \sende \} \cup \{\varphi\sX\sR\psi \mid \varphi, \psi \in \ltl_+\}\}
 	\end{align*}
 	\newline
 	
-	Es gelten folgende Vereinfachungen
+	Es gelten folgende Vereinfachungsregeln:
 	\begin{itemize}
 		\item $\bot \land \varphi = \bot$
 		\item $\sende \land a = (\sende \land \varphi\sX\sU\psi) = \bot$
 		\item $\varphi \land \top = \varphi$
 		\item $\sende \land \varphi \sX\sR\psi = \sende$
 	\end{itemize}
+	
+	Dann gilt \oei $F \in \{\top\} \cup \{\sende\}$.
 	
 \section{Büchi Automaten - Vorlesung 20}
 \subsection{Grundlagen}
