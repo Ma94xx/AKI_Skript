@@ -51,6 +51,8 @@
 \usepackage[amsmath,thmmarks,standard]{ntheorem}
 \usepackage{faktor}
 
+\usetikzlibrary{positioning}
+
 %andere pfeile nach rechts für stern plazierung
 %Pfeil mit Stern und argument für overset
 \def\ttostar#1{\overset{#1}{\longrightarrow}\negthickspace^*}
@@ -241,6 +243,7 @@
 \newcommand{\bast}{B^{\ast}}
 \newcommand{\east}{E^{\ast}}
 \newcommand{\sast}{\Sigma^{\ast}}
+\newcommand{\splu}{\Sigma^{+}}
 
 %MSO
 \newcommand{\fv}{\mathsf{FV}}
@@ -3264,32 +3267,38 @@ Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gez
 	
 \section{Büchi Automaten - Vorlesung 20}
 \subsection{Grundlagen}
- Es ist $\Sigma\pom = \{a_1a_2\ldots \mid \forall i \in \N: a_i \in \Sigma \}$ und $\alpha \in \Sigma\pom$. Weiter ist $$L(A) \subseteq L(\varphi) \iff L(A) \cap L(\neg \varphi)$$
- Die Abläufe von $A$ sollen nicht enden, da das System Modell kein Ende haben sollen (Schleusen, Betriebssystem usw)
+ Für $\omega$-reguläre Sprachen ist $\Sigma\pom = \{a_1a_2\ldots \mid \forall i \in \N: a_i \in \Sigma \}$ und $\alpha \in \Sigma\pom$. 
+ Beim Model-Checking wird geprüft, ob eine der folgenden äquivalenten Aussagen zutrifft: $$L(A) \subseteq L(\varphi) \iff L(A) \cap L(\neg \varphi) = \emptyset$$
+ Dabei sollen die Abläufe von $A$ nie enden, da Systeme modelliert werden, die kein Ende haben (z.B. Schleusen, Betriebssystem, usw.).
 
-\subsection{Definition: Büchi Automat}
-	Ein Büchi Automat ist ein NFA $A = (Q, \Sigma, \delta, I, F)$ mit $L(A) \subseteq \Sigma\pom$. Wir definieren nun $\alpha = a_1a_2\ldots \in L(A)$ falls:
+\subsection{Definition Büchi Automat}
+	Ein Büchi Automat ist ein NFA $A = (Q, \Sigma, \delta, I, F)$ mit der Semantik $L(A) \subseteq \Sigma\pom$.
+	\oei gilt $\delta \subseteq Q \times \Sigma \times Q$.
+	Wir definieren dafür $\alpha = a_1a_2\ldots \in L(A)$, falls
 	\begin{enumerate}[label = \arabic*.)]
-		\item es einen Pfad $p_0 \overset{a_1}{\longrightarrow}p_1 \overset{a_2}{\longrightarrow} p_2 \longrightarrow \ldots$ gibt so, dass für alle $i\in \N$ gilt: $p_i \overset{a_{i+1}}{\longrightarrow} p_{i+1} \in \delta$ gilt. (Hier gilt ohne Einschränkung $\delta \subseteq Q \times \Sigma \times Q$) und
+		\item es einen unendlichen Pfad $p_0 \overset{a_1}{\longrightarrow}p_1 \overset{a_2}{\longrightarrow} p_2 \longrightarrow \ldots$ gibt so, dass $\forall i\in \N$ : $p_i \overset{a_{i+1}}{\longrightarrow} p_{i+1} \in \delta$ gilt und
 		\item $p_0 \in I$  und
-		\item $\exists p \in F |\{i \in \N \mid p_i = p\}| = \infty \iff |\{i \in \N \mid p_i \in F\}| = \infty$
+		\item $\exists p \in F : |\{i \in \N \mid p_i = p\}| = \infty \iff |\{i \in \N \mid p_i \in F\}| = \infty$.
 	\end{enumerate}
 
-\subsection{Definition: $\omega$-regulär}
-	$L \subseteq \Sigma\pom$ hei\ss t $\omega$-regulär, falls $\exists n \in \N : \forall 1 \leq i \leq n$ und $\exists U_i \subseteq \sigstern$ sowie $\exists V_i \subseteq \sigstern$ und $U_i, V_i$ sind regulär und es gilt $$L = \bigcup_{i = 1}^n U_i V_i\pom$$
+\subsection{Definition $\omega$-regulär}
+	Eine Sprache $L \subseteq \Sigma\pom$ hei\ss t $\omega$-regulär, falls $$\exists n \in \N \, \forall 1 \leq i \leq n \, \exists U_i \subseteq \sigstern\, \exists V_i \subseteq \splu \, : \, U_i, V_i \text{ sind regulär }\land L = \bigcup_{i = 1}^n U_i V_i\pom$$
+	gilt.
 	
-\subsection{Lemma}
-	Sei $L = \bigcup_{i = 1}^n U_i V_i\pom$, dann existiert ein Büchi Automat $A$ mit $L=L(A)$.
+\subsection{Lemma: Büchi Automaten für $\omega$-reguläre Sprachen}
+	Sei $L = \bigcup_{i = 1}^n U_i V_i\pom$. Dann existiert ein Büchi Automat $A$ mit $L=L(A)$.
 
 \subsection{Beweis des Lemmas}
 	Es gilt ohne Einschränkung: 
 	\begin{itemize}
-		\item $L = UV\pom$ mit $U = L(A_u) \subseteq \sigstern$ und $V = L(A_v) \subseteq \sigstern$
-		\item $A_u, A_v$ haben nur einen Endzustand
+		\item $L = UV\pom$ mit $U = L(A_u) \subseteq \sigstern$ und $V = L(A_v) \subseteq \splu$
+		\item $A_u$ und $A_v$ haben jeweils nur einen Endzustand
 		\item $\delta_u \delta_v \subseteq Q_u \times \Sigma \times Q_v$
 	\end{itemize}
-	Wir betrachten den Automat für $L = UV\pom$
-	\begin{figure}[h!]
+	Wir betrachten nun den Automat für $L = UV\pom$. 
+	Abbildung~\ref{fig:büchi} zeigt die Form dieses Automaten.
+	
+	\begin{figure}[H]
 		\centering
 	
 		\begin{tikzpicture}[node distance=2.5cm, auto]
@@ -3321,47 +3330,60 @@ Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gez
 		
 		\node[draw,fit=(a) (b) (geist1) (geist2)] {};
 		\node[draw,fit=(1) (2) (spooky1) (spooky2)] {};
+		
+		\node(u) [fill=white, above=0.2cm of geist1] {$A_u$};
+		\node(v) [fill=white, above=0.2cm of spooky1] {$A_v$};
+		\node(neu) [fill=white, above=0.2cm of f] {Neuer Zustand};
+		\node(q0) [fill=white, below=0.2cm of a] {$q_0$};
 		\end{tikzpicture} 
+	\caption{Automat für $L = UV\pom$.}
+	\label{fig:büchi}
 	\end{figure}
 
-	Mit $I=\{q_0\}$ und $F= \{f\}$. Entferne nun die $\varepsilon$-Übergänge und wir sind fertig.
+	Dann gilt für diesen Automaten $I=\{q_0\}$ und $F= \{f\}$. 
+	Wenn wir nun die $\varepsilon$-Übergänge entfernen, haben wir unseren Büchi-Automaten erhalten.
 	\bewiesen
 	
-\subsubsection{Zur Notation im folgenden Kapitel}
-	Es ist $A = (Q, \Sigma, \delta, I,F)$ ein Büchi Automat mit $\delta \subseteq Q \times\Sigma \times Q$ und $L \subseteq \Sigma\pom$ sowie $$h:\Sigma^+ \to H$$ ein Hom. von Halbgruppen mit $h(\sigstern) = H$ (surjektiv) und $|H| < \infty$. 
+\subsubsection{Notation}
+	Für den Rest dieses Kapitels gilt:
+	 \begin{itemize}
+	 	\item $A = (Q, \Sigma, \delta, I,F)$ ist ein Büchi-Automat mit $\delta \subseteq Q \times\Sigma \times Q$
+	 	\item $L \subseteq \Sigma\pom$ ist $\omega$-regulär
+	 	\item $h:\Sigma^+ \to H$ ist ein surjektiver Hom. von Halbgruppen mit $h(\splu) = H$ und $|H| < \infty$
+	 \end{itemize}
 	
-\subsubsection{Definiton: Starke Erkennung}
-	Wir sagen $h$ erkennt $L$ stark falls 
+\subsubsection{Definiton Starke Erkennung}
+	Wir sagen $h$ erkennt $L$ stark, falls 
 	\begin{enumerate}[label=\arabic*)]
-	\item $\forall x = u_1u_2\ldots \in \Sigma\pom$ mit $u_i \in \Sigma^+$
-	\item und für alle $\beta = v_1v_2 \ldots \in \Sigma\pom$ mit $v_1 \in \Sigma^+$ 
+	\item $\forall \alpha = u_1u_2\ldots \in \Sigma\pom$ mit $u_i \in \Sigma^+$ für alle $i \in \N$ und
+	\item für alle $\beta = v_1v_2 \ldots \in \Sigma\pom$ mit $v_1 \in \Sigma^+$ für jeweils alle $i \in \N$
 	\end{enumerate}
-	für jeweils alle $i \in \N$ gilt: $$\forall i \in \N: h(u_i) = h(v_i) \implies (\alpha \in L \iff \beta \in L)$$
+	Folgendes gilt: $$(\forall i \in \N: h(u_i) = h(v_i)) \implies (\alpha \in L \iff \beta \in L)$$
 
-\subsubsection{Lemma}
-	Sei $L=L(A)$, dann gibt es ein $\mu : \sigstern \to H$ und $\mu$ erkennt $L$ stark mit $|H| \leq 3^n$ für $|Q| = n$
+\subsubsection{Lemma: Grö\ss enabschätzung}
+	Sei $L=L(A)$ für einen Büchi-Automaten $A$. Dann gibt es einen Hom. $\mu : \splu \to H$, der $L$ stark erkennt mit $|H| \leq 3^{n^2}$ für $|Q| = n$.
 
 \subsubsection{Beweis des Lemmas}
-	Bezeichnungen: Seien $u \in \Sigma^+$ und $p, q \in Q$
+	Seien $u \in \Sigma^+$ und $p, q \in Q$.
 	 \begin{itemize}
-		\item  Schreibe $p \tto{u} q$ falls ein Pfad existiert mit $p \ttostar{u} q$
-		\item Schreibe $p \ttou{u}{F} q$ falls ein Pfad existiert mit $p \ttostar{u} q$ der einen Endzustand besucht.
+		\item  Dann schreiben wir $p \tto{u} q$, falls ein Pfad $p \ttostar{u} q$ existiert und
+		\item wir schreiben $p \ttou{u}{F} q$, falls ein Pfad $p \ttostar{u} q$ existiert, der einen Endzustand enthält.
 	\end{itemize}
-	Definiere nun $$u \equiv_A v :\iff \forall p, q \in Q : (p \tto{u} q \iff p \tto{v} q)$$ und 
-	$$(p\ttou{u}{F} q \iff p \ttou{v}{F} q)$$
+	Wir definieren nun die folgende Kongruenz: $$u \equiv_A v :\iff \forall p, q \in Q : (p \tto{u} q \iff p \tto{v} q) \land (p\ttou{u}{F} q \iff p \ttou{v}{F} q)$$
 	\newline
 	
-	Beachte nun dass $\equiv_A$ eine Kongruenz ist denn $[u][v] = [uv]$ mit $[w] = \{w' \in \Sigma^+ \mid w \equiv_A w'\}$ und au\ss erdem dass $$\mu: \sigstern \to \sfrac{\Sigma^+}{\equiv_A}  = H\mu(u) = [u]$$ Weiter definieren wir nun 
+	Da $\equiv_A$ eine Kongruenz ist, gilt $[u][v] = [uv]$ mit $[w] = \{w' \in \Sigma^+ \mid w \equiv_A w'\}$. Weiter gibt es einen Hom. $$\mu: \splu \to \sfrac{\Sigma^+}{\equiv_A}  \text{ mit }\mu(u) = [u]\, .$$
+ 	Nun definieren wir:
 	\begin{align*}
 	\delta_u(p,q) = 
 		\begin{cases}
-		1, &\text{ falls } p \ttou{u}{F} q \\
-		2, &\text{ falls } p \longrightarrow q \text{ und nicht } p \ttou{u}{F} q \\
+		1, &\text{ falls } p \ttou{u}{F} q \text{gilt}\\
+		2, &\text{ falls } p \tto{u} q \text{ gilt und } p \ttou{u}{F} q \text{ nicht gilt}\\
 		3, &\text{ sonst}
 		\end{cases}
 	\end{align*}
-	Es gilt also $\delta_u(p, q) = \delta_v(p, q)$ für alle $p, q$ und somit folgt $u \equiv_A v$
-	Daraus schlie\ss en wir $$|H| - |\sfrac{\sigstern}{\equiv_A}| \leq 3^{n^2}$$ 
+	Damit gilt die Implikation $$(\forall p, q : \delta_u(p, q) = \delta_v(p, q)) \implies u \equiv_A v\, .$$
+	Da die $\delta(p,q)$ genau $3$ Werte annehmen können, schlie\ss en wir daraus $$|H| = |\sfrac{\sigstern}{\equiv_A}| \leq 3^{n^2}\, .$$ 
 	\bewiesen
 	
 \subsubsection{Definition: Linked Pair}
