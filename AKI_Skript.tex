@@ -50,7 +50,7 @@
 \usepackage{xfrac}    
 \usepackage[amsmath,thmmarks,standard]{ntheorem}
 \usepackage{faktor}
-
+\usepackage{blkarray}
 \usetikzlibrary{positioning}
 
 %andere pfeile nach rechts für stern plazierung
@@ -219,13 +219,14 @@
 \newcommand{\gred}{\sim_{\mathcal{D}}}
 \newcommand{\grey}{\sim_{\mathcal{Y}}}
 
+%Greensrelations
 \newcommand{\lgreleq}{\leqslant_{\mathcal{L}}}
 \newcommand{\lgrereq}{\leqslant_{\mathcal{R}}}
 \newcommand{\lgrejeq}{\leqslant_{\mathcal{J}}}
 \newcommand{\lgreheq}{\leqslant_{\mathcal{H}}}
 \newcommand{\lgredeq}{\leqslant_{\mathcal{D}}}
 \newcommand{\lgreyeq}{\leqslant_{\mathcal{Y}}}
-\usepackage{blkarray}
+
 
 \newcommand{\lcal}{\mathcal L}
 \newcommand{\rcal}{\mathcal R}
@@ -274,7 +275,7 @@
 
 
 
-%Erzeugt das "bewiesen" Kästen rechts unten
+%"bewiesen" Kästen rechts unten
 \newcommand{\bewiesen}{
 	
 	\begin{flushright}
@@ -282,17 +283,14 @@
 \end{flushright}}
 
 
-%\newcommand\TBox[3][]{%
-%	\tikz\node[draw,thick,text width=#2,#1] {#3};}
-
-
 \title{Inoffizielles Skript für Algebra \& Kombinatorik}
 
-\author{Maximilian Kurz \and Amelie Heindl}
+
 \setlength\parindent{0pt}
 
 \begin{document}
-	\maketitle
+	\clearpage\maketitle
+	\thispagestyle{empty}
 	\newpage
 	\tableofcontents
 	\newpage
