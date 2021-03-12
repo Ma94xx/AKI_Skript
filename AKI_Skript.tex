@@ -552,12 +552,12 @@
 	Dann induziert $\varphi$ einen injektiven Hom. $\overline{\varphi} : G/N \to F$ durch $\overline{\varphi}(gN) = \varphi(g)$.
 	\newline
 	
-	Genauer induziert $\varphi$ also einen Isomorphismus $\overline{\varphi}: G/N \iso im(G) = \{\varphi(g) \mid g \in G\} \leq F$.
+	Genauer induziert $\varphi$ also einen Isomorphismus $\overline{\varphi}: G/N \iso \text{im}(\varphi) = \{\varphi(g) \mid g \in G\} \leq F$.
 	
 	\subsubsection{Beweis Homomorphiesatz}
 	\begin{enumerate}[label=\arabic*)]
 		\item $\overline{\varphi}$ ist wohldefiniert ~\par
-		Sei $f\in gN \implies \varphi(f) \in \varphi(g)N = \{\varphi(g)\}$
+		Sei $f\in gN \implies \varphi(f) \in \varphi(g)\varphi(N) = \{\varphi(g)\}$
 		
 		\item $\overline{\varphi}$ ist injektiv ~\par
 		$ker(\overline{\varphi}) = ker(\varphi) = N = 1_{G/N}$
@@ -643,7 +643,7 @@
 	wobei $g \in G$ gilt.
 	
 	\subsubsection{Fixpunkte in G-Mengen}
-	Sei $X$ eine  $G$-Menge. Dann hei\ss t t $x$ ein Fixpunkt von $g \in G$ falls $gx=x$. \\
+	Sei $X$ eine  $G$-Menge. Dann hei\ss t  $x$ ein Fixpunkt von $g \in G$ falls $gx=x$. \\
 	Weiter ist für alle $x \in X$ die Menge $Fix(x)$  der Fixpunkte eine Untergruppe von $G$:
 	\begin{align*}
 		Fix(x) = \{g \in G \mid  gx = x\} \leq G 
@@ -775,7 +775,7 @@
 	\subsubsection{Nilpotenz}
 	Eine Gruppe $G$ hei\ss t nilpotent, falls es eine Kette von Gruppen $G_0,\ldots,G_m$ gibt, sodass
 	\begin{align*}
-		\langle 1 \rangle &= G_0, G_1, \ldots, G_m = G  \text{ und } G_k/Z(G) = G_{k-1} \text{ für } 1 \leq k \leq m \text{ gilt.}
+		\langle 1 \rangle &= G_0, G_1, \ldots, G_m = G  \text{ und } G_k/Z(G_k) = G_{k-1} \text{ für } 1 \leq k \leq m \text{ gilt.}
 	\end{align*}
 	
 	\subsubsection{Beispiele: Nilpotenz}
@@ -1001,13 +1001,13 @@
 		\item $\mathbb Z / n \mathbb Z$ mit $n \in \N \wedge n \notin \mathbb{P}$ ist nicht einfach. 
 	\end{itemize}
 	
-	\subsection{Kommutate Untergruppen}
+	\subsection{Kommutator Untergruppen}
 	\subsubsection{Definition}
 	Für eine Gruppe $G$, ist $[G, G] = \langle [g, h] \mid g, h \in G \rangle$ mit $[g, h] = g^{-1}h^{-1}gh$ die kommutate Untergruppe. \\
 	\newline
 	Wenn $G$ einfach und nicht abelsch ist, dann gilt $[G, G] =1$. 
 	
-	\subsubsection{Satz: Kommutate Untergruppen abelscher Gruppen}
+	\subsubsection{Satz: Kommutator Untergruppen abelscher Gruppen}
 	Für eine Gruppe $G$ gilt: $$ G \text{ abelsch } \iff [G, G] = 1$$
 	
 	\subsubsection{Beweis des Satzes}
@@ -1176,7 +1176,7 @@
 	\subsection{Kranzprodukte Grundlagen}
 	\subsubsection{Vorraussetzungen}
 	Seien $M = (M, +, 0)$ nicht notwendig kommutativ und $N=(N, \cdot, 1)$ beides Monoide, sowie $X$ eine Menge. 
-	Dann operiert $N$ von rechts auf $X$. Wir betrachten die Menge der Abbildungen von $X$ nach $M$: $M^x = \{ f: X \to M \mid \text{ f ist eine Abbildung} \}$. Wir schreiben statt $f(x)$ nun $xf$. 
+	Dann operiert $N$ von rechts auf $X$. Wir betrachten die Menge der Abbildungen von $X$ nach $M$: $M^X = \{ f: X \to M \mid \text{ f ist eine Abbildung} \}$. Wir schreiben statt $f(x)$ nun $xf$. 
 	Somit operiert $N$ auf $M^X$ von links durch
 	\begin{align*}
 		nf : X \to M \\ 
@@ -1205,6 +1205,35 @@
 	\end{align*}
 	\bewiesen
 	Es kann auch $X=N$ gesetzt werden.
+	
+	\newpage
+	\subsubsection{Graphische Interpretation}
+	\textit{Disclaimer:} Die folgende Graphik \ref{Kranz:1} ist uns bei Überlegungen dazu eingefallen und ist eventuell so nicht korrekt. 
+	
+	Wir veranschaulichen den ersten Teil des Kranzproduktes, also dem ersten Teil des Tuples $$(f, n)(g,n') = (f+ng,nn')$$ Auf ein $x$ angewendet ergibt dies 
+	$$(f(x)+n\cdot g(x), nn') = (m + g(x'), nn') = (m + m', nn') = (\overline{m}, nn')$$
+	\begin{figure}[H]
+			\centering
+		\begin{tikzpicture}[node distance=2cm, auto]
+		\node (X) {$x$};
+		\node (X') [below of=X] {$x'$};
+		\node (m') [below right=0.5cm and 3cm of X']{$m'$};
+		\node (mq) [above right=0.5cm and 3.05cm of X'] {$\overline{m}$};
+		\node (m) [above of= mq] {$m$};
+		
+
+		\draw[-{Stealth}]  (X) to node {$f$} (m);
+		\draw[-{Stealth}]  (X)  to node [right] {$\cdot n$} (X');
+		\draw[-{Stealth}]  (X')  to node [below] {$g$} (m');
+		\draw[-{Stealth}]  (m') to node [right] {$+$} (mq);
+		\draw[-{Stealth}]  (m) to node [right] {$+$} (mq);
+		
+
+		\end{tikzpicture}
+		\caption{Abbildungen von $X$ in $M$.}
+		\label{Kranz:1}
+	\end{figure}
+	
 	
 	\subsection{Kranzprodukt Folgerungen}
 	\subsubsection{Satz: Kranzprodukt bei Gruppen}
@@ -1306,7 +1335,7 @@
 	\begin{align*}
 		L &\in \starfree(\sigstern)\\
 		&\iff \\
-		\exists \varphi: \sigstern \to N \text{ ist ein Hom. mit } |N| \leq &\infty \text{ und } \varphi\inv\varphi(L) = L \text{ und $N$ ist aperiodisch} \\ 
+		\exists \varphi: \sigstern \to N \text{ ist ein Hom. mit } |N| &< \infty \text{ und } \varphi\inv\varphi(L) = L \text{ und $N$ ist aperiodisch} \\ 
 		&\iff \\
 		\text{das syntaktische Monoid } &\synt(L) \text{ ist aperiodisch}
 	\end{align*}
@@ -1398,7 +1427,7 @@
 	
 	\subsubsection{Satz: Minimalität von Synt(L)}
 	Sei $h: M \to N$ ein Monoid-Hom. mit $h\inv(h(L)) = L$. Dann definiert $f:h(M) \to \synt(L)$ durch $h(u) = [u]$ einen surjektiven Hom.. \\
-	Durch die Surjektivität folgt wieder, dass $\synt(L)$ nicht größer als $N$ sein kann und damit das kleinste Monoid ist, dass $L$ erkennt. 
+	Durch die Surjektivität folgt wieder, dass $\synt(L)$ nicht grö\ss er als $N$ sein kann und damit das kleinste Monoid ist, dass $L$ erkennt. 
 	
 	\subsubsection{Beweis des Satzes}	 
 	Zu zeigen ist (nur) die Wohldefiniertheit, also, dass $h(u) = h(v) \implies [u]=[v]$ gilt. Dies ist trivial.
@@ -1470,7 +1499,7 @@
 	Insgesamt gilt damit die Äquivalenz aus Abschnitt~\ref{sec:equiv}. 
 	\bewiesen
 	
-	\subsubsection{Konsequenz: Isomprphie von Synt(L) und T}
+	\subsubsection{Konsequenz: Isomorphie von Synt(L) und T}
 	Für das syntaktische Monoid $Synt(L)$ und das Trasnformationsmonoid $T$ gilt:
 	$$\synt(L) \cong T = \{f_u \mid u \in M\}$$
 	Das bedeutet, man kann $Synt(L)$ aus dem minimalen DFA berechnen.
@@ -1565,7 +1594,7 @@
 	\bewiesen
 	
 	\subsubsection{Folgerung des Satzes}	
-	Ist $G$ eine unendliche Gruppe und $L \subseteq G$ endlich (zB. $L = \{1\}$), dann ist $L \in rat(G) \setminus \rec(G)$
+	Ist $G$ eine unendliche Gruppe und $L \subseteq G$ endlich (zB. $L = \{1\}$), dann ist $L \in \rat(G) \setminus \rec(G)$
 	
 	\subsection{Idempotenz}
 	\subsubsection{Definition}
@@ -1964,7 +1993,7 @@
 	Sei $M$ eine Halbgruppe  und $E(M) = \{e \in M \mid e^2 = e\}$. Dann ist das lokale Untermonoid bei $e$ (für $e \in E(M)$) definiert durch die Menge $eMe$.
 	Die Abgeschlossenheit und die Existenz eines neutralen Elementes kann man folgenderma\ss en sehen:
 	\begin{align*}
-		exe \cdot eye = e \cdot (xeey) \cdot e \quad \implies exe \cdot eye \in M\\
+		exe \cdot eye = e \cdot (xeey) \cdot e \quad \implies exe \cdot eye \in eMe\\
 		e(exe) = (ee)\cdot(xe) = exe = (ex)\cdot (ee) = (exe)e\quad \implies e \text{ ist neutral}
 	\end{align*}
 	
@@ -3279,10 +3308,12 @@ Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gez
 		\item $p_0 \in I$  und
 		\item $\exists p \in F : |\{i \in \N \mid p_i = p\}| = \infty \iff |\{i \in \N \mid p_i \in F\}| = \infty$.
 	\end{enumerate}
+	Zum Akzeptanzverhalten: Ein Wort $w$ wird akzeptiert genau dann wenn wir einen $q \in F$ unendlich oft besuchen.
 
 \subsubsection{Definition $\omega$-regulär}
 	Eine Sprache $L \subseteq \Sigma\pom$ hei\ss t $\omega$-regulär, falls $$\exists n \in \N \, \forall 1 \leq i \leq n \, \exists U_i \subseteq \sigstern\, \exists V_i \subseteq \splu \, : \, U_i, V_i \text{ sind regulär }\land L = \bigcup_{i = 1}^n U_i V_i\pom$$
-	gilt.
+	gilt. Die von Büchi Automaten erkannten Sprachen sind $\omega$-regulär. \\
+	\textbf{Aber:} Nicht jede $\omega$-reguläre Sprache wird auch von einem deterministischen Büchi Automaten erkannt.
 	
 \subsection{Folgerungen}
 \subsubsection{Lemma: Büchi Automaten für $\omega$-reguläre Sprachen}
@@ -3354,9 +3385,9 @@ Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gez
 	
 \subsubsection{Definiton Starke Erkennung}
 	Wir sagen $h$ erkennt $L$ stark, falls 
-	\begin{enumerate}[label=\arabic*)]
-	\item $\forall \alpha = u_1u_2\ldots \in \Sigma\pom$ mit $u_i \in \Sigma^+$ für alle $i \in \N$ und
-	\item für alle $\beta = v_1v_2 \ldots \in \Sigma\pom$ mit $v_1 \in \Sigma^+$ für jeweils alle $i \in \N$
+	\begin{enumerate}[label=\arabic*.)]
+	\item $\forall \alpha = u_1u_2\ldots \in \Sigma\pom$ mit $u_i \in \Sigma^+$ für alle $i \in \N$
+	\item $\forall \beta = v_1v_2 \ldots \in \Sigma\pom$ mit $v_1 \in \Sigma^+$ für alle $i \in \N$
 	\end{enumerate}
 	Folgendes gilt: $$(\forall i \in \N: h(u_i) = h(v_i)) \implies (\alpha \in L \iff \beta \in L)$$
 
@@ -3392,7 +3423,7 @@ Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gez
 \subsubsection{Lemma: Linked Pairs in $L$ \label{lemmaa}}
 	Es gilt: 
 	\begin{align*}
-		h \text{ erkennt } l &\implies \forall (s,e) \text{ linked pairs}: L \cap [s][e]\pom \not = \emptyset \\
+		h \text{ erkennt } L &\implies \forall (s,e) \text{ linked pairs}: L \cap [s][e]\pom \not = \emptyset \\
 		&\implies [s][e]\pom \subseteq L
 	\end{align*}
 
