@@ -760,7 +760,7 @@
 	Sei $G$ eine p-Gruppe. Da $xg=gx \iff x=gxg^{-1}$ gilt, sind die Elemente des Zentrums genau die Fixpunkte der Operation $x \mapsto gxg^{-1}$ von $G$ auf sich selbst. Diese Operation zerlegt $G$ in disjunkte Bahnen. Jede Bahn hat dabei die Grö\ss e $|G/Fix(x)|$. 
 	Also $Fix(x) \not= G \implies p \mid |G/Fix(x)|$. Dann gilt: 
 	\begin{align*}
-		|G| &\equiv \sum_{x \in Z(G)} |G/Fix(x)|  \mod p\\
+		|G| &\equiv \sum_{x \in Z(G)} \frac{|G|}{|Fix(x)|}  \mod p\\
 		&\equiv \sum_{x \in Z(G)} 1  \mod p\\
 		&\equiv |Z(G) |\mod p
 	\end{align*}
@@ -1243,7 +1243,7 @@
 	Das Neutralelement $(c_0, 1)$ ist offensichtlich enthalten.\\
 	Gesucht ist nun für alle $(f, m) \in M \wr N$ ein $(g,n)$ mit $(f, m)(g,n) = (c_0, 1)$.
 	Damit ist in durch die zweite Komponente festgelegt, dass $n=m^{-1}$ ist und es bleibt zu zeigen, dass $(f,m)(g, m^{-1}) = (c_0,1)$  gilt. \\
-	Wir wollen also, dass $\forall x \, : \,xf+xmg=0$ gilt. das ist gleichbedeutend mit $xf=-xmg$.
+	Wir wollen also, dass $\forall x \, : \,xf+xmg=0$ gilt. Das ist gleichbedeutend mit $xf=-xmg$.
 	Dafür setzen wir $xg = -xm^{-1}f$. Dann ist $$xf-xmm^{-1}f = xf-xf = 0\, .$$	\bewiesen
 	
 	\subsubsection{Satz: Kranzprodukte durch exakte Sequenzen}
@@ -1325,7 +1325,7 @@
 	Das hei\ss t $\forall w \in M$ gilt $$w\in L \iff \varphi(w) \in \varphi(L) \subseteq N\, .$$
 	
 	\subsection{Definition aperiodisch}
-	Ein Monoid $N$ ist aperiodisch genau dann, wenn alle Unterhalbguppen von $N$, die Gruppen sind, sind trivial, bzw. $N$ gruppenfrei ist.\\
+	Ein Monoid $N$ ist aperiodisch genau dann, wenn alle Unterhalbguppen von $N$, die Gruppen sind, trivial sind, bzw. $N$ gruppenfrei ist.\\
 	Alternativ gilt: Ein Monoid $M$	ist aperidodisch, falls $$\exists t \in \N \, \forall x \in M\, : \, x^{t+1} = x^t \, .$$
 	Falls $M$ endlich ist, gilt: $$M \text{ ist aperiodisch} \iff \forall x \in M \, \exists t \in \N \,  : x^{t+1} = x^t$$
 	
@@ -1343,7 +1343,7 @@
 	\subsection{Definition DFA über M}
 	Ein DFA (Deterministic Finite Automaton) über einem Monoid $M$ ist ein Tupel $(Q, \cdot, q_0, F)$, wobei
 	\begin{enumerate}[label=\arabic*)]
-		\item $\cdot: Q \times M \to Q$ ist eine Operation von $M$ auf $Q$ von rechts. Das heißt also
+		\item $\cdot: Q \times M \to Q$ ist eine Operation von $M$ auf $Q$ von rechts. Das hei\ss t also
 		\begin{align*}
 			\forall q \in Q \text{ und } \forall u,v \in M \text{ gilt } (q \cdot u) \cdot v = q(uv) \text{ und } q1_M = q \, . 
 		\end{align*}
@@ -1445,22 +1445,22 @@
 			\draw[-{Stealth}, dashed] (B) to node [] {$\exists! f: f(n) = [u], \text{ falls } n = h(u)$} (C);
 			\draw[-{Stealth}] (A) to node [swap] {$\pi : u \mapsto [u]$} (C);
 		\end{tikzpicture}
-		\caption{Graphische Interpretation des Beweises der Minimalität von $Synt(L)$.}
+		\caption{Graphische Interpretation des Beweises der Minimalität von $\synt(L)$.}
 		\label{fig:synt}
 	\end{figure}
 	
 	\subsubsection{Folgerung: Zusammenhang von Synt(L) und erkennenden Automaten}
 	\label{sec:equiv}
 	Es gilt:\\	
-	$L \in rec(M) \iff |\synt(L)| < \infty \iff A_L \text{ ist ein DFA, dh. } Q_L = \{L(u) \mid u \in M\} \text{ ist endlich}$
+	$L \in \rec(M) \iff |\synt(L)| < \infty \iff A_L \text{ ist ein DFA, dh. } Q_L = \{L(u) \mid u \in M\} \text{ ist endlich}$
 	
 	\subsubsection{Beweis der Folgerung}
 	Sei $L \subseteq M$ und  $A = (Q, \cdot, q_0, F)$ ein deterministischer Automat mit $L = L(A)$. \\
 	Dann ist $(Q^Q, \circ, id_Q)$ ein Monoid mit  $Q^Q = \{ f : Q \to Q \mid f\text{ ist eine Abbildung}\}$ und $(f \circ g)(q) = g f(q)$.
-	Wir definieren einen Homomorphismus $$ \varphi : M \to Q^Q, \, \, u \mapsto f_u$$  mit $f_u(q) = q_u$. 
+	Wir definieren einen Homomorphismus $$ \varphi : M \to Q^Q, \, \, u \mapsto f_u$$  mit $f_u(q) = qu$. 
 	Dann ist $(f_u \circ f_v)(q) = quv$.\\
 	Weiter sei $T = \{f_u \mid u \in M\}$ das Transformationsmonoid.
-	Somit folgt $\varphi: M \to T$. Für $Q=n$ gilt $|T| \leq n^n \in 2^{n \log n}$. 
+	Somit folgt $\varphi: M \to T$. Für $|Q|=n$ gilt $|T| \leq n^n \in 2^{n \log n}$. 
 	Graphisch kann man sich den Beweis nun analog zu Abbildung~\ref{fig:synt} vorstellen, durch
 	\begin{figure}[H]
 		\centering
@@ -1500,11 +1500,11 @@
 	\bewiesen
 	
 	\subsubsection{Konsequenz: Isomorphie von Synt(L) und T}
-	Für das syntaktische Monoid $Synt(L)$ und das Trasnformationsmonoid $T$ gilt:
+	Für das syntaktische Monoid $\synt(L)$ und das Trasnformationsmonoid $T$ gilt:
 	$$\synt(L) \cong T = \{f_u \mid u \in M\}$$
 	Das bedeutet, man kann $Synt(L)$ aus dem minimalen DFA berechnen.
 	
-	\subsubsection{Satz von McKnight}
+\subsubsection{Satz von McKnight}
 	Es gilt: 
 	\begin{align*}
 		\rec(M) \subseteq \rat(M) &\iff M \in \rat(M)\\ 
@@ -1514,7 +1514,7 @@
 	
 	\subsubsection{Beweis des Satzes von McKnight}
 	Es gilt $\emptyset, M \in \rec(M)$ durch das triviale Monoid, vermöge $$h: M \to \{1\}\, .$$ Wenn $M \in \rat(M)$ ist, dann folgt daraus, dass $M=L$ für einen rationalen Ausdruck für $M$. 
-	Da dieser nur eine endliche Teilmenge von $M$ benutzt, folgt die Hin-Richtung der Behauptung.
+	Da dieser nur eine endliche Teilmenge von $M$ benutzt, folgt die Rückrichtung der Behauptung.
 	
 	Zu zeigen ist also nun noch die andere Richtung. 
 	\newline
@@ -1590,7 +1590,7 @@
 	
 	\OE $\, \,$gilt $h$ ist surjektiv und da $h:G \to N$ ein Hom. ist, folgt, dass $N$  eine Gruppe ist. 
 	
-	Sei nun $h(g) \in N$ und $H= ker(h) \trianglelefteq G$ ein Normalteiler von endlichem Index, dann folgt $h(gH) \in F$ und somit $gH \subseteq L$.
+	Sei nun $h(g) \in F$ und $H= ker(h) \trianglelefteq G$ ein Normalteiler von endlichem Index, dann folgt $h(gH) \in F$ und somit $gH \subseteq L$.
 	\bewiesen
 	
 	\subsubsection{Folgerung des Satzes}	
@@ -2008,19 +2008,19 @@
 	\label{sec:aperiodisch_konkat}
 	Seien $L_1, L_2 \in \starfree(\aast)$.
 	Für $i \in \{1,2\}$ seien
-	 $t_i \in \N$ gewählt mit $\forall u \in \aast: u^{t_{i +1}} \equiv_{L_i} u^{t_i}$.
+	 $t_i \in \N$ gewählt mit $\forall u \in \aast: u^{t_{i}+1} \equiv_{L_i} u^{t_i}$.
 	Dann gilt $$u^{t+1} \equiv_K u^t$$ für $t = t_1 +t _2 +1$ und $K = L_1 \cdot L_2$.
 	
 	\subsubsection{Beweis des Satzes}
 	Für den Beweis ist, unter Annahme der Voraussetzung, zu zeigen, dass
 	\begin{align*}
-		\forall x,y \in \aast: xu^{t+1}y \in \iff  xu^{t}y \in K
+		\forall x,y \in \aast: xu^{t+1}y \in K\iff  xu^{t}y \in K
 	\end{align*}
 	gilt.\\
 	
 	Dafür sei $s \in \{t, t+1\}$ und $xu^sy \in K$. Nun existieren drei Fälle für die Trennung des Wortes $xu^sy$: 
 	\begin{enumerate}[label= \arabic*.]
-		\item $x=u_1x'$ mit $x'u^sy \in L_2$ und $u_1 \in L$. In diesem Fall folgt $xu^{s\pm1}y \in L_1L_2$. 
+		\item $x=u_1x'$ mit $x'u^sy \in L_2$ und $u_1 \in L_1$. In diesem Fall folgt $xu^{s\pm1}y \in L_1L_2$. 
 		\item $y = y'u_2$ mit $xu^sy' \in L_1$ und  $u_2 \in L_2$. Dieser Fall funktioniert analog zu 1..
 		\item $xu^sy = xu^{s_1}u'u''u^{s_2}y$ mit $xu^{s_1}u' \in L_1$ und $u''u^s_2y \in L_2$, sowie $u'u'' = u$. In diesem Fall muss nun $s_i \geq t_i$ für ein $i \in \{1,2\}$ gelten, da $s_1 + s_2 + 1 = s$ gilt.
 	\end{enumerate}
@@ -2456,12 +2456,17 @@ Zur Synatx: Wir benutzen Variablen $x$ für Elemente aus $V$ und $X$ für Teilme
 	\begin{itemize}
 		\item $x=y$\quad ($\mathsf{FV}(x=y)=\{x,y\}$)
 		\item $\lambda(x) = a$ mit $a \in \Sigma$, alternativ auch als Prädikat $P_a(x)$ geschrieben\quad ($\fv(\lambda(x))=\{x\}$)
-		\item $x$\quad ($\fv(\lambda(x)=\{x\}$)
+		\item $x$\quad ($\fv(x)=\{x\}$)
 		\item $T= true$ \quad ($\fv(T)=\emptyset$)
 		\item $x \in X$\quad ($\fv(x \in  X)=\{x,X\})$
 		\item $(x,y) \in E$\quad ($\fv((x,y) \in  E)=\{x,y\})$
 	\end{itemize}
+
+\subsubsection{Weitere $\mso$ Formeln}
+	Sei $z \in \{x, X\}$ und $\phi$ eine $\mso$-Formel, dann gibt es auch die $\mso$-Formel $\exists z\phi$ mit $\fv(\exists z \phi) = \fv(\phi) \setminus \{z\}$.\\
 	
+	Au\ss erdem gibt es boolesche Formeln. Seien hierfür $\phi$ und $\psi$ $\mso$-Formeln. Dann sind auch $(\phi \lor \psi)$ und $\neg \phi$ $\mso$-Formeln, 
+	mit $\fv(\phi \lor \psi) = \fv(\phi) \cup \fv(\psi)$ und $\fv(\neg \phi) = \fv(\phi)$.
 
 	
 \subsubsection{Makros}
@@ -2473,11 +2478,7 @@ Wir definieren die folgenden Makros:
 	\item $\forall z \phi := \neg (\exists z (\neg\phi))$
 \end{itemize}
 
-\subsubsection{Weitere $\mso$ Formeln}
-	Sei $z \in \{x, X\}$ und $\phi$ eine $\mso$-Formel, dann gibt es auch die $\mso$-Formel $\exists z\phi$ mit $\fv(\exists z \phi) = \fv(\phi) \setminus \{z\}$.\\
-	
-	Au\ss erdem gibt es boolesche Formeln. Seien hierfür $\phi$ und $\psi$ $\mso$-Formeln. Dann sind auch $(\phi \lor \psi)$ und $\neg \phi$ $\mso$-Formeln, 
-	mit $\fv(\phi \lor \psi) = \fv(\phi) \cup \fv(\psi)$ und $\fv(\neg \phi) = \fv(\phi)$.
+
 
 \subsubsection{Semantik}
 	Die Semantik der atomaren Formeln ist klar.\\
@@ -2517,7 +2518,7 @@ Wir definieren die folgenden Makros:
 	Sei $L \subseteq \sigstern$. Dann gilt 
 	\begin{align*}
 	L \in \reg(\Sigma) \iff& \exists \phi \in \mso(\Sigma^\ast) \text{ mit } \fv(\phi) = \emptyset \text{ und } L=L(\phi) = \{w \mid w \models \phi \}\\
-	\iff& \exists \psi(\Sigma^\ast) \in \mso  \text{ mit } \fv(\psi) \subseteq \{X_1, \ldots, X_n\}, \psi \text{ ist quantorenfrei und }\\ &L=L(\exists X_1 \ldots \exists X_n : \psi) 
+	\iff& \exists \psi\in \mso(\sigstern)  \text{ mit } \fv(\psi) \subseteq \{X_1, \ldots, X_n\}, \psi \text{ ist quantorenfrei und }\\ &L=L(\exists X_1 \ldots \exists X_n : \psi) 
 	\end{align*}
 
 
@@ -2525,8 +2526,8 @@ Wir definieren die folgenden Makros:
 	Sei $L= L(A)$ für einen NFA $A= (Q, \Sigma, \delta, I, F)$. Wir konstruieren jetzt $\phi \in \mso$ mit: $$w \in L(A) \iff w \models \phi$$
 	Sei dafür $w = a_1 \ldots a_n$ mit $a_i \in \Sigma$ für $1\leq i \leq n$. Dann ist also $V = \{1, \ldots, n\}$ und $E=\{(i, i+1) \mid 1 \leq i <n\}$, sowie $\lambda(i) = a_i$.\\
 	Es gelte $Q = \{0, \ldots, m\}$. Dann existieren Mengenvariablen $X_0, \ldots, X_m$, sodass wir $\phi$ folgenderma\ss en setzen können:
-	$$\phi = \Bigl\lbrack(\exists X_q : 1 \in X_q \land q \in I) \land (\exists X_q : n \in X_q \land q \in F) \land  (\bigwedge_{p, q \in Q} (p \not = q \implies X_p \cap X_q = \emptyset))$$
-	$$ \forall x \forall y ( \bigwedge_{p, q, a} (x \in X_p \land \lambda(x)= a \land (x,y \in E)) \implies  \bigvee_{(p,q,a) \in \delta} y \in X_q)\Bigr\rbrack$$
+	$$\phi = \Bigl\lbrack(\exists X_q : 1 \in X_q \land q \in I) \land (\exists X_q : n \in X_q \land q \in F) \land  (\bigwedge_{p, q \in Q} (p \not = q \implies X_p \cap X_q = \emptyset)) \, \land$$
+	$$ \forall x \forall y ( \bigwedge_{p, q, a} (x \in X_p \land \lambda(x)= a \land (x,y \in E)) \implies  \bigvee_{(p,a,q) \in \delta} y \in X_q)\Bigr\rbrack$$
 	Damit ist die erste Richtung bewiesen.
 
 \subsubsection{Vorbereitungen für zweite Richtung des Beweises}
@@ -2548,7 +2549,7 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 	\end{enumerate}
 
 \subsubsection{Beweis des Satzes - Zweite Richtung}
-	Für diese Richtung ist zu zeigen, dass $L \in \reg(\Sigma)$ gilt für $L=\varphi(L)$ für eine $\mso$-Formel $\varphi$. 
+	Für diese Richtung ist zu zeigen, dass $L \in \reg(\Sigma)$ gilt für $L=L(\varphi)$ für eine $\mso$-Formel $\varphi$. 
 	Man beachte, dass ohne Einschränkung folgende Form für $\varphi$ angenommen werden kann: $\varphi = Q_1X_1\ldots Q_nX_n\psi$ mit $\psi$ ist quantorenfrei, 
 	$\fv(\psi) \subseteq \{X_1, \ldots, X_n\}$ und $Q_i \in \{\forall, \exists\}$.
 	Also können wir davon ausgehen, dass sich $\varphi$ in Pränexnormalform befindet. $\psi$ benutzt nur boolesche Kombinationen, sowie die atomaren Formeln
@@ -2560,7 +2561,7 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 	Es gilt $\Gamma_0 = \Sigma$. 
 	Mit Induktion nach $n$ zeigen wir nun : \\
 	Es existiert ein NFA $A_n$ mit $L(A_n) = L(\psi) \subseteq \Gamma_n^\ast$. Hierfür interpretieren wir die Mengenvariablen $X_i$ durch Teilmengen $I(X_i) \subseteq \Gamma^l$ für alle $l$.
-	Dann ist $I(X_i) = \{w \in \Gamma_n^l \mid w_i(X)= 1\}$, wobei $$w_i(X) = 1 \iff \lambda_i(w_i) = 1$$ mit $\lambda_i$ als Beschriftung der $i$-ten Spur gilt.
+	Dann ist $I(X_i) = \{w \in \Gamma_n^l \mid w_i(x)= 1\}$, wobei $$w_i(x) = 1 \iff \lambda_i(w_i) = 1$$ mit $\lambda_i$ als Beschriftung der $i$-ten Spur gilt.
 	\newline
 	
 	Wir beginnen die Induktion mit $n= 0$. Dann gilt $\fv(\psi) = \emptyset$. Die einzige atomare Formel ist dann $\top = true$, also folgt $L(A_n) = \sigstern$.\\
@@ -2617,7 +2618,7 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 	Es fehlt jetzt noch die Betrachtung des Komplements, welche in Abschnitt~\ref{sec:splitting_bew2} folgen wird.
 
 \subsubsection{Beobachtung}
-	Sei $L \cap \bast A \bast = \bigcup_{\text{endlich}} K_iAL_i$. Dann gilt ohne Einschränkung $$K_I \cap K_j = \emptyset$$ für alle $i \not = j$ und $$\bigcup_{i \in I} K_i = \sigstern\, .$$
+	Sei $L \cap \bast A \bast = \bigcup_{\text{endlich}} K_iAL_i$. Dann gilt ohne Einschränkung $$K_i \cap K_j = \emptyset$$ für alle $i \not = j$ und $$\bigcup_{i \in I} K_i = \sigstern\, .$$
 
 	Das kann man folgenderma\ss en beweisen. \oei gilt $K_i \not = \emptyset$ für alle $i$.
 	
