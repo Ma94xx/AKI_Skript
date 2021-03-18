@@ -415,7 +415,7 @@
 	Für eine Untergruppe $H \leq G$ sind die folgenden Nebenklassen definiert:
 	\begin{align*}
 		G/H &= \{gH \subseteq G \mid g \in G\} \quad \text{Menge der Linksnebenklassen } \\
-		H/G &= \{Hg \subseteq G \mid g \in G\} \quad \text{Menge der Rechtsnebenklassen } 
+		H\backslash G &= \{Hg \subseteq G \mid g \in G\} \quad \text{Menge der Rechtsnebenklassen } 
 	\end{align*}
 	wobei $gH$ die Multiplikation von  g mit allen Elementen aus $H$ ist, also die Linksnebenklasse bezüglich dem Element $g$. 
 	
@@ -1289,10 +1289,10 @@
 	
 	\section{Erkennbare und Rationale Mengen 1 - Vorlesung 7}
 	\subsection{Definition Rationale Menge ($\rat$)}
-	Sei $M$ eine Monoid (z.B $M = \sigstern$).
+	Sei $M$ ein Monoid (z.B $M = \sigstern$).
 	Dann ist $\rat(M)$ die Menge der rationalen Mengen von $M$ und die Elemente von $\rat(M)$ sind induktiv definiert durch:
 	\begin{enumerate}[label=\arabic*)]
-		\item $L \subseteq M \wedge |L| \leq \infty \implies L \in \rat(M)$
+		\item $L \subseteq M \wedge |L| < \infty \implies L \in \rat(M)$
 		\item $L_1, L_2 \in \rat(M) \implies L_1 \cup L_2 \in \rat(M) \, \wedge \, L_1 \cdot L_2 \in \rat(M)$, \\ 
 		wobei $ L_1 \cdot L_2 = \{w \in M \mid \exists u,v \in M : w = uv \, \wedge \, u \in L_1 \,\wedge\, v \in L_2\}$
 		\item $L \in \rat(M) \implies L^\ast = \bigcup_{i \geq 0} L^i \in \rat(M)\,,$\\
@@ -2612,7 +2612,7 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 	
 	Nun sei $L = L' \cup L''$ mit $L', L'' \in \starfree(\Sigma)$. Dann gilt: $$L' \cup L'' \cap \bast A \bast = \bigcup_{j = 1,2} \bigcup K_{i,j}AL_{i,j}$$ \newline
 	
-	Nun sei $L=L' \cdot L''$. Dann gilt: $$L' \cdot L'' \cap \bast A \bast = \bigcup_{i \in I} K_i A L_i (L'' \cap \bast) \cup \bigcup_{j \in J}(L' \cap B) K_jAL_j$$ 
+	Nun sei $L=L' \cdot L''$. Dann gilt: $$L' \cdot L'' \cap \bast A \bast = \bigcup_{i \in I} K_i A L_i (L'' \cap \bast) \cup \bigcup_{j \in J}(L' \cap B^*) K_jAL_j$$ 
 	für $L' \cap \bast A \bast = \bigcup_{i \in I} K_iAL_i$ und $L'' \cap \bast A \bast = \bigcup_{j \in J} K_iAL_j$.\newline
 	
 	Es fehlt jetzt noch die Betrachtung des Komplements, welche in Abschnitt~\ref{sec:splitting_bew2} folgen wird.
@@ -2668,7 +2668,7 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 
 \subsubsection{Definition: Normalform}
 	Die Normalformen entsprechen den Kodierungen $\overline{(w, \sigma)}$.
-	Die Menge dieser ist definiert als: $$N_V = \bigcap_{x \in V} (\Sigma_V^{x=0})^\ast(\Sigma_V^{x=1})(\Sigma_V^{x=0})^\ast \in \starfree(\sigstern)$$
+	Die Menge dieser ist definiert als: $$\mathcal{N}_V = \bigcap_{x \in V} (\Sigma_V^{x=0})^\ast(\Sigma_V^{x=1})(\Sigma_V^{x=0})^\ast \in \starfree(\sigstern)$$
 
 \subsubsection{Definition: Teilalphabet}
 	Wir nennen die folgende Menge ein Teilalphabet von $\Sigma_V$: $$\Sigma_V^{x=b} = \{(a, \tau) \in \Sigma_V \mid \tau(x) = b\}\, ,$$ mit $b \in \{0,1\} = \B$.
@@ -2679,15 +2679,15 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 	\begin{gather*}
 			\rbracedalign
 			{}{
-				\llbracket \varphi \rrbracket_V &= \{\overline{(w, \sigma)} \in N_V \mid (w, \sigma) \models \varphi \}  \\
-				\llbracket x = a \rrbracket_V &= \{\overline{(w, \sigma)} \in N_V \mid w = b_1, \ldots, b_l \in \sigstern \land b_{\sigma(x)}=a\}  \\
-				\llbracket x < y\rrbracket_V &= \{\overline{(w, \sigma)} \in N_V \mid \sigma(x) < \sigma(y) \}  \\
+				\llbracket \varphi \rrbracket_V &= \{\overline{(w, \sigma)} \in \mathcal{N}_V \mid (w, \sigma) \models \varphi \}  \\
+				\llbracket x = a \rrbracket_V &= \{\overline{(w, \sigma)} \in \mathcal{N}_V \mid w = b_1, \ldots, b_l \in \sigstern \land b_{\sigma(x)}=a\}  \\
+				\llbracket x < y\rrbracket_V &= \{\overline{(w, \sigma)} \in \mathcal{N}_V \mid \sigma(x) < \sigma(y) \}  \\
 				\llbracket \varphi \lor \psi \rrbracket_V &= \llbracket \varphi \rrbracket_V \cup \llbracket \psi \rrbracket_V 
 			}{ 
-				\llbracket \neg \varphi \rrbracket_V &= N_V \setminus \llbracket \varphi \rrbracket_V  
+				\llbracket \neg \varphi \rrbracket_V &= \mathcal{N}_V \setminus \llbracket \varphi \rrbracket_V  
 			}{\in \starfree(\sigstern_V)}
 	\end{gather*}
-	$$\llbracket \exists x : \varphi \rrbracket_V \in \{ \overline{(w, \sigma)} \in N_V \mid \exists p : 1 \leq p \leq |w| \land \overline{(w, \sigma[x_n \to p])} \in \llbracket \varphi \rrbracket_{V \cup [x_n]} \}$$
+	$$\llbracket \exists x_n : \varphi \rrbracket_V \in \{ \overline{(w, \sigma)} \in \mathcal{N}_V \mid \exists p : 1 \leq p \leq |w| \land \overline{(w, \sigma[x_n \to p])} \in \llbracket \varphi \rrbracket_{V \cup [x_n]} \}$$
 	Wobei wir $\sigma$ wie folgt definieren: 
 	$$\sigma[x_n \to p](y) = 
 	\begin{cases}
@@ -3208,7 +3208,7 @@ Gilt durch Lemma I, Lemma II und Satz~\ref{sec:ltl_hn}, welcher im Folgenden gez
 \subsection{Lemma: $\ltl$-Formel-Verkleinerung}
 	Sei $\varphi \in \ltl[\sX\sU]$. Dann existiert eine Formel $\psi \in \ltl_+$ mit den Eigenschaften $$L(\varphi) = L(\psi) \text{ und }|\psi| \leq |\Sigma| \cdot |\varphi|\, .$$
 
-\subsection{Definiton Teilformel}
+\subsection{Definition Teilformel}
 	Definiere für ein $\varphi \in \ltl_+$ die Menge  $\tf(\varphi)$ der Teilformeln. Dabei gilt:
 	\begin{align*}
 		\tf(\varphi) &= \{\varphi\} \text{ für } \varphi \in \{\top, \bot, \sende, a \mid a \in \Sigma\} \\
