@@ -1326,7 +1326,7 @@
 	
 	\subsection{Definition aperiodisch}
 	Ein Monoid $N$ ist aperiodisch genau dann, wenn alle Unterhalbguppen von $N$, die Gruppen sind, trivial sind, bzw. $N$ gruppenfrei ist.\\
-	Alternativ gilt: Ein Monoid $M$	ist aperidodisch, falls $$\exists t \in \N \, \forall x \in M\, : \, x^{t+1} = x^t \, .$$
+	Alternativ gilt: Ein Monoid $M$	ist aperiodisch, falls $$\exists t \in \N \, \forall x \in M\, : \, x^{t+1} = x^t \, .$$
 	Falls $M$ endlich ist, gilt: $$M \text{ ist aperiodisch} \iff \forall x \in M \, \exists t \in \N \,  : x^{t+1} = x^t$$
 	
 	
@@ -1353,6 +1353,7 @@
 	Dies definiert dann die Sprache $L(A) = \{w \in M \mid q_0\cdot w \in F\}$.
 	
 	\subsection{Beispiel für einen DFA über M}
+	\label{sec:rec_is_dfa}
 	Sei $L \in \rec(M)$ mit $\varphi: M \to N$ wie in der Definition~\ref{sec:rec}. \\ 
 	Dann definiert dies einen DFA $A = (Q,\cdot, q_0, F)$ mit $L(A) = L$ und $N = Q$. 
 	Hierbei ist: 
@@ -1377,7 +1378,7 @@
 	
 	\subsubsection{Abschluss von $\rec$ unter Hom.}
 	Wenn $h: M' \to M$ ein Monoid-Hom. ist, dann gilt $$L \in \rec(M) \implies h\inv(L) \in \rec(M')\, .$$
-	Das bedeutet, erkennbare Mengen sind unter Homomorphismen abgeschlossen.
+	Das bedeutet, erkennbare Mengen sind unter inversen Homomorphismen abgeschlossen.
 	
 	\subsection{Minimaler Erkennender DFA}
 	\subsubsection{Definitionen}
@@ -1513,12 +1514,14 @@
 	\end{align*}
 	
 	\subsubsection{Beweis des Satzes von McKnight}
-	Es gilt $\emptyset, M \in \rec(M)$ durch das triviale Monoid, vermöge $$h: M \to \{1\}\, .$$ Wenn $M \in \rat(M)$ ist, dann folgt daraus, dass $M=L$ für einen rationalen Ausdruck für $M$. 
-	Da dieser nur eine endliche Teilmenge von $M$ benutzt, folgt die Rückrichtung der Behauptung.
+	Wir betrachten zuerst die Hinrichtung.
+	Es gilt $\emptyset, M \in \rec(M)$ durch das triviale Monoid, vermöge $$h: M \to \{1\}\, .$$
+	Durch die Annahme folgt dann $M \in \rat(M)$. 
+	Wenn $M \in \rat(M)$ ist, dann folgt daraus, dass $M=L$ für einen rationalen Ausdruck für $M$. 
+	Da dieser nur eine endliche Teilmenge von $M$ benutzt, folgt dass $M$ endlich erzeugt ist.\newline
 	
 	Zu zeigen ist also nun noch die andere Richtung. 
 	\newline
-	
 	Sei $\pi : \sigstern \to M$ ein surjektiver Hom. und $|\Sigma| < \infty$. 
 	Wir wollen zeigen, dass dann $L \in \rec(M) \implies L \in \rat(M)$ gilt.\\
 	Wir haben also
@@ -1529,7 +1532,7 @@
 		\end{tikzcd}
 	\end{equation*}
 	mit $|N| < \infty$ und $h\inv(h(L)) = L$. Dann folgt $\pi\inv(L) \in \rec(M)$ wegen der Abgeschlossenheit unter Hom..
-	Weiter gilt dann $\exists \text{ DFA } A \text{ mit } \pi\inv(L) = L(A)$, woraus $\pi\inv(L) \in \rat(\Sigma^*)$ folgt.
+	Weiter gilt dann $\exists \text{ DFA } A \text{ mit } \pi\inv(L) = L(A)$, wegen Abschnitt~\ref{sec:rec_is_dfa}, woraus $\pi\inv(L) \in \rat(\Sigma^*)$ folgt.
 	Wegen der Surjektivität von $\pi$ gilt $\pi\pi\inv(L) = L \in \rat(M)$.
 	\bewiesen
 	
@@ -2498,7 +2501,7 @@ Wir definieren die folgenden Makros:
 \subsubsection{Makros}
 	Wir definieren die folgenden Makros:
 	\begin{itemize}
-		\item  Für $(x,y) \in \east$ :$\iff$ $(x,y)$ ist ein Element des reflexiven, transitiven Abschlusses von $E$. (Das bedeutet, die gerichtete Kantenmenge $E$ entspricht der Nachfolger-Relation und $\east$ der $\leq$-Relation.)
+		\item  $(x,y) \in \east$ :$\iff$ $(x,y)$ ist ein Element des reflexiven, transitiven Abschlusses von $E$. (Das bedeutet, die gerichtete Kantenmenge $E$ entspricht der Nachfolger-Relation und $\east$ der $\leq$-Relation.)
 		\item $R(x,Y) := [x \in Y \land \forall z \forall z': (z \in Y \land (z,z') \in E \implies z' \in Y)]$
 		\item $\east(x,y) := [\forall Y (R(x,Y) \implies y \in Y)]$ 
 	\end{itemize}
@@ -2537,7 +2540,7 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 		Dabei kann man das erste Makro in $\fo[\leq]$ definieren über: 
 				$$ y = x +1 \iff [x \leq y \land \forall z : (x \leq z \leq y \land x \not = z \implies z = y \land x \not= y)]$$
 		\item Durch diesem und den nächsten Schritt sollen alle $\fo$-Variablen eliminiert werden. Dafür definieren wir das Makro: $$|X| = 1 \iff [X \not =\emptyset \land \forall Y : (Y \subseteq X \land Y \not= \emptyset \implies X = Y) ]$$
-		Man beachte hierbei dass $\sigstern \not = \emptyset$  gilt, auch für $ \Sigma = \emptyset$, wegen $\emptyset^\ast = \{\varepsilon\}$.\\
+		Man beachte hierbei, dass $\sigstern \not = \emptyset$  gilt, auch für $ \Sigma = \emptyset$, wegen $\emptyset^\ast = \{\varepsilon\}$.\\
 		Weiter definieren wir das Makro:
 		$$X=\emptyset :\iff (\forall Y: X \subseteq Y)$$
 		\item Wir führen neue atomare Formeln ein(Achtung DAM Seite 223 Druckfehler): 
@@ -2586,7 +2589,7 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 	Für $\sigstern$ gilt: $$\ap = \starfree = \fo[\leq] = \fo^3[\leq] = \ltl = \tl[UX]$$ \\
 	Hierbei steht $\ltl$ für Lineare Temporale Logik, $\tl[UX]$ ist die Temporale Logik mit $XU$ (next until) als einzigem Operator und $\fo^3[\leq]$ ist das Fragment der First-Order Logik, das nur drei Variablenbezeichnungen benutzt.\\
 	
-	In diese Kapitel soll der Teil $\fo[\leq] \implies \starfree$ gezeigt werden. Für eine Sprache $L \subseteq \sigstern$, die in $\fo[\leq]$ definierbar ist, folgt $L \in \sf(\sigstern)$. 
+	In diesem Kapitel soll der Teil $\fo[\leq] \implies \starfree$ gezeigt werden. Also, dass für eine Sprache $L \subseteq \sigstern$, die in $\fo[\leq]$ definierbar ist,  $L \in \sf(\sigstern)$ folgt. 
 	Modelle für $\fo[\leq]$ sind dann Wörter $w \in \sigstern$ mit $$w = (\{1, \ldots, |w|\}, \{(i,j) \mid 1 \leq i \leq j \leq |w|\}, \lambda)$$
 	Für die atomare Formel ``$\lambda(x) =a$'' schreiben wir $w(x) = a$.
 	Die übrigen atomaren Formeln und Makros aus Kapitel~\ref{sec:vl14} gelten weiterhin.
@@ -2601,9 +2604,9 @@ Wir führen folgende Preprocessing-Schritte durch, um den Beweis zu vereinfachen
 	Auch die Umkehrung des Lemmas ist wahr, hier ist jedoch nur die gegebene Richtung relevant.
 	
 \subsubsection{Beweis des Lemmas - Teil 1\label{Beweis: 1}}
-	\OE\hspace{1pt} gilt $\bigcup_{\text{endlich}} K_iAL_i = \bigcup_{i = 0}^n K_iAL_i$ mit $K_0 = \sigstern$ und $n \geq 1$. Die ist möglich, da $L_0 = \emptyset$ erlaubt ist und somit auch der Fall des leeren Wortes abgedeckt ist. \newline
+	\OE\hspace{1pt} gilt $\bigcup_{\text{endlich}} K_iAL_i = \bigcup_{i = 0}^n K_iAL_i$ mit $K_0 = \sigstern$ und $n \geq 1$. Dies ist möglich, da $L_0 = \emptyset$ erlaubt ist und somit auch der Fall des leeren Wortes abgedeckt ist. \newline
 	
-	Der Beweis ist einfach, unter Verwendung von $\ap = \starfree$, was als Selbsttest geprüft werden kann.
+	Der Beweis ist einfach unter Verwendung von $\ap = \starfree$, was als Selbsttest geprüft werden kann.
 	Wir geben hier deshalb den direkten Beweis mittels struktureller Induktion an.
 	\newline
 	
